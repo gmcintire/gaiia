@@ -21,21 +21,21 @@ defmodule Gaiia.ClientTest do
 
   describe "new/1" do
     test "builds a client from explicit options" do
-      client = Client.new(endpoint: @endpoint, token: "secret")
+      client = Client.new(endpoint: @endpoint, api_key: "secret")
 
-      assert %Client{endpoint: @endpoint, token: "secret"} = client
+      assert %Client{endpoint: @endpoint, api_key: "secret"} = client
     end
 
     test "falls back to application config when options are omitted" do
       Application.put_env(:gaiia, :endpoint, @endpoint)
-      Application.put_env(:gaiia, :token, "configured")
+      Application.put_env(:gaiia, :api_key, "configured")
       on_exit(fn -> Application.delete_env(:gaiia, :endpoint) end)
-      on_exit(fn -> Application.delete_env(:gaiia, :token) end)
+      on_exit(fn -> Application.delete_env(:gaiia, :api_key) end)
 
       client = Client.new()
 
       assert client.endpoint == @endpoint
-      assert client.token == "configured"
+      assert client.api_key == "configured"
     end
 
     test "accepts custom headers" do
@@ -44,12 +44,12 @@ defmodule Gaiia.ClientTest do
       assert client.headers == [{"x-trace-id", "abc"}]
     end
 
-    test "raises a clear error when no endpoint is configured" do
+    test "defaults to the public Gaiia endpoint when none is configured" do
       previous = Application.get_env(:gaiia, :endpoint)
       Application.delete_env(:gaiia, :endpoint)
       on_exit(fn -> Application.put_env(:gaiia, :endpoint, previous) end)
 
-      assert_raise ArgumentError, ~r/endpoint/, fn -> Client.new() end
+      assert Client.new().endpoint == "https://api.gaiia.com/api/v1"
     end
   end
 
@@ -57,7 +57,7 @@ defmodule Gaiia.ClientTest do
     setup do
       client =
         client_with(fn _req -> ReqStub.ok_response(%{"data" => %{"account" => %{"id" => "acct_1"}}}) end,
-          token: "t"
+          api_key: "t"
         )
 
       {:ok, client: client}
@@ -88,10 +88,10 @@ defmodule Gaiia.ClientTest do
       assert %{"operationName" => "Foo"} = ReqStub.captured_body()
     end
 
-    test "sends the Authorization header", %{client: client} do
+    test "sends the API key in the X-Gaiia-Api-Key header", %{client: client} do
       Client.query(client, "{ __typename }")
 
-      assert ["Bearer t"] = ReqStub.captured_headers()["authorization"]
+      assert ["t"] = ReqStub.captured_headers()["x-gaiia-api-key"]
     end
 
     test "sends the content-type header", %{client: client} do
@@ -102,19 +102,19 @@ defmodule Gaiia.ClientTest do
 
     test "includes custom headers from the client" do
       client =
-        client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end, token: "t", headers: [{"x-trace-id", "abc"}])
+        client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end, api_key: "t", headers: [{"x-trace-id", "abc"}])
 
       Client.query(client, "{ __typename }")
 
       assert ["abc"] = ReqStub.captured_headers()["x-trace-id"]
     end
 
-    test "omits Authorization header when no token is configured" do
-      client = client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end, token: nil)
+    test "omits the API key header when no key is configured" do
+      client = client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end, api_key: nil)
 
       Client.query(client, "{ __typename }")
 
-      refute Map.has_key?(ReqStub.captured_headers(), "authorization")
+      refute Map.has_key?(ReqStub.captured_headers(), "x-gaiia-api-key")
     end
   end
 
@@ -147,6 +147,108 @@ defmodule Gaiia.ClientTest do
 
       assert {:ok, %{"createAccount" => %{"id" => "acct_1"}}} =
                Client.mutate(client, "mutation { createAccount { id } }")
+    end
+  end
+
+  describe "request/4 metadata" do
+    defp rate_limited_response(body, headers) do
+      %Req.Response{status: 200, body: body, headers: headers}
+    end
+
+    test "returns the rate-limit budget the API reported" do
+      headers = %{
+        "x-rate-limit-allowed" => ["true"],
+        "x-rate-limit-cost" => ["8"],
+        "x-rate-limit-limit" => ["500"],
+        "x-rate-limit-used" => ["8"],
+        "x-rate-limit-remaining" => ["492"]
+      }
+
+      client = client_with(fn _req -> rate_limited_response(%{"data" => %{"x" => 1}}, headers) end)
+
+      assert {:ok, response} = Client.request(client, "{ x }")
+
+      assert response.data == %{"x" => 1}
+      assert response.status == 200
+
+      assert response.rate_limit == %Gaiia.RateLimit{
+               allowed: true,
+               cost: 8,
+               limit: 500,
+               used: 8,
+               remaining: 492,
+               retry_at: nil
+             }
+    end
+
+    test "reports no rate limit when the response carries no rate-limit headers" do
+      client = client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end)
+
+      assert {:ok, %{rate_limit: nil}} = Client.request(client, "{ x }")
+    end
+
+    test "surfaces the error code and rate-limit extensions of a RATE_LIMITED rejection" do
+      errors = [
+        %{
+          "message" => "Rate limit exceeded",
+          "extensions" => %{
+            "code" => "RATE_LIMITED",
+            "cost" => 138,
+            "limit" => 500,
+            "used" => 462,
+            "remaining" => 38,
+            "retryAt" => "2024-06-27T19:01:02.000Z"
+          }
+        }
+      ]
+
+      client = client_with(fn _req -> ReqStub.ok_response(%{"errors" => errors}) end)
+
+      assert {:error, %Error{kind: :graphql, code: "RATE_LIMITED", status: 200} = error} = Client.query(client, "{ x }")
+      assert error.rate_limit.allowed == false
+      assert error.rate_limit.remaining == 38
+      assert error.rate_limit.retry_at == ~U[2024-06-27 19:01:02.000Z]
+    end
+
+    test "surfaces the error code of an authentication failure" do
+      errors = [%{"message" => "Invalid key", "extensions" => %{"code" => "UNAUTHENTICATED"}}]
+      client = client_with(fn _req -> ReqStub.ok_response(%{"errors" => errors}) end)
+
+      assert {:error, %Error{code: "UNAUTHENTICATED", rate_limit: nil}} = Client.query(client, "{ x }")
+    end
+  end
+
+  describe "timezone" do
+    test "sends the client's timezone as x-timezone" do
+      client = client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end, timezone: "America/Toronto")
+
+      Client.query(client, "{ x }")
+
+      assert ["America/Toronto"] = ReqStub.captured_headers()["x-timezone"]
+    end
+
+    test "omits x-timezone when none is configured" do
+      client = client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end)
+
+      Client.query(client, "{ x }")
+
+      refute Map.has_key?(ReqStub.captured_headers(), "x-timezone")
+    end
+
+    test "a per-call timezone overrides the client's" do
+      client = client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end, timezone: "America/Toronto")
+
+      Client.query(client, "{ x }", %{}, timezone: "America/Phoenix")
+
+      assert ["America/Phoenix"] = ReqStub.captured_headers()["x-timezone"]
+    end
+
+    test "sends per-call headers" do
+      client = client_with(fn _req -> ReqStub.ok_response(%{"data" => %{}}) end)
+
+      Client.query(client, "{ x }", %{}, headers: [{"x-trace-id", "abc"}])
+
+      assert ["abc"] = ReqStub.captured_headers()["x-trace-id"]
     end
   end
 end

@@ -30,13 +30,13 @@ defmodule Gaiia.Queries do
     @name op["name"]
     @fun_name Schema.function_name(@name)
     @args op["args"]
-    @description Schema.description(op["description"] || "GraphQL query `#{@name}`.")
 
-    @doc """
-    #{@description}
+    @doc Schema.doc(op, :query)
 
-    GraphQL: `query { #{@name} }`
-    """
+    if op["isDeprecated"] do
+      @deprecated Schema.description(op["deprecationReason"] || "Deprecated in the Gaiia schema.")
+    end
+
     @spec unquote(@fun_name)(Client.t(), map(), String.t(), keyword()) ::
             {:ok, term()} | {:error, Gaiia.Error.t()}
     def unquote(@fun_name)(client, variables \\ %{}, selection \\ "", opts \\ []) do

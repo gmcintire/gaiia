@@ -15,13 +15,13 @@ defmodule Gaiia.Mutations do
     @name op["name"]
     @fun_name Schema.function_name(@name)
     @args op["args"]
-    @description Schema.description(op["description"] || "GraphQL mutation `#{@name}`.")
 
-    @doc """
-    #{@description}
+    @doc Schema.doc(op, :mutation)
 
-    GraphQL: `mutation { #{@name} }`
-    """
+    if op["isDeprecated"] do
+      @deprecated Schema.description(op["deprecationReason"] || "Deprecated in the Gaiia schema.")
+    end
+
     @spec unquote(@fun_name)(Client.t(), map(), String.t(), keyword()) ::
             {:ok, term()} | {:error, Gaiia.Error.t()}
     def unquote(@fun_name)(client, variables \\ %{}, selection \\ "", opts \\ []) do

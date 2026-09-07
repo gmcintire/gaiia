@@ -5,8 +5,9 @@
 An Elixir client for the [Gaiia](https://gaiia.com) GraphQL API.
 
 Write GraphQL by hand against a small `Req`-based client, or call one of the
-functions generated from the schema — 169 queries and 113 mutations, one
-function each, with the API's own descriptions carried through as `@doc`.
+functions generated from the schema — 125 queries and 212 mutations, one
+function each, with the API's own descriptions and argument types carried
+through as `@doc`.
 
 > Unofficial community project. Not affiliated with, endorsed by, or supported
 > by Gaiia.
@@ -29,18 +30,22 @@ Requires Elixir ~> 1.19.
 
 ```elixir
 config :gaiia,
-  endpoint: "https://api.gaiia.com/graphql",
-  token: System.get_env("GAIIA_TOKEN")
+  endpoint: "https://api.gaiia.com/api/v1",
+  api_key: System.get_env("GAIIA_API_KEY")
 ```
 
-The token is sent as `Authorization: Bearer <token>`; omit it and no
-`Authorization` header is set. Never commit a token — read it from the
-environment.
+The endpoint above is the default, so only the key is required. It is sent as
+`X-Gaiia-Api-Key: <key>`, the only scheme the API accepts — an `Authorization`
+header authenticates nothing. Omit the key and every operation comes back as an
+`UNAUTHENTICATED` GraphQL error. Keys are issued in `Admin -> API keys` with
+per-key permissions; `gaiia_sk_*` keys are server-side secrets, `gaiia_pk_*`
+are publishable, and `*_sbox_*` keys address the sandbox instance. Never commit
+a key — read it from the environment.
 
 With that config in place, the top-level module builds an implicit client:
 
 ```elixir
-Gaiia.query("query Account($id: ID!) { account(id: $id) { id name } }", %{"id" => id})
+Gaiia.query("query Account($id: GlobalID!) { account(id: $id) { id name } }", %{"id" => id})
 #=> {:ok, %{"account" => %{"id" => "...", "name" => "..."}}}
 
 Gaiia.mutate("mutation ...", %{"input" => input})
@@ -53,19 +58,20 @@ For multiple endpoints, per-call headers, or request options, build a
 share.
 
 ```elixir
-client = Gaiia.Client.new(token: token, headers: [{"x-trace-id", "abc"}])
+client = Gaiia.Client.new(api_key: key, headers: [{"x-trace-id", "abc"}])
 
 Gaiia.Client.query(client, "{ __typename }")
 ```
 
 `Gaiia.Client.new/1` accepts:
 
-| Option         | Meaning                                                         |
-| -------------- | --------------------------------------------------------------- |
-| `:endpoint`    | GraphQL endpoint URL. Required unless set in app env.           |
-| `:token`       | Bearer token for the `Authorization` header.                    |
-| `:headers`     | Extra headers as `[{name, value}]`.                             |
-| `:req_options` | Options forwarded to `Req.request/1` (`:adapter`, `:plug`, ...). |
+| Option         | Meaning                                                          |
+| -------------- | ---------------------------------------------------------------- |
+| `:endpoint`    | GraphQL endpoint URL. Defaults to `https://api.gaiia.com/api/v1`. |
+| `:api_key`     | API key for the `X-Gaiia-Api-Key` header.                        |
+| `:timezone`    | IANA identifier sent as `x-timezone`.                            |
+| `:headers`     | Extra headers as `[{name, value}]`.                              |
+| `:req_options` | Options forwarded to `Req.request/1` (`:adapter`, `:plug`, ...).  |
 
 ## Generated operations
 
@@ -90,12 +96,17 @@ name(client, variables \\ %{}, selection \\ "", opts \\ [])
   pass are sent, so optional arguments stay absent.
 - `selection` — selection-set body without the surrounding braces. Required for
   object return types; pass `""` for scalars.
-- `opts` — forwarded to `Gaiia.Client.query/4`, e.g. `operation_name: "..."`.
+- `opts` — forwarded to `Gaiia.Client.query/4`, e.g. `operation_name: "..."`,
+  `timezone: "America/Toronto"`.
+
+Operations the schema marks deprecated carry Elixir's `@deprecated`, so calling
+one warns at compile time and names its replacement.
 
 ## Pagination
 
 `Gaiia.Pagination.stream/4` walks Relay-style cursors lazily, so only the pages
-you consume are fetched.
+you consume are fetched. `edges/4` is the same walk over `edges`, when you need
+each item's own cursor.
 
 ```elixir
 query = ~S"""
@@ -113,13 +124,33 @@ client
 |> Enum.to_list()
 ```
 
-`:path` locates the connection inside `data`; `:cursor_variable` renames the
-after-cursor variable (default `"after"`). A request failure mid-stream raises
-the `Gaiia.Error`, since a stream cannot return an error tuple.
+`:path` locates the connection inside `data`. `:direction` selects `:forward`
+(`first`/`after`, following `hasNextPage`/`endCursor`) or `:backward`
+(`last`/`before`, following `hasPreviousPage`/`startCursor`); the cursor
+variable defaults to match and `:cursor_variable` renames it. Pages default to
+50 and cap at 250, but individual fields override both, so the library does not
+enforce a size. A request failure mid-stream raises the `Gaiia.Error`, since a
+stream cannot return an error tuple.
+
+## Rate limits
+
+Limits are query-cost based: each key has a point bucket that every operation
+draws from. `Gaiia.Client.request/4` returns a `Gaiia.Response` instead of bare
+data, carrying the reported budget so bulk jobs can throttle before being
+rejected:
+
+```elixir
+{:ok, %Gaiia.Response{data: data, rate_limit: %Gaiia.RateLimit{remaining: remaining}}} =
+  Gaiia.Client.request(client, "{ accounts(first: 50) { nodes { id } } }")
+```
+
+A rejected operation is a `RATE_LIMITED` GraphQL error; the same struct is then
+on the error, including `retry_at`.
 
 ## Global IDs
 
-`Gaiia.GlobalID` converts between the API's base58 global IDs and UUIDs.
+`Gaiia.GlobalID` converts between the API's `type_base58` global IDs and UUIDs.
+Multi-word types keep their underscores (`work_order_6fRnaKy8Xf1Vsh2Wz2sVnR`).
 
 ```elixir
 Gaiia.GlobalID.encode("Account", uuid)
@@ -127,6 +158,41 @@ Gaiia.GlobalID.decode(global_id)   #=> {"account", uuid}
 Gaiia.GlobalID.type(global_id)
 Gaiia.GlobalID.to_uuid(global_id)
 ```
+
+## Files
+
+File bytes move directly between you and Gaiia's storage host, outside GraphQL.
+`Gaiia.Files` covers those transfers; the surrounding mutations are generated
+like any other.
+
+```elixir
+{:ok, %{"uploadUrl" => %{"url" => url, "fileKey" => key}}} =
+  Gaiia.Mutations.create_document_upload_url(client, %{"input" => input}, "uploadUrl { url fileKey }")
+
+:ok = Gaiia.Files.upload(url, File.read!("contract.pdf"), "application/pdf")
+
+Gaiia.Mutations.create_document(client, %{"input" => %{"fileKey" => key}}, "document { id }")
+```
+
+Download URLs come from any `File` object's `url` field and expire, so re-run
+the query for a fresh one. `Gaiia.Files.download/2` returns the bytes and
+`download_to/3` streams to disk. Neither sends your API key to the file host.
+
+## Webhooks
+
+Gaiia signs each delivery with `X-Gaiia-Webhook-Signature`.
+`Gaiia.Webhook.verify/4` checks it against the raw request body — the exact
+bytes, since re-encoding the JSON changes the signature:
+
+```elixir
+case Gaiia.Webhook.verify(raw_body, signature_header, secret) do
+  :ok -> handle(event)
+  {:error, reason} -> send_resp(conn, 400, to_string(reason))
+end
+```
+
+Manage endpoints and subscriptions with `Gaiia.Queries.webhooks/4` and
+`Gaiia.Mutations.create_webhook/4`.
 
 ## Errors
 
@@ -139,6 +205,11 @@ you match the failure mode instead of parsing messages:
 | `:http`    | Non-2xx HTTP response (`:status`, `:details` hold it)    |
 | `:network` | Request never reached the server — DNS, refused, timeout |
 | `:decode`  | 2xx body that was not a valid GraphQL envelope           |
+
+Most Gaiia failures are `:graphql` at HTTP 200. `:code` carries the first
+error's `extensions.code` (`"UNAUTHENTICATED"`, `"RATE_LIMITED"`, ...).
+Expected mutation failures are not errors at all: they arrive as an `errors`
+list inside the mutation payload of an `{:ok, data}` result.
 
 `Gaiia.Error` is an exception, so it can also be raised or passed to
 `Exception.message/1`.
@@ -168,10 +239,22 @@ CI runs `mix test` on Elixir 1.20.4 / Erlang-OTP 29.0.5.
 Formatting runs [Styler](https://github.com/adobe/elixir-styler) as a plugin,
 so `mix format` also normalizes aliases and directive order.
 
-The generators read `priv/queries.json` and `priv/mutations.json` at compile
-time via `Gaiia.Schema`. Both are `@external_resource`s, so replacing them with
-a fresh introspection dump and recompiling regenerates the API surface. The
-flattened, human-readable dumps under `docs/` describe the same schema.
+## Refreshing the schema
+
+`Gaiia.Queries` and `Gaiia.Mutations` are generated at compile time from
+`priv/queries.json` and `priv/mutations.json`, so those dumps *are* the API
+surface — an operation missing from them has no function. Refresh them from a
+live introspection query:
+
+```sh
+GAIIA_API_KEY=... mix gaiia.introspect
+mix compile --force
+```
+
+The task also rewrites the flattened, human-readable dumps under `docs/` —
+every object, input object, enum, union, interface, and scalar in the schema,
+with types rendered in GraphQL syntax. `mix gaiia.introspect --check` writes
+nothing and fails when the bundled dumps have drifted from the live schema.
 
 ## License
 

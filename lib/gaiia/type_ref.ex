@@ -23,4 +23,17 @@ defmodule Gaiia.TypeRef do
   @spec named_type(t()) :: t()
   def named_type(%{"kind" => kind, "ofType" => inner}) when kind in ["NON_NULL", "LIST"], do: named_type(inner)
   def named_type(%{"name" => name} = type) when is_binary(name), do: type
+
+  @doc """
+  Strip an introspection type reference to the keys this library reads.
+
+  Introspection responses carry descriptions and `__typename` on every
+  nesting level; the bundled schema dumps keep only `kind`, `name`, and
+  `ofType` so the compile-time literals stay small.
+  """
+  @spec prune(t() | nil) :: t() | nil
+  def prune(nil), do: nil
+
+  def prune(%{"kind" => kind, "name" => name} = type),
+    do: %{"kind" => kind, "name" => name, "ofType" => prune(type["ofType"])}
 end
