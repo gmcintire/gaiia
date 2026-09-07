@@ -1,0 +1,45 @@
+version: 2
+
+updates:
+  # Elixir dependencies from mix.exs / mix.lock. The ecosystem identifier for
+  # Hex is `mix`, not `hex`.
+  - package-ecosystem: mix
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - elixir
+    commit-message:
+      prefix: deps
+      prefix-development: deps-dev
+      include: scope
+    groups:
+      # Minor and patch bumps carry no API change; review them together and
+      # leave majors as individual PRs.
+      mix-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  # Workflow actions. Majors here go stale silently until a runner
+  # deprecation (Node 20) starts warning on every build.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      actions:
+        patterns:
+          - "*"
