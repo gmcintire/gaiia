@@ -17,7 +17,7 @@ defmodule Gaiia.MixProject do
       docs: docs(),
       source_url: @source_url,
       dialyzer: [
-        plt_add_apps: [:ex_unit],
+        plt_add_apps: [:ex_unit, :mix],
         flags: [:error_handling, :underspecs, :unmatched_returns]
       ]
     ]
@@ -37,9 +37,9 @@ defmodule Gaiia.MixProject do
       source_ref: "v#{@version}",
       extras: ["README.md", "LICENSE"],
       groups_for_modules: [
-        Core: [Gaiia, Gaiia.Client, Gaiia.Error],
+        Core: [Gaiia, Gaiia.Client, Gaiia.Response, Gaiia.Error, Gaiia.RateLimit],
         "Generated API": [Gaiia.Queries, Gaiia.Mutations],
-        Helpers: [Gaiia.GlobalID, Gaiia.Pagination],
+        Helpers: [Gaiia.Files, Gaiia.GlobalID, Gaiia.Pagination, Gaiia.Webhook],
         Internals: [Gaiia.Operation, Gaiia.Schema, Gaiia.TypeRef]
       ]
     ]

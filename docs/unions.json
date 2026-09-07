@@ -1,0 +1,274 @@
+[
+  {
+    "description": "The addImpactedAccountsToIncident error's payload.",
+    "name": "AddImpactedAccountsToIncidentErrorPayload",
+    "possibleTypes": [
+      "AccountsDoNotExistErrorPayload"
+    ]
+  },
+  {
+    "description": "The addImpactedAccountsToIncidentFromGeofence error's payload.",
+    "name": "AddImpactedAccountsToIncidentFromGeofenceErrorPayload",
+    "possibleTypes": [
+      "AccountsDoNotExistErrorPayload"
+    ]
+  },
+  {
+    "description": "The addImpactedAccountsToIncidentFromNetworkSites error's payload.",
+    "name": "AddImpactedAccountsToIncidentFromNetworkSitesErrorPayload",
+    "possibleTypes": [
+      "AccountsDoNotExistErrorPayload"
+    ]
+  },
+  {
+    "description": "The addImpactedAccountsToIncidentFromProperties error's payload.",
+    "name": "AddImpactedAccountsToIncidentFromPropertiesErrorPayload",
+    "possibleTypes": [
+      "AccountsDoNotExistErrorPayload"
+    ]
+  },
+  {
+    "description": "The archiveAddress mutation's expected error.",
+    "name": "ArchiveAddressError",
+    "possibleTypes": [
+      "ArchiveAddressEntityError"
+    ]
+  },
+  {
+    "description": "Represents data associated with an area.",
+    "name": "AreaData",
+    "possibleTypes": [
+      "CoverageAreaAddress",
+      "Geofence"
+    ]
+  },
+  {
+    "description": "Typed detail accompanying an assignSecondaryTechniciansToWorkOrder error. The concrete type depends on the error code.",
+    "name": "AssignSecondaryTechniciansToWorkOrderErrorPayload",
+    "possibleTypes": [
+      "AssignSecondaryTechnicianErrorPayload"
+    ]
+  },
+  {
+    "description": "Typed detail accompanying an assignTechnicianToWorkOrder error. The concrete type depends on the error code.",
+    "name": "AssignTechnicianToWorkOrderErrorPayload",
+    "possibleTypes": [
+      "AssignTechnicianToWorkOrderNoAvailableTimeSlotsErrorPayload"
+    ]
+  },
+  {
+    "description": "Possible values for assignee types.",
+    "name": "Assignee",
+    "possibleTypes": [
+      "Account",
+      "CommercialAccount",
+      "GeoAddress",
+      "InventoryLocation",
+      "InventoryZone",
+      "NetworkSite",
+      "Property",
+      "User",
+      "Unit"
+    ]
+  },
+  {
+    "description": "The createAddress mutation's expected error.",
+    "name": "CreateAddressError",
+    "possibleTypes": [
+      "CreateAddressInputError",
+      "AddressCustomFieldError"
+    ]
+  },
+  {
+    "description": "The createAddresses mutation's expected error.",
+    "name": "CreateAddressesError",
+    "possibleTypes": [
+      "CreateAddressesInputError",
+      "CreateAddressInputError",
+      "AddressCustomFieldError"
+    ]
+  },
+  {
+    "description": "A target entity that a custom object reference field can point to.",
+    "name": "CustomObjectReferenceTarget",
+    "possibleTypes": [
+      "CustomObjectRecord",
+      "Account",
+      "CommercialAccount",
+      "InventoryItem",
+      "NetworkSite",
+      "GeoAddress",
+      "Ticket",
+      "WorkOrder",
+      "Project",
+      "Property",
+      "PropertyGroup",
+      "Incident",
+      "User",
+      "Order",
+      "Technician",
+      "Unit",
+      "TagValue",
+      "Product",
+      "ProductVersion",
+      "InventoryModel"
+    ]
+  },
+  {
+    "description": "An entity that can have custom fields.",
+    "name": "EntityCustomFieldable",
+    "possibleTypes": [
+      "CommercialAccount",
+      "Unit",
+      "Project",
+      "Property"
+    ]
+  },
+  {
+    "description": "The delivery details of a notification, one of email, SMS, or physical mail.",
+    "name": "NotificationDelivery",
+    "possibleTypes": [
+      "EmailDelivery",
+      "SmsDelivery",
+      "MailDelivery"
+    ]
+  },
+  {
+    "description": "The union of all supported linked entities for projects.",
+    "name": "ProjectLinkedEntity",
+    "possibleTypes": [
+      "Account",
+      "CommercialAccount",
+      "Property",
+      "NetworkSite"
+    ]
+  },
+  {
+    "description": "The entity a ticket's public information is linked to.",
+    "name": "PublicInformationEntity",
+    "possibleTypes": [
+      "Account",
+      "CommercialAccount"
+    ]
+  },
+  {
+    "description": "The searchEntities query's result, representing one of the supported entity types.",
+    "name": "SearchEntityResult",
+    "possibleTypes": [
+      "Account",
+      "CommercialAccount",
+      "InventoryItem",
+      "NetworkSite",
+      "Property",
+      "PropertyGroup",
+      "Ticket",
+      "Unit",
+      "WorkOrder"
+    ]
+  },
+  {
+    "description": "The carrier-specific shipment request details.",
+    "name": "ShipmentCarrierRequest",
+    "possibleTypes": [
+      "CanadaPostShipmentRequest",
+      "CustomShipmentRequest",
+      "PurolatorShipmentRequest",
+      "UpsShipmentRequest"
+    ]
+  },
+  {
+    "description": "Union type combining all possible error payloads for starting workflow execution.",
+    "name": "StartWorkflowExecutionErrorPayload",
+    "possibleTypes": [
+      "StartWorkflowExecutionInvalidInputSchemaErrorPayload"
+    ]
+  },
+  {
+    "description": "The union of all possible types of ticket editors.",
+    "name": "TicketEditor",
+    "possibleTypes": [
+      "Account",
+      "User",
+      "TicketDeletedAccount",
+      "TicketEmailEditor"
+    ]
+  },
+  {
+    "description": "The union of the different available entities.",
+    "name": "TicketEntity",
+    "possibleTypes": [
+      "Account",
+      "CommercialAccount",
+      "NetworkSite",
+      "Property",
+      "PropertyGroup"
+    ]
+  },
+  {
+    "description": "Define a ticket visible information object.",
+    "name": "TicketVisibilityInformation",
+    "possibleTypes": [
+      "TicketVisibilityExternalInformation",
+      "TicketVisibilityInternalInformation"
+    ]
+  },
+  {
+    "description": "Typed detail accompanying an unassignSecondaryTechniciansFromWorkOrder error. The concrete type depends on the error code.",
+    "name": "UnassignSecondaryTechniciansFromWorkOrderErrorPayload",
+    "possibleTypes": [
+      "UnassignSecondaryTechnicianErrorPayload"
+    ]
+  },
+  {
+    "description": "The updateAddress mutation's expected error.",
+    "name": "UpdateAddressError",
+    "possibleTypes": [
+      "UpdateAddressInputError",
+      "AddressCustomFieldError"
+    ]
+  },
+  {
+    "description": "The updateAddresses mutation's expected error.",
+    "name": "UpdateAddressesError",
+    "possibleTypes": [
+      "UpdateAddressesInputError",
+      "UpdateAddressInputError",
+      "AddressCustomFieldError"
+    ]
+  },
+  {
+    "description": "Typed detail accompanying an updateWorkOrdersStatus error. The concrete type depends on the error code.",
+    "name": "UpdateWorkOrderStatusErrorPayload",
+    "possibleTypes": [
+      "UpdateWorkOrderStatusEntityNotFoundErrorPayload",
+      "UpdateWorkOrderStatusWorkOrderErrorPayload"
+    ]
+  },
+  {
+    "description": "An entity linked to a work order.",
+    "name": "WorkOrderLinkedEntity",
+    "possibleTypes": [
+      "Account",
+      "CommercialAccount",
+      "NetworkSite"
+    ]
+  },
+  {
+    "description": "Workflow execution possible linked object types.",
+    "name": "WorkflowExecutionObject",
+    "possibleTypes": [
+      "Account",
+      "BillingSubscription",
+      "CommercialAccount",
+      "InventoryItem",
+      "NetworkSite",
+      "Product",
+      "Property",
+      "Ticket",
+      "Unit",
+      "WorkOrder",
+      "WorkflowExecution",
+      "WorkflowExecutionDefaultObject"
+    ]
+  }
+]

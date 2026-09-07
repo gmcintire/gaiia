@@ -24,4 +24,31 @@ defmodule Gaiia.SchemaTest do
       assert Schema.description("Create a new internal ticket.") == "Create a new internal ticket."
     end
   end
+
+  describe "generated coverage" do
+    # A GraphQL field whose Macro.underscore collides with another one would
+    # silently redefine the same function and drop an operation, so parity is
+    # asserted per operation rather than by count alone.
+    test "every query in the schema has exactly one generated function" do
+      assert_generated(Schema.queries(), Gaiia.Queries)
+    end
+
+    test "every mutation in the schema has exactly one generated function" do
+      assert_generated(Schema.mutations(), Gaiia.Mutations)
+    end
+
+    test "the schema dumps carry the operations the API documents" do
+      names = MapSet.new(Schema.queries(), & &1["name"])
+
+      assert MapSet.subset?(MapSet.new(~w[account accounts products roles technicianTeams webhooks]), names)
+    end
+
+    defp assert_generated(operations, module) do
+      expected = MapSet.new(operations, &Schema.function_name(&1["name"]))
+      generated = MapSet.new(module.__info__(:functions), &elem(&1, 0))
+
+      assert MapSet.size(expected) == length(operations)
+      assert expected |> MapSet.difference(generated) |> Enum.to_list() == []
+    end
+  end
 end

@@ -1,0 +1,252 @@
+[
+  {
+    "description": "An assignSecondaryTechniciansToWorkOrder mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "AssignSecondaryTechniciansToWorkOrderErrorCode!"
+      },
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's typed detail; shape depends on the code. Null for codes that carry no data.",
+        "name": "payload",
+        "type": "AssignSecondaryTechniciansToWorkOrderErrorPayload"
+      }
+    ],
+    "name": "AssignSecondaryTechniciansToWorkOrderError"
+  },
+  {
+    "description": "The billable entity.",
+    "fields": [
+      {
+        "description": "The billable entity's ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns up to the first 'n' elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last 'n' elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "BillingSubscriptionsFilter"
+          }
+        ],
+        "description": "The billable entity's billing subscriptions. The arguments 'first' and 'last' are mutually exclusive; only one of them can be set at a time. The same applies to 'after' and 'before'.\n\n**Note: This field has a maximum page size of 100 items, with a default of 10 items.**",
+        "name": "billingSubscriptions",
+        "type": "BillingSubscriptionConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Returns up to the first 'n' elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns up to the last 'n' elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "InvoicesFilter"
+          }
+        ],
+        "description": "The billable entity's invoices. The arguments 'first' and 'last' are mutually exclusive; only one of them can be set at a time. The same applies to 'after' and 'before'.\n\n**Note: This field has a maximum page size of 10 items, with a default of 10 items.**",
+        "name": "invoices",
+        "type": "InvoiceConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns up to the first 'n' elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last 'n' elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "PaymentsFilter"
+          }
+        ],
+        "description": "The billable entity's payments. The arguments 'first' and 'last' are mutually exclusive; only one of them can be set at a time. The same applies to 'after' and 'before'.\n\n**Note: This field has a maximum page size of 10 items, with a default of 10 items.**",
+        "name": "payments",
+        "type": "PaymentConnection!"
+      },
+      {
+        "description": "The billable entity's billing settings.",
+        "name": "billingSettings",
+        "type": "BillableEntitySettings!"
+      },
+      {
+        "description": "The billable entity's billing information.",
+        "name": "billingInformation",
+        "type": "BillingInformation!"
+      },
+      {
+        "description": "The billable entity's tag values.",
+        "name": "tagValues",
+        "type": "[TagValue!]!"
+      },
+      {
+        "description": "The billable entity's current delinquency history, if delinquent.",
+        "name": "currentDelinquencyHistory",
+        "type": "DelinquencyHistory"
+      }
+    ],
+    "name": "BillableEntity"
+  },
+  {
+    "description": "An interface for async requests that require polling (attempting to retrieve the entity until it is available and ready).",
+    "fields": [
+      {
+        "description": "The unique identifier of the entity that's being retrieved. Use this ID to poll and retrieve the result of the request.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "Whether retrieving a result for the job result should be retried. If true, the query should be retried at the time specified in the `retryAt` field.",
+        "name": "shouldRetry",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The minimum date and time (UTC) at which the request should be retried. If not provided, we suggest using exponential backoff.",
+        "name": "retryAt",
+        "type": "DateTime"
+      }
+    ],
+    "name": "JobResult"
+  },
+  {
+    "description": "Interface for nodes.",
+    "fields": [
+      {
+        "description": "The node's id.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "name": "Node"
+  },
+  {
+    "description": "An entity that can be tagged.",
+    "fields": [
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          }
+        ],
+        "description": "The entity's tags.",
+        "name": "tags",
+        "type": "TagValueConnection!"
+      }
+    ],
+    "name": "Taggable"
+  },
+  {
+    "description": "A create or update time blocker mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "TimeBlockerErrorCode!"
+      }
+    ],
+    "name": "TimeBlockerError"
+  },
+  {
+    "description": "An unassignSecondaryTechniciansFromWorkOrder mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UnassignSecondaryTechniciansFromWorkOrderErrorCode!"
+      },
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's typed detail; shape depends on the code. Null for codes that carry no data.",
+        "name": "payload",
+        "type": "UnassignSecondaryTechniciansFromWorkOrderErrorPayload"
+      }
+    ],
+    "name": "UnassignSecondaryTechniciansFromWorkOrderError"
+  }
+]

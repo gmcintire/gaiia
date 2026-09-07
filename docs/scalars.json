@@ -1,0 +1,60 @@
+[
+  {
+    "description": "Converts BigInt to string.",
+    "name": "BigInt"
+  },
+  {
+    "description": "The `Boolean` scalar type represents `true` or `false`.",
+    "name": "Boolean"
+  },
+  {
+    "description": "Date custom scalar type.",
+    "name": "Date"
+  },
+  {
+    "description": "A date and time, represented as an ISO-8601 string.",
+    "name": "DateTime"
+  },
+  {
+    "description": "A ExtensionPoint custom scalar type.",
+    "name": "ExtensionPoint"
+  },
+  {
+    "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+    "name": "Float"
+  },
+  {
+    "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+    "name": "GlobalID"
+  },
+  {
+    "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+    "name": "ID"
+  },
+  {
+    "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+    "name": "Int"
+  },
+  {
+    "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+    "name": "JSON"
+  },
+  {
+    "description": "The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+    "name": "JSONObject"
+  },
+  {
+    "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+    "name": "String"
+  },
+  {
+    "description": "A UUID custom scalar type.",
+    "name": "UUID"
+  },
+  {
+    "name": "join__FieldSet"
+  },
+  {
+    "name": "link__Import"
+  }
+]

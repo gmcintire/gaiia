@@ -7,7 +7,7 @@ defmodule GaiiaTest do
 
   setup do
     Application.put_env(:gaiia, :endpoint, @endpoint)
-    Application.put_env(:gaiia, :token, "configured")
+    Application.put_env(:gaiia, :api_key, "configured")
 
     Application.put_env(
       :gaiia,
@@ -17,7 +17,7 @@ defmodule GaiiaTest do
 
     on_exit(fn ->
       Application.delete_env(:gaiia, :endpoint)
-      Application.delete_env(:gaiia, :token)
+      Application.delete_env(:gaiia, :api_key)
       Application.delete_env(:gaiia, :req_options)
     end)
 
@@ -28,7 +28,7 @@ defmodule GaiiaTest do
     test "builds a client from application config" do
       client = Gaiia.default_client()
       assert client.endpoint == @endpoint
-      assert client.token == "configured"
+      assert client.api_key == "configured"
     end
   end
 
