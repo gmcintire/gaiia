@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Elixir and Erlang/OTP
         uses: erlef/setup-beam@v1
@@ -27,7 +27,7 @@ jobs:
           elixir-version: "1.20.4"
 
       - name: Cache deps and build
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             deps
