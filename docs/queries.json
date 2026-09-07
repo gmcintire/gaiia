@@ -1,0 +1,2788 @@
+[
+  {
+    "name": "account",
+    "description": "Query an account by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The account's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "accounts",
+    "description": "Query a paginated list of accounts.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "AccountFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "accountByReadableId",
+    "description": "Query an account by its readable ID.",
+    "args": [
+      {
+        "name": "readableId",
+        "type": "Int",
+        "kind": "NON_NULL",
+        "description": "The account's readable ID."
+      }
+    ]
+  },
+  {
+    "name": "accountCustomFieldDefinitions",
+    "description": "Query a paginated list of account custom field definitions.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "accountLabels",
+    "description": "Query a paginated list of account labels.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "AccountLabelFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "accountTypes",
+    "description": "Query a paginated list of account types.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "accountStatuses",
+    "description": "Query a paginated list of account statuses.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "AccountStatusFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "commercialAccountStatuses",
+    "description": "Query a paginated list of commercial account statuses.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "CommercialAccountStatusFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "cancellationReasons",
+    "description": "Query a paginated list of cancellation reasons.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "CancellationReasonFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filter the cancellation reasons by category."
+      }
+    ]
+  },
+  {
+    "name": "note",
+    "description": "Query a note by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The notes's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "notes",
+    "description": "Query a paginated list of notes.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "NoteFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "property",
+    "description": "Query a property by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "unit",
+    "description": "Query a unit by unique id.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The unit's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "units",
+    "description": "Query a list of units.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns the last `n` elements from the list."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "UnitFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "propertyGroup",
+    "description": "Query a property group by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property group's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "propertyGroups",
+    "description": "Query a paginated list of property groups.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "PropertyGroupFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "properties",
+    "description": "Query a list of properties.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "PropertyFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "entityCustomFieldDefinitions",
+    "description": "Get entity custom field definitions for a specific entity type.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "EntityCustomFieldDefinitionFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters available for the query."
+      }
+    ]
+  },
+  {
+    "name": "pinVerification",
+    "description": "Query the PIN verification status for an entity.",
+    "args": [
+      {
+        "name": "entityId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The entity to check verification status for."
+      }
+    ]
+  },
+  {
+    "name": "invoice",
+    "description": "Query an invoice by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The invoice's unique Id."
+      }
+    ]
+  },
+  {
+    "name": "invoices",
+    "description": "Query a paginated list of billing invoices. The arguments 'first' and 'last' are mutually exclusive; only one of them can be set at a time. The same applies to 'after' and 'before'.",
+    "args": [
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first 'n' elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last 'n' elements from the list."
+      },
+      {
+        "name": "filter",
+        "type": "InvoicesFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "paymentMethods",
+    "description": "Query a paginated list of payment methods. The arguments 'first' and 'last' are mutually exclusive; only one of them can be set at a time. The same applies to 'after' and 'before'.",
+    "args": [
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first 'n' elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last 'n' elements from the list."
+      },
+      {
+        "name": "filter",
+        "type": "PaymentMethodsFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "billingSubscription",
+    "description": "Query a billing subscription by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The billing subscription's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "billingSubscriptions",
+    "description": "Query a paginated list of billing subscriptions. The arguments 'first' and 'last' are mutually exclusive; only one of them can be set at a time. The same applies to 'after' and 'before'.",
+    "args": [
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first 'n' elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last 'n' elements from the list."
+      },
+      {
+        "name": "filter",
+        "type": "BillingSubscriptionsFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      }
+    ]
+  },
+  {
+    "name": "transaction",
+    "description": "Query a transaction by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The transaction's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "usageRecords",
+    "description": "Query a paginated list of usage records. The arguments 'first' and 'last' are mutually exclusive; only one of them can be set at a time. The same applies to 'after' and 'before'.",
+    "args": [
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first 'n' elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last 'n' elements from the list."
+      },
+      {
+        "name": "filter",
+        "type": "UsageRecordsFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "addressCustomFieldDefinitions",
+    "description": "Query a paginated list of address custom field definitions.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "AddressCustomFieldDefinitionFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "addresses",
+    "description": "Query a paginated list of addresses.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "AddressesQueryFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Order by which to sort results."
+      }
+    ]
+  },
+  {
+    "name": "coverageAreas",
+    "description": "Query a paginated list of coverage areas.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "CoverageAreasQueryFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "archivedCoverageAreas",
+    "description": "Query a paginated list of archived coverage areas.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "ArchivedCoverageAreasQueryFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "integrationNone",
+    "description": null,
+    "args": []
+  },
+  {
+    "name": "addressImportCsvDocumentation",
+    "description": "Query the CSV documentation for address imports.",
+    "args": []
+  },
+  {
+    "name": "addressImportCsvTemplate",
+    "description": "Query the CSV template for address imports.",
+    "args": []
+  },
+  {
+    "name": "archivedInventoryRoles",
+    "description": "Query to get a list of archived inventory roles.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "ArchivedInventoryRolesQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query"
+      }
+    ]
+  },
+  {
+    "name": "categoryImportCsvDocumentation",
+    "description": "Query the CSV documentation for category imports.",
+    "args": []
+  },
+  {
+    "name": "categoryImportCsvTemplate",
+    "description": "Query the CSV template for category imports.",
+    "args": []
+  },
+  {
+    "name": "categoryFieldImportCsvDocumentation",
+    "description": "Query the CSV documentation for category field imports.",
+    "args": [
+      {
+        "name": "categoryCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out category CSV to receive an updated documentation."
+      }
+    ]
+  },
+  {
+    "name": "categoryFieldImportCsvTemplate",
+    "description": "Query the CSV template for category field imports.",
+    "args": []
+  },
+  {
+    "name": "inventoryLocationImportCsvDocumentation",
+    "description": "Query the CSV documentation for inventory location imports. @deprecated Use inventoryImportSchemas instead.",
+    "args": []
+  },
+  {
+    "name": "inventoryLocationImportCsvTemplate",
+    "description": "Query the CSV template for inventory location imports. @deprecated Use inventoryImportSchemas instead.",
+    "args": []
+  },
+  {
+    "name": "manufacturerImportCsvDocumentation",
+    "description": "Query the CSV documentation for manufacturer imports. @deprecated Use inventoryImportSchemas instead.",
+    "args": []
+  },
+  {
+    "name": "manufacturerImportCsvTemplate",
+    "description": "Query the CSV template for manufacturer imports. @deprecated Use inventoryImportSchemas instead.",
+    "args": []
+  },
+  {
+    "name": "contactImportCsvDocumentation",
+    "description": "Query the CSV documentation for contact imports.",
+    "args": []
+  },
+  {
+    "name": "contactImportCsvTemplate",
+    "description": "Query the CSV template for contact imports.",
+    "args": []
+  },
+  {
+    "name": "contactInformationImportCsvDocumentation",
+    "description": "Query the CSV documentation for contact information imports.",
+    "args": []
+  },
+  {
+    "name": "contactInformationImportCsvTemplate",
+    "description": "Query the CSV template for contact information imports.",
+    "args": []
+  },
+  {
+    "name": "inventoryLocationContactInformationImportCsvDocumentation",
+    "description": "Query the CSV documentation for inventory location contact information imports.",
+    "args": []
+  },
+  {
+    "name": "inventoryLocationContactInformationImportCsvTemplate",
+    "description": "Query the CSV template for inventory location contact information imports.",
+    "args": []
+  },
+  {
+    "name": "customerOwnedItems",
+    "description": "Query a paginated list of customer owned items.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "CustomerOwnedItemsQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "inventoryItem",
+    "description": "Query a single inventory item by its ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The global ID of the inventory item to retrieve."
+      }
+    ]
+  },
+  {
+    "name": "inventoryItems",
+    "description": "Query a paginated list of inventory items.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "InventoryItemsQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "inventoryItemsImportCsvDocumentation",
+    "description": "Query the CSV documentation for inventory items.",
+    "args": [
+      {
+        "name": "modelCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out model CSV to receive an updated documentation."
+      },
+      {
+        "name": "modelFieldCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out model field CSV to receive an updated documentation."
+      }
+    ]
+  },
+  {
+    "name": "inventoryItemsImportCsvTemplate",
+    "description": "Query the CSV template for inventory items.",
+    "args": [
+      {
+        "name": "modelCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out model CSV to receive an updated documentation."
+      },
+      {
+        "name": "modelFieldCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out model field CSV to receive an updated documentation."
+      }
+    ]
+  },
+  {
+    "name": "linkedDevicesImportCsvDocumentation",
+    "description": "Query the CSV documentation for linked devices.",
+    "args": []
+  },
+  {
+    "name": "linkedDevicesImportCsvTemplate",
+    "description": "Query the CSV template for linked devices.",
+    "args": []
+  },
+  {
+    "name": "inventoryLocations",
+    "description": "Query to get a list of inventory locations.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "InventoryLocationsQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "inventoryModels",
+    "description": "Query to get a list of inventory models.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "InventoryModelQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "inventoryModelCategories",
+    "description": "Query to get all inventory model categories.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "inventoryRoles",
+    "description": "Query to get a list of inventory roles.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "InventoryRolesQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query"
+      }
+    ]
+  },
+  {
+    "name": "manufacturers",
+    "description": "Query to get a list of manufacturers.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "ManufacturersQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query"
+      }
+    ]
+  },
+  {
+    "name": "modelImportCsvDocumentation",
+    "description": "Query the CSV documentation for model imports.",
+    "args": [
+      {
+        "name": "categoriesCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out categories CSV to receive an updated documentation."
+      },
+      {
+        "name": "manufacturersCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out manufacturers CSV to receive an updated documentation."
+      }
+    ]
+  },
+  {
+    "name": "modelImportCsvTemplate",
+    "description": "Query the CSV template for model imports.",
+    "args": []
+  },
+  {
+    "name": "modelFieldImportCsvDocumentation",
+    "description": "Query the CSV documentation for model field imports.",
+    "args": [
+      {
+        "name": "modelCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out model CSV to receive an updated documentation."
+      }
+    ]
+  },
+  {
+    "name": "modelFieldImportCsvTemplate",
+    "description": "Query the CSV template for model field imports.",
+    "args": []
+  },
+  {
+    "name": "zoneImportCsvDocumentation",
+    "description": "Query the CSV documentation for zone imports.",
+    "args": [
+      {
+        "name": "inventoryLocationCsvFileName",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Optionally provide a filled out inventory location CSV to receive an updated documentation."
+      }
+    ]
+  },
+  {
+    "name": "zoneImportCsvTemplate",
+    "description": "Query the CSV template for zone imports.",
+    "args": []
+  },
+  {
+    "name": "productAvailabilityJob",
+    "description": "Retrieve a product availability job by its ID. Requires a gaiia [publishable key](../../../authentication) in the request headers.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "ID of the product availability job to retrieve."
+      }
+    ]
+  },
+  {
+    "name": "plannedServiceArea",
+    "description": "Query a plan service area by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The plan service area's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "plannedServiceAreaBySlug",
+    "description": "Query a planned service area by unique slug.",
+    "args": [
+      {
+        "name": "slug",
+        "type": "String",
+        "kind": "NON_NULL",
+        "description": "The planned service area's unique slug."
+      }
+    ]
+  },
+  {
+    "name": "order",
+    "description": "Query an order by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The order's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "orders",
+    "description": "Query a paginated list of orders.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "OrderFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      }
+    ]
+  },
+  {
+    "name": "orderAttributionProfile",
+    "description": "Query an order attribution profile by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The order attribution profile's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "orderAttributionProfiles",
+    "description": "Query a paginated list of order attribution profiles. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "searchTerm",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Search by profile name."
+      },
+      {
+        "name": "filter",
+        "type": "OrderAttributionProfileFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "platformServiceNone",
+    "description": null,
+    "args": []
+  },
+  {
+    "name": "platformServiceHealthCheck",
+    "description": "Health check endpoint for platform service",
+    "args": []
+  },
+  {
+    "name": "featureFlags",
+    "description": "Query feature flags from AppConfig",
+    "args": []
+  },
+  {
+    "name": "archivedBundles",
+    "description": "Query paginated list of archived product bundles.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "BundlesQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "bundle",
+    "description": "Get a bundle by its ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The bundle's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "bundles",
+    "description": "Query paginated list of product bundles.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "BundlesQueryFilters",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters to apply to the query."
+      }
+    ]
+  },
+  {
+    "name": "bundlesImportCsvSchema",
+    "description": "Query the CSV schema for bundles. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "bundlesImportCsvTemplate",
+    "description": "Query the CSV template for bundles. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "generalLedgerCodesImportCsvSchema",
+    "description": "Query the CSV schema for general ledger codes. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "generalLedgerCodesImportCsvTemplate",
+    "description": "Query the CSV template for general ledger codes. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "pricesImportCsvSchema",
+    "description": "Query the CSV schema for prices. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "pricesImportCsvTemplate",
+    "description": "Query the CSV template for prices. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "pricingTiersImportCsvSchema",
+    "description": "Query the CSV schema for pricing tiers. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "pricingTiersImportCsvTemplate",
+    "description": "Query the CSV template for pricing tiers. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "productBySlug",
+    "description": "Get a product by slug. If the slug is not current, attempts to resolve it using product slug history.",
+    "args": [
+      {
+        "name": "slug",
+        "type": "String",
+        "kind": "NON_NULL",
+        "description": "The product slug from the URL."
+      }
+    ]
+  },
+  {
+    "name": "products",
+    "description": "Query paginated list of products.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "ProductFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filter the results."
+      }
+    ]
+  },
+  {
+    "name": "productsImportCsvSchema",
+    "description": "Query the CSV schema for products. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "productsImportCsvTemplate",
+    "description": "Query the CSV template for products. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "productEligibilityRulesImportCsvSchema",
+    "description": "Query the CSV schema for product eligibility rules. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "productEligibilityRulesImportCsvTemplate",
+    "description": "Query the CSV template for product eligibility rules. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "productImportSchemas",
+    "description": "Returns all Product import JSON schemas in a single call.",
+    "args": []
+  },
+  {
+    "name": "productCategories",
+    "description": "Query paginated list of product categories.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "productCategoriesImportCsvSchema",
+    "description": "Query the CSV schema for product categories. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "productCategoriesImportCsvTemplate",
+    "description": "Query the CSV template for product categories. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "productCategoriesSpecificationValuesImportCsvSchema",
+    "description": "Query the CSV schema for product categories specification values. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "productCategoriesSpecificationValuesImportCsvTemplate",
+    "description": "Query the CSV template for product categories specification values. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "propertyProductsImportCsvSchema",
+    "description": "Query the CSV schema for property products. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "propertyProductsImportCsvTemplate",
+    "description": "Query the CSV template for property products. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "productVersion",
+    "description": "Get a productVersion by its ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The productVersion's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "productVersions",
+    "description": "Query paginated list of product versions.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "ProductVersionFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filter the results."
+      }
+    ]
+  },
+  {
+    "name": "productVersionsImportCsvSchema",
+    "description": "Query the CSV schema for product versions. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "productVersionsImportCsvTemplate",
+    "description": "Query the CSV template for product versions. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "usageAllowancesImportCsvSchema",
+    "description": "Query the CSV schema for usage allowances. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "usageAllowancesImportCsvTemplate",
+    "description": "Query the CSV template for usage allowances. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "usageAllowancePricesImportCsvSchema",
+    "description": "Query the CSV schema for usage allowance prices. Returns the JSON schema for validation.",
+    "args": []
+  },
+  {
+    "name": "usageAllowancePricesImportCsvTemplate",
+    "description": "Query the CSV template for usage allowance prices. Returns the template string and filename.",
+    "args": []
+  },
+  {
+    "name": "accountsInNetworkSites",
+    "description": "Query accounts in network sites by traversing device hierarchy.",
+    "args": [
+      {
+        "name": "filters",
+        "type": "AccountsInNetworkSitesQueryFilters",
+        "kind": "NON_NULL",
+        "description": "Filters to apply to the query."
+      },
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "incident",
+    "description": "Query an incident by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The incident's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "incidents",
+    "description": "Query a paginated list of incidents.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filters",
+        "type": "IncidentFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "networkSite",
+    "description": "Query a network site by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The network site's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "incidentProcedureTemplate",
+    "description": "Query an incident procedure template.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The incident procedure template's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "incidentProcedureTemplates",
+    "description": "Query a paginated list of incident procedure templates.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "ticketCategories",
+    "description": "Query paginated list of ticket categories.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "TicketCategoryFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "ticket",
+    "description": "Query a ticket by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "tickets",
+    "description": "Query paginated list of tickets.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "TicketFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "ticketCustomStatuses",
+    "description": "Query paginated list of ticket custom statuses.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "TicketCustomStatusFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "ticketMailboxes",
+    "description": "Query paginated list of ticket mailboxes.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "ticketTypes",
+    "description": "Query paginated list of ticket types.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "TicketTypeFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "ticketAttachmentsImportCsvSchema",
+    "description": "Query the CSV schema for ticket attachments.",
+    "args": []
+  },
+  {
+    "name": "ticketAttachmentsImportCsvTemplate",
+    "description": "Query the CSV template for ticket attachments.",
+    "args": []
+  },
+  {
+    "name": "ticketCategoriesImportCsvSchema",
+    "description": "Query the CSV schema for ticket categories.",
+    "args": []
+  },
+  {
+    "name": "ticketCategoriesImportCsvTemplate",
+    "description": "Query the CSV template for ticket categories.",
+    "args": []
+  },
+  {
+    "name": "ticketClosedReasonsImportCsvSchema",
+    "description": "Query the CSV schema for ticket closed reasons.",
+    "args": []
+  },
+  {
+    "name": "ticketClosedReasonsImportCsvTemplate",
+    "description": "Query the CSV template for ticket closed reasons.",
+    "args": []
+  },
+  {
+    "name": "ticketCommentsImportCsvSchema",
+    "description": "Query the CSV schema for ticket comments.",
+    "args": []
+  },
+  {
+    "name": "ticketCommentsImportCsvTemplate",
+    "description": "Query the CSV template for ticket comments.",
+    "args": []
+  },
+  {
+    "name": "ticketQuickRepliesImportCsvSchema",
+    "description": "Query the CSV schema for ticket quick replies.",
+    "args": []
+  },
+  {
+    "name": "ticketQuickRepliesImportCsvTemplate",
+    "description": "Query the CSV template for ticket quick replies.",
+    "args": []
+  },
+  {
+    "name": "ticketsImportCsvSchema",
+    "description": "Query the CSV schema for tickets.",
+    "args": []
+  },
+  {
+    "name": "ticketsImportCsvTemplate",
+    "description": "Query the CSV template for tickets.",
+    "args": []
+  },
+  {
+    "name": "ticketTypesImportCsvSchema",
+    "description": "Query the CSV schema for ticket types.",
+    "args": []
+  },
+  {
+    "name": "ticketTypesImportCsvTemplate",
+    "description": "Query the CSV template for ticket types.",
+    "args": []
+  },
+  {
+    "name": "users",
+    "description": "Query a paginated list of users.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      }
+    ]
+  },
+  {
+    "name": "user",
+    "description": "Query a user by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The user's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "webhook",
+    "description": "Query a webhook by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The webhook's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "webhookExecution",
+    "description": "Query a webhook execution by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The webhook execution's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "webhooks",
+    "description": "Query a paginated list of webhooks. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "WebhookFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "workflowExecution",
+    "description": "Query a workflow execution by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The workflow execution's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "workflowExecutions",
+    "description": "Query a paginated list of workflow executions. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the first `n` elements from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` elements from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the elements that come before the specified cursor."
+      },
+      {
+        "name": "filter",
+        "type": "WorkflowExecutionFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      }
+    ]
+  },
+  {
+    "name": "workflow",
+    "description": "Query a workflow by unique ID.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The workflow's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "availableTechniciansForWorkOrderAndStartDate",
+    "description": "Query a paginated list of technicians available for a work order on a specified date.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Return up to the first `n` technicians from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` technicians from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the technicians that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the technicians that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "TechnicianFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      },
+      {
+        "name": "startDate",
+        "type": "DateTime",
+        "kind": "NON_NULL",
+        "description": "The start date of the work order to search for technicians."
+      },
+      {
+        "name": "workOrderId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The work order's ID."
+      }
+    ]
+  },
+  {
+    "name": "defaultAppointmentConfig",
+    "description": "Retrieve the default appointment configuration.",
+    "args": []
+  },
+  {
+    "name": "technicians",
+    "description": "Query a paginated list of technicians.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Return up to the first `n` technicians from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` technicians from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the technicians that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the technicians that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "TechnicianFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "workOrders",
+    "description": "Query a paginated list of work orders.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Return up to the first `n` work orders from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` work orders from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the work orders that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the work orders that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "WorkOrderFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "workforceOverviewStatistics",
+    "description": "Query workforce overview statistics.",
+    "args": []
+  },
+  {
+    "name": "workTypes",
+    "description": "Query a paginated list of work types.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Return up to the first `n` work types from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` work types from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the work types that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the work types that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "WorkTypeFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "workTypeImportCsvTemplate",
+    "description": "Query the CSV template for work type imports.",
+    "args": []
+  },
+  {
+    "name": "workTypeImportCsvDocumentation",
+    "description": "Query the CSV documentation for work type imports.",
+    "args": []
+  },
+  {
+    "name": "workTypeProcedureImportCsvTemplate",
+    "description": "Query the CSV template for work type procedure imports.",
+    "args": []
+  },
+  {
+    "name": "workTypeProcedureImportCsvDocumentation",
+    "description": "Query the CSV documentation for work type procedure imports.",
+    "args": []
+  },
+  {
+    "name": "workOrderImportCsvTemplate",
+    "description": "Query the CSV template for work order imports.",
+    "args": []
+  },
+  {
+    "name": "workOrderImportCsvDocumentation",
+    "description": "Query the CSV documentation for work order imports.",
+    "args": []
+  },
+  {
+    "name": "workOrderStatusAnalytics",
+    "description": "Query work order status analytics with filters for coverage area, work type, and date range.",
+    "args": [
+      {
+        "name": "input",
+        "type": "WorkOrderStatusAnalyticsInput",
+        "kind": "NON_NULL",
+        "description": "Input filters for the analytics query."
+      }
+    ]
+  },
+  {
+    "name": "workOrderCustomStatusCategoryAnalytics",
+    "description": "Query work order custom status category analytics with filters for coverage area, work type, and date range.",
+    "args": [
+      {
+        "name": "input",
+        "type": "WorkOrderCustomStatusCategoryAnalyticsInput",
+        "kind": "NON_NULL",
+        "description": "Input filters for the analytics query."
+      }
+    ]
+  },
+  {
+    "name": "workOrderCustomStatuses",
+    "description": "Query a paginated list of work order custom statuses.",
+    "args": [
+      {
+        "name": "first",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Return up to the first `n` work order custom statuses from the list."
+      },
+      {
+        "name": "last",
+        "type": "Int",
+        "kind": "SCALAR",
+        "description": "Returns up to the last `n` work order custom statuses from the list."
+      },
+      {
+        "name": "after",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the work order custom statuses that come after the specified cursor."
+      },
+      {
+        "name": "before",
+        "type": "String",
+        "kind": "SCALAR",
+        "description": "Returns the work order custom statuses that come before the specified cursor."
+      },
+      {
+        "name": "orderBy",
+        "type": null,
+        "kind": "LIST",
+        "description": "Orders the results by the given fields."
+      },
+      {
+        "name": "filter",
+        "type": "WorkOrderCustomStatusFilter",
+        "kind": "INPUT_OBJECT",
+        "description": "Filters the results."
+      }
+    ]
+  },
+  {
+    "name": "workOrderStatusCountsByCategory",
+    "description": "Query work order counts grouped by custom status category.",
+    "args": []
+  },
+  {
+    "name": "technicianImportCsvTemplate",
+    "description": "Query the CSV template for technician imports.",
+    "args": []
+  },
+  {
+    "name": "technicianImportCsvDocumentation",
+    "description": "Query the CSV documentation for technician imports.",
+    "args": []
+  },
+  {
+    "name": "technicianTeamImportCsvTemplate",
+    "description": "Query the CSV template for technician team imports.",
+    "args": []
+  },
+  {
+    "name": "technicianTeamImportCsvDocumentation",
+    "description": "Query the CSV documentation for technician team imports.",
+    "args": []
+  },
+  {
+    "name": "timeBlockerImportCsvTemplate",
+    "description": "Query the CSV template for time blocker imports.",
+    "args": []
+  },
+  {
+    "name": "timeBlockerImportCsvDocumentation",
+    "description": "Query the CSV documentation for time blocker imports.",
+    "args": []
+  },
+  {
+    "name": "scheduleTemplateImportCsvTemplate",
+    "description": "Query the CSV template for schedule template imports.",
+    "args": []
+  },
+  {
+    "name": "scheduleTemplateImportCsvDocumentation",
+    "description": "Query the CSV documentation for schedule template imports.",
+    "args": []
+  },
+  {
+    "name": "shiftAssignationImportCsvTemplate",
+    "description": "Query the CSV template for shift assignation imports.",
+    "args": []
+  },
+  {
+    "name": "shiftAssignationImportCsvDocumentation",
+    "description": "Query the CSV documentation for shift assignation imports.",
+    "args": []
+  }
+]

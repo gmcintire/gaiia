@@ -1,0 +1,4574 @@
+[
+  {
+    "name": "createAccount",
+    "description": "Create a new account.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an account.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateAccountInput",
+            "description": "The input required to create an account.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateAccountResult",
+        "description": "The createAccount mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createNote",
+    "description": "Create a new note.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a note.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateNoteInput",
+            "description": "The input required to create a note.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateNoteResult",
+        "description": "The createNote mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createAccountContact",
+    "description": "Create a contact.",
+    "args": [
+      {
+        "name": "accountId",
+        "description": "The account's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to create a contact.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateAccountContactInput",
+            "description": "The input required to create the account's contact.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateAccountContactResult",
+        "description": "The createContact mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "initiatePinVerification",
+    "description": "Initiate a PIN verification session for an entity.",
+    "args": [
+      {
+        "name": "entityId",
+        "description": "The entity to verify.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to initiate a PIN verification session.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "InitiatePinVerificationInput",
+            "description": "The input required to initiate a PIN verification session.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "InitiatePinVerificationResult",
+        "description": "The initiatePinVerification mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "verifyPinVerification",
+    "description": "Submit a PIN to complete a verification.",
+    "args": [
+      {
+        "name": "verificationId",
+        "description": "The verification to complete.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to verify a PIN.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "VerifyPinVerificationInput",
+            "description": "The input required to verify a PIN.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "VerifyPinVerificationResult",
+        "description": "The verifyPinVerification mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "deleteNote",
+    "description": "Delete a note.",
+    "args": [
+      {
+        "name": "noteId",
+        "description": "The notes's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "DeleteNoteResult",
+        "description": "The deleteNote mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAccountContact",
+    "description": "Update a contact.",
+    "args": [
+      {
+        "name": "accountId",
+        "description": "The account's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "id",
+        "description": "The contact's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a contact.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAccountContactInput",
+            "description": "The input required to update a contact.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAccountContactResult",
+        "description": "The updateContact mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAccountCustomFieldDefinition",
+    "description": "Update an account custom field definition.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The account custom field definition's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an account custom field definition.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAccountCustomFieldDefinitionInput",
+            "description": "The input required to update an account custom field definition.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAccountCustomFieldDefinitionResult",
+        "description": "The updateAccountCustomFieldDefinition mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateNote",
+    "description": "Update a note.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update a note.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateNoteInput",
+            "description": "The input required to update a note.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateNoteResult",
+        "description": "The updateNote mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAccount",
+    "description": "Update an account.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The account's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an account.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAccountInput",
+            "description": "The input required to update an account.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAccountResult",
+        "description": "The updateAccount mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updatePropertyGroupManager",
+    "description": "Update a property group manager.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The property group manager's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a property group manager.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdatePropertyGroupManagerInput",
+            "description": "The input required to update a property group manager.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdatePropertyGroupManagerResult",
+        "description": "The updatePropertyGroupManager mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updatePropertyGroup",
+    "description": "Update a property group.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The property group's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a property group.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdatePropertyGroupInput",
+            "description": "The input required to update a property group.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdatePropertyGroupResult",
+        "description": "The updatePropertyGroup mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateUnit",
+    "description": "Update a unit.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The unit's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a unit.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateUnitInput",
+            "description": "The input required to update a unit.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateUnitResult",
+        "description": "The updateUnit mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createPropertyUnits",
+    "description": "Create units.",
+    "args": [
+      {
+        "name": "propertyId",
+        "description": "The property's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to a property's units.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreatePropertyUnitsInput",
+            "description": "The input required to create units.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreatePropertyUnitsResult",
+        "description": "The createUnits mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updatePropertyContact",
+    "description": "Update a property's contact.",
+    "args": [
+      {
+        "name": "propertyId",
+        "description": "The property's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "id",
+        "description": "The contact's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a property's contact.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdatePropertyContactInput",
+            "description": "The input for updating a contact.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdatePropertyContactResult",
+        "description": "The updatePropertyContact mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createPropertyGroup",
+    "description": "Create a property group.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a property group.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreatePropertyGroupInput",
+            "description": "The input required to create a property group.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreatePropertyGroupResult",
+        "description": "The createPropertyGroup mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createProperty",
+    "description": "Create a property.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a property.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreatePropertyInput",
+            "description": "The input required to create a property.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreatePropertyResult",
+        "description": "The createProperty mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createPropertyContact",
+    "description": "Create a property's contact.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The property's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to create a property's contact.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreatePropertyContactInput",
+            "description": "The input for creating a property's contact.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreatePropertyContactResult",
+        "description": "The createPropertyContact mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateProperty",
+    "description": "Update a property.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The property's unique id.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a property.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdatePropertyInput",
+            "description": "The input required to update a property.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdatePropertyResult",
+        "description": "The updateProperty mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updatePropertyPhysicalAddress",
+    "description": "Update a property's physical address.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The property's unique id.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a property's physical address.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdatePropertyPhysicalAddressInput",
+            "description": "The input required to update a property.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdatePropertyPhysicalAddressResult",
+        "description": "The updatePropertyPhysicalAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAccountPhysicalAddress",
+    "description": "Update an account's physical address.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The account's unique id.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an account's physical address.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAccountPhysicalAddressInput",
+            "description": "The input required to update an account's physical address.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAccountPhysicalAddressResult",
+        "description": "The updateAccountPhysicalAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAccountMailingAddress",
+    "description": "Update an account's mailing address.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The account's unique id.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an account's mailing address.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAccountMailingAddressInput",
+            "description": "The input required to update an account's mailing address.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAccountMailingAddressResult",
+        "description": "The updateAccountMailingAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createAccountServiceCancellationReason",
+    "description": "Create a new account service cancellation reason.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an account service cancellation reason.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateAccountServiceCancellationReasonInput",
+            "description": "The input required to create an account service cancellation reason.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateAccountServiceCancellationReasonResult",
+        "description": "The createAccountServiceCancellationReason mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateEntityCustomFieldDefinition",
+    "description": "Update an entity custom field definition.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The entity custom field definition's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an entity custom field definition.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateEntityCustomFieldDefinitionInput",
+            "description": "The input required to update an entity custom field definition.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateEntityCustomFieldDefinitionResult",
+        "description": "The updateEntityCustomFieldDefinition mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateEntityCustomFields",
+    "description": "Update an entity's custom fields.",
+    "args": [
+      {
+        "name": "entityId",
+        "description": "The entity's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an entity's custom fields.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateEntityCustomFieldsInput",
+            "description": "The input required to update an entity's custom fields.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateEntityCustomFieldsResult",
+        "description": "The updateEntityCustomFields mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "assignBillingSubscriptions",
+    "description": "Assign billing subscriptions.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to assign billing subscriptions.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignBillingSubscriptionsMutationInput",
+            "description": "The input required to assign billing subscriptions.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AssignBillingSubscriptionsResult",
+        "description": "The assign billing subscriptions' result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createDebits",
+    "description": "Create debits.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create debits.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateDebitsInput",
+            "description": "The input required to create debits.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateDebitsResult",
+        "description": "The create debits' result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateDelinquencyStep",
+    "description": "Update a delinquency step.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update a delinquency step.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateDelinquencyStepInput",
+            "description": "The input required to update a delinquency step.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateDelinquencyStepResult",
+        "description": "The update delinquency step's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createPaymentMethod",
+    "description": "Create a payment method for a billable entity. The payment method can be used for payments and optionally for automatic payments.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a payment method.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreatePaymentMethodInput",
+            "description": "The input required to create a payment method.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreatePaymentMethodResult",
+        "description": "The result of the create payment method operation.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createPayment",
+    "description": "Create a payment.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a payment.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreatePaymentInput",
+            "description": "The input required to create a payment.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreatePaymentResult",
+        "description": "The create payment's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updatePayments",
+    "description": "Update payments' status.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update payments.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdatePaymentsInput",
+            "description": "The input required to update payments.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdatePaymentsResult",
+        "description": "The update payments' result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createInvoice",
+    "description": "Generate an invoice on an account. All uninvoiced transactions will be included.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an invoice.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateInvoiceInput",
+            "description": "The input required to create an invoice.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateInvoiceResult",
+        "description": "The create invoice's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "writeOffInvoices",
+    "description": "Write off invoices by creating credit notes for the remaining amounts.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to write off invoices.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "WriteOffInvoicesInput",
+            "description": "The input required to write off invoices.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "WriteOffInvoicesResult",
+        "description": "The write off invoices' result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "toggleAutoPayment",
+    "description": "Toggle auto payment on a payment method. Enabling auto payment on a payment method will disable it on all other payment methods for the same account.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to toggle auto payment.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "ToggleAutoPaymentInput",
+            "description": "The input required to toggle auto payment on a payment method.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ToggleAutoPaymentResult",
+        "description": "The toggle auto payment's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "deletePaymentMethod",
+    "description": "Delete a payment method. The payment method will be archived (soft delete) in the billing system, and removal from the payment processor will be attempted. The payment method record remains in the database, marked as archived, and will not appear in queries.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to delete a payment method.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "DeletePaymentMethodInput",
+            "description": "The input required to delete a payment method.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "DeletePaymentMethodResult",
+        "description": "The delete payment method's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "unarchiveAddress",
+    "description": "Unarchive an address.",
+    "args": [
+      {
+        "name": "addressId",
+        "description": "The address's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveAddressResult",
+        "description": "The unarchiveAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "archiveAddress",
+    "description": "Archive an address.",
+    "args": [
+      {
+        "name": "addressId",
+        "description": "The address's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveAddressResult",
+        "description": "The archiveAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAddressCustomFieldDefinition",
+    "description": "Update an address custom field definition.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The custom field definition's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "Input containing the custom field definition update details.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAddressCustomFieldDefinitionInput",
+            "description": "Input for updating an address custom field definition.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAddressCustomFieldDefinitionResult",
+        "description": "Result of updateAddressCustomFieldDefinition mutation.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAddressCustomFields",
+    "description": "Update custom fields for an address.",
+    "args": [
+      {
+        "name": "input",
+        "description": "Input containing address ID and field updates.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAddressCustomFieldsInput",
+            "description": "Input for updating address custom fields.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAddressCustomFieldsResult",
+        "description": "Result of updateAddressCustomFields mutation.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createAddress",
+    "description": "Create an address.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The address's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateGeoAddressInput",
+            "description": "The createAddress mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateAddressResult",
+        "description": "The createAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateAddress",
+    "description": "Update an address.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The address's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The address's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateGeoAddressInput",
+            "description": "The updateAddress mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAddressResult",
+        "description": "The updateAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createCoverageArea",
+    "description": "Creates a new coverage area.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The coverage area's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateCoverageAreaInput",
+            "description": "The createCoverageArea mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateCoverageAreaResult",
+        "description": "The createCoverageArea mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateCoverageArea",
+    "description": "Updates an existing coverage area.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The coverage area's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateCoverageAreaInput",
+            "description": "The updateCoverageArea mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateCoverageAreaResult",
+        "description": "The updateCoverageArea mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "archiveCoverageAreas",
+    "description": "Archive multiple coverage areas.",
+    "args": [
+      {
+        "name": "coverageAreaIds",
+        "description": "The coverage areas' unique IDs.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "LIST",
+            "name": null,
+            "description": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "description": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "GlobalID",
+                "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveCoverageAreasResult",
+        "description": "The archiveCoverageAreas mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "unarchiveCoverageAreas",
+    "description": "Unarchive multiple coverage areas.",
+    "args": [
+      {
+        "name": "coverageAreaIds",
+        "description": "The coverage areas' unique IDs.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "LIST",
+            "name": null,
+            "description": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "description": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "GlobalID",
+                "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveCoverageAreasResult",
+        "description": "The unarchiveCoverageAreas mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createGeofence",
+    "description": "Create a geofence.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The geofence's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateGeofenceInput",
+            "description": "The createGeofence mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateGeofenceResult",
+        "description": "The createGeofence mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "integrationNone",
+    "description": null,
+    "args": [],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "addCustomerOwnedItem",
+    "description": "Assign an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to add a customer owned item.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddCustomerOwnedItemInput",
+            "description": "The addCustomerOwnedItem mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddCustomerOwnedItemResult",
+        "description": "The addCustomerOwnedItem mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "archiveInventoryRoles",
+    "description": "Archive existing inventory roles.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The archiveInventoryRoles mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "ArchiveInventoryRolesInput",
+            "description": "The archiveInventoryRole mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveInventoryRolesResult",
+        "description": "The archiveInventoryRoles mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "unarchiveInventoryRoles",
+    "description": "Unarchive existing inventory roles.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The unarchiveInventoryRoles mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UnarchiveInventoryRolesInput",
+            "description": "The unarchiveInventoryRole mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveInventoryRolesResult",
+        "description": "The unarchiveInventoryRoles mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "assignInventoryItem",
+    "description": "Assign an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to assign an inventory item.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignInventoryItemInput",
+            "description": "The assignInventoryItem mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AssignInventoryItemResult",
+        "description": "The assignInventoryItem mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createInventoryModelCategory",
+    "description": "Create a new inventory model category.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a new inventory model category.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateInventoryModelCategoryInput",
+            "description": "The createInventoryModelCategory mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateInventoryModelCategoryResult",
+        "description": "The createInventoryModelCategory mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createInventoryLocationAddress",
+    "description": "Create an inventory location address.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an inventory location address.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateInventoryLocationAddressInput",
+            "description": "The createInventoryLocationAddress mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateInventoryLocationAddressResult",
+        "description": "The createInventoryLocationAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createInventoryModel",
+    "description": "Mutation to create an inventory model.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an inventory model.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateInventoryModelInput",
+            "description": "Input to create an inventory model.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateInventoryModelResult",
+        "description": "The result when creating an inventory model.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createInventoryRole",
+    "description": "Create a new inventory role.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The createInventoryRole mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateInventoryRoleInput",
+            "description": "The createInventoryRole mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateInventoryRoleResult",
+        "description": "The createInventoryRole mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createManufacturer",
+    "description": "Create a new manufacturer.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The createManufacturer mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateManufacturerInput",
+            "description": "The createManufacturer mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateManufacturerResult",
+        "description": "The createManufacturer mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "unassignCustomerOwnedItem",
+    "description": "Unassign a customer owned item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The unassignCustomerOwnedItem mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UnassignCustomerOwnedItemInput",
+            "description": "The unassignCustomerOwnedItem mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnassignCustomerOwnedItemResult",
+        "description": "The unassignCustomerOwnedItem mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateInventoryLocationAddress",
+    "description": "Update an inventory location address.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update an inventory location address.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateInventoryLocationAddressInput",
+            "description": "The updateInventoryLocationAddress mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateInventoryLocationAddressResult",
+        "description": "The updateInventoryLocationAddress mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateInventoryRole",
+    "description": "Update an existing inventory role.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The updateInventoryRole mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateInventoryRoleInput",
+            "description": "The updateInventoryRole mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateInventoryRoleResult",
+        "description": "The updateInventoryRole mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "sendCommunication",
+    "description": "Send a communication to an entity using a template.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to send a communication.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "SendCommunicationInput",
+            "description": "The input required to send a communication.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "SendCommunicationResult",
+        "description": "The sendCommunication mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "startProductAvailabilityJob",
+    "description": "Start an asynchronous job to check available products at a given location. Requires a gaiia [publishable key](../../../authentication) in the request headers.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a product availability job.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "StartProductAvailabilityJobInput",
+            "description": "Input required to start a product availability job.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "StartProductAvailabilityJobResult",
+        "description": "The result of a starting a product availability job.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "archiveBundle",
+    "description": "Archive a bundle.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The archiveBundle mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "ArchiveBundleInput",
+            "description": "The archiveBundle mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveBundleResult",
+        "description": "The archiveBundle mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createBundle",
+    "description": "Create a bundle.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The createBundle mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateBundleInput",
+            "description": "The createBundle mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateBundleResult",
+        "description": "The createBundle mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createProduct",
+    "description": "Create a product.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The createProduct mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateProductInput",
+            "description": "The createProduct mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateProductResult",
+        "description": "The createProduct mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createProductVersion",
+    "description": "Create a new product version.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The createProductVersion mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateProductVersionInput",
+            "description": "The createProductVersion mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateProductVersionResult",
+        "description": "The createProductVersion mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateBundle",
+    "description": "Update a bundle.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The updateBundle mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateBundleInput",
+            "description": "The updateBundle mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateBundleResult",
+        "description": "The updateBundle mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "addImpactedAccountsToIncident",
+    "description": "Add impacted accounts to an incident.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to add impacted accounts to an incident.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddImpactedAccountsToIncidentInput",
+            "description": "The input required to add impacted accounts to an incident.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddImpactedAccountsToIncidentResult",
+        "description": "The addImpactedAccountsToIncident mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "addImpactedAccountsToIncidentFromGeofence",
+    "description": "Add impacted accounts to an incident from a geofence.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to add impacted accounts to an incident from a geofence.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddImpactedAccountsToIncidentFromGeofenceInput",
+            "description": "The input required to add impacted accounts to an incident from a geofence.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddImpactedAccountsToIncidentFromGeofenceResult",
+        "description": "The addImpactedAccountsToIncidentFromGeofence mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "addImpactedAccountsToIncidentFromProperties",
+    "description": "Add impacted accounts to an incident from properties.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to add impacted accounts to an incident from properties.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddImpactedAccountsToIncidentFromPropertiesInput",
+            "description": "The input required to add impacted accounts to an incident from properties.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddImpactedAccountsToIncidentFromPropertiesResult",
+        "description": "The addImpactedAccountsToIncidentFromProperties mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "addImpactedAccountsToIncidentFromNetworkSites",
+    "description": "Add impacted accounts to an incident from network sites.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to add impacted accounts to an incident from network sites.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddImpactedAccountsToIncidentFromNetworkSitesInput",
+            "description": "The input required to add impacted accounts to an incident from network sites.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddImpactedAccountsToIncidentFromNetworkSitesResult",
+        "description": "The addImpactedAccountsToIncidentFromNetworkSites mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "addProcedureToIncident",
+    "description": "Add a given procedure to an incident.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to add a procedure to an incident.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddProcedureToIncidentInput",
+            "description": "The input required to add a procedure to an incident.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddProcedureToIncidentResult",
+        "description": "The addProcedureToIncident mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "assignUpstreamDeviceToInventoryItem",
+    "description": "Assign an upstream device to an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The assignUpstreamDeviceToInventoryItem mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignUpstreamDeviceToInventoryItemInput",
+            "description": "Input for assigning an upstream device to an inventory item.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AssignUpstreamDeviceToInventoryItemResult",
+        "description": "Result of assigning an upstream device to an inventory item.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createIncident",
+    "description": "Create a new incident.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an incident.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateIncidentInput",
+            "description": "The input required to create an incident.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateIncidentResult",
+        "description": "The createIncident mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "removeImpactedAccountsFromIncident",
+    "description": "Remove impacted accounts from an incident.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to remove impacted accounts from an incident.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "RemoveImpactedAccountsFromIncidentInput",
+            "description": "The input required to remove impacted accounts from an incident.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "RemoveImpactedAccountsFromIncidentResult",
+        "description": "The removeImpactedAccountsFromIncident mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "unassignUpstreamDeviceFromInventoryItem",
+    "description": "Unassign an upstream device from an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The unassignUpstreamDeviceFromInventoryItem mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UnassignUpstreamDeviceFromInventoryItemInput",
+            "description": "Input for unassigning an upstream device from an inventory item.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnassignUpstreamDeviceFromInventoryItemResult",
+        "description": "Result of unassigning an upstream device from an inventory item.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateIncident",
+    "description": "Update an incident.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update an incident.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateIncidentInput",
+            "description": "The input required to update an incident.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateIncidentResult",
+        "description": "The updateIncident mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "addInventoryItemLinkedDevices",
+    "description": "Add new linked devices to an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The addInventoryItemLinkedDevices mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddInventoryItemLinkedDevicesInput",
+            "description": "The addInventoryItemLinkedDevices mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddInventoryItemLinkedDevicesResult",
+        "description": "The addInventoryItemLinkedDevices mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "removeInventoryItemLinkedDevices",
+    "description": "Remove linked devices from an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The removeInventoryItemLinkedDevices mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "RemoveInventoryItemLinkedDevicesInput",
+            "description": "The removeInventoryItemLinkedDevices mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "RemoveInventoryItemLinkedDevicesResult",
+        "description": "The removeInventoryItemLinkedDevices mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "clearInventoryItemLinkedDevices",
+    "description": "Clear all linked devices from an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The clearInventoryItemLinkedDevices mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "ClearInventoryItemLinkedDevicesInput",
+            "description": "The clearInventoryItemLinkedDevices mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ClearInventoryItemLinkedDevicesResult",
+        "description": "The clearInventoryItemLinkedDevices mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "deleteIncidentProcedure",
+    "description": "Delete an incident procedure.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to delete an incident procedure.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "DeleteIncidentProcedureInput",
+            "description": "The input required to delete an incident procedure.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "DeleteIncidentProcedureResult",
+        "description": "The deleteIncidentProcedure mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "closeTicket",
+    "description": "Close a ticket.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The ticket's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to close a ticket.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CloseTicketInput",
+            "description": "The input required to close a ticket.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CloseTicketResult",
+        "description": "The closeTicket mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "mergeTickets",
+    "description": "Merge a child ticket into a parent ticket. The child ticket will be closed and archived.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to merge tickets.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "MergeTicketsInput",
+            "description": "The input required to merge a child ticket into a parent ticket.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "MergeTicketsResult",
+        "description": "The mergeTickets mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createInternalTicket",
+    "description": "Create a new internal ticket.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an internal ticket.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateInternalTicketInput",
+            "description": "The createInternalTicket mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateInternalTicketResult",
+        "description": "The createInternalTicket mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createExternalTicket",
+    "description": "Create a new external ticket.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create an external ticket.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateExternalTicketInput",
+            "description": "The input required to create an external ticket.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateExternalTicketResult",
+        "description": "The createExternalTicket mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createTicketComment",
+    "description": "Create a new ticket comment.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a ticket comment.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateTicketCommentInput",
+            "description": "The input required to create a ticket comment.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateTicketCommentResult",
+        "description": "The createTicketComment mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createTicketCommentAttachments",
+    "description": "Create ticket comment attachments. This mutation should be used after uploading files using URLs from [createTicketCommentAttachmentUploadUrl](../mutations/createTicketCommentAttachmentUploadUrl). See the [Files](../../files) section of the documentation for more information.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create ticket comment attachments.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateTicketCommentAttachmentsInput",
+            "description": "The input required to create ticket comment attachments.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateTicketCommentAttachmentsResult",
+        "description": "The createTicketCommentAttachments mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createTicketCommentAttachmentUploadUrl",
+    "description": "Create a ticket comment attachment upload URL. This mutation should be used in combination with [createTicketCommentAttachments](../mutations/createTicketCommentAttachments). See the [Files](../../files) section of the documentation for more information.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a ticket comment attachment upload URL.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateTicketCommentAttachmentUploadUrlInput",
+            "description": "The input required to create a ticket comment attachment upload URL.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateTicketCommentAttachmentUploadUrlResult",
+        "description": "The createTicketCommentAttachmentUploadUrl mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createTicketWorklog",
+    "description": "Create a new ticket worklog.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a ticket worklog.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateTicketWorklogInput",
+            "description": "The input required to create a ticket worklog.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateTicketWorklogResult",
+        "description": "The createTicketWorklog mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateTicketAssignees",
+    "description": "Update a ticket's assignees.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The ticket's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a ticket's assignees.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTicketAssigneesInput",
+            "description": "The input required to update a ticket's assignees.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTicketAssigneesResult",
+        "description": "The updateTicketAssignees mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateTicketFollowers",
+    "description": "Update a ticket's followers.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The ticket's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a ticket's followers.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTicketFollowersInput",
+            "description": "The input required to update a ticket's followers.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTicketFollowersResult",
+        "description": "The updateTicketFollowers mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateExternalTicket",
+    "description": "Update an external ticket.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The ticket's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an external ticket.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateExternalTicketInput",
+            "description": "The updateExternalTicket mutation's input (see [Ticket](../objects/Ticket) for required fields).",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateExternalTicketResult",
+        "description": "The updateExternalTicket mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateInternalTicket",
+    "description": "Update an internal ticket.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The ticket's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an internal ticket.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateInternalTicketInput",
+            "description": "The updateInternalTicket mutation's input (see [Ticket](../objects/Ticket) for required fields).",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateInternalTicketResult",
+        "description": "The updateInternalTicket mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateTicketStatus",
+    "description": "Update a ticket's status.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The ticket's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a ticket's status.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTicketStatusInput",
+            "description": "The input required to update a ticket's status.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTicketStatusResult",
+        "description": "The updateTicketStatus mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateTicketWorkOrder",
+    "description": "Update a ticket's work order.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The ticket's unique ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "description": "A global ID, containing both the type and the identifier of the entity it represents.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update a ticket's work order.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTicketWorkOrderInput",
+            "description": "The input required to update a ticket's work order.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTicketWorkOrderResult",
+        "description": "The updateTicketWorkOrder mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "cancelWorkflowExecution",
+    "description": "Cancel the workflow execution.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to cancel a workflow execution.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CancelWorkflowExecutionInput",
+            "description": "The input to cancel a workflow execution.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CancelWorkflowExecutionResult",
+        "description": "The cancelWorkflowExecution mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createWebhook",
+    "description": "Create a new webhook.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a webhook.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateWebhookInput",
+            "description": "The input required to create a webhook.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateWebhookResult",
+        "description": "The createWebhook mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "deleteWebhook",
+    "description": "Delete a webhook by unique ID.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to delete a webhook.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "DeleteWebhookInput",
+            "description": "The input required to delete a webhook.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "DeleteWebhookResult",
+        "description": "The deleteWebhook mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "retryWorkflowExecution",
+    "description": "Retry the workflow execution.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to retry a workflow execution.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "RetryWorkflowExecutionInput",
+            "description": "The input to retry a workflow execution.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "RetryWorkflowExecutionResult",
+        "description": "The retryWorkflowExecution mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "skipNodeExecution",
+    "description": "Skip a failed node execution.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to skip a node execution.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "SkipNodeExecutionInput",
+            "description": "The input to skip a failed node execution.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "SkipNodeExecutionResult",
+        "description": "The skipNodeExecution mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "startWorkflowExecution",
+    "description": "Start the workflow execution.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to start a workflow execution.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "StartWorkflowExecutionInput",
+            "description": "The input to start a workflow execution.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "StartWorkflowExecutionResult",
+        "description": "The startWorkflowExecution mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "assignTechnicianToWorkOrder",
+    "description": "Assign a primary technician to a work order.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to assign a technician to a work order.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignTechnicianToWorkOrderInput",
+            "description": "The assignTechnicianToWorkOrder mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AssignTechnicianToWorkOrderResult",
+        "description": "The assignTechnicianToWorkOrder mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createWorkOrder",
+    "description": "Create a new work order.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a work order.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateWorkOrderInput",
+            "description": "The createWorkOrder mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateWorkOrderResult",
+        "description": "The createWorkOrder mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createWorkOrderNote",
+    "description": "Create a new work order note.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a work order note.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateWorkOrderNoteInput",
+            "description": "The createWorkOrderNote mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateWorkOrderNoteResult",
+        "description": "The createWorkOrderNote mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "startWorkOrderAutoAssign",
+    "description": "Send a work order to the auto-assign queue for async processing.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to start work order auto-assign.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "StartWorkOrderAutoAssignInput",
+            "description": "The startWorkOrderAutoAssign mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "StartWorkOrderAutoAssignResult",
+        "description": "The startWorkOrderAutoAssign mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateWorkOrder",
+    "description": "Update an existing work order.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update a work order.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateWorkOrderInput",
+            "description": "The updateWorkOrder mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateWorkOrderResult",
+        "description": "The result of an updateWorkOrder mutation.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateWorkOrderProcedureValue",
+    "description": "Update the procedure value of a work order.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update the procedure value.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateWorkOrderProcedureValueInput",
+            "description": "The updateWorkOrderProcedureValue mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateWorkOrderProcedureValueResult",
+        "description": "The result of a updateWorkOrderProcedureValue mutation.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateDefaultAppointmentConfig",
+    "description": "Update the default appointment configuration for the current tenant.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The updateDefaultAppointmentConfig mutation's input.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateDefaultAppointmentConfigInput",
+            "description": "The updateDefaultAppointmentConfig mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateDefaultAppointmentConfigResult",
+        "description": "The updateDefaultAppointmentConfig mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "unassignAllTechniciansFromWorkOrder",
+    "description": "Unassign all technicians from work order.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to unassign all technicians from a work order.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UnassignAllTechniciansFromWorkOrderInput",
+            "description": "The unassignAllTechniciansFromWorkOrder mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnassignAllTechniciansFromWorkOrderResult",
+        "description": "The unassignAllTechniciansFromWorkOrder mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "createWorkOrderCustomStatus",
+    "description": "Create a new work order custom status.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to create a work order custom status.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateWorkOrderCustomStatusInput",
+            "description": "The createWorkOrderCustomStatus mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateWorkOrderCustomStatusResult",
+        "description": "The createWorkOrderCustomStatus mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateWorkOrderCustomStatus",
+    "description": "Update a work order custom status.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to update a work order custom status.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateWorkOrderCustomStatusInput",
+            "description": "The updateWorkOrderCustomStatus mutation's input.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateWorkOrderCustomStatusResult",
+        "description": "The updateWorkOrderCustomStatus mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "archiveWorkOrderCustomStatus",
+    "description": "Archive a work order custom status by unique ID.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input required to archive a work order custom status.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "ArchiveWorkOrderCustomStatusInput",
+            "description": "The input required to archive a work order custom status.",
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "description": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveWorkOrderCustomStatusResult",
+        "description": "The archiveWorkOrderCustomStatus mutation's result.",
+        "ofType": null,
+        "__typename": "__Type"
+      },
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "updateInventoryItem",
+    "description": "Update an inventory item.",
+    "args": [
+      {
+        "name": "id",
+        "description": "The inventory item ID.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "ID",
+            "description": null,
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input required to update an inventory item.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateInventoryItemInput",
+            "description": null,
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "OBJECT",
+      "name": "InventoryItem",
+      "description": null,
+      "ofType": null,
+      "__typename": "__Type"
+    }
+  },
+  {
+    "name": "startAddInventoryItemsJob",
+    "description": "Starts a background job to add inventory items in bulk.",
+    "args": [
+      {
+        "name": "input",
+        "description": "The input for adding inventory items.",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "description": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddInventoryItemsInput",
+            "description": null,
+            "ofType": null,
+            "__typename": "__Type"
+          },
+          "__typename": "__Type"
+        }
+      }
+    ],
+    "type": {
+      "kind": "SCALAR",
+      "name": "String",
+      "description": null,
+      "ofType": null,
+      "__typename": "__Type"
+    }
+  }
+]

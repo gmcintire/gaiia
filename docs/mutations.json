@@ -1,0 +1,1501 @@
+[
+  {
+    "name": "createAccount",
+    "description": "Create a new account.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateAccountInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an account."
+      }
+    ]
+  },
+  {
+    "name": "createNote",
+    "description": "Create a new note.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateNoteInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a note."
+      }
+    ]
+  },
+  {
+    "name": "createAccountContact",
+    "description": "Create a contact.",
+    "args": [
+      {
+        "name": "accountId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The account's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "CreateAccountContactInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a contact."
+      }
+    ]
+  },
+  {
+    "name": "initiatePinVerification",
+    "description": "Initiate a PIN verification session for an entity.",
+    "args": [
+      {
+        "name": "entityId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The entity to verify."
+      },
+      {
+        "name": "input",
+        "type": "InitiatePinVerificationInput",
+        "kind": "NON_NULL",
+        "description": "The input required to initiate a PIN verification session."
+      }
+    ]
+  },
+  {
+    "name": "verifyPinVerification",
+    "description": "Submit a PIN to complete a verification.",
+    "args": [
+      {
+        "name": "verificationId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The verification to complete."
+      },
+      {
+        "name": "input",
+        "type": "VerifyPinVerificationInput",
+        "kind": "NON_NULL",
+        "description": "The input required to verify a PIN."
+      }
+    ]
+  },
+  {
+    "name": "deleteNote",
+    "description": "Delete a note.",
+    "args": [
+      {
+        "name": "noteId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The notes's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "updateAccountContact",
+    "description": "Update a contact.",
+    "args": [
+      {
+        "name": "accountId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The account's unique ID."
+      },
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The contact's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateAccountContactInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a contact."
+      }
+    ]
+  },
+  {
+    "name": "updateAccountCustomFieldDefinition",
+    "description": "Update an account custom field definition.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The account custom field definition's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateAccountCustomFieldDefinitionInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an account custom field definition."
+      }
+    ]
+  },
+  {
+    "name": "updateNote",
+    "description": "Update a note.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateNoteInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a note."
+      }
+    ]
+  },
+  {
+    "name": "updateAccount",
+    "description": "Update an account.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The account's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateAccountInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an account."
+      }
+    ]
+  },
+  {
+    "name": "updatePropertyGroupManager",
+    "description": "Update a property group manager.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property group manager's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdatePropertyGroupManagerInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a property group manager."
+      }
+    ]
+  },
+  {
+    "name": "updatePropertyGroup",
+    "description": "Update a property group.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property group's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdatePropertyGroupInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a property group."
+      }
+    ]
+  },
+  {
+    "name": "updateUnit",
+    "description": "Update a unit.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The unit's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateUnitInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a unit."
+      }
+    ]
+  },
+  {
+    "name": "createPropertyUnits",
+    "description": "Create units.",
+    "args": [
+      {
+        "name": "propertyId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "CreatePropertyUnitsInput",
+        "kind": "NON_NULL",
+        "description": "The input required to a property's units."
+      }
+    ]
+  },
+  {
+    "name": "updatePropertyContact",
+    "description": "Update a property's contact.",
+    "args": [
+      {
+        "name": "propertyId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property's unique ID."
+      },
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The contact's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdatePropertyContactInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a property's contact."
+      }
+    ]
+  },
+  {
+    "name": "createPropertyGroup",
+    "description": "Create a property group.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreatePropertyGroupInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a property group."
+      }
+    ]
+  },
+  {
+    "name": "createProperty",
+    "description": "Create a property.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreatePropertyInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a property."
+      }
+    ]
+  },
+  {
+    "name": "createPropertyContact",
+    "description": "Create a property's contact.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "CreatePropertyContactInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a property's contact."
+      }
+    ]
+  },
+  {
+    "name": "updateProperty",
+    "description": "Update a property.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property's unique id."
+      },
+      {
+        "name": "input",
+        "type": "UpdatePropertyInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a property."
+      }
+    ]
+  },
+  {
+    "name": "updatePropertyPhysicalAddress",
+    "description": "Update a property's physical address.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The property's unique id."
+      },
+      {
+        "name": "input",
+        "type": "UpdatePropertyPhysicalAddressInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a property's physical address."
+      }
+    ]
+  },
+  {
+    "name": "updateAccountPhysicalAddress",
+    "description": "Update an account's physical address.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The account's unique id."
+      },
+      {
+        "name": "input",
+        "type": "UpdateAccountPhysicalAddressInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an account's physical address."
+      }
+    ]
+  },
+  {
+    "name": "updateAccountMailingAddress",
+    "description": "Update an account's mailing address.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The account's unique id."
+      },
+      {
+        "name": "input",
+        "type": "UpdateAccountMailingAddressInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an account's mailing address."
+      }
+    ]
+  },
+  {
+    "name": "createAccountServiceCancellationReason",
+    "description": "Create a new account service cancellation reason.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateAccountServiceCancellationReasonInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an account service cancellation reason."
+      }
+    ]
+  },
+  {
+    "name": "updateEntityCustomFieldDefinition",
+    "description": "Update an entity custom field definition.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The entity custom field definition's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateEntityCustomFieldDefinitionInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an entity custom field definition."
+      }
+    ]
+  },
+  {
+    "name": "updateEntityCustomFields",
+    "description": "Update an entity's custom fields.",
+    "args": [
+      {
+        "name": "entityId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The entity's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateEntityCustomFieldsInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an entity's custom fields."
+      }
+    ]
+  },
+  {
+    "name": "assignBillingSubscriptions",
+    "description": "Assign billing subscriptions.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AssignBillingSubscriptionsMutationInput",
+        "kind": "NON_NULL",
+        "description": "The input required to assign billing subscriptions."
+      }
+    ]
+  },
+  {
+    "name": "createDebits",
+    "description": "Create debits.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateDebitsInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create debits."
+      }
+    ]
+  },
+  {
+    "name": "updateDelinquencyStep",
+    "description": "Update a delinquency step.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateDelinquencyStepInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a delinquency step."
+      }
+    ]
+  },
+  {
+    "name": "createPaymentMethod",
+    "description": "Create a payment method for a billable entity. The payment method can be used for payments and optionally for automatic payments.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreatePaymentMethodInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a payment method."
+      }
+    ]
+  },
+  {
+    "name": "createPayment",
+    "description": "Create a payment.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreatePaymentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a payment."
+      }
+    ]
+  },
+  {
+    "name": "updatePayments",
+    "description": "Update payments' status.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdatePaymentsInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update payments."
+      }
+    ]
+  },
+  {
+    "name": "createInvoice",
+    "description": "Generate an invoice on an account. All uninvoiced transactions will be included.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateInvoiceInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an invoice."
+      }
+    ]
+  },
+  {
+    "name": "writeOffInvoices",
+    "description": "Write off invoices by creating credit notes for the remaining amounts.",
+    "args": [
+      {
+        "name": "input",
+        "type": "WriteOffInvoicesInput",
+        "kind": "NON_NULL",
+        "description": "The input required to write off invoices."
+      }
+    ]
+  },
+  {
+    "name": "toggleAutoPayment",
+    "description": "Toggle auto payment on a payment method. Enabling auto payment on a payment method will disable it on all other payment methods for the same account.",
+    "args": [
+      {
+        "name": "input",
+        "type": "ToggleAutoPaymentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to toggle auto payment."
+      }
+    ]
+  },
+  {
+    "name": "deletePaymentMethod",
+    "description": "Delete a payment method. The payment method will be archived (soft delete) in the billing system, and removal from the payment processor will be attempted. The payment method record remains in the database, marked as archived, and will not appear in queries.",
+    "args": [
+      {
+        "name": "input",
+        "type": "DeletePaymentMethodInput",
+        "kind": "NON_NULL",
+        "description": "The input required to delete a payment method."
+      }
+    ]
+  },
+  {
+    "name": "unarchiveAddress",
+    "description": "Unarchive an address.",
+    "args": [
+      {
+        "name": "addressId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The address's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "archiveAddress",
+    "description": "Archive an address.",
+    "args": [
+      {
+        "name": "addressId",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The address's unique ID."
+      }
+    ]
+  },
+  {
+    "name": "updateAddressCustomFieldDefinition",
+    "description": "Update an address custom field definition.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The custom field definition's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateAddressCustomFieldDefinitionInput",
+        "kind": "NON_NULL",
+        "description": "Input containing the custom field definition update details."
+      }
+    ]
+  },
+  {
+    "name": "updateAddressCustomFields",
+    "description": "Update custom fields for an address.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateAddressCustomFieldsInput",
+        "kind": "NON_NULL",
+        "description": "Input containing address ID and field updates."
+      }
+    ]
+  },
+  {
+    "name": "createAddress",
+    "description": "Create an address.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateGeoAddressInput",
+        "kind": "NON_NULL",
+        "description": "The address's input."
+      }
+    ]
+  },
+  {
+    "name": "updateAddress",
+    "description": "Update an address.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The address's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateGeoAddressInput",
+        "kind": "NON_NULL",
+        "description": "The address's input."
+      }
+    ]
+  },
+  {
+    "name": "createCoverageArea",
+    "description": "Creates a new coverage area.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateCoverageAreaInput",
+        "kind": "NON_NULL",
+        "description": "The coverage area's input."
+      }
+    ]
+  },
+  {
+    "name": "updateCoverageArea",
+    "description": "Updates an existing coverage area.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateCoverageAreaInput",
+        "kind": "NON_NULL",
+        "description": "The coverage area's input."
+      }
+    ]
+  },
+  {
+    "name": "archiveCoverageAreas",
+    "description": "Archive multiple coverage areas.",
+    "args": [
+      {
+        "name": "coverageAreaIds",
+        "type": null,
+        "kind": "NON_NULL",
+        "description": "The coverage areas' unique IDs."
+      }
+    ]
+  },
+  {
+    "name": "unarchiveCoverageAreas",
+    "description": "Unarchive multiple coverage areas.",
+    "args": [
+      {
+        "name": "coverageAreaIds",
+        "type": null,
+        "kind": "NON_NULL",
+        "description": "The coverage areas' unique IDs."
+      }
+    ]
+  },
+  {
+    "name": "createGeofence",
+    "description": "Create a geofence.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateGeofenceInput",
+        "kind": "NON_NULL",
+        "description": "The geofence's input."
+      }
+    ]
+  },
+  {
+    "name": "integrationNone",
+    "description": null,
+    "args": []
+  },
+  {
+    "name": "addCustomerOwnedItem",
+    "description": "Assign an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AddCustomerOwnedItemInput",
+        "kind": "NON_NULL",
+        "description": "The input required to add a customer owned item."
+      }
+    ]
+  },
+  {
+    "name": "archiveInventoryRoles",
+    "description": "Archive existing inventory roles.",
+    "args": [
+      {
+        "name": "input",
+        "type": "ArchiveInventoryRolesInput",
+        "kind": "NON_NULL",
+        "description": "The archiveInventoryRoles mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "unarchiveInventoryRoles",
+    "description": "Unarchive existing inventory roles.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UnarchiveInventoryRolesInput",
+        "kind": "NON_NULL",
+        "description": "The unarchiveInventoryRoles mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "assignInventoryItem",
+    "description": "Assign an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AssignInventoryItemInput",
+        "kind": "NON_NULL",
+        "description": "The input required to assign an inventory item."
+      }
+    ]
+  },
+  {
+    "name": "createInventoryModelCategory",
+    "description": "Create a new inventory model category.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateInventoryModelCategoryInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a new inventory model category."
+      }
+    ]
+  },
+  {
+    "name": "createInventoryLocationAddress",
+    "description": "Create an inventory location address.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateInventoryLocationAddressInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an inventory location address."
+      }
+    ]
+  },
+  {
+    "name": "createInventoryModel",
+    "description": "Mutation to create an inventory model.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateInventoryModelInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an inventory model."
+      }
+    ]
+  },
+  {
+    "name": "createInventoryRole",
+    "description": "Create a new inventory role.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateInventoryRoleInput",
+        "kind": "NON_NULL",
+        "description": "The createInventoryRole mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "createManufacturer",
+    "description": "Create a new manufacturer.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateManufacturerInput",
+        "kind": "NON_NULL",
+        "description": "The createManufacturer mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "unassignCustomerOwnedItem",
+    "description": "Unassign a customer owned item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UnassignCustomerOwnedItemInput",
+        "kind": "NON_NULL",
+        "description": "The unassignCustomerOwnedItem mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "updateInventoryLocationAddress",
+    "description": "Update an inventory location address.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateInventoryLocationAddressInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an inventory location address."
+      }
+    ]
+  },
+  {
+    "name": "updateInventoryRole",
+    "description": "Update an existing inventory role.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateInventoryRoleInput",
+        "kind": "NON_NULL",
+        "description": "The updateInventoryRole mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "sendCommunication",
+    "description": "Send a communication to an entity using a template.",
+    "args": [
+      {
+        "name": "input",
+        "type": "SendCommunicationInput",
+        "kind": "NON_NULL",
+        "description": "The input required to send a communication."
+      }
+    ]
+  },
+  {
+    "name": "startProductAvailabilityJob",
+    "description": "Start an asynchronous job to check available products at a given location. Requires a gaiia [publishable key](../../../authentication) in the request headers.",
+    "args": [
+      {
+        "name": "input",
+        "type": "StartProductAvailabilityJobInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a product availability job."
+      }
+    ]
+  },
+  {
+    "name": "archiveBundle",
+    "description": "Archive a bundle.",
+    "args": [
+      {
+        "name": "input",
+        "type": "ArchiveBundleInput",
+        "kind": "NON_NULL",
+        "description": "The archiveBundle mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "createBundle",
+    "description": "Create a bundle.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateBundleInput",
+        "kind": "NON_NULL",
+        "description": "The createBundle mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "createProduct",
+    "description": "Create a product.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateProductInput",
+        "kind": "NON_NULL",
+        "description": "The createProduct mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "createProductVersion",
+    "description": "Create a new product version.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateProductVersionInput",
+        "kind": "NON_NULL",
+        "description": "The createProductVersion mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "updateBundle",
+    "description": "Update a bundle.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateBundleInput",
+        "kind": "NON_NULL",
+        "description": "The updateBundle mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "addImpactedAccountsToIncident",
+    "description": "Add impacted accounts to an incident.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AddImpactedAccountsToIncidentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to add impacted accounts to an incident."
+      }
+    ]
+  },
+  {
+    "name": "addImpactedAccountsToIncidentFromGeofence",
+    "description": "Add impacted accounts to an incident from a geofence.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AddImpactedAccountsToIncidentFromGeofenceInput",
+        "kind": "NON_NULL",
+        "description": "The input required to add impacted accounts to an incident from a geofence."
+      }
+    ]
+  },
+  {
+    "name": "addImpactedAccountsToIncidentFromProperties",
+    "description": "Add impacted accounts to an incident from properties.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AddImpactedAccountsToIncidentFromPropertiesInput",
+        "kind": "NON_NULL",
+        "description": "The input required to add impacted accounts to an incident from properties."
+      }
+    ]
+  },
+  {
+    "name": "addImpactedAccountsToIncidentFromNetworkSites",
+    "description": "Add impacted accounts to an incident from network sites.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AddImpactedAccountsToIncidentFromNetworkSitesInput",
+        "kind": "NON_NULL",
+        "description": "The input required to add impacted accounts to an incident from network sites."
+      }
+    ]
+  },
+  {
+    "name": "addProcedureToIncident",
+    "description": "Add a given procedure to an incident.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AddProcedureToIncidentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to add a procedure to an incident."
+      }
+    ]
+  },
+  {
+    "name": "assignUpstreamDeviceToInventoryItem",
+    "description": "Assign an upstream device to an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AssignUpstreamDeviceToInventoryItemInput",
+        "kind": "NON_NULL",
+        "description": "The assignUpstreamDeviceToInventoryItem mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "createIncident",
+    "description": "Create a new incident.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateIncidentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an incident."
+      }
+    ]
+  },
+  {
+    "name": "removeImpactedAccountsFromIncident",
+    "description": "Remove impacted accounts from an incident.",
+    "args": [
+      {
+        "name": "input",
+        "type": "RemoveImpactedAccountsFromIncidentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to remove impacted accounts from an incident."
+      }
+    ]
+  },
+  {
+    "name": "unassignUpstreamDeviceFromInventoryItem",
+    "description": "Unassign an upstream device from an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UnassignUpstreamDeviceFromInventoryItemInput",
+        "kind": "NON_NULL",
+        "description": "The unassignUpstreamDeviceFromInventoryItem mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "updateIncident",
+    "description": "Update an incident.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateIncidentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an incident."
+      }
+    ]
+  },
+  {
+    "name": "addInventoryItemLinkedDevices",
+    "description": "Add new linked devices to an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AddInventoryItemLinkedDevicesInput",
+        "kind": "NON_NULL",
+        "description": "The addInventoryItemLinkedDevices mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "removeInventoryItemLinkedDevices",
+    "description": "Remove linked devices from an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "RemoveInventoryItemLinkedDevicesInput",
+        "kind": "NON_NULL",
+        "description": "The removeInventoryItemLinkedDevices mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "clearInventoryItemLinkedDevices",
+    "description": "Clear all linked devices from an inventory item.",
+    "args": [
+      {
+        "name": "input",
+        "type": "ClearInventoryItemLinkedDevicesInput",
+        "kind": "NON_NULL",
+        "description": "The clearInventoryItemLinkedDevices mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "deleteIncidentProcedure",
+    "description": "Delete an incident procedure.",
+    "args": [
+      {
+        "name": "input",
+        "type": "DeleteIncidentProcedureInput",
+        "kind": "NON_NULL",
+        "description": "The input required to delete an incident procedure."
+      }
+    ]
+  },
+  {
+    "name": "closeTicket",
+    "description": "Close a ticket.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "CloseTicketInput",
+        "kind": "NON_NULL",
+        "description": "The input required to close a ticket."
+      }
+    ]
+  },
+  {
+    "name": "mergeTickets",
+    "description": "Merge a child ticket into a parent ticket. The child ticket will be closed and archived.",
+    "args": [
+      {
+        "name": "input",
+        "type": "MergeTicketsInput",
+        "kind": "NON_NULL",
+        "description": "The input required to merge tickets."
+      }
+    ]
+  },
+  {
+    "name": "createInternalTicket",
+    "description": "Create a new internal ticket.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateInternalTicketInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an internal ticket."
+      }
+    ]
+  },
+  {
+    "name": "createExternalTicket",
+    "description": "Create a new external ticket.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateExternalTicketInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create an external ticket."
+      }
+    ]
+  },
+  {
+    "name": "createTicketComment",
+    "description": "Create a new ticket comment.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateTicketCommentInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a ticket comment."
+      }
+    ]
+  },
+  {
+    "name": "createTicketCommentAttachments",
+    "description": "Create ticket comment attachments. This mutation should be used after uploading files using URLs from [createTicketCommentAttachmentUploadUrl](../mutations/createTicketCommentAttachmentUploadUrl). See the [Files](../../files) section of the documentation for more information.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateTicketCommentAttachmentsInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create ticket comment attachments."
+      }
+    ]
+  },
+  {
+    "name": "createTicketCommentAttachmentUploadUrl",
+    "description": "Create a ticket comment attachment upload URL. This mutation should be used in combination with [createTicketCommentAttachments](../mutations/createTicketCommentAttachments). See the [Files](../../files) section of the documentation for more information.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateTicketCommentAttachmentUploadUrlInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a ticket comment attachment upload URL."
+      }
+    ]
+  },
+  {
+    "name": "createTicketWorklog",
+    "description": "Create a new ticket worklog.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateTicketWorklogInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a ticket worklog."
+      }
+    ]
+  },
+  {
+    "name": "updateTicketAssignees",
+    "description": "Update a ticket's assignees.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateTicketAssigneesInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a ticket's assignees."
+      }
+    ]
+  },
+  {
+    "name": "updateTicketFollowers",
+    "description": "Update a ticket's followers.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateTicketFollowersInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a ticket's followers."
+      }
+    ]
+  },
+  {
+    "name": "updateExternalTicket",
+    "description": "Update an external ticket.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateExternalTicketInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an external ticket."
+      }
+    ]
+  },
+  {
+    "name": "updateInternalTicket",
+    "description": "Update an internal ticket.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateInternalTicketInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update an internal ticket."
+      }
+    ]
+  },
+  {
+    "name": "updateTicketStatus",
+    "description": "Update a ticket's status.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateTicketStatusInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a ticket's status."
+      }
+    ]
+  },
+  {
+    "name": "updateTicketWorkOrder",
+    "description": "Update a ticket's work order.",
+    "args": [
+      {
+        "name": "id",
+        "type": "GlobalID",
+        "kind": "NON_NULL",
+        "description": "The ticket's unique ID."
+      },
+      {
+        "name": "input",
+        "type": "UpdateTicketWorkOrderInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a ticket's work order."
+      }
+    ]
+  },
+  {
+    "name": "cancelWorkflowExecution",
+    "description": "Cancel the workflow execution.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CancelWorkflowExecutionInput",
+        "kind": "NON_NULL",
+        "description": "The input required to cancel a workflow execution."
+      }
+    ]
+  },
+  {
+    "name": "createWebhook",
+    "description": "Create a new webhook.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateWebhookInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a webhook."
+      }
+    ]
+  },
+  {
+    "name": "deleteWebhook",
+    "description": "Delete a webhook by unique ID.",
+    "args": [
+      {
+        "name": "input",
+        "type": "DeleteWebhookInput",
+        "kind": "NON_NULL",
+        "description": "The input required to delete a webhook."
+      }
+    ]
+  },
+  {
+    "name": "retryWorkflowExecution",
+    "description": "Retry the workflow execution.",
+    "args": [
+      {
+        "name": "input",
+        "type": "RetryWorkflowExecutionInput",
+        "kind": "NON_NULL",
+        "description": "The input required to retry a workflow execution."
+      }
+    ]
+  },
+  {
+    "name": "skipNodeExecution",
+    "description": "Skip a failed node execution.",
+    "args": [
+      {
+        "name": "input",
+        "type": "SkipNodeExecutionInput",
+        "kind": "NON_NULL",
+        "description": "The input required to skip a node execution."
+      }
+    ]
+  },
+  {
+    "name": "startWorkflowExecution",
+    "description": "Start the workflow execution.",
+    "args": [
+      {
+        "name": "input",
+        "type": "StartWorkflowExecutionInput",
+        "kind": "NON_NULL",
+        "description": "The input required to start a workflow execution."
+      }
+    ]
+  },
+  {
+    "name": "assignTechnicianToWorkOrder",
+    "description": "Assign a primary technician to a work order.",
+    "args": [
+      {
+        "name": "input",
+        "type": "AssignTechnicianToWorkOrderInput",
+        "kind": "NON_NULL",
+        "description": "The input required to assign a technician to a work order."
+      }
+    ]
+  },
+  {
+    "name": "createWorkOrder",
+    "description": "Create a new work order.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateWorkOrderInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a work order."
+      }
+    ]
+  },
+  {
+    "name": "createWorkOrderNote",
+    "description": "Create a new work order note.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateWorkOrderNoteInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a work order note."
+      }
+    ]
+  },
+  {
+    "name": "startWorkOrderAutoAssign",
+    "description": "Send a work order to the auto-assign queue for async processing.",
+    "args": [
+      {
+        "name": "input",
+        "type": "StartWorkOrderAutoAssignInput",
+        "kind": "NON_NULL",
+        "description": "The input required to start work order auto-assign."
+      }
+    ]
+  },
+  {
+    "name": "updateWorkOrder",
+    "description": "Update an existing work order.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateWorkOrderInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a work order."
+      }
+    ]
+  },
+  {
+    "name": "updateWorkOrderProcedureValue",
+    "description": "Update the procedure value of a work order.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateWorkOrderProcedureValueInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update the procedure value."
+      }
+    ]
+  },
+  {
+    "name": "updateDefaultAppointmentConfig",
+    "description": "Update the default appointment configuration for the current tenant.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateDefaultAppointmentConfigInput",
+        "kind": "NON_NULL",
+        "description": "The updateDefaultAppointmentConfig mutation's input."
+      }
+    ]
+  },
+  {
+    "name": "unassignAllTechniciansFromWorkOrder",
+    "description": "Unassign all technicians from work order.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UnassignAllTechniciansFromWorkOrderInput",
+        "kind": "NON_NULL",
+        "description": "The input required to unassign all technicians from a work order."
+      }
+    ]
+  },
+  {
+    "name": "createWorkOrderCustomStatus",
+    "description": "Create a new work order custom status.",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateWorkOrderCustomStatusInput",
+        "kind": "NON_NULL",
+        "description": "The input required to create a work order custom status."
+      }
+    ]
+  },
+  {
+    "name": "updateWorkOrderCustomStatus",
+    "description": "Update a work order custom status.",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateWorkOrderCustomStatusInput",
+        "kind": "NON_NULL",
+        "description": "The input required to update a work order custom status."
+      }
+    ]
+  },
+  {
+    "name": "archiveWorkOrderCustomStatus",
+    "description": "Archive a work order custom status by unique ID.",
+    "args": [
+      {
+        "name": "input",
+        "type": "ArchiveWorkOrderCustomStatusInput",
+        "kind": "NON_NULL",
+        "description": "The input required to archive a work order custom status."
+      }
+    ]
+  }
+]
