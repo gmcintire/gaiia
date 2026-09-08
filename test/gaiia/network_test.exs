@@ -13,7 +13,7 @@ defmodule Gaiia.NetworkTest do
   alias Gaiia.Client
   alias Gaiia.ReqStub
 
-  @endpoint "http://192.0.2.1:1/graphql"
+  @endpoint "http://127.0.0.1:1/graphql"
 
   defp capturing_client do
     Client.new(endpoint: @endpoint, req_options: ReqStub.install_ok())

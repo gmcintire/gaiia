@@ -1,5 +1,6 @@
 defmodule Gaiia.WebhookTest do
   use ExUnit.Case, async: true
+  use ExUnitProperties
 
   alias Gaiia.Webhook
 
@@ -18,6 +19,13 @@ defmodule Gaiia.WebhookTest do
 
       assert Webhook.sign(@body, @secret, @timestamp) == header
       assert :ok == Webhook.verify(@body, header, @secret, now: @timestamp)
+    end
+
+    test "verify/3 uses the current time, automatic units, and default tolerance" do
+      timestamp = System.system_time(:millisecond)
+      header = Webhook.sign(@body, @secret, timestamp)
+
+      assert :ok == Webhook.verify(@body, header, @secret)
     end
 
     test "rejects a body mutated by one byte" do
@@ -44,6 +52,17 @@ defmodule Gaiia.WebhookTest do
 
     test "ignores unknown signature schemes" do
       header = Webhook.sign(@body, @secret, @timestamp) <> ",v2=unknown-future-signature"
+
+      assert :ok == Webhook.verify(@body, header, @secret, now: @timestamp)
+    end
+
+    test "accepts hexadecimal digests case-insensitively" do
+      ["t=" <> timestamp, "v1=" <> signature] =
+        @body
+        |> Webhook.sign(@secret, @timestamp)
+        |> String.split(",")
+
+      header = "t=#{timestamp},v1=#{String.upcase(signature)}"
 
       assert :ok == Webhook.verify(@body, header, @secret, now: @timestamp)
     end
@@ -130,9 +149,163 @@ defmodule Gaiia.WebhookTest do
                Webhook.verify(@body, "v1=#{signature}", @secret, now: @timestamp)
     end
 
+    test "rejects empty and duplicate timestamps" do
+      signature = String.duplicate("0", 64)
+
+      assert {:error, :malformed_signature} ==
+               Webhook.verify(@body, "t=,v1=#{signature}", @secret, now: @timestamp)
+
+      assert {:error, :malformed_signature} ==
+               Webhook.verify(@body, "t=1,t=2,v1=#{signature}", @secret, now: @timestamp)
+    end
+
+    test "rejects an empty v1 signature" do
+      assert {:error, :malformed_signature} ==
+               Webhook.verify(@body, "t=#{@timestamp},v1=", @secret, now: @timestamp)
+    end
+
+    test "rejects headers without a v1 signature" do
+      assert {:error, :malformed_signature} ==
+               Webhook.verify(@body, "t=#{@timestamp}", @secret, now: @timestamp)
+
+      assert {:error, :malformed_signature} ==
+               Webhook.verify(@body, "t=#{@timestamp},v2=ignored", @secret, now: @timestamp)
+    end
+
+    test "rejects timestamps that are not entirely numeric" do
+      signature = String.duplicate("0", 64)
+
+      assert {:error, :malformed_signature} ==
+               Webhook.verify(@body, "t=abc,v1=#{signature}", @secret, now: @timestamp)
+
+      assert {:error, :malformed_signature} ==
+               Webhook.verify(@body, "t=12x,v1=#{signature}", @secret, now: @timestamp)
+    end
+
     test "rejects a malformed v1 value without raising" do
       assert {:error, :invalid_signature} ==
                Webhook.verify(@body, "t=#{@timestamp},v1=not-hex", @secret, now: @timestamp)
+    end
+  end
+
+  describe "properties" do
+    property "signing and verification round-trip for arbitrary binary inputs" do
+      check all(
+              body <- StreamData.binary(max_length: 48),
+              secret <- StreamData.binary(min_length: 1, max_length: 32),
+              timestamp <- StreamData.integer()
+            ) do
+        header = Webhook.sign(body, secret, timestamp)
+
+        assert :ok == Webhook.verify(body, header, secret, now: timestamp, unit: :second)
+      end
+    end
+
+    property "a signature is sensitive to every body change" do
+      check all(
+              [signed_body, different_body] <-
+                StreamData.uniq_list_of(StreamData.binary(max_length: 32), length: 2),
+              secret <- StreamData.binary(min_length: 1, max_length: 24),
+              timestamp <- StreamData.integer(-10_000..10_000)
+            ) do
+        header = Webhook.sign(signed_body, secret, timestamp)
+
+        assert {:error, :invalid_signature} ==
+                 Webhook.verify(different_body, header, secret,
+                   now: timestamp,
+                   unit: :second
+                 )
+      end
+    end
+
+    property "a signature cannot be verified with a different secret" do
+      check all(
+              body <- StreamData.binary(max_length: 32),
+              [signing_secret, different_secret] <-
+                StreamData.uniq_list_of(
+                  StreamData.binary(min_length: 1, max_length: 24),
+                  length: 2
+                ),
+              timestamp <- StreamData.integer(-10_000..10_000)
+            ) do
+        header = Webhook.sign(body, signing_secret, timestamp)
+
+        assert {:error, :invalid_signature} ==
+                 Webhook.verify(body, header, different_secret,
+                   now: timestamp,
+                   unit: :second
+                 )
+      end
+    end
+
+    property "freshness is inclusive and symmetric around the tolerance" do
+      check all(
+              tolerance <- StreamData.integer(0..1_000),
+              outside_offset <-
+                StreamData.integer((tolerance + 1)..(tolerance + 1_000)),
+              inside_offset <- StreamData.integer(0..tolerance),
+              timestamp <- StreamData.integer(-10_000..10_000)
+            ) do
+        header = Webhook.sign(@body, @secret, timestamp)
+
+        for direction <- [-1, 1] do
+          assert {:error, :expired} ==
+                   Webhook.verify(@body, header, @secret,
+                     now: timestamp + direction * outside_offset,
+                     tolerance: tolerance,
+                     unit: :second
+                   )
+
+          assert :ok ==
+                   Webhook.verify(@body, header, @secret,
+                     now: timestamp + direction * inside_offset,
+                     tolerance: tolerance,
+                     unit: :second
+                   )
+        end
+      end
+    end
+
+    property "automatic unit inference preserves the signed digest at the magnitude boundary" do
+      second_timestamp =
+        StreamData.one_of([
+          StreamData.constant(100_000_000),
+          StreamData.integer(100_000_001..2_000_000_000)
+        ])
+
+      check all(
+              now <- second_timestamp,
+              body <- StreamData.binary(max_length: 32),
+              secret <- StreamData.binary(min_length: 1, max_length: 24)
+            ) do
+        seconds_header = Webhook.sign(body, secret, now)
+        milliseconds_header = Webhook.sign(body, secret, now * 1_000)
+
+        assert :ok == Webhook.verify(body, seconds_header, secret, now: now, unit: :auto)
+        assert :ok == Webhook.verify(body, seconds_header, secret, now: now, unit: :second)
+        assert :ok == Webhook.verify(body, milliseconds_header, secret, now: now, unit: :auto)
+
+        assert :ok ==
+                 Webhook.verify(body, milliseconds_header, secret,
+                   now: now,
+                   unit: :millisecond
+                 )
+      end
+    end
+
+    property "valid hexadecimal signatures of the wrong length are safely rejected" do
+      wrong_length_digest =
+        StreamData.one_of([
+          StreamData.binary(min_length: 1, max_length: 31),
+          StreamData.binary(min_length: 33, max_length: 40)
+        ])
+
+      check all(digest <- wrong_length_digest) do
+        header = "t=#{@timestamp},v1=#{Base.encode16(digest, case: :lower)}"
+
+        assert {:error, :invalid_signature} ==
+                 Webhook.verify(@body, header, @secret, now: @timestamp)
+      end
     end
   end
 end

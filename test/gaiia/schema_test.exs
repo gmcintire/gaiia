@@ -5,6 +5,63 @@ defmodule Gaiia.SchemaTest do
 
   doctest Schema
 
+  describe "doc/2" do
+    test "uses and normalizes the schema description and documents argument-free operations" do
+      operation = %{"name" => "accounts", "description" => "See [Accounts](../../accounts)."}
+
+      assert Schema.doc(operation, :query) ==
+               "See `Accounts`.\n\nGraphQL: `query { accounts }`\n\nTakes no arguments.\n"
+
+      assert Schema.doc(Map.put(operation, "args", []), :query) ==
+               "See `Accounts`.\n\nGraphQL: `query { accounts }`\n\nTakes no arguments.\n"
+    end
+
+    test "falls back to operation-specific text for queries and mutations" do
+      assert Schema.doc(%{"name" => "viewer", "description" => nil}, :query) ==
+               "GraphQL query `viewer`.\n\nGraphQL: `query { viewer }`\n\nTakes no arguments.\n"
+
+      assert Schema.doc(%{"name" => "archiveAccount", "description" => nil}, :mutation) ==
+               "GraphQL mutation `archiveAccount`.\n\nGraphQL: `mutation { archiveAccount }`\n\nTakes no arguments.\n"
+    end
+
+    test "renders argument types, defaults, and normalized descriptions" do
+      global_id = %{"kind" => "NON_NULL", "name" => nil, "ofType" => %{"kind" => "SCALAR", "name" => "GlobalID"}}
+
+      string_list = %{
+        "kind" => "NON_NULL",
+        "name" => nil,
+        "ofType" => %{
+          "kind" => "LIST",
+          "name" => nil,
+          "ofType" => %{
+            "kind" => "NON_NULL",
+            "name" => nil,
+            "ofType" => %{"kind" => "SCALAR", "name" => "String"}
+          }
+        }
+      }
+
+      operation = %{
+        "name" => "accounts",
+        "description" => "List accounts.",
+        "args" => [
+          %{
+            "name" => "id",
+            "type" => global_id,
+            "defaultValue" => "acct_default",
+            "description" => "  Find\n    [Accounts](../../accounts)\t by identifier.  "
+          },
+          %{"name" => "tags", "type" => string_list, "defaultValue" => nil, "description" => nil}
+        ]
+      }
+
+      assert Schema.doc(operation, :query) ==
+               "List accounts.\n\nGraphQL: `query { accounts }`\n\n## Arguments\n\n" <>
+                 "  * `id` — `GlobalID!`, default `acct_default` — Find `Accounts` by identifier.\n" <>
+                 "  * `tags` — `[String!]!`\n"
+    end
+  end
+
   describe "function_name/1" do
     test "converts camelCase GraphQL names to snake_case atoms" do
       assert Schema.function_name("createInternalTicket") == :create_internal_ticket

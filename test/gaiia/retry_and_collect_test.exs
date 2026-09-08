@@ -14,9 +14,8 @@ defmodule Gaiia.RetryAndCollectTest do
   alias Gaiia.RateLimit
   alias Gaiia.ReqStub
 
-  # Reserved TEST-NET-1 (RFC 5737) address — unroutable, so an unstubbed
-  # request fails immediately rather than hanging.
-  @endpoint "http://192.0.2.1:1/graphql"
+  # Loopback port 1 refuses connections instantly if a request is not stubbed.
+  @endpoint "http://127.0.0.1:1/graphql"
 
   describe "Pagination.collect/4" do
     test "returns every node across every page" do
@@ -155,6 +154,14 @@ defmodule Gaiia.RetryAndCollectTest do
       assert RateLimit.retry_after(nil, DateTime.utc_now()) == nil
     end
 
+    test "defaults to the current time when the caller names none" do
+      budget = %RateLimit{retry_at: DateTime.shift(DateTime.utc_now(), second: 30)}
+
+      assert RateLimit.retry_after(budget) in 29..30
+      assert RateLimit.retry_after(%RateLimit{retry_at: ~U[2000-01-01 00:00:00Z]}) == 0
+      assert RateLimit.retry_after(nil) == nil
+    end
+
     test "reads the budget off the error the API rejected the operation with" do
       now = ~U[2026-09-08 12:00:00Z]
 
@@ -174,6 +181,13 @@ defmodule Gaiia.RetryAndCollectTest do
 
     test "reports nil for an error that carried no budget" do
       assert Error.retry_after(Error.http(500, ""), DateTime.utc_now()) == nil
+    end
+
+    test "an error's retry time also defaults to the current time" do
+      error = Error.http(429, "", rate_limit: %RateLimit{retry_at: DateTime.shift(DateTime.utc_now(), second: 45)})
+
+      assert Error.retry_after(error) in 44..45
+      assert Error.retry_after(Error.http(500, "")) == nil
     end
   end
 
