@@ -210,6 +210,12 @@ case Gaiia.Webhook.verify(raw_body, signature_header, secret) do
 end
 ```
 
+The header is `t=<unix timestamp>,v1=<hex digest>`, and Gaiia stamps `t=` in
+milliseconds. `verify/4` infers that from the value's magnitude, so nothing is
+needed for a live delivery; pass `unit: :second` or `unit: :millisecond` to
+reject the other scale, and `tolerance:`/`now:` (both in seconds) to control
+the replay window.
+
 Manage endpoints and subscriptions with `Gaiia.Queries.webhooks/4` and
 `Gaiia.Mutations.create_webhook/4`.
 
