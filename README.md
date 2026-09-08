@@ -148,8 +148,19 @@ client
 (`last`/`before`, following `hasPreviousPage`/`startCursor`); the cursor
 variable defaults to match and `:cursor_variable` renames it. Pages default to
 50 and cap at 250, but individual fields override both, so the library does not
-enforce a size. A request failure mid-stream raises the `Gaiia.Error`, since a
-stream cannot return an error tuple.
+enforce a size.
+
+A request failure mid-stream raises the `Gaiia.Error`, since a stream cannot
+return an error tuple. When the whole collection is wanted anyway and the
+failure belongs in a return value, use the eager pair instead:
+
+```elixir
+{:ok, accounts} =
+  Gaiia.Pagination.collect(client, query, %{"first" => 50}, path: ["accounts"])
+```
+
+`collect/4` and `collect_edges/4` take the same options, stop at the first
+failed page, and return `{:ok, items} | {:error, %Gaiia.Error{}}`.
 
 ## Rate limits
 
@@ -165,6 +176,10 @@ rejected:
 
 A rejected operation is a `RATE_LIMITED` GraphQL error; the same struct is then
 on the error, including `retry_at`.
+
+`Gaiia.RateLimit.exhausted?/1` answers whether the budget leaves room for
+another operation, and `retry_after/2` turns `retry_at` into whole seconds to
+wait (`nil` when the API named no time, so the caller picks its own backoff).
 
 ## Global IDs
 
@@ -235,6 +250,20 @@ Most Gaiia failures are `:graphql` at HTTP 200. `:code` carries the first
 error's `extensions.code` (`"UNAUTHENTICATED"`, `"RATE_LIMITED"`, ...).
 Expected mutation failures are not errors at all: they arrive as an `errors`
 list inside the mutation payload of an `{:ok, data}` result.
+
+`Gaiia.Error.retriable?/1` separates the failures worth trying again (transport
+error, 5xx, rate limiting in either form) from the ones that will fail
+identically, and `retry_after/2` reports the wait the API asked for:
+
+```elixir
+with {:error, error} <- Gaiia.Queries.accounts(client, %{"first" => 50}, "nodes { id }") do
+  if Gaiia.Error.retriable?(error) do
+    {:snooze, Gaiia.Error.retry_after(error) || 30}
+  else
+    {:cancel, Exception.message(error)}
+  end
+end
+```
 
 `Gaiia.Error` is an exception, so it can also be raised or passed to
 `Exception.message/1`.

@@ -68,6 +68,37 @@ defmodule Gaiia.RateLimit do
 
   def from_extensions(_extensions), do: nil
 
+  @doc """
+  Whole seconds to wait before retrying, from `retry_at`.
+
+  Rounds up, so a sub-second wait still yields 1 and a caller sleeping for the
+  result never wakes up early. Returns `nil` when the API reported no retry
+  time, which is the signal to fall back to a caller-chosen backoff rather than
+  to retry immediately. A `retry_at` already in the past yields 0.
+
+  `now` exists for tests and for replaying a recorded response.
+  """
+  @spec retry_after(t() | nil, DateTime.t()) :: non_neg_integer() | nil
+  def retry_after(rate_limit, now \\ DateTime.utc_now())
+
+  def retry_after(%__MODULE__{retry_at: %DateTime{} = retry_at}, now) do
+    retry_at |> DateTime.diff(now, :millisecond) |> Kernel./(1000) |> ceil() |> max(0)
+  end
+
+  def retry_after(_rate_limit, _now), do: nil
+
+  @doc """
+  Whether the budget leaves no room for another operation.
+
+  True when the API rejected the operation outright (`allowed: false`) or
+  reported no points remaining. A budget that reported neither field is not
+  exhausted as far as this client can tell.
+  """
+  @spec exhausted?(t() | nil) :: boolean()
+  def exhausted?(%__MODULE__{allowed: false}), do: true
+  def exhausted?(%__MODULE__{remaining: remaining}) when is_integer(remaining), do: remaining <= 0
+  def exhausted?(_rate_limit), do: false
+
   # Req normalizes headers to a `%{name => [value]}` map, but a hand-built
   # response or a raw adapter may still hand over a list of pairs.
   defp normalize(headers), do: Map.new(headers, fn {name, value} -> {String.downcase(name), first(value)} end)

@@ -1,7 +1,7 @@
 defmodule Gaiia.MixProject do
   use Mix.Project
 
-  @version "0.2.1"
+  @version "0.3.0"
   @source_url "https://github.com/gmcintire/gaiia"
 
   def project do
@@ -13,6 +13,7 @@ defmodule Gaiia.MixProject do
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
+      test_coverage: [threshold: 100],
       description: "Elixir client for the Gaiia GraphQL API, with functions generated from the schema.",
       package: package(),
       docs: docs(),
@@ -64,6 +65,7 @@ defmodule Gaiia.MixProject do
       {:styler, "~> 1.5", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:stream_data, "~> 1.4", only: [:dev, :test]},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false}
     ]
   end

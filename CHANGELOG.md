@@ -5,7 +5,28 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.1] - 2026-09-08
+## [0.3.0] - 2026-09-08
+
+Supersedes 0.2.1, which was tagged but never published to Hex.
+
+### Added
+
+- `Gaiia.Pagination.collect/4` and `collect_edges/4` walk every page eagerly
+  and return `{:ok, items} | {:error, %Gaiia.Error{}}`. `stream/4` and
+  `edges/4` are lazy, so a failed page has nowhere to return an error to and
+  raises; a sync job or a `with` chain wants the failure in a return value.
+  Both traversals now share one page walker, so they cannot drift on cursor
+  handling or option defaults.
+- `Gaiia.Error.retriable?/1` separates the failures worth trying again — a
+  transport error, a 5xx, and rate limiting in either of the forms Gaiia
+  reports it — from the ones that will fail identically, such as an
+  `UNAUTHENTICATED` key or a rejected argument.
+- `Gaiia.Error.retry_after/2` and `Gaiia.RateLimit.retry_after/2` turn the
+  reported `retry_at` into whole seconds to wait, rounding up so a caller that
+  sleeps for the result never wakes early. `nil` means the API named no time
+  and the caller should pick its own backoff.
+- `Gaiia.RateLimit.exhausted?/1` reports whether the budget leaves room for
+  another operation.
 
 ### Fixed
 
@@ -73,6 +94,6 @@ Initial commit, tagged but never published to Hex. Its transport could not
 authenticate against the live API and its bundled schema had drifted in both
 directions; see 0.2.0.
 
-[0.2.1]: https://github.com/gmcintire/gaiia/releases/tag/v0.2.1
+[0.3.0]: https://github.com/gmcintire/gaiia/releases/tag/v0.3.0
 [0.2.0]: https://github.com/gmcintire/gaiia/releases/tag/v0.2.0
 [0.1.0]: https://github.com/gmcintire/gaiia/releases/tag/v0.1.0
