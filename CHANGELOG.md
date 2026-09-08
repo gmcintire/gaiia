@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-09-08
+
+### Fixed
+
+- `Gaiia.Webhook.verify/4` accepts the millisecond `t=` timestamp Gaiia
+  actually sends. It compared the value against `System.system_time(:second)`,
+  so a live delivery was ~55,000 years in the future and every one was
+  rejected as `:expired`. The scale is now inferred from the value's
+  magnitude, and `:unit` (`:auto`, `:second`, `:millisecond`) pins it when a
+  sender must be held to one. `:tolerance` and `:now` remain in seconds, and
+  the digest still covers the timestamp exactly as it arrived.
+
 ## [0.2.0] - 2026-09-08
 
 First release published to Hex.
@@ -61,5 +73,6 @@ Initial commit, tagged but never published to Hex. Its transport could not
 authenticate against the live API and its bundled schema had drifted in both
 directions; see 0.2.0.
 
+[0.2.1]: https://github.com/gmcintire/gaiia/releases/tag/v0.2.1
 [0.2.0]: https://github.com/gmcintire/gaiia/releases/tag/v0.2.0
 [0.1.0]: https://github.com/gmcintire/gaiia/releases/tag/v0.1.0

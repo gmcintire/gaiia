@@ -72,6 +72,51 @@ defmodule Gaiia.WebhookTest do
     end
   end
 
+  describe "timestamp unit" do
+    test "accepts the milliseconds Gaiia actually sends" do
+      header = Webhook.sign(@body, @secret, @timestamp * 1000)
+
+      assert :ok == Webhook.verify(@body, header, @secret, now: @timestamp)
+    end
+
+    test "measures tolerance in seconds for a millisecond timestamp" do
+      header = Webhook.sign(@body, @secret, @timestamp * 1000)
+
+      assert :ok == Webhook.verify(@body, header, @secret, now: @timestamp + 300)
+
+      assert {:error, :expired} ==
+               Webhook.verify(@body, header, @secret, now: @timestamp + 301)
+    end
+
+    test "still accepts seconds, which the header format usually carries" do
+      header = Webhook.sign(@body, @secret, @timestamp)
+
+      assert :ok == Webhook.verify(@body, header, @secret, now: @timestamp)
+    end
+
+    test "rejects the other scale when the unit is pinned" do
+      milliseconds = Webhook.sign(@body, @secret, @timestamp * 1000)
+      seconds = Webhook.sign(@body, @secret, @timestamp)
+
+      assert {:error, :expired} ==
+               Webhook.verify(@body, milliseconds, @secret, now: @timestamp, unit: :second)
+
+      assert {:error, :expired} ==
+               Webhook.verify(@body, seconds, @secret, now: @timestamp, unit: :millisecond)
+    end
+
+    test "signs and verifies the timestamp bytes as they arrived" do
+      milliseconds = @timestamp * 1000
+
+      expected =
+        :hmac
+        |> :crypto.mac(:sha256, @secret, "#{milliseconds}.#{@body}")
+        |> Base.encode16(case: :lower)
+
+      assert Webhook.sign(@body, @secret, milliseconds) == "t=#{milliseconds},v1=#{expected}"
+    end
+  end
+
   describe "malformed headers" do
     test "rejects garbage" do
       assert {:error, :malformed_signature} ==
