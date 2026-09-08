@@ -41,3 +41,39 @@ jobs:
 
       - name: Run tests
         run: mix test
+
+  docs:
+    name: Docs (Elixir 1.20.4 / OTP 29.0.5)
+    runs-on: ubuntu-latest
+
+    env:
+      MIX_ENV: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Elixir and Erlang/OTP
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "29.0.5"
+          elixir-version: "1.20.4"
+
+      - name: Cache deps and build
+        uses: actions/cache@v6
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-docs-otp29.0.5-elixir1.20.4-${{ hashFiles('mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-docs-otp29.0.5-elixir1.20.4-
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Build documentation
+        run: mix docs --warnings-as-errors
+
+      - name: Build the Hex package
+        run: mix hex.build

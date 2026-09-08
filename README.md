@@ -1,5 +1,8 @@
 # Gaiia
 
+[![Hex.pm](https://img.shields.io/hexpm/v/gaiia.svg)](https://hex.pm/packages/gaiia)
+[![Documentation](https://img.shields.io/badge/documentation-hexdocs-purple.svg)](https://hexdocs.pm/gaiia)
+[![License](https://img.shields.io/hexpm/l/gaiia.svg)](LICENSE)
 [![CI](https://github.com/gmcintire/gaiia/actions/workflows/ci.yml/badge.svg)](https://github.com/gmcintire/gaiia/actions/workflows/ci.yml)
 
 An Elixir client for the [Gaiia](https://gaiia.com) GraphQL API.
@@ -19,12 +22,13 @@ Add `gaiia` to your dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:gaiia, github: "gmcintire/gaiia"}
+    {:gaiia, "~> 0.2.0"}
   ]
 end
 ```
 
-Requires Elixir ~> 1.19.
+Requires Elixir ~> 1.19. Documentation is on
+[HexDocs](https://hexdocs.pm/gaiia).
 
 ## Configuration
 
@@ -101,6 +105,21 @@ name(client, variables \\ %{}, selection \\ "", opts \\ [])
 
 Operations the schema marks deprecated carry Elixir's `@deprecated`, so calling
 one warns at compile time and names its replacement.
+
+## Schema reference
+
+Each generated function documents its own arguments — every name, its rendered
+GraphQL type, and any default — so `h Gaiia.Queries.account` or
+[HexDocs](https://hexdocs.pm/gaiia) answers what a call takes. What it does not
+answer is what to put in `selection`, since that depends on the return type.
+
+The type side of the schema lives in the repository under `docs/`, written by
+the same introspection task: `objects.json`, `inputs.json`, `enums.json`,
+`unions.json`, `interfaces.json`, and `scalars.json`, each field and input
+rendered in GraphQL syntax with the API's own description. They are reference
+dumps rather than a compile-time input, so they are not shipped in the Hex
+package — read them in the repository, alongside Gaiia's own docs at
+<https://app.gaiia.com/docs>.
 
 ## Pagination
 
@@ -232,9 +251,13 @@ mix test
 mix format
 mix credo --strict
 mix dialyzer
+mix docs --warnings-as-errors
 ```
 
-CI runs `mix test` on Elixir 1.20.4 / Erlang-OTP 29.0.5.
+CI runs `mix test` on Elixir 1.20.4 / Erlang-OTP 29.0.5, and builds the docs
+and the Hex package on the same versions. `mise.toml` pins those two versions
+locally, so `mise install` provisions exactly what CI uses; the library itself
+supports Elixir ~> 1.19 and is not pinned to them.
 
 Formatting runs [Styler](https://github.com/adobe/elixir-styler) as a plugin,
 so `mix format` also normalizes aliases and directive order.
@@ -255,6 +278,34 @@ The task also rewrites the flattened, human-readable dumps under `docs/` —
 every object, input object, enum, union, interface, and scalar in the schema,
 with types rendered in GraphQL syntax. `mix gaiia.introspect --check` writes
 nothing and fails when the bundled dumps have drifted from the live schema.
+
+## Releasing
+
+Releases go to [Hex](https://hex.pm/packages/gaiia) from a clean tree on
+`main`. `@version` in `mix.exs` drives the package version, the docs
+`source_ref`, and the changelog link in the package metadata, so the tag has
+to name the commit being published — a tag pointing elsewhere sends every
+source link in the docs to the wrong tree.
+
+```sh
+# 1. Bump @version in mix.exs and add the CHANGELOG.md entry.
+# 2. Verify.
+mix test
+mix format --check-formatted
+mix credo --strict
+mix docs --warnings-as-errors
+mix hex.build          # inspect the file list and metadata
+
+# 3. Tag the release commit and publish.
+version=$(mix run -e 'IO.puts(Mix.Project.config()[:version])')
+git tag -a "v$version" -m "v$version"
+git push origin main --follow-tags
+mix hex.publish        # publishes the package and the docs
+```
+
+`mix hex.publish` needs a Hex account with the package owner's API key —
+`mix hex.user auth` locally, or `HEX_API_KEY` from `mix hex.user key generate`
+in CI.
 
 ## License
 
