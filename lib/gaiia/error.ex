@@ -101,6 +101,35 @@ defmodule Gaiia.Error do
     }
   end
 
+  @doc """
+  Whether retrying the same operation could plausibly succeed.
+
+  True for a transport failure, a 5xx, and rate limiting in either of the forms
+  Gaiia reports it (an HTTP 429, or a 200 carrying a `RATE_LIMITED` GraphQL
+  error). False for everything else: an `UNAUTHENTICATED` key, a rejected
+  argument, or an undecodable body will fail again identically, and a 4xx that
+  is not 429 is a request the server has already judged.
+
+  Pair it with `retry_after/1` to decide *when*.
+  """
+  @spec retriable?(t()) :: boolean()
+  def retriable?(%__MODULE__{kind: :network}), do: true
+  def retriable?(%__MODULE__{kind: :http, status: 429}), do: true
+  def retriable?(%__MODULE__{kind: :http, status: status}) when is_integer(status), do: status >= 500
+  def retriable?(%__MODULE__{kind: :graphql, code: "RATE_LIMITED"}), do: true
+  def retriable?(%__MODULE__{}), do: false
+
+  @doc """
+  Whole seconds to wait before retrying, when the API said so.
+
+  Reads the rate-limit budget the failure arrived with, so it answers only for
+  a rejected operation; `nil` means the caller picks its own backoff. See
+  `Gaiia.RateLimit.retry_after/2`.
+  """
+  @spec retry_after(t(), DateTime.t()) :: non_neg_integer() | nil
+  def retry_after(error, now \\ DateTime.utc_now())
+  def retry_after(%__MODULE__{rate_limit: budget}, now), do: RateLimit.retry_after(budget, now)
+
   defp format_graphql_messages([]), do: "<no message>"
 
   defp format_graphql_messages(errors) do
