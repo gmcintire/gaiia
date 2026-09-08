@@ -39,8 +39,8 @@ jobs:
       - name: Install dependencies
         run: mix deps.get
 
-      - name: Run tests
-        run: mix test
+      - name: Run tests with coverage
+        run: mix test --cover
 
   docs:
     name: Docs (Elixir 1.20.4 / OTP 29.0.5)

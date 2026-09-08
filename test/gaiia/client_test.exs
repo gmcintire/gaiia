@@ -2,14 +2,14 @@ defmodule Gaiia.ClientTest do
   # async: false because a few tests mutate the application env to verify
   # config fallback behaviour.
   use ExUnit.Case, async: false
+  use ExUnitProperties
 
   alias Gaiia.Client
   alias Gaiia.Error
   alias Gaiia.ReqStub
 
-  # Use a reserved TEST-NET-1 (RFC 5737) address that is guaranteed unroutable,
-  # so that an unstubbed request would fail immediately rather than hang on DNS.
-  @endpoint "http://192.0.2.1:1/graphql"
+  # Loopback port 1 refuses connections instantly if a request is not stubbed.
+  @endpoint "http://127.0.0.1:1/graphql"
 
   # `ReqStub` is a module adapter (Req v0.7 deprecated function adapters) that
   # captures the inbound `%Req.Request{}` and returns either a canned
@@ -19,6 +19,9 @@ defmodule Gaiia.ClientTest do
     Client.new(Keyword.merge([endpoint: @endpoint, req_options: ReqStub.install(response_fun)], opts))
   end
 
+  defp restore_env(key, {:ok, value}), do: Application.put_env(:gaiia, key, value)
+  defp restore_env(key, :error), do: Application.delete_env(:gaiia, key)
+
   describe "new/1" do
     test "builds a client from explicit options" do
       client = Client.new(endpoint: @endpoint, api_key: "secret")
@@ -27,10 +30,12 @@ defmodule Gaiia.ClientTest do
     end
 
     test "falls back to application config when options are omitted" do
+      previous_endpoint = Application.fetch_env(:gaiia, :endpoint)
+      previous_api_key = Application.fetch_env(:gaiia, :api_key)
       Application.put_env(:gaiia, :endpoint, @endpoint)
       Application.put_env(:gaiia, :api_key, "configured")
-      on_exit(fn -> Application.delete_env(:gaiia, :endpoint) end)
-      on_exit(fn -> Application.delete_env(:gaiia, :api_key) end)
+      on_exit(fn -> restore_env(:endpoint, previous_endpoint) end)
+      on_exit(fn -> restore_env(:api_key, previous_api_key) end)
 
       client = Client.new()
 
@@ -45,9 +50,9 @@ defmodule Gaiia.ClientTest do
     end
 
     test "defaults to the public Gaiia endpoint when none is configured" do
-      previous = Application.get_env(:gaiia, :endpoint)
+      previous = Application.fetch_env(:gaiia, :endpoint)
       Application.delete_env(:gaiia, :endpoint)
-      on_exit(fn -> Application.put_env(:gaiia, :endpoint, previous) end)
+      on_exit(fn -> restore_env(:endpoint, previous) end)
 
       assert Client.new().endpoint == "https://api.gaiia.com/api/v1"
     end
@@ -138,6 +143,44 @@ defmodule Gaiia.ClientTest do
       client = client_with(fn req -> {req, exception} end)
 
       assert {:error, %Error{kind: :network, details: ^exception}} = Client.query(client, "{ x }")
+    end
+
+    test "returns a decode error when a successful response is not a GraphQL envelope" do
+      body = "<html>upstream failure</html>"
+
+      client =
+        client_with(fn _req -> %Req.Response{status: 200, body: body, headers: %{"content-type" => ["text/html"]}} end)
+
+      assert {:error, %Error{kind: :decode, details: ^body}} = Client.query(client, "{ x }")
+    end
+
+    test "returns a decode error when a successful response has no GraphQL errors or data" do
+      body = %{"errors" => []}
+      client = client_with(fn _req -> ReqStub.ok_response(body) end)
+
+      assert {:error, %Error{kind: :decode, details: ^body}} = Client.query(client, "{ x }")
+    end
+
+    property "classifies every HTTP status at the 2xx boundary" do
+      status_generator =
+        StreamData.one_of([
+          StreamData.member_of([100, 199, 200, 201, 299, 300, 404, 429, 500]),
+          StreamData.integer(100..599)
+        ])
+
+      check all(status <- status_generator) do
+        data = %{"status" => status}
+        body = %{"data" => data}
+        client = client_with(fn _req -> %Req.Response{status: status, body: body, headers: %{}} end)
+
+        if status in 200..299 do
+          assert {:ok, %Gaiia.Response{data: ^data, status: ^status}} =
+                   Client.request(client, "{ status }")
+        else
+          assert {:error, %Error{kind: :http, status: ^status, details: ^body}} =
+                   Client.request(client, "{ status }")
+        end
+      end
     end
   end
 

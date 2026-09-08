@@ -1,5 +1,6 @@
 defmodule Gaiia.GlobalIDTest do
   use ExUnit.Case, async: true
+  use ExUnitProperties
 
   alias Gaiia.GlobalID
 
@@ -9,6 +10,9 @@ defmodule Gaiia.GlobalIDTest do
   # → "account_8rnXNuR5sKP5uNwoPL41Zp"
   @doc_uuid "3c3b1978-6a68-4a13-bdc2-2d51c8ef7519"
   @doc_global_id "account_8rnXNuR5sKP5uNwoPL41Zp"
+
+  @base58_alphabet "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
+  @max_uuid_integer 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 
   describe "encode/2" do
     test "encodes UUID to GlobalID" do
@@ -58,9 +62,25 @@ defmodule Gaiia.GlobalIDTest do
       for <<c <- short>>, do: assert(c in alphabet)
     end
 
-    test "handles UUIDs with all zeros" do
-      short = GlobalID.short_uuid("00000000-0000-0000-0000-000000000000")
-      assert String.length(short) == 22
+    test "left-pads small UUID values and round-trips them" do
+      for uuid <- [
+            "00000000-0000-0000-0000-000000000001",
+            "00000000-0000-0000-0001-000000000000"
+          ] do
+        short = GlobalID.short_uuid(uuid)
+
+        assert String.length(short) == 22
+        assert String.starts_with?(short, "1")
+        assert GlobalID.short_to_uuid(short) == uuid
+      end
+    end
+
+    test "encodes the all-zero UUID as 22 pad characters" do
+      uuid = "00000000-0000-0000-0000-000000000000"
+      short = GlobalID.short_uuid(uuid)
+
+      assert short == String.duplicate("1", 22)
+      assert GlobalID.short_to_uuid(short) == uuid
     end
   end
 
@@ -77,5 +97,73 @@ defmodule Gaiia.GlobalIDTest do
       gid = GlobalID.encode("Account", @doc_uuid)
       assert GlobalID.type(gid) == "account"
     end
+  end
+
+  describe "properties" do
+    property "short UUID encoding round-trips every 128-bit UUID" do
+      check all(uuid <- uuid_generator()) do
+        assert uuid |> GlobalID.short_uuid() |> GlobalID.short_to_uuid() == uuid
+      end
+    end
+
+    property "short UUIDs have fixed width and use only Base58 characters" do
+      check all(uuid <- uuid_generator()) do
+        short = GlobalID.short_uuid(uuid)
+
+        assert String.length(short) == 22
+        assert Enum.all?(String.to_charlist(short), &(&1 in String.to_charlist(@base58_alphabet)))
+      end
+    end
+
+    property "global IDs preserve the normalized type and UUID" do
+      check all(
+              {type_name, snake_cased_type} <- type_name_generator(),
+              uuid <- uuid_generator()
+            ) do
+        global_id = GlobalID.encode(type_name, uuid)
+
+        assert GlobalID.decode(global_id) == {snake_cased_type, uuid}
+        assert GlobalID.type(global_id) == snake_cased_type
+        assert GlobalID.to_uuid(global_id) == uuid
+        assert GlobalID.from_uuid(type_name, uuid) == global_id
+      end
+    end
+
+    property "UUID encoding is case-insensitive" do
+      check all(
+              {type_name, _snake_cased_type} <- type_name_generator(),
+              uuid <- uuid_generator()
+            ) do
+        assert GlobalID.encode(type_name, String.upcase(uuid)) == GlobalID.encode(type_name, uuid)
+      end
+    end
+  end
+
+  defp uuid_generator do
+    StreamData.map(StreamData.integer(0..@max_uuid_integer), &format_uuid/1)
+  end
+
+  defp format_uuid(integer) do
+    hex = integer |> Integer.to_string(16) |> String.pad_leading(32, "0") |> String.downcase()
+    <<a::binary-size(8), b::binary-size(4), c::binary-size(4), d::binary-size(4), e::binary-size(12)>> = hex
+    Enum.join([a, b, c, d, e], "-")
+  end
+
+  defp type_name_generator do
+    StreamData.bind({lowercase_word_generator(), lowercase_word_generator()}, fn {first, second} ->
+      StreamData.member_of([
+        {first, first},
+        {String.capitalize(first), first},
+        {first <> String.capitalize(second), first <> "_" <> second},
+        {String.capitalize(first) <> String.capitalize(second), first <> "_" <> second}
+      ])
+    end)
+  end
+
+  defp lowercase_word_generator do
+    StreamData.map(
+      StreamData.list_of(StreamData.integer(?a..?z), min_length: 2, max_length: 8),
+      &List.to_string/1
+    )
   end
 end
