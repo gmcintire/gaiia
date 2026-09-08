@@ -102,6 +102,12 @@ defmodule Gaiia.GlobalID do
 
   @doc """
   Decodes a short UUID back to a standard UUID string.
+
+  ## Examples
+
+      iex> Gaiia.GlobalID.short_to_uuid("8rnXNuR5sKP5uNwoPL41Zp")
+      "3c3b1978-6a68-4a13-bdc2-2d51c8ef7519"
+
   """
   @spec short_to_uuid(String.t()) :: String.t()
   def short_to_uuid(short_id) do

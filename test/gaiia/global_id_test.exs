@@ -3,6 +3,8 @@ defmodule Gaiia.GlobalIDTest do
 
   alias Gaiia.GlobalID
 
+  doctest GlobalID
+
   # Example from docs: "Account" + "3c3b1978-6a68-4a13-bdc2-2d51c8ef7519"
   # → "account_8rnXNuR5sKP5uNwoPL41Zp"
   @doc_uuid "3c3b1978-6a68-4a13-bdc2-2d51c8ef7519"

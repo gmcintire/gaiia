@@ -1,12 +1,13 @@
 defmodule Gaiia.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0"
   @source_url "https://github.com/gmcintire/gaiia"
 
   def project do
     [
       app: :gaiia,
+      name: "Gaiia",
       version: @version,
       elixir: "~> 1.19",
       start_permanent: Mix.env() == :prod,
@@ -16,6 +17,7 @@ defmodule Gaiia.MixProject do
       package: package(),
       docs: docs(),
       source_url: @source_url,
+      homepage_url: @source_url,
       dialyzer: [
         plt_add_apps: [:ex_unit, :mix],
         flags: [:error_handling, :underspecs, :unmatched_returns]
@@ -26,8 +28,11 @@ defmodule Gaiia.MixProject do
   defp package do
     [
       licenses: ["MIT"],
-      links: %{"GitHub" => @source_url},
-      files: ~w(lib priv mix.exs README.md LICENSE .formatter.exs)
+      links: %{
+        "GitHub" => @source_url,
+        "Changelog" => "#{@source_url}/blob/v#{@version}/CHANGELOG.md"
+      },
+      files: ~w(lib priv mix.exs README.md CHANGELOG.md LICENSE .formatter.exs)
     ]
   end
 
@@ -35,7 +40,7 @@ defmodule Gaiia.MixProject do
     [
       main: "readme",
       source_ref: "v#{@version}",
-      extras: ["README.md", "LICENSE"],
+      extras: ["README.md", "CHANGELOG.md", "LICENSE"],
       groups_for_modules: [
         Core: [Gaiia, Gaiia.Client, Gaiia.Response, Gaiia.Error, Gaiia.RateLimit],
         "Generated API": [Gaiia.Queries, Gaiia.Mutations],
