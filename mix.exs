@@ -13,7 +13,9 @@ defmodule Gaiia.MixProject do
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
-      test_coverage: [threshold: 100],
+      # The threshold lives under `:summary`; a bare `threshold:` is silently
+      # ignored and leaves the 90% default in force.
+      test_coverage: [summary: [threshold: 100]],
       description: "Elixir client for the Gaiia GraphQL API, with functions generated from the schema.",
       package: package(),
       docs: docs(),
