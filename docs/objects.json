@@ -1349,6 +1349,38 @@
     "name": "AccountsDoNotExistErrorPayload"
   },
   {
+    "description": "The acknowledgeEntityChange mutation's error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "AcknowledgeEntityChangeErrorCode!"
+      }
+    ],
+    "name": "AcknowledgeEntityChangeError"
+  },
+  {
+    "description": "Result of acknowledging a tracked change on an entity.",
+    "fields": [
+      {
+        "description": "Whether the change was acknowledged.",
+        "name": "isAcknowledged",
+        "type": "Boolean"
+      },
+      {
+        "description": "The expected errors that occurred while acknowledging the entity's change.",
+        "name": "errors",
+        "type": "[AcknowledgeEntityChangeError!]"
+      }
+    ],
+    "name": "AcknowledgeEntityChangeResult"
+  },
+  {
     "description": "Activity information. An activity is a raw record of an action that has taken place in the system. Not to be confused with an entity update, which is specific information about a change to an entity.",
     "fields": [
       {
@@ -1383,6 +1415,38 @@
       }
     ],
     "name": "Activity"
+  },
+  {
+    "description": "The addConsumables mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "AddConsumablesErrorCode!"
+      }
+    ],
+    "name": "AddConsumablesError"
+  },
+  {
+    "description": "The addConsumables mutation's result.",
+    "fields": [
+      {
+        "description": "The created or updated consumable assignation.",
+        "name": "consumableAssignation",
+        "type": "ConsumableAssignation"
+      },
+      {
+        "description": "The errors that occurred during the creation.",
+        "name": "errors",
+        "type": "[AddConsumablesError!]"
+      }
+    ],
+    "name": "AddConsumablesResult"
   },
   {
     "description": "AddCustomerOwnedItem mutation's expected error.",
@@ -1723,6 +1787,38 @@
     "name": "AddIpBlocksToNetworkSiteResult"
   },
   {
+    "description": "The addNonSerializedItem mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "AddNonSerializedItemErrorCode!"
+      }
+    ],
+    "name": "AddNonSerializedItemError"
+  },
+  {
+    "description": "The addNonSerializedItem mutation's result.",
+    "fields": [
+      {
+        "description": "The created or updated non-serialized item assignation.",
+        "name": "nonSerializedItemAssignation",
+        "type": "NonSerializedItemAssignation"
+      },
+      {
+        "description": "The errors that occurred during the creation.",
+        "name": "errors",
+        "type": "[AddNonSerializedItemError!]"
+      }
+    ],
+    "name": "AddNonSerializedItemResult"
+  },
+  {
     "description": "An addProcedureToIncident mutation's expected error.",
     "fields": [
       {
@@ -1755,6 +1851,38 @@
     "name": "AddProcedureToIncidentResult"
   },
   {
+    "description": "An addScheduleToTechnician mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "AddScheduleToTechnicianErrorCode!"
+      }
+    ],
+    "name": "AddScheduleToTechnicianError"
+  },
+  {
+    "description": "The addScheduleToTechnician mutation's result.",
+    "fields": [
+      {
+        "description": "The created schedule.",
+        "name": "schedule",
+        "type": "Schedule"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[AddScheduleToTechnicianError!]"
+      }
+    ],
+    "name": "AddScheduleToTechnicianResult"
+  },
+  {
     "description": "Custom field value for an address.",
     "fields": [
       {
@@ -1771,6 +1899,11 @@
         "description": "The custom field definition ID.",
         "name": "customFieldDefinitionId",
         "type": "GlobalID!"
+      },
+      {
+        "description": "The custom field's definition, including its name and type.",
+        "name": "definition",
+        "type": "AddressCustomFieldDefinition!"
       },
       {
         "description": "The address ID this custom field belongs to.",
@@ -2139,6 +2272,31 @@
         "type": "Boolean!"
       },
       {
+        "description": "The appointment configuration's toggle for subscribers rescheduling their own appointments from the Client Portal.",
+        "name": "isClientPortalRescheduleEnabled",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The appointment configuration's toggle for fulfilling Client Portal reschedules through auto-assignment.",
+        "name": "isAutoAssignClientPortalRescheduleEnabled",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The appointment configuration's toggle for reusing the scheduling timeframe as the reschedule timeframe.",
+        "name": "isRescheduleTimeframeSameAsScheduling",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The appointment configuration's minimum offset in days from today before a reschedule is allowed. Ignored when the scheduling timeframe is reused.",
+        "name": "minRescheduleOffsetDays",
+        "type": "Int"
+      },
+      {
+        "description": "The appointment configuration's maximum offset in days from today for a reschedule. Ignored when the scheduling timeframe is reused.",
+        "name": "maxRescheduleOffsetDays",
+        "type": "Int"
+      },
+      {
         "description": "The appointment configuration's arrival windows.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindow!]!"
@@ -2219,6 +2377,26 @@
         "description": "The appointment settings' toggle for auto-assignment triggered from Workforce.",
         "name": "isAutoAssignWorkforceEnabled",
         "type": "Boolean!"
+      },
+      {
+        "description": "The appointment settings' toggle for subscribers rescheduling their own appointments from the Client Portal.",
+        "name": "isClientPortalRescheduleEnabled",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The appointment settings' toggle for fulfilling Client Portal reschedules through auto-assignment.",
+        "name": "isAutoAssignClientPortalRescheduleEnabled",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The appointment settings' effective minimum offset in days from today before a reschedule is allowed. Equals minBookingOffsetDays when the tenant reuses the scheduling timeframe.",
+        "name": "minRescheduleOffsetDays",
+        "type": "Int!"
+      },
+      {
+        "description": "The appointment settings' effective maximum offset in days from today for a reschedule. Equals maxBookingOffsetDays when the tenant reuses the scheduling timeframe.",
+        "name": "maxRescheduleOffsetDays",
+        "type": "Int!"
       },
       {
         "description": "The appointment settings' arrival windows, resolved for the requested work type.",
@@ -2962,6 +3140,38 @@
     "name": "AssignBillingSubscriptionsResult"
   },
   {
+    "description": "The assignConsumables mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "AssignConsumablesErrorCode!"
+      }
+    ],
+    "name": "AssignConsumablesError"
+  },
+  {
+    "description": "The assignConsumables mutation's result.",
+    "fields": [
+      {
+        "description": "The updated source consumable assignation.",
+        "name": "fromAssignation",
+        "type": "ConsumableAssignation"
+      },
+      {
+        "description": "The errors that occurred during the assignment.",
+        "name": "errors",
+        "type": "[AssignConsumablesError!]"
+      }
+    ],
+    "name": "AssignConsumablesResult"
+  },
+  {
     "description": "AssignInventoryItem mutation's expected error.",
     "fields": [
       {
@@ -2992,6 +3202,43 @@
       }
     ],
     "name": "AssignInventoryItemResult"
+  },
+  {
+    "description": "The assignNonSerializedItems mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "AssignNonSerializedItemsErrorCode!"
+      }
+    ],
+    "name": "AssignNonSerializedItemsError"
+  },
+  {
+    "description": "The assignNonSerializedItems mutation's result.",
+    "fields": [
+      {
+        "description": "The updated source non-serialized item assignation.",
+        "name": "fromAssignation",
+        "type": "NonSerializedItemAssignation"
+      },
+      {
+        "description": "The created or updated destination non-serialized item assignation.",
+        "name": "toAssignation",
+        "type": "NonSerializedItemAssignation"
+      },
+      {
+        "description": "The errors that occurred during the assignment.",
+        "name": "errors",
+        "type": "[AssignNonSerializedItemsError!]"
+      }
+    ],
+    "name": "AssignNonSerializedItemsResult"
   },
   {
     "description": "Detail for the error codes that concern a specific technician.",
@@ -4436,6 +4683,11 @@
         "type": "Boolean!"
       },
       {
+        "description": "Whether the reason is internal-only and must not be shown to customers.",
+        "name": "isInternal",
+        "type": "Boolean!"
+      },
+      {
         "description": "The creation timestamp.",
         "name": "createdAt",
         "type": "DateTime!"
@@ -4532,6 +4784,38 @@
       }
     ],
     "name": "ClearInventoryItemLinkedDevicesResult"
+  },
+  {
+    "description": "A clearSchedulesForTechnician mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ClearSchedulesForTechnicianErrorCode!"
+      }
+    ],
+    "name": "ClearSchedulesForTechnicianError"
+  },
+  {
+    "description": "The clearSchedulesForTechnician mutation's result.",
+    "fields": [
+      {
+        "description": "Whether the technician's schedules were successfully cleared.",
+        "name": "isSuccess",
+        "type": "Boolean"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ClearSchedulesForTechnicianError!]"
+      }
+    ],
+    "name": "ClearSchedulesForTechnicianResult"
   },
   {
     "description": "Client portal user.",
@@ -5251,6 +5535,157 @@
       }
     ],
     "name": "CommunicationTypeGroup"
+  },
+  {
+    "description": "Represents a consumable inventory model assigned to an assignee with a quantity.",
+    "fields": [
+      {
+        "description": "The consumable assignation's inventory model.",
+        "name": "model",
+        "type": "InventoryModel!"
+      },
+      {
+        "description": "The consumable assignation's assignee.",
+        "name": "assignee",
+        "type": "Assignee!"
+      },
+      {
+        "description": "The consumable assignation's quantity.",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "ConsumableAssignation"
+  },
+  {
+    "description": "To paginate through multiple consumable assignations.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[ConsumableAssignationEdge!]!"
+      },
+      {
+        "description": "Current page's nodes.",
+        "name": "nodes",
+        "type": "[ConsumableAssignation!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of consumable assignations.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "ConsumableAssignationConnection"
+  },
+  {
+    "description": "Contains a consumable assignation and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      },
+      {
+        "description": "The current edge's node.",
+        "name": "node",
+        "type": "ConsumableAssignation!"
+      }
+    ],
+    "name": "ConsumableAssignationEdge"
+  },
+  {
+    "description": "A history entry recording a consumable inventory quantity movement (consumption or relocation) for a model.",
+    "fields": [
+      {
+        "description": "The consumable assignation history entry's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The consumable model this history entry is for.",
+        "name": "model",
+        "type": "InventoryModel!"
+      },
+      {
+        "description": "The assignee the quantity was moved from.",
+        "name": "fromAssignee",
+        "type": "Assignee!"
+      },
+      {
+        "description": "The assignee the quantity was moved to.",
+        "name": "toAssignee",
+        "type": "Assignee!"
+      },
+      {
+        "description": "The quantity moved.",
+        "name": "quantity",
+        "type": "Int!"
+      },
+      {
+        "description": "Whether this movement consumed the quantity (assigned to a non-storage assignee) rather than relocating it between storage locations/zones.",
+        "name": "isConsumed",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The user who performed the action.",
+        "name": "user",
+        "type": "User!"
+      },
+      {
+        "description": "The consumable assignation history entry's creation timestamp.",
+        "name": "createdAt",
+        "type": "DateTime!"
+      }
+    ],
+    "name": "ConsumableAssignationHistory"
+  },
+  {
+    "description": "To paginate through multiple consumable assignation history entries.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[ConsumableAssignationHistoryEdge!]!"
+      },
+      {
+        "description": "Current page's nodes.",
+        "name": "nodes",
+        "type": "[ConsumableAssignationHistory!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of consumable assignation history entries.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "ConsumableAssignationHistoryConnection"
+  },
+  {
+    "description": "Contains a consumable assignation history entry and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      },
+      {
+        "description": "The current edge's node.",
+        "name": "node",
+        "type": "ConsumableAssignationHistory!"
+      }
+    ],
+    "name": "ConsumableAssignationHistoryEdge"
   },
   {
     "description": "Contact information of an entity.",
@@ -6154,6 +6589,38 @@
       }
     ],
     "name": "CreateCustomObjectRecordError"
+  },
+  {
+    "description": "An error returned by the createCustomObjectRecordFileUploadUrl mutation.",
+    "fields": [
+      {
+        "description": "A human-readable description of the error.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error code.",
+        "name": "code",
+        "type": "CreateCustomObjectRecordFileUploadUrlErrorCode!"
+      }
+    ],
+    "name": "CreateCustomObjectRecordFileUploadUrlError"
+  },
+  {
+    "description": "Result of creating a FILE field upload URL.",
+    "fields": [
+      {
+        "description": "The upload URL and file key.",
+        "name": "uploadUrl",
+        "type": "CustomObjectRecordFileUploadUrl"
+      },
+      {
+        "description": "Errors that occurred during the mutation.",
+        "name": "errors",
+        "type": "[CreateCustomObjectRecordFileUploadUrlError!]"
+      }
+    ],
+    "name": "CreateCustomObjectRecordFileUploadUrlResult"
   },
   {
     "description": "The result of the createCustomObjectRecord mutation.",
@@ -7411,6 +7878,38 @@
     "name": "CreateTicketFromTemplateResult"
   },
   {
+    "description": "The createTicketMailbox mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateTicketMailboxErrorCode!"
+      }
+    ],
+    "name": "CreateTicketMailboxError"
+  },
+  {
+    "description": "The createTicketMailbox mutation's result.",
+    "fields": [
+      {
+        "description": "The created ticket mailbox.",
+        "name": "ticketMailbox",
+        "type": "TicketMailbox"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateTicketMailboxError!]"
+      }
+    ],
+    "name": "CreateTicketMailboxResult"
+  },
+  {
     "description": "The createTicketTemplate mutation's expected error.",
     "fields": [
       {
@@ -8439,6 +8938,22 @@
     "name": "CustomObjectRecordFieldValueOptionEdge"
   },
   {
+    "description": "Upload URL and file key for a FILE field value.",
+    "fields": [
+      {
+        "description": "URL to upload the file via HTTP PUT.",
+        "name": "url",
+        "type": "String!"
+      },
+      {
+        "description": "The file key of the uploaded file. Pass this as fileKey when creating or updating a record.",
+        "name": "fileKey",
+        "type": "String!"
+      }
+    ],
+    "name": "CustomObjectRecordFileUploadUrl"
+  },
+  {
     "description": "A file value linking a record to an uploaded file.",
     "fields": [
       {
@@ -8465,6 +8980,11 @@
         "description": "The file's size in bytes.",
         "name": "sizeInBytes",
         "type": "Int!"
+      },
+      {
+        "description": "The uploaded file's storage key. Pass this back as fileKey when creating or updating a record.",
+        "name": "fileKey",
+        "type": "String!"
       },
       {
         "description": "A short-lived signed URL to download the file.",
@@ -9310,6 +9830,38 @@
     "name": "DeleteTicketCommentResult"
   },
   {
+    "description": "The deleteTicketMailbox mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "DeleteTicketMailboxErrorCode!"
+      }
+    ],
+    "name": "DeleteTicketMailboxError"
+  },
+  {
+    "description": "The deleteTicketMailbox mutation's result.",
+    "fields": [
+      {
+        "description": "The deleted ticket mailbox.",
+        "name": "ticketMailbox",
+        "type": "TicketMailbox"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[DeleteTicketMailboxError!]"
+      }
+    ],
+    "name": "DeleteTicketMailboxResult"
+  },
+  {
     "description": "The deleteTimeBlocker mutation's expected error.",
     "fields": [
       {
@@ -9498,6 +10050,16 @@
         "description": "The device location's entity ID.",
         "name": "entityId",
         "type": "String!"
+      },
+      {
+        "description": "The device location's coordinates.",
+        "name": "location",
+        "type": "Coordinates"
+      },
+      {
+        "description": "The device location's date and time of measurement.",
+        "name": "sampleTime",
+        "type": "DateTime"
       }
     ],
     "name": "DeviceLocation"
@@ -9587,6 +10149,22 @@
       }
     ],
     "name": "Discount"
+  },
+  {
+    "description": "A discount product's applicability: the set of targets the discount is limited to. The application method is derived from the entity type.",
+    "fields": [
+      {
+        "description": "The type of the selected entities.",
+        "name": "entityType",
+        "type": "DiscountApplicabilityEntityType!"
+      },
+      {
+        "description": "The selected targets, one per selected entity. Deliberately a plain list rather than a Connection (SD-14 exception): the applicability is a bounded configuration value, capped at write time, not a paginated collection.",
+        "name": "targets",
+        "type": "[DiscountApplicabilityTarget!]!"
+      }
+    ],
+    "name": "DiscountApplicability"
   },
   {
     "description": "To paginate through multiple discounts.",
@@ -11951,6 +12529,11 @@
         "type": "InventoryItemLinkedDeviceConnection!"
       },
       {
+        "description": "Whether the item's upstream/downstream device topology has changed since it was last acknowledged by a user.",
+        "name": "hasUnacknowledgedTopologyChange",
+        "type": "Boolean!"
+      },
+      {
         "args": [
           {
             "description": "Filter options for IP address assignments.",
@@ -12682,6 +13265,60 @@
         "description": "Whether the location is safely deletable.",
         "name": "isDeletable",
         "type": "Boolean!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          }
+        ],
+        "description": "The consumable assignations directly on this location (not including its zones).",
+        "name": "consumableAssignations",
+        "type": "ConsumableAssignationConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          }
+        ],
+        "description": "The non-serialized item assignations directly on this location (not including its zones).",
+        "name": "nonSerializedItemAssignations",
+        "type": "NonSerializedItemAssignationConnection!"
       }
     ],
     "name": "InventoryLocation"
@@ -13590,6 +14227,60 @@
         "description": "Whether the inventory zone is deletable or not.",
         "name": "isDeletable",
         "type": "Boolean!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          }
+        ],
+        "description": "The consumable assignations for this zone.",
+        "name": "consumableAssignations",
+        "type": "ConsumableAssignationConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          }
+        ],
+        "description": "The non-serialized item assignations for this zone.",
+        "name": "nonSerializedItemAssignations",
+        "type": "NonSerializedItemAssignationConnection!"
       }
     ],
     "name": "InventoryZone"
@@ -14266,22 +14957,6 @@
     "name": "MergeTicketsResult"
   },
   {
-    "description": "The migration operation's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The expected error code.",
-        "name": "code",
-        "type": "MigrationOperationErrorCode!"
-      }
-    ],
-    "name": "MigrationOperationError"
-  },
-  {
     "description": "A modelFieldImportCsvDocumentation query's expected error.",
     "fields": [
       {
@@ -14455,6 +15130,80 @@
       }
     ],
     "name": "ModelQuantityForZoneEdge"
+  },
+  {
+    "description": "The moveConsumables mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "MoveConsumablesErrorCode!"
+      }
+    ],
+    "name": "MoveConsumablesError"
+  },
+  {
+    "description": "The moveConsumables mutation's result.",
+    "fields": [
+      {
+        "description": "The updated source consumable assignation.",
+        "name": "fromAssignation",
+        "type": "ConsumableAssignation"
+      },
+      {
+        "description": "The updated destination consumable assignation.",
+        "name": "toAssignation",
+        "type": "ConsumableAssignation"
+      },
+      {
+        "description": "The errors that occurred during the move.",
+        "name": "errors",
+        "type": "[MoveConsumablesError!]"
+      }
+    ],
+    "name": "MoveConsumablesResult"
+  },
+  {
+    "description": "The moveNonSerializedItems mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "MoveNonSerializedItemsErrorCode!"
+      }
+    ],
+    "name": "MoveNonSerializedItemsError"
+  },
+  {
+    "description": "The moveNonSerializedItems mutation's result.",
+    "fields": [
+      {
+        "description": "The updated source non-serialized item assignation.",
+        "name": "fromAssignation",
+        "type": "NonSerializedItemAssignation"
+      },
+      {
+        "description": "The updated destination non-serialized item assignation.",
+        "name": "toAssignation",
+        "type": "NonSerializedItemAssignation"
+      },
+      {
+        "description": "The errors that occurred during the move.",
+        "name": "errors",
+        "type": "[MoveNonSerializedItemsError!]"
+      }
+    ],
+    "name": "MoveNonSerializedItemsResult"
   },
   {
     "description": "The root mutation type for the ordering service.",
@@ -15331,6 +16080,18 @@
       {
         "args": [
           {
+            "description": "Upload URL input.",
+            "name": "input",
+            "type": "CreateCustomObjectRecordFileUploadUrlInput!"
+          }
+        ],
+        "description": "Create an upload URL for a FILE field value.",
+        "name": "createCustomObjectRecordFileUploadUrl",
+        "type": "CreateCustomObjectRecordFileUploadUrlResult!"
+      },
+      {
+        "args": [
+          {
             "description": "The mutation input.",
             "name": "input",
             "type": "CreateCustomObjectRecordDraftInput!"
@@ -15559,6 +16320,18 @@
       {
         "args": [
           {
+            "description": "The input required to add a non-serialized item.",
+            "name": "input",
+            "type": "AddNonSerializedItemInput!"
+          }
+        ],
+        "description": "Add a quantity of a non-serialized item model to an assignation, creating the assignation if it does not already exist.",
+        "name": "addNonSerializedItem",
+        "type": "AddNonSerializedItemResult!"
+      },
+      {
+        "args": [
+          {
             "description": "The input required to create new inventory items.",
             "name": "input",
             "type": "CreateInventoryItemsInput!"
@@ -15603,6 +16376,42 @@
         "description": "Assign an inventory item.",
         "name": "assignInventoryItem",
         "type": "AssignInventoryItemResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to add consumables.",
+            "name": "input",
+            "type": "AddConsumablesInput!"
+          }
+        ],
+        "description": "Add a quantity of a consumable model to an assignation, creating the assignation if it does not already exist.",
+        "name": "addConsumables",
+        "type": "AddConsumablesResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to assign consumables.",
+            "name": "input",
+            "type": "AssignConsumablesInput!"
+          }
+        ],
+        "description": "Assign a quantity of a consumable model to an assignee. The assigned quantity is consumed and does not persist on the assignee.",
+        "name": "assignConsumables",
+        "type": "AssignConsumablesResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to assign non-serialized items.",
+            "name": "input",
+            "type": "AssignNonSerializedItemsInput!"
+          }
+        ],
+        "description": "Assign a quantity of a non-serialized item model to an assignee. The assigned quantity persists on the assignee.",
+        "name": "assignNonSerializedItems",
+        "type": "AssignNonSerializedItemsResult!"
       },
       {
         "args": [
@@ -15663,6 +16472,30 @@
         "description": "Create a new manufacturer.",
         "name": "createManufacturer",
         "type": "CreateManufacturerResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to move consumables.",
+            "name": "input",
+            "type": "MoveConsumablesInput!"
+          }
+        ],
+        "description": "Move a quantity of a consumable model from one assignation to another.",
+        "name": "moveConsumables",
+        "type": "MoveConsumablesResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to move non-serialized items.",
+            "name": "input",
+            "type": "MoveNonSerializedItemsInput!"
+          }
+        ],
+        "description": "Move a quantity of a non-serialized item model from one assignation to another.",
+        "name": "moveNonSerializedItems",
+        "type": "MoveNonSerializedItemsResult!"
       },
       {
         "args": [
@@ -15959,6 +16792,18 @@
         "description": "Add a given procedure to an incident.",
         "name": "addProcedureToIncident",
         "type": "AddProcedureToIncidentResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The acknowledgeEntityChange mutation's input.",
+            "name": "input",
+            "type": "AcknowledgeEntityChangeInput!"
+          }
+        ],
+        "description": "Acknowledge a tracked change on an entity, clearing it for all users.",
+        "name": "acknowledgeEntityChange",
+        "type": "AcknowledgeEntityChangeResult!"
       },
       {
         "args": [
@@ -16540,6 +17385,47 @@
       {
         "args": [
           {
+            "description": "The ticket mailbox's input.",
+            "name": "input",
+            "type": "CreateTicketMailboxInput!"
+          }
+        ],
+        "description": "Create a ticket mailbox.",
+        "name": "createTicketMailbox",
+        "type": "CreateTicketMailboxResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The ticket mailbox's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The ticket mailbox's input.",
+            "name": "input",
+            "type": "UpdateTicketMailboxInput!"
+          }
+        ],
+        "description": "Update a ticket mailbox.",
+        "name": "updateTicketMailbox",
+        "type": "UpdateTicketMailboxResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The ticket mailbox's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Delete a ticket mailbox. A mailbox referenced by a ticket cannot be deleted.",
+        "name": "deleteTicketMailbox",
+        "type": "DeleteTicketMailboxResult!"
+      },
+      {
+        "args": [
+          {
             "description": "The ticket's unique ID.",
             "name": "id",
             "type": "GlobalID!"
@@ -17092,6 +17978,30 @@
         "description": "Archive (soft-delete) an existing schedule template.",
         "name": "archiveScheduleTemplate",
         "type": "ArchiveScheduleTemplateResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to add a schedule to a technician.",
+            "name": "input",
+            "type": "AddScheduleToTechnicianInput!"
+          }
+        ],
+        "description": "Add a recurring schedule to a technician from an existing schedule template.",
+        "name": "addScheduleToTechnician",
+        "type": "AddScheduleToTechnicianResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to clear all schedules for a technician.",
+            "name": "input",
+            "type": "ClearSchedulesForTechnicianInput!"
+          }
+        ],
+        "description": "Clear (deactivate) all schedules for a technician.",
+        "name": "clearSchedulesForTechnician",
+        "type": "ClearSchedulesForTechnicianResult!"
       },
       {
         "args": [
@@ -17867,6 +18777,69 @@
       }
     ],
     "name": "NextRecurringCharge"
+  },
+  {
+    "description": "Represents a non-serialized inventory model assigned to an assignee with a quantity.",
+    "fields": [
+      {
+        "description": "The non-serialized item assignation's inventory model.",
+        "name": "model",
+        "type": "InventoryModel!"
+      },
+      {
+        "description": "The non-serialized item assignation's assignee.",
+        "name": "assignee",
+        "type": "Assignee!"
+      },
+      {
+        "description": "The non-serialized item assignation's quantity.",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "NonSerializedItemAssignation"
+  },
+  {
+    "description": "To paginate through multiple non-serialized item assignations.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[NonSerializedItemAssignationEdge!]!"
+      },
+      {
+        "description": "Current page's nodes.",
+        "name": "nodes",
+        "type": "[NonSerializedItemAssignation!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of non-serialized item assignations.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "NonSerializedItemAssignationConnection"
+  },
+  {
+    "description": "Contains a non-serialized item assignation and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      },
+      {
+        "description": "The current edge's node.",
+        "name": "node",
+        "type": "NonSerializedItemAssignation!"
+      }
+    ],
+    "name": "NonSerializedItemAssignationEdge"
   },
   {
     "description": "Note information.",
@@ -19709,6 +20682,11 @@
         "type": "Boolean!"
       },
       {
+        "description": "The discount product's applicability. Null when the discount is unrestricted or the product is not a discount.",
+        "name": "discountApplicability",
+        "type": "DiscountApplicability"
+      },
+      {
         "description": "The date when the product becomes available.",
         "name": "availabilityStartDate",
         "type": "DateTime"
@@ -19992,6 +20970,17 @@
     "name": "ProductCategoryEdge"
   },
   {
+    "description": "A product category type selected by a discount product's applicability.",
+    "fields": [
+      {
+        "description": "The selected product category type.",
+        "name": "value",
+        "type": "ProductCategoryType!"
+      }
+    ],
+    "name": "ProductCategoryTypeTarget"
+  },
+  {
     "description": "To paginate through products.",
     "fields": [
       {
@@ -20130,9 +21119,9 @@
         "type": "Int!"
       },
       {
-        "description": "The product version's percentage (only applicable for percentage-based discount or fee type).",
+        "description": "The product version's percentage (only applicable for percentage-based discount or fee type). Supports up to 2 decimal places.",
         "name": "percentage",
-        "type": "Int"
+        "type": "Float"
       },
       {
         "description": "The product version's percentage application type (only applicable for percentage-based discount or fee type).",
@@ -22326,6 +23315,43 @@
             "type": "String"
           },
           {
+            "description": "Filter to apply to the query.",
+            "name": "filter",
+            "type": "ConsumableAssignationHistoryFilter"
+          },
+          {
+            "description": "Order by fields.",
+            "name": "orderBy",
+            "type": "[ConsumableAssignationHistoryOrderBy!]"
+          }
+        ],
+        "description": "Query a paginated list of consumable assignation history entries (consumption and relocation events). The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+        "name": "consumableAssignationHistory",
+        "type": "ConsumableAssignationHistoryConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
             "description": "Filters to apply to the query.",
             "name": "filters",
             "type": "CustomerOwnedItemsQueryFilters"
@@ -22469,6 +23495,122 @@
         "description": "Query to get all inventory model categories.",
         "name": "inventoryModelCategories",
         "type": "InventoryModelCategoryConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The assignee to get non-serialized item assignations for.",
+            "name": "input",
+            "type": "AssignationInput!"
+          },
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters to apply to the query.",
+            "name": "filters",
+            "type": "NonSerializedItemsAssignedToAssigneeFilter"
+          },
+          {
+            "description": "Order by fields.",
+            "name": "orderBy",
+            "type": "[NonSerializedItemsAssignedToAssigneeOrderBy!]"
+          }
+        ],
+        "description": "Query to get the non-serialized item assignations for an assignee. The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+        "name": "nonSerializedItemsAssignedToAssignee",
+        "type": "NonSerializedItemAssignationConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters to apply to the query.",
+            "name": "filters",
+            "type": "NonSerializedItemsFilter"
+          }
+        ],
+        "description": "Query a paginated list of non-serialized item assignations.",
+        "name": "nonSerializedItems",
+        "type": "NonSerializedItemAssignationConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The assignee to get previously assigned non-serialized item assignations for.",
+            "name": "input",
+            "type": "AssignationInput!"
+          },
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters to apply to the query.",
+            "name": "filters",
+            "type": "NonSerializedItemsPreviouslyAssignedToAssigneeFilter"
+          },
+          {
+            "description": "Order by fields.",
+            "name": "orderBy",
+            "type": "[NonSerializedItemsPreviouslyAssignedToAssigneeOrderBy!]"
+          }
+        ],
+        "description": "Query to get non-serialized items an assignee has unassigned, with the cumulative quantity unassigned per model. The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+        "name": "nonSerializedItemsPreviouslyAssignedToAssignee",
+        "type": "NonSerializedItemAssignationConnection!"
       },
       {
         "args": [
@@ -23279,6 +24421,11 @@
             "description": "Filters the results.",
             "name": "filter",
             "type": "TicketFilter"
+          },
+          {
+            "description": "Free-text search. Matches tickets whose title contains the text (case-insensitive) or whose readable ID equals it.",
+            "name": "search",
+            "type": "String"
           }
         ],
         "description": "Query paginated list of tickets.",
@@ -23581,6 +24728,18 @@
         "description": "Query a paginated list of webhooks. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
         "name": "webhooks",
         "type": "WebhookConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The webhook trigger request's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Query a webhook trigger request by unique ID.",
+        "name": "webhookTriggerRequest",
+        "type": "WebhookTriggerRequest"
       },
       {
         "args": [
@@ -27411,6 +28570,11 @@
         "description": "The users notified when tickets are created through the mailbox.",
         "name": "notifyees",
         "type": "[User!]!"
+      },
+      {
+        "description": "The categories applied to tickets created through the mailbox.",
+        "name": "categories",
+        "type": "[TicketCategory!]!"
       }
     ],
     "name": "TicketMailbox"
@@ -27828,6 +28992,16 @@
         "type": "TimeBlockerType!"
       },
       {
+        "description": "The time blocker's raw recurrence rule (RFC 5545). Null when the time blocker is not recurring.",
+        "name": "recurrenceRule",
+        "type": "String"
+      },
+      {
+        "description": "The time blocker's parsed recurrence configuration. Null when the time blocker is not recurring.",
+        "name": "recurrence",
+        "type": "TimeBlockerRecurrence"
+      },
+      {
         "args": [
           {
             "description": "The number of technicians to return starting from the beginning or the cursor.",
@@ -27926,6 +29100,32 @@
       }
     ],
     "name": "TimeBlockerEdge"
+  },
+  {
+    "description": "The time blocker's parsed recurrence configuration.",
+    "fields": [
+      {
+        "description": "The time blocker's recurrence frequency.",
+        "name": "frequency",
+        "type": "TimeBlockerRecurrenceFrequency!"
+      },
+      {
+        "description": "The time blocker's recurrence count. The total number of occurrences in the series. Null when the series is infinite.",
+        "name": "count",
+        "type": "Int"
+      },
+      {
+        "description": "The time blocker's recurrence infinite flag. True when the series repeats indefinitely.",
+        "name": "isInfinite",
+        "type": "Boolean"
+      },
+      {
+        "description": "The time blocker's recurrence timezone. The IANA timezone in which the series is anchored.",
+        "name": "timezone",
+        "type": "String"
+      }
+    ],
+    "name": "TimeBlockerRecurrence"
   },
   {
     "description": "A create or update time blocker mutation's expected error for a technician conflict.",
@@ -30437,6 +31637,38 @@
     "name": "UpdateTicketFollowersResult"
   },
   {
+    "description": "The updateTicketMailbox mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateTicketMailboxErrorCode!"
+      }
+    ],
+    "name": "UpdateTicketMailboxError"
+  },
+  {
+    "description": "The updateTicketMailbox mutation's result.",
+    "fields": [
+      {
+        "description": "The updated ticket mailbox.",
+        "name": "ticketMailbox",
+        "type": "TicketMailbox"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateTicketMailboxError!]"
+      }
+    ],
+    "name": "UpdateTicketMailboxResult"
+  },
+  {
     "description": "Define the updateTicketStatus mutation's expected error.",
     "fields": [
       {
@@ -31430,6 +32662,109 @@
       }
     ],
     "name": "WebhookExecutionEdge"
+  },
+  {
+    "description": "A call received by a workflow's webhook trigger, recorded whether or not it started an execution.",
+    "fields": [
+      {
+        "description": "The webhook trigger request's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The time the call was received.",
+        "name": "requestedAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The HTTP method the call was made with.",
+        "name": "method",
+        "type": "WebhookTriggerMethod!"
+      },
+      {
+        "description": "The call's headers.",
+        "name": "headers",
+        "type": "JSON!"
+      },
+      {
+        "description": "The call's query parameters. Null when the call carried none.",
+        "name": "queryParameters",
+        "type": "JSON"
+      },
+      {
+        "description": "The call's path parameters. Null when the call carried none.",
+        "name": "pathParameters",
+        "type": "[String!]"
+      },
+      {
+        "description": "The call's body as it arrived, byte for byte, or a serialized file storage reference when it was offloaded. Null when the call carried none.",
+        "name": "rawBody",
+        "type": "String"
+      },
+      {
+        "description": "The time the call was answered. Null while it is still being answered.",
+        "name": "respondedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "The HTTP status code the call was answered with. Null while it is still being answered.",
+        "name": "responseStatusCode",
+        "type": "Int"
+      },
+      {
+        "description": "The body the call was answered with, or a file storage reference when it was offloaded. Null when the answer carried none.",
+        "name": "responseBody",
+        "type": "JSON"
+      },
+      {
+        "description": "The workflow execution the call started. Null when it started none.",
+        "name": "execution",
+        "type": "WorkflowExecution"
+      }
+    ],
+    "name": "WebhookTriggerRequest"
+  },
+  {
+    "description": "To paginate through webhook trigger requests.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[WebhookTriggerRequestEdge!]!"
+      },
+      {
+        "description": "Current page's webhook trigger requests.",
+        "name": "nodes",
+        "type": "[WebhookTriggerRequest!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of webhook trigger requests.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "WebhookTriggerRequestConnection"
+  },
+  {
+    "description": "Contains a webhook trigger request and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The webhook trigger request.",
+        "name": "node",
+        "type": "WebhookTriggerRequest!"
+      },
+      {
+        "description": "Current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      }
+    ],
+    "name": "WebhookTriggerRequestEdge"
   },
   {
     "description": "A work order managed by the workforce-service.",
@@ -32669,6 +34004,11 @@
         "description": "The workflow execution's output.",
         "name": "output",
         "type": "WorkflowExecutionOutput"
+      },
+      {
+        "description": "The call that started the workflow execution. Null when it was not started by a webhook trigger.",
+        "name": "webhookRequest",
+        "type": "WebhookTriggerRequest"
       },
       {
         "description": "The workflow execution's input.",

@@ -215,6 +215,43 @@
     "name": "AccountsInNetworkSitesStatusFilter"
   },
   {
+    "description": "Input for acknowledging a tracked change on an entity.",
+    "fields": [
+      {
+        "description": "The ID of the entity whose change is being acknowledged.",
+        "name": "entityId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The kind of change being acknowledged.",
+        "name": "changeKind",
+        "type": "EntityChangeKind!"
+      }
+    ],
+    "name": "AcknowledgeEntityChangeInput"
+  },
+  {
+    "description": "The addConsumables mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory model's ID.",
+        "name": "modelId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The assignation details.",
+        "name": "assignation",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The quantity to add (must be > 0).",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "AddConsumablesInput"
+  },
+  {
     "description": "The addCustomerOwnedItem mutation's input.",
     "fields": [
       {
@@ -384,6 +421,27 @@
     "name": "AddIpBlocksToNetworkSiteInput"
   },
   {
+    "description": "The addNonSerializedItem mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory model's ID.",
+        "name": "modelId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The assignation details.",
+        "name": "assignation",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The quantity to add (must be > 0).",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "AddNonSerializedItemInput"
+  },
+  {
     "description": "The input required to add a procedure to an incident.",
     "fields": [
       {
@@ -398,6 +456,42 @@
       }
     ],
     "name": "AddProcedureToIncidentInput"
+  },
+  {
+    "description": "The addScheduleToTechnician mutation's input.",
+    "fields": [
+      {
+        "description": "The schedule template's unique ID to generate the schedule from.",
+        "name": "scheduleTemplateId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The technician's unique ID to assign the schedule to.",
+        "name": "technicianId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The date and time from which to start generating the schedule.",
+        "name": "startDate",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The timezone to generate the schedule in. Defaults to the tenant's timezone when omitted.",
+        "name": "timezone",
+        "type": "String"
+      },
+      {
+        "description": "The number of occurrences to generate. Mutually exclusive with isInfinite.",
+        "name": "count",
+        "type": "Int"
+      },
+      {
+        "description": "Whether the schedule should recur indefinitely. Mutually exclusive with count.",
+        "name": "isInfinite",
+        "type": "Boolean"
+      }
+    ],
+    "name": "AddScheduleToTechnicianInput"
   },
   {
     "description": "The custom field data value for a custom field.",
@@ -840,6 +934,32 @@
     "name": "AssignBillingSubscriptionsMutationInput"
   },
   {
+    "description": "The assignConsumables mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory model's ID.",
+        "name": "modelId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The source assignation to assign the quantity from.",
+        "name": "from",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The assignee to assign the quantity to.",
+        "name": "to",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The quantity to assign (must be > 0).",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "AssignConsumablesInput"
+  },
+  {
     "description": "The assignInventoryItem mutation's input.",
     "fields": [
       {
@@ -859,6 +979,32 @@
       }
     ],
     "name": "AssignInventoryItemInput"
+  },
+  {
+    "description": "The assignNonSerializedItems mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory model's ID.",
+        "name": "modelId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The source assignation to assign the quantity from.",
+        "name": "from",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The assignee to assign the quantity to.",
+        "name": "to",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The quantity to assign (must be > 0).",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "AssignNonSerializedItemsInput"
   },
   {
     "description": "The notification options for a secondary technician assignment.",
@@ -1592,6 +1738,11 @@
         "description": "Filter the cancellation reasons by archived.",
         "name": "archived",
         "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter the cancellation reasons by whether they are internal-only.",
+        "name": "isInternal",
+        "type": "BooleanFilter"
       }
     ],
     "name": "CancellationReasonFilter"
@@ -1678,6 +1829,17 @@
       }
     ],
     "name": "ClearInventoryItemLinkedDevicesInput"
+  },
+  {
+    "description": "The input required to clear all schedules for a technician.",
+    "fields": [
+      {
+        "description": "The technician's unique ID whose schedules should be cleared.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "name": "ClearSchedulesForTechnicianInput"
   },
   {
     "description": "The input required to close a ticket.",
@@ -1852,6 +2014,58 @@
       }
     ],
     "name": "CommunicationTemplateReferenceInput"
+  },
+  {
+    "description": "Filters for the consumable assignation history query.",
+    "fields": [
+      {
+        "description": "Filter by model.",
+        "name": "modelId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by whether the movement consumed the quantity, rather than relocating it between storage locations/zones.",
+        "name": "isConsumed",
+        "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter by the assignee the quantity was moved from.",
+        "name": "fromAssigneeId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by the type of the assignee the quantity was moved from.",
+        "name": "fromAssigneeType",
+        "type": "AssigneeTypeFilter"
+      },
+      {
+        "description": "Filter by the assignee the quantity was moved to.",
+        "name": "toAssigneeId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by the type of the assignee the quantity was moved to.",
+        "name": "toAssigneeType",
+        "type": "AssigneeTypeFilter"
+      }
+    ],
+    "name": "ConsumableAssignationHistoryFilter"
+  },
+  {
+    "description": "To order consumable assignation history entries.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "ConsumableAssignationHistoryOrderByField!"
+      }
+    ],
+    "name": "ConsumableAssignationHistoryOrderBy"
   },
   {
     "description": "Available filters for contacts.",
@@ -2755,6 +2969,22 @@
       }
     ],
     "name": "CreateCustomObjectRecordDraftInput"
+  },
+  {
+    "description": "Input for creating a file upload URL for a FILE field.",
+    "fields": [
+      {
+        "description": "The FILE field definition this upload is for.",
+        "name": "fieldDefinitionId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The original file name to upload.",
+        "name": "fileName",
+        "type": "String!"
+      }
+    ],
+    "name": "CreateCustomObjectRecordFileUploadUrlInput"
   },
   {
     "description": "Input for creating a custom object record.",
@@ -3769,9 +3999,9 @@
         "type": "Int!"
       },
       {
-        "description": "The product's percentage, applicable for fees and discounts.",
+        "description": "The product's percentage, applicable for fees and discounts. Supports up to 2 decimal places.",
         "name": "percentage",
-        "type": "Int"
+        "type": "Float"
       },
       {
         "description": "The product's percentage application type, applicable for fees and discounts.",
@@ -3867,6 +4097,11 @@
         "description": "The product's applicable taxes with optional exemption amounts.",
         "name": "applicableTaxes",
         "type": "[ApplicableTaxInput!]"
+      },
+      {
+        "description": "The discount product's applicability, limiting which entities the discount may reduce. Only allowed on DISCOUNT products; absent or null means unrestricted.",
+        "name": "discountApplicability",
+        "type": "DiscountApplicabilityInput"
       }
     ],
     "name": "CreateProductInput"
@@ -3895,9 +4130,9 @@
         "type": "Int!"
       },
       {
-        "description": "The product version's percentage (only applicable for percentage-based discount or fee type).",
+        "description": "The product version's percentage (only applicable for percentage-based discount or fee type). Supports up to 2 decimal places.",
         "name": "percentage",
-        "type": "Int"
+        "type": "Float"
       },
       {
         "description": "The product version's percentage application type (only applicable for percentage-based discount or fee type).",
@@ -4689,6 +4924,47 @@
     "name": "CreateTicketCommentInput"
   },
   {
+    "description": "The createTicketMailbox mutation's input.",
+    "fields": [
+      {
+        "description": "The mailbox's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The mailbox's reply email address.",
+        "name": "replyEmailAddress",
+        "type": "String!"
+      },
+      {
+        "description": "The ID of the ticket type applied to tickets created through the mailbox.",
+        "name": "ticketTypeId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The IDs of the users assigned to tickets created through the mailbox.",
+        "name": "assigneeIds",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "The IDs of the users notified when tickets are created through the mailbox.",
+        "name": "notifyeeIds",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "The IDs of the categories applied to tickets created through the mailbox.",
+        "name": "categoryIds",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "The ID of the user group (team) assigned to tickets created through the mailbox. Only an active user group can be assigned.",
+        "name": "userGroupId",
+        "type": "GlobalID"
+      }
+    ],
+    "name": "CreateTicketMailboxInput"
+  },
+  {
     "description": "The ticket template definition's input.",
     "fields": [
       {
@@ -4808,6 +5084,11 @@
         "description": "The time blocker's assigned technicians unique IDs.",
         "name": "assignedTechnicianIds",
         "type": "[GlobalID!]"
+      },
+      {
+        "description": "The time blocker's recurrence configuration. When provided, the time blocker will recur according to the specified frequency and count.",
+        "name": "recurrence",
+        "type": "TimeBlockerRecurrenceInput"
       }
     ],
     "name": "CreateTimeBlockerInput"
@@ -5303,6 +5584,37 @@
     "name": "CustomerOwnedItemsQueryFilters"
   },
   {
+    "description": "Filter dates (without time).",
+    "fields": [
+      {
+        "description": "Date must match the filter exactly.",
+        "name": "equals",
+        "type": "Date"
+      },
+      {
+        "description": "Date must be before this date.",
+        "name": "lt",
+        "type": "Date"
+      },
+      {
+        "description": "Date must be on or before this date.",
+        "name": "lte",
+        "type": "Date"
+      },
+      {
+        "description": "Date must be after this date.",
+        "name": "gt",
+        "type": "Date"
+      },
+      {
+        "description": "Date must be on or after this date.",
+        "name": "gte",
+        "type": "Date"
+      }
+    ],
+    "name": "DateFilter"
+  },
+  {
     "description": "Filter datetimes.",
     "fields": [
       {
@@ -5455,6 +5767,27 @@
       }
     ],
     "name": "DeletedAtFilter"
+  },
+  {
+    "description": "The input to limit a discount product's applicability to specific entities.",
+    "fields": [
+      {
+        "description": "The type of the selected entities.",
+        "name": "entityType",
+        "type": "DiscountApplicabilityEntityType!"
+      },
+      {
+        "description": "The IDs of the selected entities: product IDs for the PRODUCT entity type, product category IDs for PRODUCT_CATEGORY. Must be omitted or null for PRODUCT_CATEGORY_TYPE.",
+        "name": "entityIds",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "The selected product category types. Required for the PRODUCT_CATEGORY_TYPE entity type; must be omitted or null for other entity types.",
+        "name": "categoryTypes",
+        "type": "[ProductCategoryType!]"
+      }
+    ],
+    "name": "DiscountApplicabilityInput"
   },
   {
     "description": "To filter discounts.",
@@ -6113,6 +6446,21 @@
         "type": "GlobalIDFilter"
       },
       {
+        "description": "Search term to filter the results by their model's name.",
+        "name": "name",
+        "type": "StringFilter"
+      },
+      {
+        "description": "Filter by model category.",
+        "name": "categoryId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by model manufacturer.",
+        "name": "manufacturerId",
+        "type": "GlobalIDFilter"
+      },
+      {
         "description": "Search term to filter the results by their unique fields' data.",
         "name": "fieldData",
         "type": "StringFilter"
@@ -6456,6 +6804,58 @@
     "name": "ModelQuantityFilters"
   },
   {
+    "description": "The moveConsumables mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory model's ID.",
+        "name": "modelId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The assignation to move the quantity from.",
+        "name": "from",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The assignation to move the quantity to.",
+        "name": "to",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The quantity to move (must be > 0).",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "MoveConsumablesInput"
+  },
+  {
+    "description": "The moveNonSerializedItems mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory model's ID.",
+        "name": "modelId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The assignation to move the quantity from.",
+        "name": "from",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The assignation to move the quantity to.",
+        "name": "to",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "The quantity to move (must be > 0).",
+        "name": "quantity",
+        "type": "Int!"
+      }
+    ],
+    "name": "MoveNonSerializedItemsInput"
+  },
+  {
     "description": "The input for a network site's address.",
     "fields": [
       {
@@ -6631,7 +7031,64 @@
         "type": "GlobalIDFilter"
       }
     ],
-    "name": "NonSerializedItemsAssignedToAssigneeFilters"
+    "name": "NonSerializedItemsAssignedToAssigneeFilter"
+  },
+  {
+    "description": "To order non-serialized items assigned to an assignee.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "NonSerializedItemsAssignedToAssigneeOrderByField!"
+      }
+    ],
+    "name": "NonSerializedItemsAssignedToAssigneeOrderBy"
+  },
+  {
+    "description": "Filters for the non-serialized items query.",
+    "fields": [
+      {
+        "description": "Filter by assignee type.",
+        "name": "assigneeType",
+        "type": "AssigneeTypeFilter"
+      },
+      {
+        "description": "Filter by specific assignee IDs.",
+        "name": "assigneeId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by model.",
+        "name": "modelId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Search term to filter the results by their model's name.",
+        "name": "name",
+        "type": "StringFilter"
+      },
+      {
+        "description": "Filter by model category.",
+        "name": "categoryId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by model manufacturer.",
+        "name": "manufacturerId",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by items assigned to any inventory location or zone assigned to the given user.",
+        "name": "assignedUserId",
+        "type": "GlobalID"
+      }
+    ],
+    "name": "NonSerializedItemsFilter"
   },
   {
     "description": "Filters for the non-serialized items for a model query.",
@@ -6658,7 +7115,23 @@
         "type": "GlobalIDFilter"
       }
     ],
-    "name": "NonSerializedItemsPreviouslyAssignedToAssigneeFilters"
+    "name": "NonSerializedItemsPreviouslyAssignedToAssigneeFilter"
+  },
+  {
+    "description": "To order non-serialized items previously assigned to an assignee.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "NonSerializedItemsPreviouslyAssignedToAssigneeOrderByField!"
+      }
+    ],
+    "name": "NonSerializedItemsPreviouslyAssignedToAssigneeOrderBy"
   },
   {
     "description": "Available filters for the note's creator.",
@@ -8281,6 +8754,11 @@
         "description": "At least one assignee must be found from the filter.",
         "name": "some",
         "type": "TicketAssigneeFilter"
+      },
+      {
+        "description": "No assignee must be found from the filter. An empty filter selects unassigned tickets. Combined with `some`, a ticket matches either.",
+        "name": "none",
+        "type": "TicketAssigneeFilter"
       }
     ],
     "name": "TicketAssigneeListFilter"
@@ -8539,9 +9017,66 @@
         "description": "Filter on the ticket's readable ID field.",
         "name": "readableId",
         "type": "IntFilter"
+      },
+      {
+        "description": "Filter on the ticket's followers field.",
+        "name": "followers",
+        "type": "TicketFollowerListFilter"
+      },
+      {
+        "description": "Filter on the ticket's priority field.",
+        "name": "priority",
+        "type": "TicketPriorityFilter"
+      },
+      {
+        "description": "Filter on the ticket's visibility field.",
+        "name": "visibility",
+        "type": "TicketVisibilityFilter"
+      },
+      {
+        "description": "Filter on the ticket's user group (team) field.",
+        "name": "userGroup",
+        "type": "TicketUserGroupFilter"
+      },
+      {
+        "description": "Filter on the ticket's project field.",
+        "name": "project",
+        "type": "TicketProjectFilter"
+      },
+      {
+        "description": "Filter on the ticket's creation date.",
+        "name": "createdAt",
+        "type": "DateTimeFilter"
+      },
+      {
+        "description": "Filter on the ticket's due date.",
+        "name": "dueDate",
+        "type": "DateFilter"
       }
     ],
     "name": "TicketFilter"
+  },
+  {
+    "description": "Available filters for ticket followers.",
+    "fields": [
+      {
+        "description": "Filter on the follower's unique ID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "TicketFollowerFilter"
+  },
+  {
+    "description": "Available filters for lists of ticket followers.",
+    "fields": [
+      {
+        "description": "At least one follower must be found from the filter.",
+        "name": "some",
+        "type": "TicketFollowerFilter"
+      }
+    ],
+    "name": "TicketFollowerListFilter"
   },
   {
     "description": "To order tickets.",
@@ -8558,6 +9093,43 @@
       }
     ],
     "name": "TicketOrderBy"
+  },
+  {
+    "description": "Available filters for ticket priorities.",
+    "fields": [
+      {
+        "description": "Filtering for a priority.",
+        "name": "equals",
+        "type": "TicketPriority"
+      },
+      {
+        "description": "Filtering out a priority.",
+        "name": "not",
+        "type": "TicketPriority"
+      },
+      {
+        "description": "Filtering for many priorities.",
+        "name": "in",
+        "type": "[TicketPriority!]"
+      },
+      {
+        "description": "Filtering out many priorities.",
+        "name": "notIn",
+        "type": "[TicketPriority!]"
+      }
+    ],
+    "name": "TicketPriorityFilter"
+  },
+  {
+    "description": "Available filters for the ticket's project.",
+    "fields": [
+      {
+        "description": "Filter on the project's unique ID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "TicketProjectFilter"
   },
   {
     "description": "Available filters for ticket statuses.",
@@ -8681,6 +9253,33 @@
     "name": "TicketTypeOrderBy"
   },
   {
+    "description": "Available filters for the ticket's user group (team).",
+    "fields": [
+      {
+        "description": "Filter on the user group's unique ID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "TicketUserGroupFilter"
+  },
+  {
+    "description": "Available filters for ticket visibilities.",
+    "fields": [
+      {
+        "description": "Filtering for a visibility.",
+        "name": "equals",
+        "type": "TicketVisibility"
+      },
+      {
+        "description": "Filtering for many visibilities.",
+        "name": "in",
+        "type": "[TicketVisibility!]"
+      }
+    ],
+    "name": "TicketVisibilityFilter"
+  },
+  {
     "description": "The input required to create a ticket worklog's creator information.",
     "fields": [
       {
@@ -8731,6 +9330,32 @@
       }
     ],
     "name": "TimeBlockerFilter"
+  },
+  {
+    "description": "The time blocker's recurrence input.",
+    "fields": [
+      {
+        "description": "The time blocker's recurrence frequency.",
+        "name": "frequency",
+        "type": "TimeBlockerRecurrenceFrequency!"
+      },
+      {
+        "description": "The time blocker's recurrence count. The total number of occurrences. Omit for an infinite series.",
+        "name": "count",
+        "type": "Int"
+      },
+      {
+        "description": "The time blocker's recurrence infinite flag. Set to true for an infinite series.",
+        "name": "isInfinite",
+        "type": "Boolean"
+      },
+      {
+        "description": "The time blocker's recurrence timezone. The IANA timezone used to anchor the series. Defaults to the requester's timezone when omitted.",
+        "name": "timezone",
+        "type": "String"
+      }
+    ],
+    "name": "TimeBlockerRecurrenceInput"
   },
   {
     "description": "Available filters for time blocker types.",
@@ -9639,6 +10264,31 @@
         "type": "Boolean"
       },
       {
+        "description": "The appointment configuration's toggle for subscribers rescheduling their own appointments from the Client Portal. Non-nullable.",
+        "name": "isClientPortalRescheduleEnabled",
+        "type": "Boolean"
+      },
+      {
+        "description": "The appointment configuration's toggle for fulfilling Client Portal reschedules through auto-assignment. Forced off while the Client Portal reschedule toggle is off. Non-nullable.",
+        "name": "isAutoAssignClientPortalRescheduleEnabled",
+        "type": "Boolean"
+      },
+      {
+        "description": "The appointment configuration's toggle for reusing the scheduling timeframe as the reschedule timeframe. Non-nullable.",
+        "name": "isRescheduleTimeframeSameAsScheduling",
+        "type": "Boolean"
+      },
+      {
+        "description": "The appointment configuration's minimum offset in days from today before a reschedule is allowed. Required when the scheduling timeframe is not reused. Nullable.",
+        "name": "minRescheduleOffsetDays",
+        "type": "Int"
+      },
+      {
+        "description": "The appointment configuration's maximum offset in days from today for a reschedule. Required when the scheduling timeframe is not reused. Nullable.",
+        "name": "maxRescheduleOffsetDays",
+        "type": "Int"
+      },
+      {
         "description": "The appointment configuration's arrival windows. Non-nullable.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindowInput!]"
@@ -10151,6 +10801,11 @@
         "type": "String"
       },
       {
+        "description": "The payment processor's transaction id for this payment (not nullable). Recorded when the payment has none yet; rejected when the payment already carries a different one or another payment already carries this one.",
+        "name": "processorTransactionId",
+        "type": "String"
+      },
+      {
         "description": "The failure code for the payment (nullable). Required when transitioning to FAILED.",
         "name": "failureCode",
         "type": "PaymentFailureCode"
@@ -10329,6 +10984,11 @@
         "description": "The product's tags (nullable).",
         "name": "tags",
         "type": "[String!]"
+      },
+      {
+        "description": "The discount product's applicability (nullable). Only allowed on DISCOUNT products. Omit the field to leave the applicability unchanged; pass null to clear it, making the discount unrestricted.",
+        "name": "discountApplicability",
+        "type": "DiscountApplicabilityInput"
       }
     ],
     "name": "UpdateProductInput"
@@ -10688,6 +11348,47 @@
     "name": "UpdateTicketFollowersInput"
   },
   {
+    "description": "The updateTicketMailbox mutation's input.",
+    "fields": [
+      {
+        "description": "The mailbox's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The mailbox's reply email address.",
+        "name": "replyEmailAddress",
+        "type": "String!"
+      },
+      {
+        "description": "The ID of the ticket type applied to tickets created through the mailbox.",
+        "name": "ticketTypeId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The IDs of the users assigned to tickets created through the mailbox. Omitting it clears the assignees.",
+        "name": "assigneeIds",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "The IDs of the users notified when tickets are created through the mailbox. Omitting it clears the notifyees.",
+        "name": "notifyeeIds",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "The IDs of the categories applied to tickets created through the mailbox. Omitting it leaves the categories unchanged.",
+        "name": "categoryIds",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "The ID of the user group (team) assigned to tickets created through the mailbox. Omitting it leaves the user group unchanged, null clears it.",
+        "name": "userGroupId",
+        "type": "GlobalID"
+      }
+    ],
+    "name": "UpdateTicketMailboxInput"
+  },
+  {
     "description": "The input required to update a ticket's status.",
     "fields": [
       {
@@ -10818,6 +11519,11 @@
         "description": "The time blocker's assigned technicians unique IDs. Set to an empty array to remove all assignments.",
         "name": "assignedTechnicianIds",
         "type": "[GlobalID!]"
+      },
+      {
+        "description": "The time blocker's recurrence configuration (nullable). Optional — omit to leave the existing recurrence unchanged, or set to null to remove it and turn the series back into a standalone blocker. When provided, the whole series is rebuilt to match the given frequency and count or isInfinite, anchored in the given timezone.",
+        "name": "recurrence",
+        "type": "TimeBlockerRecurrenceInput"
       }
     ],
     "name": "UpdateTimeBlockerInput"
@@ -11399,6 +12105,90 @@
       }
     ],
     "name": "WebhookOrderBy"
+  },
+  {
+    "description": "Available filters for the HTTP method a webhook trigger was called with.",
+    "fields": [
+      {
+        "description": "Filter for a method.",
+        "name": "equals",
+        "type": "WebhookTriggerMethod"
+      },
+      {
+        "description": "Filter for many methods.",
+        "name": "in",
+        "type": "[WebhookTriggerMethod!]"
+      },
+      {
+        "description": "Filter out a method.",
+        "name": "not",
+        "type": "WebhookTriggerMethod"
+      },
+      {
+        "description": "Filter out many methods.",
+        "name": "notIn",
+        "type": "[WebhookTriggerMethod!]"
+      }
+    ],
+    "name": "WebhookTriggerMethodFilter"
+  },
+  {
+    "description": "Available filters for the workflow execution a webhook trigger request started.",
+    "fields": [
+      {
+        "description": "Filter on whether the call started an execution or not. A call whose execution has since been deleted counts as having started one, even though the execution itself is no longer readable.",
+        "name": "isNull",
+        "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter on the status of the execution the call started. Only matches executions that have been persisted, so a call whose execution is still being created matches no status.",
+        "name": "status",
+        "type": "WorkflowExecutionStatusFilter"
+      }
+    ],
+    "name": "WebhookTriggerRequestExecutionFilter"
+  },
+  {
+    "description": "Available filters for webhook trigger requests.",
+    "fields": [
+      {
+        "description": "Filter on the execution the call started.",
+        "name": "execution",
+        "type": "WebhookTriggerRequestExecutionFilter"
+      },
+      {
+        "description": "Filter on the HTTP method the call was made with.",
+        "name": "method",
+        "type": "WebhookTriggerMethodFilter"
+      },
+      {
+        "description": "Filter on the time the call was received.",
+        "name": "requestedAt",
+        "type": "DateTimeFilter"
+      },
+      {
+        "description": "Filter on the HTTP status code the call was answered with.",
+        "name": "responseStatusCode",
+        "type": "IntFilter"
+      }
+    ],
+    "name": "WebhookTriggerRequestFilter"
+  },
+  {
+    "description": "To order webhook trigger requests.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "WebhookTriggerRequestOrderByField!"
+      }
+    ],
+    "name": "WebhookTriggerRequestOrderBy"
   },
   {
     "description": "Input for work order custom status category analytics query.",

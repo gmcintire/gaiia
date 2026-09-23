@@ -3,6 +3,68 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The acknowledgeEntityChange mutation's input.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AcknowledgeEntityChangeInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Acknowledge a tracked change on an entity, clearing it for all users.",
+    "isDeprecated": false,
+    "name": "acknowledgeEntityChange",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AcknowledgeEntityChangeResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to add consumables.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddConsumablesInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Add a quantity of a consumable model to an assignation, creating the assignation if it does not already exist.",
+    "isDeprecated": false,
+    "name": "addConsumables",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddConsumablesResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input required to add a customer owned item.",
         "name": "input",
         "type": {
@@ -251,6 +313,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The input required to add a non-serialized item.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddNonSerializedItemInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Add a quantity of a non-serialized item model to an assignation, creating the assignation if it does not already exist.",
+    "isDeprecated": false,
+    "name": "addNonSerializedItem",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddNonSerializedItemResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input required to add a procedure to an incident.",
         "name": "input",
         "type": {
@@ -274,6 +367,37 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "AddProcedureToIncidentResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to add a schedule to a technician.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AddScheduleToTechnicianInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Add a recurring schedule to a technician from an existing schedule template.",
+    "isDeprecated": false,
+    "name": "addScheduleToTechnician",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AddScheduleToTechnicianResult",
         "ofType": null
       }
     }
@@ -887,6 +1011,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The input required to assign consumables.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignConsumablesInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Assign a quantity of a consumable model to an assignee. The assigned quantity is consumed and does not persist on the assignee.",
+    "isDeprecated": false,
+    "name": "assignConsumables",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AssignConsumablesResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input required to assign an inventory item.",
         "name": "input",
         "type": {
@@ -910,6 +1065,37 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "AssignInventoryItemResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to assign non-serialized items.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignNonSerializedItemsInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Assign a quantity of a non-serialized item model to an assignee. The assigned quantity persists on the assignee.",
+    "isDeprecated": false,
+    "name": "assignNonSerializedItems",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AssignNonSerializedItemsResult",
         "ofType": null
       }
     }
@@ -1127,6 +1313,37 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "ClearInventoryItemLinkedDevicesResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to clear all schedules for a technician.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "ClearSchedulesForTechnicianInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Clear (deactivate) all schedules for a technician.",
+    "isDeprecated": false,
+    "name": "clearSchedulesForTechnician",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ClearSchedulesForTechnicianResult",
         "ofType": null
       }
     }
@@ -1665,6 +1882,37 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "CreateCustomObjectRecordDraftResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Upload URL input.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateCustomObjectRecordFileUploadUrlInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create an upload URL for a FILE field value.",
+    "isDeprecated": false,
+    "name": "createCustomObjectRecordFileUploadUrl",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateCustomObjectRecordFileUploadUrlResult",
         "ofType": null
       }
     }
@@ -2893,6 +3141,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The ticket mailbox's input.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateTicketMailboxInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create a ticket mailbox.",
+    "isDeprecated": false,
+    "name": "createTicketMailbox",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateTicketMailboxResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The ticket template's input.",
         "name": "input",
         "type": {
@@ -3420,6 +3699,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The ticket mailbox's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Delete a ticket mailbox. A mailbox referenced by a ticket cannot be deleted.",
+    "isDeprecated": false,
+    "name": "deleteTicketMailbox",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "DeleteTicketMailboxResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input required to delete a time blocker.",
         "name": "input",
         "type": {
@@ -3690,6 +4000,68 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "MergeTicketsResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to move consumables.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "MoveConsumablesInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Move a quantity of a consumable model from one assignation to another.",
+    "isDeprecated": false,
+    "name": "moveConsumables",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "MoveConsumablesResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to move non-serialized items.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "MoveNonSerializedItemsInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Move a quantity of a non-serialized item model from one assignation to another.",
+    "isDeprecated": false,
+    "name": "moveNonSerializedItems",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "MoveNonSerializedItemsResult",
         "ofType": null
       }
     }
@@ -6735,6 +7107,51 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "UpdateTicketFollowersResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The ticket mailbox's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The ticket mailbox's input.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTicketMailboxInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update a ticket mailbox.",
+    "isDeprecated": false,
+    "name": "updateTicketMailbox",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTicketMailboxResult",
         "ofType": null
       }
     }

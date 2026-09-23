@@ -1550,6 +1550,91 @@
       },
       {
         "defaultValue": null,
+        "description": "Filter to apply to the query.",
+        "name": "filter",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "ConsumableAssignationHistoryFilter",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Order by fields.",
+        "name": "orderBy",
+        "type": {
+          "kind": "LIST",
+          "name": null,
+          "ofType": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "ConsumableAssignationHistoryOrderBy",
+              "ofType": null
+            }
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a paginated list of consumable assignation history entries (consumption and relocation events). The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+    "isDeprecated": false,
+    "name": "consumableAssignationHistory",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ConsumableAssignationHistoryConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
         "description": "Filters to apply to the query.",
         "name": "filter",
         "type": {
@@ -2919,6 +3004,271 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "NetworkSiteConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Filters to apply to the query.",
+        "name": "filters",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "NonSerializedItemsFilter",
+          "ofType": null
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a paginated list of non-serialized item assignations.",
+    "isDeprecated": false,
+    "name": "nonSerializedItems",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "NonSerializedItemAssignationConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The assignee to get non-serialized item assignations for.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignationInput",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Filters to apply to the query.",
+        "name": "filters",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "NonSerializedItemsAssignedToAssigneeFilter",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Order by fields.",
+        "name": "orderBy",
+        "type": {
+          "kind": "LIST",
+          "name": null,
+          "ofType": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "NonSerializedItemsAssignedToAssigneeOrderBy",
+              "ofType": null
+            }
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query to get the non-serialized item assignations for an assignee. The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+    "isDeprecated": false,
+    "name": "nonSerializedItemsAssignedToAssignee",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "NonSerializedItemAssignationConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The assignee to get previously assigned non-serialized item assignations for.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignationInput",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Filters to apply to the query.",
+        "name": "filters",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "NonSerializedItemsPreviouslyAssignedToAssigneeFilter",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Order by fields.",
+        "name": "orderBy",
+        "type": {
+          "kind": "LIST",
+          "name": null,
+          "ofType": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "NonSerializedItemsPreviouslyAssignedToAssigneeOrderBy",
+              "ofType": null
+            }
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query to get non-serialized items an assignee has unassigned, with the cumulative quantity unassigned per model. The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+    "isDeprecated": false,
+    "name": "nonSerializedItemsPreviouslyAssignedToAssignee",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "NonSerializedItemAssignationConnection",
         "ofType": null
       }
     }
@@ -5291,6 +5641,16 @@
           "name": "TicketFilter",
           "ofType": null
         }
+      },
+      {
+        "defaultValue": null,
+        "description": "Free-text search. Matches tickets whose title contains the text (case-insensitive) or whose readable ID equals it.",
+        "name": "search",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
       }
     ],
     "deprecationReason": null,
@@ -5801,6 +6161,33 @@
     "type": {
       "kind": "OBJECT",
       "name": "WebhookExecution",
+      "ofType": null
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The webhook trigger request's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a webhook trigger request by unique ID.",
+    "isDeprecated": false,
+    "name": "webhookTriggerRequest",
+    "type": {
+      "kind": "OBJECT",
+      "name": "WebhookTriggerRequest",
       "ofType": null
     }
   },
