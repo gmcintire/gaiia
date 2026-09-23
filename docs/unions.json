@@ -115,6 +115,15 @@
     ]
   },
   {
+    "description": "A target a discount product's applicability is limited to: the selected entity itself, or the selected category type.",
+    "name": "DiscountApplicabilityTarget",
+    "possibleTypes": [
+      "Product",
+      "ProductCategory",
+      "ProductCategoryTypeTarget"
+    ]
+  },
+  {
     "description": "An entity that can have custom fields.",
     "name": "EntityCustomFieldable",
     "possibleTypes": [

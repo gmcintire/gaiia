@@ -8,7 +8,7 @@
 An Elixir client for the [Gaiia](https://gaiia.com) GraphQL API.
 
 Write GraphQL by hand against a small `Req`-based client, or call one of the
-functions generated from the schema — 125 queries and 212 mutations, one
+functions generated from the schema — 130 queries and 225 mutations, one
 function each, with the API's own descriptions and argument types carried
 through as `@doc`.
 

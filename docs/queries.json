@@ -697,6 +697,43 @@
         "type": "String"
       },
       {
+        "description": "Filter to apply to the query.",
+        "name": "filter",
+        "type": "ConsumableAssignationHistoryFilter"
+      },
+      {
+        "description": "Order by fields.",
+        "name": "orderBy",
+        "type": "[ConsumableAssignationHistoryOrderBy!]"
+      }
+    ],
+    "description": "Query a paginated list of consumable assignation history entries (consumption and relocation events). The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+    "name": "consumableAssignationHistory",
+    "type": "ConsumableAssignationHistoryConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": "String"
+      },
+      {
         "description": "Filters to apply to the query.",
         "name": "filter",
         "type": "CoverageAreasQueryFilter"
@@ -1312,6 +1349,122 @@
     "description": "Query to get a list of network sites.",
     "name": "networkSites",
     "type": "NetworkSiteConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": "String"
+      },
+      {
+        "description": "Filters to apply to the query.",
+        "name": "filters",
+        "type": "NonSerializedItemsFilter"
+      }
+    ],
+    "description": "Query a paginated list of non-serialized item assignations.",
+    "name": "nonSerializedItems",
+    "type": "NonSerializedItemAssignationConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "The assignee to get non-serialized item assignations for.",
+        "name": "input",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": "String"
+      },
+      {
+        "description": "Filters to apply to the query.",
+        "name": "filters",
+        "type": "NonSerializedItemsAssignedToAssigneeFilter"
+      },
+      {
+        "description": "Order by fields.",
+        "name": "orderBy",
+        "type": "[NonSerializedItemsAssignedToAssigneeOrderBy!]"
+      }
+    ],
+    "description": "Query to get the non-serialized item assignations for an assignee. The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+    "name": "nonSerializedItemsAssignedToAssignee",
+    "type": "NonSerializedItemAssignationConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "The assignee to get previously assigned non-serialized item assignations for.",
+        "name": "input",
+        "type": "AssignationInput!"
+      },
+      {
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": "String"
+      },
+      {
+        "description": "Filters to apply to the query.",
+        "name": "filters",
+        "type": "NonSerializedItemsPreviouslyAssignedToAssigneeFilter"
+      },
+      {
+        "description": "Order by fields.",
+        "name": "orderBy",
+        "type": "[NonSerializedItemsPreviouslyAssignedToAssigneeOrderBy!]"
+      }
+    ],
+    "description": "Query to get non-serialized items an assignee has unassigned, with the cumulative quantity unassigned per model. The arguments `first` and `last` are mutually exclusive; the same applies to `after` and `before`.",
+    "name": "nonSerializedItemsPreviouslyAssignedToAssignee",
+    "type": "NonSerializedItemAssignationConnection!"
   },
   {
     "args": [
@@ -2345,6 +2498,11 @@
         "description": "Filters the results.",
         "name": "filter",
         "type": "TicketFilter"
+      },
+      {
+        "description": "Free-text search. Matches tickets whose title contains the text (case-insensitive) or whose readable ID equals it.",
+        "name": "search",
+        "type": "String"
       }
     ],
     "description": "Query paginated list of tickets.",
@@ -2572,6 +2730,18 @@
     "description": "Query a webhook execution by unique ID.",
     "name": "webhookExecution",
     "type": "WebhookExecution"
+  },
+  {
+    "args": [
+      {
+        "description": "The webhook trigger request's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Query a webhook trigger request by unique ID.",
+    "name": "webhookTriggerRequest",
+    "type": "WebhookTriggerRequest"
   },
   {
     "args": [

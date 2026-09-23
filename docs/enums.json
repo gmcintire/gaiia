@@ -103,6 +103,26 @@
     ]
   },
   {
+    "description": "The acknowledgeEntityChange mutation's expected error codes.",
+    "name": "AcknowledgeEntityChangeErrorCode",
+    "values": [
+      {
+        "description": "The entity type does not support change acknowledgement.",
+        "name": "UNSUPPORTED_ENTITY_TYPE"
+      }
+    ]
+  },
+  {
+    "description": "The addConsumables mutation's expected error codes.",
+    "name": "AddConsumablesErrorCode",
+    "values": [
+      {
+        "description": "The quantity provided is invalid (must be > 0).",
+        "name": "INVENTORY_INVALID_QUANTITY"
+      }
+    ]
+  },
+  {
     "description": "The addContractSignature mutation's expected error codes.",
     "name": "AddContractSignatureErrorCode",
     "values": [
@@ -287,6 +307,16 @@
     ]
   },
   {
+    "description": "The addNonSerializedItem mutation's expected error codes.",
+    "name": "AddNonSerializedItemErrorCode",
+    "values": [
+      {
+        "description": "The quantity provided is invalid (must be > 0).",
+        "name": "INVALID_QUANTITY"
+      }
+    ]
+  },
+  {
     "description": "The addProcedureToIncident mutation's expected error codes.",
     "name": "AddProcedureToIncidentErrorCode",
     "values": [
@@ -301,6 +331,36 @@
       {
         "description": "Incident procedure template not found.",
         "name": "INCIDENT_PROCEDURE_TEMPLATE_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The addScheduleToTechnician mutation's expected error codes.",
+    "name": "AddScheduleToTechnicianErrorCode",
+    "values": [
+      {
+        "description": "One or more required fields are empty.",
+        "name": "SCHEDULE_FIELDS_EMPTY"
+      },
+      {
+        "description": "The provided count is invalid.",
+        "name": "SCHEDULE_INVALID_COUNT"
+      },
+      {
+        "description": "The provided recurrence input is invalid.",
+        "name": "SCHEDULE_INVALID_RECURRENCE_INPUT"
+      },
+      {
+        "description": "The provided start date is invalid.",
+        "name": "SCHEDULE_INVALID_START_DATE"
+      },
+      {
+        "description": "The schedule template could not be found.",
+        "name": "SCHEDULE_TEMPLATE_NOT_FOUND"
+      },
+      {
+        "description": "The technician could not be found.",
+        "name": "TECHNICIAN_NOT_FOUND"
       }
     ]
   },
@@ -1074,12 +1134,72 @@
     ]
   },
   {
+    "description": "The assignConsumables mutation's expected error codes.",
+    "name": "AssignConsumablesErrorCode",
+    "values": [
+      {
+        "description": "The quantity available at the source assignation is lower than the requested quantity.",
+        "name": "INVENTORY_INSUFFICIENT_QUANTITY"
+      },
+      {
+        "description": "The source assignee type must be INVENTORY_LOCATION or ZONE, or the destination assignee type must not be a location or zone.",
+        "name": "INVENTORY_INVALID_ASSIGNEE_TYPE"
+      },
+      {
+        "description": "The quantity provided is invalid (must be > 0).",
+        "name": "INVENTORY_INVALID_QUANTITY"
+      },
+      {
+        "description": "The specified model is not a consumable model.",
+        "name": "INVENTORY_MODEL_CATEGORY_MISMATCH"
+      },
+      {
+        "description": "The specified model does not exist.",
+        "name": "INVENTORY_MODEL_NOT_FOUND"
+      },
+      {
+        "description": "The consumable assignation does not exist for the specified model and source assignee.",
+        "name": "INVENTORY_SOURCE_ASSIGNATION_NOT_FOUND"
+      }
+    ]
+  },
+  {
     "description": "The assignInventoryItem mutation's expected error codes.",
     "name": "AssignInventoryItemErrorCode",
     "values": [
       {
         "description": "The item is already assigned.",
         "name": "ITEM_IS_ALREADY_ASSIGNED"
+      }
+    ]
+  },
+  {
+    "description": "The assignNonSerializedItems mutation's expected error codes.",
+    "name": "AssignNonSerializedItemsErrorCode",
+    "values": [
+      {
+        "description": "The quantity available at the source assignation is lower than the requested quantity.",
+        "name": "INVENTORY_INSUFFICIENT_QUANTITY"
+      },
+      {
+        "description": "The quantity provided is invalid (must be > 0).",
+        "name": "INVENTORY_INVALID_QUANTITY"
+      },
+      {
+        "description": "The specified model is not a non-serialized item model.",
+        "name": "INVENTORY_MODEL_CATEGORY_MISMATCH"
+      },
+      {
+        "description": "The specified model does not exist.",
+        "name": "INVENTORY_MODEL_NOT_FOUND"
+      },
+      {
+        "description": "The source and destination assignees must be different.",
+        "name": "INVENTORY_SAME_SOURCE_AND_DESTINATION"
+      },
+      {
+        "description": "The non-serialized item assignation does not exist for the specified model and source assignee.",
+        "name": "INVENTORY_SOURCE_ASSIGNATION_NOT_FOUND"
       }
     ]
   },
@@ -1754,6 +1874,16 @@
     ]
   },
   {
+    "description": "The clearSchedulesForTechnician mutation's expected error codes.",
+    "name": "ClearSchedulesForTechnicianErrorCode",
+    "values": [
+      {
+        "description": "The technician could not be found.",
+        "name": "TECHNICIAN_NOT_FOUND"
+      }
+    ]
+  },
+  {
     "description": "The closeTicket mutation's expected error codes.",
     "name": "CloseTicketMutationErrorCode",
     "values": [
@@ -1860,6 +1990,16 @@
       {
         "description": "Default importance - standard delivery.",
         "name": "DEFAULT"
+      }
+    ]
+  },
+  {
+    "description": "Available fields to order consumable assignation history entries by.",
+    "name": "ConsumableAssignationHistoryOrderByField",
+    "values": [
+      {
+        "description": "Order consumable assignation history entries by their creation timestamp.",
+        "name": "CREATED_AT"
       }
     ]
   },
@@ -2392,6 +2532,28 @@
     ]
   },
   {
+    "description": "Error codes for the createCustomObjectRecordFileUploadUrl mutation.",
+    "name": "CreateCustomObjectRecordFileUploadUrlErrorCode",
+    "values": [
+      {
+        "description": "The field definition was not found.",
+        "name": "CUSTOM_OBJECT_FIELD_NOT_FOUND"
+      },
+      {
+        "description": "The provided file name is invalid.",
+        "name": "CUSTOM_OBJECT_FILE_NAME_INVALID"
+      },
+      {
+        "description": "The field definition is not a FILE field.",
+        "name": "CUSTOM_OBJECT_FIELD_NOT_A_FILE_FIELD"
+      },
+      {
+        "description": "The file's extension is not allowed.",
+        "name": "CUSTOM_OBJECT_FILE_EXTENSION_NOT_ALLOWED"
+      }
+    ]
+  },
+  {
     "description": "The create debits' expected error codes.",
     "name": "CreateDebitsErrorCode",
     "values": [
@@ -2796,6 +2958,10 @@
         "name": "EQUIPMENT_WITHOUT_FIELDS"
       },
       {
+        "description": "The manufacturer was not found.",
+        "name": "MANUFACTURER_NOT_FOUND"
+      },
+      {
         "description": "The model already exists.",
         "name": "MODEL_ALREADY_EXISTS"
       },
@@ -3138,6 +3304,18 @@
         "name": "PREPAID_NOT_ALLOWED"
       },
       {
+        "description": "The product family is archived, so it cannot take new members.",
+        "name": "PRODUCT_FAMILY_ARCHIVED"
+      },
+      {
+        "description": "The product's category differs from its family's. Every member of a family shares one category.",
+        "name": "PRODUCT_FAMILY_CATEGORY_MISMATCH"
+      },
+      {
+        "description": "The product family was not found.",
+        "name": "PRODUCT_FAMILY_NOT_FOUND"
+      },
+      {
         "description": "The product slug already exists.",
         "name": "SLUG_ALREADY_EXISTS"
       },
@@ -3170,7 +3348,7 @@
         "name": "CREATION_REASON_EMPTY"
       },
       {
-        "description": "The percentage value has to be an integer between 1 and 100 inclusive.",
+        "description": "The percentage value has to be between 0.01 and 100 inclusive, with up to 2 decimal places.",
         "name": "INVALID_PERCENTAGE_VALUE"
       },
       {
@@ -3200,6 +3378,30 @@
       {
         "description": "The product category for the specified slug was not found.",
         "name": "PRODUCT_CATEGORY_NOT_FOUND"
+      },
+      {
+        "description": "A discount applicability must select at least one category type.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_CATEGORY_TYPES_EMPTY"
+      },
+      {
+        "description": "A discount applicability must select at least one entity.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_ENTITY_IDS_EMPTY"
+      },
+      {
+        "description": "A discount applicability can only be set on a discount product.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_NOT_ALLOWED_FOR_NON_DISCOUNT"
+      },
+      {
+        "description": "The discount applicability's selector field does not match its entity type.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_SELECTOR_ENTITY_TYPE_MISMATCH"
+      },
+      {
+        "description": "A discount applicability cannot select discount products.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_TARGET_CANNOT_BE_DISCOUNT"
+      },
+      {
+        "description": "One or more discount applicability entities were not found.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_TARGET_NOT_FOUND"
       }
     ]
   },
@@ -3446,6 +3648,10 @@
       {
         "description": "A technician team with this name already exists.",
         "name": "TECHNICIAN_TEAM_NAME_ALREADY_EXISTS"
+      },
+      {
+        "description": "One of the referenced technicians could not be found.",
+        "name": "TECHNICIAN_NOT_FOUND"
       }
     ]
   },
@@ -3616,6 +3822,36 @@
     ]
   },
   {
+    "description": "The createTicketMailbox mutation's expected error codes.",
+    "name": "CreateTicketMailboxErrorCode",
+    "values": [
+      {
+        "description": "A mailbox with this reply email address already exists.",
+        "name": "TICKET_MAILBOX_DUPLICATE_REPLY_EMAIL_ADDRESS"
+      },
+      {
+        "description": "The ticket type was not found.",
+        "name": "TICKET_MAILBOX_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "One or more categories were not found.",
+        "name": "TICKET_MAILBOX_CATEGORY_NOT_FOUND"
+      },
+      {
+        "description": "One or more assignees were not found.",
+        "name": "TICKET_MAILBOX_ASSIGNEE_NOT_FOUND"
+      },
+      {
+        "description": "The user group (team) was not found.",
+        "name": "TICKET_MAILBOX_USER_GROUP_NOT_FOUND"
+      },
+      {
+        "description": "The user group (team) is archived.",
+        "name": "TICKET_MAILBOX_USER_GROUP_ARCHIVED"
+      }
+    ]
+  },
+  {
     "description": "The createTicketTemplate mutation's expected error codes.",
     "name": "CreateTicketTemplateErrorCode",
     "values": [
@@ -3736,6 +3972,10 @@
     "description": "The createWorkOrder mutation's expected error codes.",
     "name": "CreateWorkOrderErrorCode",
     "values": [
+      {
+        "description": "The work type could not be found.",
+        "name": "ENTITY_NOT_FOUND"
+      },
       {
         "description": "Only one of accountId or commercialAccountId or networkSiteId is allowed.",
         "name": "ONLY_ONE_LINKED_ENTITY_ALLOWED"
@@ -4231,6 +4471,20 @@
     ]
   },
   {
+    "description": "The deleteTicketMailbox mutation's expected error codes.",
+    "name": "DeleteTicketMailboxErrorCode",
+    "values": [
+      {
+        "description": "The ticket mailbox was not found.",
+        "name": "TICKET_MAILBOX_NOT_FOUND"
+      },
+      {
+        "description": "The ticket mailbox is still referenced by at least one ticket.",
+        "name": "TICKET_MAILBOX_REFERENCED_BY_TICKET"
+      }
+    ]
+  },
+  {
     "description": "The deleteTimeBlocker mutation's error code.",
     "name": "DeleteTimeBlockerErrorCode",
     "values": [
@@ -4341,6 +4595,24 @@
       {
         "description": "The device is downstream of the current device.",
         "name": "DOWNSTREAM"
+      }
+    ]
+  },
+  {
+    "description": "The types of entities a discount product's applicability can be limited to.",
+    "name": "DiscountApplicabilityEntityType",
+    "values": [
+      {
+        "description": "The discount is limited to specific individual products.",
+        "name": "PRODUCT"
+      },
+      {
+        "description": "The discount is limited to the products of specific product categories, resolved when the discount is applied.",
+        "name": "PRODUCT_CATEGORY"
+      },
+      {
+        "description": "The discount is limited to the products of the categories of specific category types, resolved when the discount is applied.",
+        "name": "PRODUCT_CATEGORY_TYPE"
       }
     ]
   },
@@ -4465,6 +4737,16 @@
       {
         "description": "No active technician was found for the provided ID.",
         "name": "TECHNICIAN_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The kinds of tracked changes that can be acknowledged.",
+    "name": "EntityChangeKind",
+    "values": [
+      {
+        "description": "A change to an entity's upstream/downstream device topology.",
+        "name": "TOPOLOGY"
       }
     ]
   },
@@ -5042,16 +5324,6 @@
     ]
   },
   {
-    "description": "The migration operation's expected error codes.",
-    "name": "MigrationOperationErrorCode",
-    "values": [
-      {
-        "description": "This migration operation has been deprecated. Please use the migratoz import flow instead.",
-        "name": "MIGRATION_OPERATION_DEPRECATED"
-      }
-    ]
-  },
-  {
     "description": "The modelFieldImportCsvDocumentation query's expected error codes.",
     "name": "ModelFieldImportCsvDocumentationErrorCode",
     "values": [
@@ -5068,6 +5340,74 @@
       {
         "description": "One of the provided CSV files was not found.",
         "name": "FILE_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The moveConsumables mutation's expected error codes.",
+    "name": "MoveConsumablesErrorCode",
+    "values": [
+      {
+        "description": "The quantity available at the source assignation is lower than the requested quantity.",
+        "name": "INVENTORY_INSUFFICIENT_QUANTITY"
+      },
+      {
+        "description": "The source or destination assignee type is not supported (must be INVENTORY_LOCATION or ZONE).",
+        "name": "INVENTORY_INVALID_ASSIGNEE_TYPE"
+      },
+      {
+        "description": "The quantity provided is invalid (must be > 0).",
+        "name": "INVENTORY_INVALID_QUANTITY"
+      },
+      {
+        "description": "The specified model is not a consumable model.",
+        "name": "INVENTORY_MODEL_CATEGORY_MISMATCH"
+      },
+      {
+        "description": "The specified model does not exist.",
+        "name": "INVENTORY_MODEL_NOT_FOUND"
+      },
+      {
+        "description": "The source and destination assignations are the same.",
+        "name": "INVENTORY_SAME_SOURCE_AND_DESTINATION"
+      },
+      {
+        "description": "The consumable assignation does not exist for the specified model and source assignee.",
+        "name": "INVENTORY_SOURCE_ASSIGNATION_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The moveNonSerializedItems mutation's expected error codes.",
+    "name": "MoveNonSerializedItemsErrorCode",
+    "values": [
+      {
+        "description": "The quantity available at the source assignation is lower than the requested quantity.",
+        "name": "INVENTORY_INSUFFICIENT_QUANTITY"
+      },
+      {
+        "description": "The source or destination assignee type is not supported (must be INVENTORY_LOCATION or ZONE).",
+        "name": "INVENTORY_INVALID_ASSIGNEE_TYPE"
+      },
+      {
+        "description": "The quantity provided is invalid (must be > 0).",
+        "name": "INVENTORY_INVALID_QUANTITY"
+      },
+      {
+        "description": "The specified model is not a non-serialized item model.",
+        "name": "INVENTORY_MODEL_CATEGORY_MISMATCH"
+      },
+      {
+        "description": "The specified model does not exist.",
+        "name": "INVENTORY_MODEL_NOT_FOUND"
+      },
+      {
+        "description": "The source and destination assignations are the same.",
+        "name": "INVENTORY_SAME_SOURCE_AND_DESTINATION"
+      },
+      {
+        "description": "The non-serialized item assignation does not exist for the specified model and source assignee.",
+        "name": "INVENTORY_SOURCE_ASSIGNATION_NOT_FOUND"
       }
     ]
   },
@@ -5153,6 +5493,26 @@
       {
         "description": "Inactive network site status.",
         "name": "INACTIVE"
+      }
+    ]
+  },
+  {
+    "description": "Available fields to order non-serialized items assigned to an assignee by.",
+    "name": "NonSerializedItemsAssignedToAssigneeOrderByField",
+    "values": [
+      {
+        "description": "Order by the model's name.",
+        "name": "NAME"
+      }
+    ]
+  },
+  {
+    "description": "Available fields to order non-serialized items previously assigned to an assignee by.",
+    "name": "NonSerializedItemsPreviouslyAssignedToAssigneeOrderByField",
+    "values": [
+      {
+        "description": "Order by the model's name.",
+        "name": "NAME"
       }
     ]
   },
@@ -5275,7 +5635,7 @@
         "name": "ADDED_BY_PROPERTY_FEE"
       },
       {
-        "description": "The cart item was automatically added by the tenant's global activation fee configuration.",
+        "description": "The cart item was automatically added by the global activation fee configuration.",
         "name": "ADDED_BY_GLOBAL_FEE"
       },
       {
@@ -5293,7 +5653,7 @@
     ]
   },
   {
-    "description": "The product type of a cart item, derived from the tenant's ordering product configuration.",
+    "description": "The product type of a cart item, derived from its add-on group membership or the ordering product configuration.",
     "name": "OrderCartItemType",
     "values": [
       {
@@ -5401,7 +5761,7 @@
         "name": "PROCESSED"
       },
       {
-        "description": "The order has been completed - final successful state (manual action or via tenant setting).",
+        "description": "The order has been completed - final successful state (manual action or via configuration).",
         "name": "COMPLETED"
       },
       {
@@ -5792,6 +6152,10 @@
       {
         "description": "The provided address is included in a planned service area.",
         "name": "ADDRESS_IS_IN_PLANNED_SERVICE_AREA"
+      },
+      {
+        "description": "The provided address is invalid. See the error message for details.",
+        "name": "INVALID_ADDRESS"
       },
       {
         "description": "A failure from custom processing occurred. Retreive customError for more information.",
@@ -6482,7 +6846,7 @@
         "name": "MISSING_OBJECT_ID"
       },
       {
-        "description": "The workflow definition must have an object type to receive an object id.",
+        "description": "Never returned. An object id is accepted whether or not the workflow definition declares an object type.",
         "name": "MISSING_OBJECT_TYPE"
       },
       {
@@ -6812,8 +7176,16 @@
     "name": "TicketOrderByField",
     "values": [
       {
+        "description": "Order by the number of assignees.",
+        "name": "ASSIGNEE_COUNT"
+      },
+      {
         "description": "Map to the createdAt field.",
         "name": "CREATED_AT"
+      },
+      {
+        "description": "Map to the dueDate field. Tickets without a due date come last.",
+        "name": "DUE_DATE"
       },
       {
         "description": "Map to the priority field.",
@@ -6834,6 +7206,10 @@
       {
         "description": "Map to the updatedAt field.",
         "name": "UPDATED_AT"
+      },
+      {
+        "description": "Order by the user group (team) name. Tickets without a user group come last.",
+        "name": "USER_GROUP"
       }
     ]
   },
@@ -6986,6 +7362,28 @@
       {
         "description": "The recurrence start date is invalid.",
         "name": "INVALID_START_DATE"
+      }
+    ]
+  },
+  {
+    "description": "The recurrence frequency for a recurring time blocker.",
+    "name": "TimeBlockerRecurrenceFrequency",
+    "values": [
+      {
+        "description": "The time blocker recurs daily.",
+        "name": "DAILY"
+      },
+      {
+        "description": "The time blocker recurs weekly.",
+        "name": "WEEKLY"
+      },
+      {
+        "description": "The time blocker recurs monthly.",
+        "name": "MONTHLY"
+      },
+      {
+        "description": "The time blocker recurs yearly.",
+        "name": "YEARLY"
       }
     ]
   },
@@ -8216,6 +8614,18 @@
       {
         "description": "The failure code is required when transitioning a payment to FAILED.",
         "name": "PAYMENT_FAILURE_CODE_REQUIRED"
+      },
+      {
+        "description": "The payment already has a different processor transaction id.",
+        "name": "PAYMENT_PROCESSOR_TRANSACTION_ID_ALREADY_SET"
+      },
+      {
+        "description": "The processor transaction id '${processorTransactionId}' is already recorded on another payment.",
+        "name": "PAYMENT_PROCESSOR_TRANSACTION_ID_ALREADY_USED"
+      },
+      {
+        "description": "The field ${field} cannot be set to null.",
+        "name": "PAYMENT_FIELD_NON_NULLABLE"
       }
     ]
   },
@@ -8278,6 +8688,10 @@
         "name": "NAME_EMPTY"
       },
       {
+        "description": "The product's category cannot change while it belongs to a family, since every member shares one.",
+        "name": "CANNOT_CHANGE_CATEGORY_WHILE_IN_FAMILY"
+      },
+      {
         "description": "The product category for the specified slug was not found.",
         "name": "PRODUCT_CATEGORY_NOT_FOUND"
       },
@@ -8300,6 +8714,30 @@
       {
         "description": "One or more tags were not found.",
         "name": "TAGS_NOT_FOUND"
+      },
+      {
+        "description": "A discount applicability must select at least one category type.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_CATEGORY_TYPES_EMPTY"
+      },
+      {
+        "description": "A discount applicability must select at least one entity.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_ENTITY_IDS_EMPTY"
+      },
+      {
+        "description": "A discount applicability can only be set on a discount product.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_NOT_ALLOWED_FOR_NON_DISCOUNT"
+      },
+      {
+        "description": "The discount applicability's selector field does not match its entity type.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_SELECTOR_ENTITY_TYPE_MISMATCH"
+      },
+      {
+        "description": "A discount applicability cannot select discount products.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_TARGET_CANNOT_BE_DISCOUNT"
+      },
+      {
+        "description": "One or more discount applicability entities were not found.",
+        "name": "PRODUCT_DISCOUNT_APPLICABILITY_TARGET_NOT_FOUND"
       },
       {
         "description": "The specification value is invalid.",
@@ -8512,6 +8950,36 @@
       {
         "description": "The ticket followers were not found.",
         "name": "USER_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The updateTicketMailbox mutation's expected error codes.",
+    "name": "UpdateTicketMailboxErrorCode",
+    "values": [
+      {
+        "description": "The ticket mailbox was not found.",
+        "name": "TICKET_MAILBOX_NOT_FOUND"
+      },
+      {
+        "description": "The ticket type was not found.",
+        "name": "TICKET_MAILBOX_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "One or more categories were not found.",
+        "name": "TICKET_MAILBOX_CATEGORY_NOT_FOUND"
+      },
+      {
+        "description": "One or more assignees were not found.",
+        "name": "TICKET_MAILBOX_ASSIGNEE_NOT_FOUND"
+      },
+      {
+        "description": "The user group (team) was not found.",
+        "name": "TICKET_MAILBOX_USER_GROUP_NOT_FOUND"
+      },
+      {
+        "description": "The user group (team) is archived.",
+        "name": "TICKET_MAILBOX_USER_GROUP_ARCHIVED"
       }
     ]
   },
@@ -8986,6 +9454,46 @@
       {
         "description": "Order webhooks by their last update date.",
         "name": "UPDATED_AT"
+      }
+    ]
+  },
+  {
+    "description": "The HTTP methods a webhook trigger can be called with.",
+    "name": "WebhookTriggerMethod",
+    "values": [
+      {
+        "description": "The DELETE method.",
+        "name": "DELETE"
+      },
+      {
+        "description": "The GET method.",
+        "name": "GET"
+      },
+      {
+        "description": "The PATCH method.",
+        "name": "PATCH"
+      },
+      {
+        "description": "The POST method.",
+        "name": "POST"
+      },
+      {
+        "description": "The PUT method.",
+        "name": "PUT"
+      }
+    ]
+  },
+  {
+    "description": "Available fields to order webhook trigger requests.",
+    "name": "WebhookTriggerRequestOrderByField",
+    "values": [
+      {
+        "description": "Order webhook trigger requests by the time they were received.",
+        "name": "REQUESTED_AT"
+      },
+      {
+        "description": "Order webhook trigger requests by the status code they were answered with. The ones still being answered have none, so they sort last ascending and first descending.",
+        "name": "RESPONSE_STATUS_CODE"
       }
     ]
   },

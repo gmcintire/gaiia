@@ -2,6 +2,30 @@
   {
     "args": [
       {
+        "description": "The acknowledgeEntityChange mutation's input.",
+        "name": "input",
+        "type": "AcknowledgeEntityChangeInput!"
+      }
+    ],
+    "description": "Acknowledge a tracked change on an entity, clearing it for all users.",
+    "name": "acknowledgeEntityChange",
+    "type": "AcknowledgeEntityChangeResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to add consumables.",
+        "name": "input",
+        "type": "AddConsumablesInput!"
+      }
+    ],
+    "description": "Add a quantity of a consumable model to an assignation, creating the assignation if it does not already exist.",
+    "name": "addConsumables",
+    "type": "AddConsumablesResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input required to add a customer owned item.",
         "name": "input",
         "type": "AddCustomerOwnedItemInput!"
@@ -98,6 +122,18 @@
   {
     "args": [
       {
+        "description": "The input required to add a non-serialized item.",
+        "name": "input",
+        "type": "AddNonSerializedItemInput!"
+      }
+    ],
+    "description": "Add a quantity of a non-serialized item model to an assignation, creating the assignation if it does not already exist.",
+    "name": "addNonSerializedItem",
+    "type": "AddNonSerializedItemResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input required to add a procedure to an incident.",
         "name": "input",
         "type": "AddProcedureToIncidentInput!"
@@ -106,6 +142,18 @@
     "description": "Add a given procedure to an incident.",
     "name": "addProcedureToIncident",
     "type": "AddProcedureToIncidentResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to add a schedule to a technician.",
+        "name": "input",
+        "type": "AddScheduleToTechnicianInput!"
+      }
+    ],
+    "description": "Add a recurring schedule to a technician from an existing schedule template.",
+    "name": "addScheduleToTechnician",
+    "type": "AddScheduleToTechnicianResult!"
   },
   {
     "args": [
@@ -338,6 +386,18 @@
   {
     "args": [
       {
+        "description": "The input required to assign consumables.",
+        "name": "input",
+        "type": "AssignConsumablesInput!"
+      }
+    ],
+    "description": "Assign a quantity of a consumable model to an assignee. The assigned quantity is consumed and does not persist on the assignee.",
+    "name": "assignConsumables",
+    "type": "AssignConsumablesResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input required to assign an inventory item.",
         "name": "input",
         "type": "AssignInventoryItemInput!"
@@ -346,6 +406,18 @@
     "description": "Assign an inventory item.",
     "name": "assignInventoryItem",
     "type": "AssignInventoryItemResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to assign non-serialized items.",
+        "name": "input",
+        "type": "AssignNonSerializedItemsInput!"
+      }
+    ],
+    "description": "Assign a quantity of a non-serialized item model to an assignee. The assigned quantity persists on the assignee.",
+    "name": "assignNonSerializedItems",
+    "type": "AssignNonSerializedItemsResult!"
   },
   {
     "args": [
@@ -430,6 +502,18 @@
     "description": "Clear all linked devices from an inventory item.",
     "name": "clearInventoryItemLinkedDevices",
     "type": "ClearInventoryItemLinkedDevicesResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to clear all schedules for a technician.",
+        "name": "input",
+        "type": "ClearSchedulesForTechnicianInput!"
+      }
+    ],
+    "description": "Clear (deactivate) all schedules for a technician.",
+    "name": "clearSchedulesForTechnician",
+    "type": "ClearSchedulesForTechnicianResult!"
   },
   {
     "args": [
@@ -637,6 +721,18 @@
     "description": "Create a new draft custom object record. Required fields are not enforced until publish.",
     "name": "createCustomObjectRecordDraft",
     "type": "CreateCustomObjectRecordDraftResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "Upload URL input.",
+        "name": "input",
+        "type": "CreateCustomObjectRecordFileUploadUrlInput!"
+      }
+    ],
+    "description": "Create an upload URL for a FILE field value.",
+    "name": "createCustomObjectRecordFileUploadUrl",
+    "type": "CreateCustomObjectRecordFileUploadUrlResult!"
   },
   {
     "args": [
@@ -1113,6 +1209,18 @@
   {
     "args": [
       {
+        "description": "The ticket mailbox's input.",
+        "name": "input",
+        "type": "CreateTicketMailboxInput!"
+      }
+    ],
+    "description": "Create a ticket mailbox.",
+    "name": "createTicketMailbox",
+    "type": "CreateTicketMailboxResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The ticket template's input.",
         "name": "input",
         "type": "CreateTicketTemplateInput!"
@@ -1317,6 +1425,18 @@
   {
     "args": [
       {
+        "description": "The ticket mailbox's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Delete a ticket mailbox. A mailbox referenced by a ticket cannot be deleted.",
+    "name": "deleteTicketMailbox",
+    "type": "DeleteTicketMailboxResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input required to delete a time blocker.",
         "name": "input",
         "type": "DeleteTimeBlockerInput!"
@@ -1418,6 +1538,30 @@
     "description": "Merge a child ticket into a parent ticket. The child ticket will be closed and archived.",
     "name": "mergeTickets",
     "type": "MergeTicketsResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to move consumables.",
+        "name": "input",
+        "type": "MoveConsumablesInput!"
+      }
+    ],
+    "description": "Move a quantity of a consumable model from one assignation to another.",
+    "name": "moveConsumables",
+    "type": "MoveConsumablesResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to move non-serialized items.",
+        "name": "input",
+        "type": "MoveNonSerializedItemsInput!"
+      }
+    ],
+    "description": "Move a quantity of a non-serialized item model from one assignation to another.",
+    "name": "moveNonSerializedItems",
+    "type": "MoveNonSerializedItemsResult!"
   },
   {
     "args": [
@@ -2585,6 +2729,23 @@
     "description": "Update a ticket's followers.",
     "name": "updateTicketFollowers",
     "type": "UpdateTicketFollowersResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The ticket mailbox's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The ticket mailbox's input.",
+        "name": "input",
+        "type": "UpdateTicketMailboxInput!"
+      }
+    ],
+    "description": "Update a ticket mailbox.",
+    "name": "updateTicketMailbox",
+    "type": "UpdateTicketMailboxResult!"
   },
   {
     "args": [
