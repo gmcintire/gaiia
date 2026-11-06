@@ -248,5 +248,36 @@
       }
     ],
     "name": "UnassignSecondaryTechniciansFromWorkOrderError"
+  },
+  {
+    "description": "The workflow definition's step type.",
+    "fields": [
+      {
+        "description": "The workflow definition step's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The workflow definition step's slug.",
+        "name": "slug",
+        "type": "String!"
+      },
+      {
+        "description": "The reference the step uses to address its node, qualified by its owner. Prefer it over the slug, which identifies a node only within its integration.",
+        "name": "nodeKey",
+        "type": "String"
+      },
+      {
+        "description": "The workflow definition step's parent parallel loop slug.",
+        "name": "parentParallelLoopSlug",
+        "type": "String"
+      },
+      {
+        "description": "The workflow definition step's parent while loop slug.",
+        "name": "parentWhileLoopSlug",
+        "type": "String"
+      }
+    ],
+    "name": "WorkflowDefinitionRepresentationStep"
   }
 ]
