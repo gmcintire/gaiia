@@ -303,6 +303,16 @@
           "name": "String",
           "ofType": null
         }
+      },
+      {
+        "defaultValue": null,
+        "description": "Filters the results.",
+        "name": "filter",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "AccountTypeFilter",
+          "ofType": null
+        }
       }
     ],
     "deprecationReason": null,
@@ -1334,6 +1344,33 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The commercial account's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a commercial account by unique ID.",
+    "isDeprecated": false,
+    "name": "commercialAccount",
+    "type": {
+      "kind": "OBJECT",
+      "name": "CommercialAccount",
+      "ofType": null
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "Returns up to the first `n` elements from the list.",
         "name": "first",
         "type": {
@@ -1595,6 +1632,118 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The conversation ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Get a single conversation by ID.",
+    "isDeprecated": false,
+    "name": "conversation",
+    "type": {
+      "kind": "OBJECT",
+      "name": "Conversation",
+      "ofType": null
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list. Cannot be combined with `last`.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list. Cannot be combined with `first`.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor. Cannot be combined with `before`.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor. Cannot be combined with `after`.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Optional filters to narrow the returned conversations.",
+        "name": "filter",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "ConversationFilter",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Orders the results. Defaults to most recent message first, then most recently created.",
+        "name": "orderBy",
+        "type": {
+          "kind": "LIST",
+          "name": null,
+          "ofType": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "ConversationOrderBy",
+              "ofType": null
+            }
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "List conversations for the current tenant, ordered by most recent message first.",
+    "isDeprecated": false,
+    "name": "conversations",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ConversationConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "Returns up to the first `n` elements from the list.",
         "name": "first",
         "type": {
@@ -1656,6 +1805,33 @@
         "name": "CoverageAreaConnection",
         "ofType": null
       }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The job's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Get an asynchronous create-geofence job by ID. Raises ENTITY_NOT_FOUND when no such job exists for the current tenant.",
+    "isDeprecated": false,
+    "name": "createGeofenceJob",
+    "type": {
+      "kind": "OBJECT",
+      "name": "CreateGeofenceJob",
+      "ofType": null
     }
   },
   {
@@ -1864,6 +2040,33 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The CustomObjectRecordFieldValue's own unique identifier (the id already returned, unconditionally masked, by the normal record/field queries).",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Fetch the decrypted plaintext value of a SECRET custom object record field. This is the only way to retrieve the plaintext — the normal record/field queries always return a masked placeholder for SECRET fields.",
+    "isDeprecated": false,
+    "name": "customObjectRecordFieldSecretValue",
+    "type": {
+      "kind": "SCALAR",
+      "name": "String",
+      "ofType": null
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The object definition's unique identifier.",
         "name": "objectDefinitionId",
         "type": {
@@ -1986,6 +2189,33 @@
           }
         }
       }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The CustomerOwnedItemField's own ID (the id already returned, with its data masked, by the normal customer owned item queries).",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Returns the decrypted value of a customer owned item field of type SECRET, or null when no value is set. This is the only way to retrieve the plaintext value — the normal customer owned item queries always return a masked placeholder for SECRET fields.",
+    "isDeprecated": false,
+    "name": "customerOwnedItemFieldSecretValue",
+    "type": {
+      "kind": "SCALAR",
+      "name": "String",
+      "ofType": null
     }
   },
   {
@@ -2179,6 +2409,33 @@
         "name": "FindAddressResult",
         "ofType": null
       }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The geofence's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Get a geofence by ID. Raises ENTITY_NOT_FOUND when no such geofence exists for the current tenant.",
+    "isDeprecated": false,
+    "name": "geofence",
+    "type": {
+      "kind": "OBJECT",
+      "name": "Geofence",
+      "ofType": null
     }
   },
   {
@@ -2407,6 +2664,33 @@
     "type": {
       "kind": "OBJECT",
       "name": "InventoryItem",
+      "ofType": null
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The InventoryItemField's own ID (the id already returned, unconditionally masked, by the normal inventory item queries).",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Returns the decrypted value of an inventory item field of type SECRET. This is the only way to retrieve the plaintext value — the normal inventory item/field queries always return a masked placeholder for SECRET fields.",
+    "isDeprecated": false,
+    "name": "inventoryItemFieldSecretValue",
+    "type": {
+      "kind": "SCALAR",
+      "name": "String",
       "ofType": null
     }
   },
@@ -4139,10 +4423,28 @@
           "name": "ProductFilter",
           "ofType": null
         }
+      },
+      {
+        "defaultValue": null,
+        "description": "The ordering to apply to the query. Defaults to oldest first.",
+        "name": "orderBy",
+        "type": {
+          "kind": "LIST",
+          "name": null,
+          "ofType": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProductOrderBy",
+              "ofType": null
+            }
+          }
+        }
       }
     ],
     "deprecationReason": null,
-    "description": "Query paginated list of products.",
+    "description": "Query a paginated list of products. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
     "isDeprecated": false,
     "name": "products",
     "type": {
@@ -4151,6 +4453,189 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "ProductConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The project's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a project by unique ID.",
+    "isDeprecated": false,
+    "name": "project",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "Project",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Filters the results.",
+        "name": "filter",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectCustomStatusFilter",
+          "ofType": null
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a paginated list of project custom statuses, ordered by name. Archived statuses are excluded.",
+    "isDeprecated": false,
+    "name": "projectCustomStatuses",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ProjectCustomStatusConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Orders the results by the given fields.",
+        "name": "orderBy",
+        "type": {
+          "kind": "LIST",
+          "name": null,
+          "ofType": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectTemplateOrderBy",
+              "ofType": null
+            }
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Filters the results.",
+        "name": "filter",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "ProjectTemplateFilter",
+          "ofType": null
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query the paginated list of project templates (project types).",
+    "isDeprecated": false,
+    "name": "projectTemplates",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ProjectTemplateConnection",
         "ofType": null
       }
     }
@@ -5613,6 +6098,63 @@
           "name": "String",
           "ofType": null
         }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query paginated list of the stored user group notification settings. Archived user groups are left out, and a combination without a setting is disabled.",
+    "isDeprecated": false,
+    "name": "ticketUserGroupNotificationSettings",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "TicketUserGroupNotificationSettingConnection",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
       },
       {
         "defaultValue": null,
@@ -6607,6 +7149,33 @@
         "name": "WorkTypeConnection",
         "ofType": null
       }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The workflow's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a workflow by unique ID.",
+    "isDeprecated": false,
+    "name": "workflow",
+    "type": {
+      "kind": "OBJECT",
+      "name": "Workflow",
+      "ofType": null
     }
   },
   {

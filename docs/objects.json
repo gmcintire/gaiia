@@ -137,9 +137,19 @@
             "description": "Returns the elements that come before the specified cursor.",
             "name": "before",
             "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "EntityNoteFilter"
+          },
+          {
+            "description": "Orders the results. Defaults to oldest first.",
+            "name": "orderBy",
+            "type": "[NoteOrderBy!]"
           }
         ],
-        "description": "The account's notes.",
+        "description": "The account's notes. Without a filter, it includes replies and deleted notes.",
         "name": "notes",
         "type": "NoteConnection!"
       },
@@ -1381,6 +1391,17 @@
     "name": "AcknowledgeEntityChangeResult"
   },
   {
+    "description": "The payload for the ACTIVE_IP_CONFLICT error.",
+    "fields": [
+      {
+        "description": "The conflicting active IP assignments' unique IDs.",
+        "name": "conflictingAssignationIds",
+        "type": "[GlobalID!]!"
+      }
+    ],
+    "name": "ActiveIpConflictErrorPayload"
+  },
+  {
     "description": "Activity information. An activity is a raw record of an action that has taken place in the system. Not to be confused with an entity update, which is specific information about a change to an entity.",
     "fields": [
       {
@@ -2297,6 +2318,16 @@
         "type": "Int"
       },
       {
+        "description": "The appointment configuration's treatment of the drive from the base location to the first work order of the day in auto-assign.",
+        "name": "autoAssignShiftStartTravelMode",
+        "type": "AutoAssignShiftTravelMode!"
+      },
+      {
+        "description": "The appointment configuration's treatment of the drive from the last work order of the day back to the base location in auto-assign; only applies while return to base is enabled for the tenant.",
+        "name": "autoAssignShiftEndTravelMode",
+        "type": "AutoAssignShiftTravelMode!"
+      },
+      {
         "description": "The appointment configuration's arrival windows.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindow!]!"
@@ -2399,12 +2430,86 @@
         "type": "Int!"
       },
       {
+        "description": "The appointment settings' treatment of the drive from the base location to the first work order of the day in auto-assign.",
+        "name": "autoAssignShiftStartTravelMode",
+        "type": "AutoAssignShiftTravelMode!"
+      },
+      {
+        "description": "The appointment settings' treatment of the drive from the last work order of the day back to the base location in auto-assign; only applies while return to base is enabled for the tenant.",
+        "name": "autoAssignShiftEndTravelMode",
+        "type": "AutoAssignShiftTravelMode!"
+      },
+      {
         "description": "The appointment settings' arrival windows, resolved for the requested work type.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindow!]!"
       }
     ],
     "name": "AppointmentSettings"
+  },
+  {
+    "description": "The archiveAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ArchiveAccountStatusErrorCode!"
+      }
+    ],
+    "name": "ArchiveAccountStatusError"
+  },
+  {
+    "description": "The archiveAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The archived account status.",
+        "name": "accountStatus",
+        "type": "AccountStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ArchiveAccountStatusError!]"
+      }
+    ],
+    "name": "ArchiveAccountStatusResult"
+  },
+  {
+    "description": "The archiveAccountType mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ArchiveAccountTypeErrorCode!"
+      }
+    ],
+    "name": "ArchiveAccountTypeError"
+  },
+  {
+    "description": "The archiveAccountType mutation's result.",
+    "fields": [
+      {
+        "description": "The archived account type.",
+        "name": "accountType",
+        "type": "AccountType"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ArchiveAccountTypeError!]"
+      }
+    ],
+    "name": "ArchiveAccountTypeResult"
   },
   {
     "description": "The archiveAddress mutation's expected error when an entity is linked.",
@@ -2490,6 +2595,70 @@
       }
     ],
     "name": "ArchiveBundleResult"
+  },
+  {
+    "description": "The archiveCancellationReason mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ArchiveCancellationReasonErrorCode!"
+      }
+    ],
+    "name": "ArchiveCancellationReasonError"
+  },
+  {
+    "description": "The archiveCancellationReason mutation's result.",
+    "fields": [
+      {
+        "description": "The archived cancellation reason.",
+        "name": "cancellationReason",
+        "type": "CancellationReason"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ArchiveCancellationReasonError!]"
+      }
+    ],
+    "name": "ArchiveCancellationReasonResult"
+  },
+  {
+    "description": "The archiveCommercialAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ArchiveCommercialAccountStatusErrorCode!"
+      }
+    ],
+    "name": "ArchiveCommercialAccountStatusError"
+  },
+  {
+    "description": "The archiveCommercialAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The archived commercial account status.",
+        "name": "commercialAccountStatus",
+        "type": "CommercialAccountCustomStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ArchiveCommercialAccountStatusError!]"
+      }
+    ],
+    "name": "ArchiveCommercialAccountStatusResult"
   },
   {
     "description": "The archiveCoverageAreas mutation's expected error.",
@@ -3202,6 +3371,22 @@
       }
     ],
     "name": "AssignInventoryItemResult"
+  },
+  {
+    "description": "The assignInventoryItems mutation's result.",
+    "fields": [
+      {
+        "description": "The resolved inventory items' assignations.",
+        "name": "inventoryAssignations",
+        "type": "[InventoryAssignation!]!"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[AssignInventoryItemError!]"
+      }
+    ],
+    "name": "AssignInventoryItemsResult"
   },
   {
     "description": "The assignNonSerializedItems mutation's expected error.",
@@ -4334,7 +4519,7 @@
     "description": "The bundle.",
     "fields": [
       {
-        "description": "The bundle's ID.",
+        "description": "Unique ID.",
         "name": "id",
         "type": "GlobalID!"
       },
@@ -4688,6 +4873,11 @@
         "type": "Boolean!"
       },
       {
+        "description": "Whether the client portal shows an optional free-text field when a customer picks this reason.",
+        "name": "asksForDescription",
+        "type": "Boolean!"
+      },
+      {
         "description": "The creation timestamp.",
         "name": "createdAt",
         "type": "DateTime!"
@@ -4746,7 +4936,8 @@
     "description": "A translation of a cancellation reason.",
     "fields": [
       {
-        "description": "The language of the translation.",
+        "deprecationReason": "Use languageCode instead.",
+        "description": "The language of the translation, in lowercase (en, fr).",
         "name": "language",
         "type": "String!"
       },
@@ -4757,22 +4948,6 @@
       }
     ],
     "name": "CancellationReasonTranslation"
-  },
-  {
-    "description": "A categoryFieldImportCsvDocumentation query's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The error's code.",
-        "name": "code",
-        "type": "CategoryFieldImportCsvDocumentationErrorCode!"
-      }
-    ],
-    "name": "CategoryFieldImportCsvDocumentationError"
   },
   {
     "description": "The clearInventoryItemLinkedDevices mutation's result.",
@@ -4998,9 +5173,19 @@
             "description": "Returns the elements that come before the specified cursor.",
             "name": "before",
             "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "EntityNoteFilter"
+          },
+          {
+            "description": "Orders the results. Defaults to oldest first.",
+            "name": "orderBy",
+            "type": "[NoteOrderBy!]"
           }
         ],
-        "description": "The commercial account's notes.",
+        "description": "The commercial account's notes. Without a filter, it includes replies and deleted notes.",
         "name": "notes",
         "type": "NoteConnection!"
       },
@@ -5859,6 +6044,11 @@
         "type": "DateTime"
       },
       {
+        "description": "The contract's creator.",
+        "name": "creator",
+        "type": "User"
+      },
+      {
         "description": "The contract's creation date and time.",
         "name": "createdAt",
         "type": "DateTime!"
@@ -5925,6 +6115,164 @@
     "name": "ContractUploadUrl"
   },
   {
+    "description": "A conversation with a customer, either held natively in gaiia or imported from an external system.",
+    "fields": [
+      {
+        "description": "Unique conversation ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "Whether the conversation is native to gaiia or imported from an external system.",
+        "name": "type",
+        "type": "ConversationType!"
+      },
+      {
+        "description": "The channel the conversation took place on.",
+        "name": "channel",
+        "type": "ConversationChannel!"
+      },
+      {
+        "description": "The current status of the conversation.",
+        "name": "status",
+        "type": "ConversationStatus!"
+      },
+      {
+        "description": "Who initiated the conversation (INBOUND = customer, OUTBOUND = tenant).",
+        "name": "direction",
+        "type": "ConversationMessageDirection!"
+      },
+      {
+        "description": "The tenant's address/number for this conversation.",
+        "name": "tenantAddress",
+        "type": "String!"
+      },
+      {
+        "description": "The customer's address/number.",
+        "name": "customerAddress",
+        "type": "String!"
+      },
+      {
+        "description": "Optional conversation title.",
+        "name": "title",
+        "type": "String"
+      },
+      {
+        "description": "Optional free-text summary of the conversation.",
+        "name": "summary",
+        "type": "String"
+      },
+      {
+        "description": "The external system's details, set only when the conversation is IMPORTED.",
+        "name": "imported",
+        "type": "ImportedConversationDetail"
+      },
+      {
+        "description": "The user assigned to this conversation.",
+        "name": "assignee",
+        "type": "User"
+      },
+      {
+        "description": "The linked account.",
+        "name": "linkedAccount",
+        "type": "ConversationLinkedAccount"
+      },
+      {
+        "description": "The last inbound message timestamp.",
+        "name": "lastInboundAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "The last outbound message timestamp.",
+        "name": "lastOutboundAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "When the conversation started awaiting a reply: the time of the customer's first message that no reply has answered yet. Null when the conversation is not awaiting reply.",
+        "name": "awaitingReplySince",
+        "type": "DateTime"
+      },
+      {
+        "description": "When the current user last marked the conversation as read.",
+        "name": "lastReadAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "Whether the current user has read the conversation.",
+        "name": "isRead",
+        "type": "Boolean!"
+      },
+      {
+        "description": "When the conversation was created.",
+        "name": "createdAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "When the conversation was last updated.",
+        "name": "updatedAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "When the conversation was resolved.",
+        "name": "resolvedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "When the conversation was closed. For an IMPORTED conversation, when it ended; null if no end time was sent.",
+        "name": "closedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "When the last message was sent or received.",
+        "name": "lastMessageAt",
+        "type": "DateTime"
+      }
+    ],
+    "name": "Conversation"
+  },
+  {
+    "description": "To paginate through conversations.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[ConversationEdge!]!"
+      },
+      {
+        "description": "Current page's conversations.",
+        "name": "nodes",
+        "type": "[Conversation!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of conversations.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "ConversationConnection"
+  },
+  {
+    "description": "Contains a conversation and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The conversation.",
+        "name": "node",
+        "type": "Conversation!"
+      },
+      {
+        "description": "The current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      }
+    ],
+    "name": "ConversationEdge"
+  },
+  {
     "description": "Define a convertTicketToExternal mutation's expected error.",
     "fields": [
       {
@@ -5989,6 +6337,11 @@
         "description": "The coverage area's name.",
         "name": "name",
         "type": "String!"
+      },
+      {
+        "description": "The coverage area's optional label.",
+        "name": "label",
+        "type": "String"
       },
       {
         "description": "The coverage area's editing mode, determined by whether it was created manually or imported from a file.",
@@ -6261,6 +6614,70 @@
     "name": "CreateAccountServiceCancellationReasonResult"
   },
   {
+    "description": "The createAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateAccountStatusErrorCode!"
+      }
+    ],
+    "name": "CreateAccountStatusError"
+  },
+  {
+    "description": "The createAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The created account status.",
+        "name": "accountStatus",
+        "type": "AccountStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateAccountStatusError!]"
+      }
+    ],
+    "name": "CreateAccountStatusResult"
+  },
+  {
+    "description": "The createAccountType mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateAccountTypeErrorCode!"
+      }
+    ],
+    "name": "CreateAccountTypeError"
+  },
+  {
+    "description": "The createAccountType mutation's result.",
+    "fields": [
+      {
+        "description": "The created account type.",
+        "name": "accountType",
+        "type": "AccountType"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateAccountTypeError!]"
+      }
+    ],
+    "name": "CreateAccountTypeResult"
+  },
+  {
     "description": "The createAddress mutation's expected error when the address input is invalid.",
     "fields": [
       {
@@ -6392,6 +6809,102 @@
       }
     ],
     "name": "CreateBundleResult"
+  },
+  {
+    "description": "The createCancellationReason mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateCancellationReasonErrorCode!"
+      }
+    ],
+    "name": "CreateCancellationReasonError"
+  },
+  {
+    "description": "The createCancellationReason mutation's result.",
+    "fields": [
+      {
+        "description": "The created cancellation reason.",
+        "name": "cancellationReason",
+        "type": "CancellationReason"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateCancellationReasonError!]"
+      }
+    ],
+    "name": "CreateCancellationReasonResult"
+  },
+  {
+    "description": "The createCommercialAccount mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateCommercialAccountErrorCode!"
+      }
+    ],
+    "name": "CreateCommercialAccountError"
+  },
+  {
+    "description": "The createCommercialAccount mutation's result.",
+    "fields": [
+      {
+        "description": "The created commercial account.",
+        "name": "commercialAccount",
+        "type": "CommercialAccount"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateCommercialAccountError!]"
+      }
+    ],
+    "name": "CreateCommercialAccountResult"
+  },
+  {
+    "description": "The createCommercialAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateCommercialAccountStatusErrorCode!"
+      }
+    ],
+    "name": "CreateCommercialAccountStatusError"
+  },
+  {
+    "description": "The createCommercialAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The created commercial account status.",
+        "name": "commercialAccountStatus",
+        "type": "CommercialAccountCustomStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateCommercialAccountStatusError!]"
+      }
+    ],
+    "name": "CreateCommercialAccountStatusResult"
   },
   {
     "description": "The createContract mutation's expected error.",
@@ -6698,6 +7211,38 @@
     "name": "CreateDocumentError"
   },
   {
+    "description": "The createDocumentFromTemplate mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateDocumentFromTemplateErrorCode!"
+      }
+    ],
+    "name": "CreateDocumentFromTemplateError"
+  },
+  {
+    "description": "The createDocumentFromTemplate mutation's result.",
+    "fields": [
+      {
+        "description": "The GlobalID of the created document. Use it in sendCommunication's documentAttachments to email the document.",
+        "name": "documentId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateDocumentFromTemplateError!]!"
+      }
+    ],
+    "name": "CreateDocumentFromTemplateResult"
+  },
+  {
     "description": "The createDocument mutation's result.",
     "fields": [
       {
@@ -6826,6 +7371,42 @@
     "name": "CreateGeofenceError"
   },
   {
+    "description": "An asynchronous job that creates a geofence from an uploaded GeoJSON file.",
+    "fields": [
+      {
+        "description": "The job's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The job's current status.",
+        "name": "status",
+        "type": "CreateGeofenceJobStatus!"
+      },
+      {
+        "description": "The geofence the job created. Null until the job succeeds.",
+        "name": "geofence",
+        "type": "Geofence"
+      },
+      {
+        "description": "Why the job failed. Null unless the status is FAILED.",
+        "name": "errorCode",
+        "type": "CreateGeofenceJobErrorCode"
+      },
+      {
+        "description": "The date and time the job was started.",
+        "name": "createdAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The date and time the job was last updated.",
+        "name": "updatedAt",
+        "type": "DateTime!"
+      }
+    ],
+    "name": "CreateGeofenceJob"
+  },
+  {
     "description": "The createGeofence mutation's result.",
     "fields": [
       {
@@ -6840,6 +7421,70 @@
       }
     ],
     "name": "CreateGeofenceResult"
+  },
+  {
+    "description": "The createGeofenceUploadUrl mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateGeofenceUploadUrlErrorCode!"
+      }
+    ],
+    "name": "CreateGeofenceUploadUrlError"
+  },
+  {
+    "description": "The createGeofenceUploadUrl mutation's result.",
+    "fields": [
+      {
+        "description": "The upload destination, null if the mutation failed.",
+        "name": "uploadUrl",
+        "type": "GeofenceUploadUrl"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateGeofenceUploadUrlError!]"
+      }
+    ],
+    "name": "CreateGeofenceUploadUrlResult"
+  },
+  {
+    "description": "An expected error when importing a conversation.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CreateImportedConversationErrorCode!"
+      }
+    ],
+    "name": "CreateImportedConversationError"
+  },
+  {
+    "description": "The result of importing a conversation.",
+    "fields": [
+      {
+        "description": "The created conversation.",
+        "name": "conversation",
+        "type": "Conversation"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CreateImportedConversationError!]"
+      }
+    ],
+    "name": "CreateImportedConversationResult"
   },
   {
     "description": "A createIncident mutation's expected error.",
@@ -9395,7 +10040,7 @@
         "type": "GlobalID!"
       },
       {
-        "description": "The field's input data.",
+        "description": "The field's input data. A SECRET field's value is always returned masked.",
         "name": "data",
         "type": "String!"
       },
@@ -9533,6 +10178,11 @@
       {
         "description": "The debit's voided date and time.",
         "name": "voidedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "The debit's reversed date and time. Null when the debit has not been reversed.",
+        "name": "reversedAt",
         "type": "DateTime"
       },
       {
@@ -9700,6 +10350,38 @@
       }
     ],
     "name": "DeleteIncidentProcedureResult"
+  },
+  {
+    "description": "The deleteInventoryItems mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "DeleteInventoryItemsErrorCode!"
+      }
+    ],
+    "name": "DeleteInventoryItemsError"
+  },
+  {
+    "description": "The deleteInventoryItems mutation's result.",
+    "fields": [
+      {
+        "description": "The deleted inventory items.",
+        "name": "inventoryItems",
+        "type": "[InventoryItem!]!"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[DeleteInventoryItemsError!]"
+      }
+    ],
+    "name": "DeleteInventoryItemsResult"
   },
   {
     "description": "The deleteNote mutation's expected error.",
@@ -10121,6 +10803,16 @@
         "description": "The discount's amount remaining.",
         "name": "amountRemaining",
         "type": "Int!"
+      },
+      {
+        "description": "The discount's reversed date and time. Null when the discount has not been reversed.",
+        "name": "reversedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "The discount's voided date and time. Null when the discount has not been voided.",
+        "name": "voidedAt",
+        "type": "DateTime"
       },
       {
         "description": "The discount's reason.",
@@ -11380,12 +12072,59 @@
         "type": "GlobalID!"
       },
       {
-        "description": "The geofence's schema, containing its geographical boundary details.",
+        "description": "The geofence's schema, containing its geographical boundary details. Empty for a geofence created from an uploaded file via startCreateGeofenceJob; the uploaded file is the source of truth in that case.",
         "name": "schema",
         "type": "JSONObject!"
+      },
+      {
+        "description": "A signed URL for the uploaded GeoJSON file, or null for a geofence created from an inline schema.",
+        "name": "geojsonUrl",
+        "type": "String"
       }
     ],
     "name": "Geofence"
+  },
+  {
+    "description": "An upload destination for a geofence's GeoJSON file.",
+    "fields": [
+      {
+        "description": "The URL to upload the GeoJSON file to with an HTTP PUT. Expires 5 minutes after this mutation runs.",
+        "name": "url",
+        "type": "String!"
+      },
+      {
+        "description": "The uploaded file's key. Pass it to startCreateGeofenceJob.",
+        "name": "fileKey",
+        "type": "String!"
+      }
+    ],
+    "name": "GeofenceUploadUrl"
+  },
+  {
+    "description": "The external system's details of an imported conversation.",
+    "fields": [
+      {
+        "description": "The external system the conversation was imported from, e.g. `five9`.",
+        "name": "source",
+        "type": "String!"
+      },
+      {
+        "description": "The conversation's ID in the external system, unique per source.",
+        "name": "externalId",
+        "type": "String!"
+      },
+      {
+        "description": "A link to the conversation in the external system.",
+        "name": "externalUrl",
+        "type": "String"
+      },
+      {
+        "description": "Additional data from the external system, as a flat object of string, number, boolean or null values.",
+        "name": "fields",
+        "type": "JSONObject!"
+      }
+    ],
+    "name": "ImportedConversationDetail"
   },
   {
     "description": "Incident managed by the provisioning-service.",
@@ -11464,6 +12203,11 @@
       },
       {
         "args": [
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "IncidentImpactedAccountFilter"
+          },
           {
             "description": "Returns up to the first `n` elements from the list.",
             "name": "first",
@@ -11681,6 +12425,11 @@
         "description": "The impacted account.",
         "name": "account",
         "type": "Account!"
+      },
+      {
+        "description": "The addition the account was added to the incident in, shared by the accounts added together. Null for accounts added before additions existed.",
+        "name": "addition",
+        "type": "IncidentImpactedAccountsAddition"
       }
     ],
     "name": "IncidentImpactedAccount"
@@ -11726,6 +12475,17 @@
       }
     ],
     "name": "IncidentImpactedAccountEdge"
+  },
+  {
+    "description": "A group of impacted accounts added to an incident together.",
+    "fields": [
+      {
+        "description": "Unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "name": "IncidentImpactedAccountsAddition"
   },
   {
     "description": "Definition of an incident impacted network site.",
@@ -13126,38 +13886,6 @@
     "name": "InventoryItemsCreationResult"
   },
   {
-    "description": "An inventoryItemsImportCsvDocumentation query's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The error's code.",
-        "name": "code",
-        "type": "InventoryItemsImportCsvDocumentationErrorCode!"
-      }
-    ],
-    "name": "InventoryItemsImportCsvDocumentationError"
-  },
-  {
-    "description": "Define an inventoryItemsImportCsvTemplate mutation's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The error's code.",
-        "name": "code",
-        "type": "InventoryItemsImportCsvTemplateErrorCode!"
-      }
-    ],
-    "name": "InventoryItemsImportCsvTemplateError"
-  },
-  {
     "description": "Represents a location where inventory items can be stored.",
     "fields": [
       {
@@ -14392,7 +15120,7 @@
         "type": "DateTime!"
       },
       {
-        "description": "The open timestamp. Null for draft invoices.",
+        "description": "The open timestamp. Null for draft and held invoices.",
         "name": "openedAt",
         "type": "DateTime"
       },
@@ -14957,38 +15685,6 @@
     "name": "MergeTicketsResult"
   },
   {
-    "description": "A modelFieldImportCsvDocumentation query's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The error's code.",
-        "name": "code",
-        "type": "ModelFieldImportCsvDocumentationErrorCode!"
-      }
-    ],
-    "name": "ModelFieldImportCsvDocumentationError"
-  },
-  {
-    "description": "A modelImportCsvDocumentation query's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The error's code.",
-        "name": "code",
-        "type": "ModelImportCsvDocumentationErrorCode!"
-      }
-    ],
-    "name": "ModelImportCsvDocumentationError"
-  },
-  {
     "description": "The quantity of each model in the inventory location.",
     "fields": [
       {
@@ -15243,6 +15939,23 @@
         "description": "Create a new project.",
         "name": "createProject",
         "type": "CreateProjectResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The project's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to update a project.",
+            "name": "input",
+            "type": "UpdateProjectInput!"
+          }
+        ],
+        "description": "Update an existing project.",
+        "name": "updateProject",
+        "type": "UpdateProjectResult!"
       },
       {
         "args": [
@@ -15760,6 +16473,242 @@
       {
         "args": [
           {
+            "description": "The input required to create a commercial account.",
+            "name": "input",
+            "type": "CreateCommercialAccountInput!"
+          }
+        ],
+        "description": "Create a commercial account.",
+        "name": "createCommercialAccount",
+        "type": "CreateCommercialAccountResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to update a commercial account.",
+            "name": "input",
+            "type": "UpdateCommercialAccountInput!"
+          }
+        ],
+        "description": "Update a commercial account.",
+        "name": "updateCommercialAccount",
+        "type": "UpdateCommercialAccountResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to create a commercial account status.",
+            "name": "input",
+            "type": "CreateCommercialAccountStatusInput!"
+          }
+        ],
+        "description": "Create a commercial account status.",
+        "name": "createCommercialAccountStatus",
+        "type": "CreateCommercialAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The commercial account status's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to update a commercial account status.",
+            "name": "input",
+            "type": "UpdateCommercialAccountStatusInput!"
+          }
+        ],
+        "description": "Update a commercial account status.",
+        "name": "updateCommercialAccountStatus",
+        "type": "UpdateCommercialAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The commercial account status's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Archive a commercial account status.",
+        "name": "archiveCommercialAccountStatus",
+        "type": "ArchiveCommercialAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The commercial account status's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Unarchive a commercial account status.",
+        "name": "unarchiveCommercialAccountStatus",
+        "type": "UnarchiveCommercialAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to create an account status.",
+            "name": "input",
+            "type": "CreateAccountStatusInput!"
+          }
+        ],
+        "description": "Create an account status.",
+        "name": "createAccountStatus",
+        "type": "CreateAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The account status's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to update an account status.",
+            "name": "input",
+            "type": "UpdateAccountStatusInput!"
+          }
+        ],
+        "description": "Update an account status.",
+        "name": "updateAccountStatus",
+        "type": "UpdateAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The account status's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Archive an account status.",
+        "name": "archiveAccountStatus",
+        "type": "ArchiveAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The account status's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Unarchive an account status.",
+        "name": "unarchiveAccountStatus",
+        "type": "UnarchiveAccountStatusResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to create a cancellation reason.",
+            "name": "input",
+            "type": "CreateCancellationReasonInput!"
+          }
+        ],
+        "description": "Create a cancellation reason.",
+        "name": "createCancellationReason",
+        "type": "CreateCancellationReasonResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The cancellation reason's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to update a cancellation reason.",
+            "name": "input",
+            "type": "UpdateCancellationReasonInput!"
+          }
+        ],
+        "description": "Update a cancellation reason.",
+        "name": "updateCancellationReason",
+        "type": "UpdateCancellationReasonResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The cancellation reason's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Archive a cancellation reason.",
+        "name": "archiveCancellationReason",
+        "type": "ArchiveCancellationReasonResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The cancellation reason's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Unarchive a cancellation reason.",
+        "name": "unarchiveCancellationReason",
+        "type": "UnarchiveCancellationReasonResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to create an account type.",
+            "name": "input",
+            "type": "CreateAccountTypeInput!"
+          }
+        ],
+        "description": "Create an account type.",
+        "name": "createAccountType",
+        "type": "CreateAccountTypeResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The account type's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to update an account type.",
+            "name": "input",
+            "type": "UpdateAccountTypeInput!"
+          }
+        ],
+        "description": "Update an account type.",
+        "name": "updateAccountType",
+        "type": "UpdateAccountTypeResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The account type's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Archive an account type.",
+        "name": "archiveAccountType",
+        "type": "ArchiveAccountTypeResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The account type's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Unarchive an account type.",
+        "name": "unarchiveAccountType",
+        "type": "UnarchiveAccountTypeResult!"
+      },
+      {
+        "args": [
+          {
             "description": "The input required to assign billing subscriptions.",
             "name": "input",
             "type": "AssignBillingSubscriptionsMutationInput!"
@@ -15825,7 +16774,7 @@
             "type": "UpdatePaymentsInput!"
           }
         ],
-        "description": "Update payments' status.",
+        "description": "Update payments' status. Partial success: each payment is updated on its own, and its result holds either the updated payment or its errors.",
         "name": "updatePayments",
         "type": "UpdatePaymentsResult!"
       },
@@ -16302,6 +17251,30 @@
         "type": "CreateGeofenceResult!"
       },
       {
+        "args": [
+          {
+            "description": "The input required to create a geofence upload URL.",
+            "name": "input",
+            "type": "CreateGeofenceUploadUrlInput!"
+          }
+        ],
+        "description": "Create an upload URL for a geofence's GeoJSON file. Upload the file with an HTTP PUT, then pass the file key to startCreateGeofenceJob.",
+        "name": "createGeofenceUploadUrl",
+        "type": "CreateGeofenceUploadUrlResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to start a create-geofence job.",
+            "name": "input",
+            "type": "StartCreateGeofenceJobInput!"
+          }
+        ],
+        "description": "Start an asynchronous job that creates a geofence from an uploaded GeoJSON file. Use this when createGeofence fails with TOO_LARGE_FOR_SYNCHRONOUS_CREATE.",
+        "name": "startCreateGeofenceJob",
+        "type": "StartCreateGeofenceJobResult!"
+      },
+      {
         "name": "integrationNone",
         "type": "Int!"
       },
@@ -16376,6 +17349,18 @@
         "description": "Assign an inventory item.",
         "name": "assignInventoryItem",
         "type": "AssignInventoryItemResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The assignInventoryItems mutation's input.",
+            "name": "input",
+            "type": "AssignInventoryItemsInput!"
+          }
+        ],
+        "description": "Update the assignee and/or the inventory role of many inventory items at once.",
+        "name": "assignInventoryItems",
+        "type": "AssignInventoryItemsResult!"
       },
       {
         "args": [
@@ -16476,6 +17461,18 @@
       {
         "args": [
           {
+            "description": "The deleteInventoryItems mutation's input.",
+            "name": "input",
+            "type": "DeleteInventoryItemsInput!"
+          }
+        ],
+        "description": "Delete inventory items. Inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
+        "name": "deleteInventoryItems",
+        "type": "DeleteInventoryItemsResult!"
+      },
+      {
+        "args": [
+          {
             "description": "The input required to move consumables.",
             "name": "input",
             "type": "MoveConsumablesInput!"
@@ -16561,6 +17558,47 @@
         "description": "Send a communication to an entity using a template.",
         "name": "sendCommunication",
         "type": "SendCommunicationResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The input required to create a document from a template.",
+            "name": "input",
+            "type": "CreateDocumentFromTemplateInput!"
+          }
+        ],
+        "description": "Render a custom document template as a PDF and add it to an entity's documents.",
+        "name": "createDocumentFromTemplate",
+        "type": "CreateDocumentFromTemplateResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The conversation to import.",
+            "name": "input",
+            "type": "CreateImportedConversationInput!"
+          }
+        ],
+        "description": "Import a conversation that took place in an external system. A source and external ID that already exist are rejected; use updateImportedConversation to change an imported conversation. Find an existing one with the `conversations` query's `imported` filter.",
+        "name": "createImportedConversation",
+        "type": "CreateImportedConversationResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The conversation ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The fields to update.",
+            "name": "input",
+            "type": "UpdateImportedConversationInput!"
+          }
+        ],
+        "description": "Update the mutable fields of an imported conversation, by its ID.",
+        "name": "updateImportedConversation",
+        "type": "UpdateImportedConversationResult!"
       },
       {
         "args": [
@@ -16662,6 +17700,18 @@
         "description": "Set a product version as primary.",
         "name": "setPrimaryProductVersion",
         "type": "SetPrimaryProductVersionResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The bundle's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Bring an archived bundle back.",
+        "name": "unarchiveBundle",
+        "type": "UnarchiveBundleResult!"
       },
       {
         "args": [
@@ -17422,6 +18472,18 @@
         "description": "Delete a ticket mailbox. A mailbox referenced by a ticket cannot be deleted.",
         "name": "deleteTicketMailbox",
         "type": "DeleteTicketMailboxResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The user group notification setting's input.",
+            "name": "input",
+            "type": "UpdateTicketUserGroupNotificationSettingInput!"
+          }
+        ],
+        "description": "Set whether a user group's members are notified of a ticket event through a channel.",
+        "name": "updateTicketUserGroupNotificationSetting",
+        "type": "UpdateTicketUserGroupNotificationSettingResult!"
       },
       {
         "args": [
@@ -19277,7 +20339,7 @@
             "type": "String"
           }
         ],
-        "description": "The order's metadata entries, set by the product availability workflow. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
+        "description": "The order's metadata entries, set by the createOrder input and the product availability workflow. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
         "name": "orderMetadata",
         "type": "OrderMetadataConnection!"
       },
@@ -21329,6 +22391,21 @@
         "type": "String"
       },
       {
+        "description": "The project template (project type) the project was created from.",
+        "name": "template",
+        "type": "ProjectTemplate"
+      },
+      {
+        "description": "The project's form definition, copied from its template at creation.",
+        "name": "formDefinition",
+        "type": "JSON"
+      },
+      {
+        "description": "The project's form field values, keyed by field ID.",
+        "name": "formValues",
+        "type": "[ProjectFormValue!]"
+      },
+      {
         "description": "The project's start date.",
         "name": "startDate",
         "type": "Date"
@@ -21342,6 +22419,11 @@
         "description": "The project's linked entity.",
         "name": "linkedEntity",
         "type": "ProjectLinkedEntity"
+      },
+      {
+        "description": "The project's custom status.",
+        "name": "customStatus",
+        "type": "ProjectCustomStatus!"
       },
       {
         "args": [
@@ -21369,6 +22451,11 @@
         "description": "The project's assignees.",
         "name": "assignees",
         "type": "ProjectAssigneeConnection!"
+      },
+      {
+        "description": "The project's steps, in order. The current step is the one with the OPEN status. Null when the project doesn't create its tickets in steps.",
+        "name": "steps",
+        "type": "[ProjectStep!]"
       },
       {
         "description": "The project's creation date and time.",
@@ -21450,6 +22537,286 @@
       }
     ],
     "name": "ProjectAssigneeEdge"
+  },
+  {
+    "description": "A project custom status.",
+    "fields": [
+      {
+        "description": "The unique ID of the project custom status.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The name of the project custom status.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The type of the project custom status.",
+        "name": "type",
+        "type": "ProjectStatusType!"
+      },
+      {
+        "description": "Whether this is the default status for this type.",
+        "name": "default",
+        "type": "Boolean!"
+      },
+      {
+        "description": "Whether this status is archived.",
+        "name": "archived",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The date this status was created.",
+        "name": "createdAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The date this status was last updated.",
+        "name": "updatedAt",
+        "type": "DateTime!"
+      }
+    ],
+    "name": "ProjectCustomStatus"
+  },
+  {
+    "description": "To paginate through multiple project custom statuses.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[ProjectCustomStatusEdge!]!"
+      },
+      {
+        "description": "Current page's project custom statuses.",
+        "name": "nodes",
+        "type": "[ProjectCustomStatus!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of project custom statuses.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "ProjectCustomStatusConnection"
+  },
+  {
+    "description": "Contains a project custom status and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      },
+      {
+        "description": "The project custom status.",
+        "name": "node",
+        "type": "ProjectCustomStatus!"
+      }
+    ],
+    "name": "ProjectCustomStatusEdge"
+  },
+  {
+    "description": "A project form field value.",
+    "fields": [
+      {
+        "description": "The ID of the form field, as found in the project's form definition.",
+        "name": "fieldId",
+        "type": "String!"
+      },
+      {
+        "description": "The value of the form field: a string for text and dropdown fields, a number for number fields.",
+        "name": "value",
+        "type": "JSON"
+      }
+    ],
+    "name": "ProjectFormValue"
+  },
+  {
+    "description": "A step of a project, copied from its project template when the project was created. A step's tickets are created when it opens, once every ticket of the previous step is closed.",
+    "fields": [
+      {
+        "description": "Unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The step's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The step's position within the project, starting at 0.",
+        "name": "position",
+        "type": "Int!"
+      },
+      {
+        "description": "The step's status.",
+        "name": "status",
+        "type": "ProjectStepStatus!"
+      },
+      {
+        "description": "When the step opened and its tickets were requested.",
+        "name": "openedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "When every ticket of the step was closed.",
+        "name": "completedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "The step's tickets, created or still to be created, in order.",
+        "name": "items",
+        "type": "[ProjectStepItem!]!"
+      }
+    ],
+    "name": "ProjectStep"
+  },
+  {
+    "description": "A ticket of the project template that a project step waits for, created or still to be created. Tickets added to the project by hand are in no step.",
+    "fields": [
+      {
+        "description": "Unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The ticket. Null until it's created, or when no ticket was created from the definition.",
+        "name": "ticket",
+        "type": "Ticket"
+      },
+      {
+        "description": "The ticket template definition the ticket is created from. Null once the definition is deleted.",
+        "name": "ticketTemplateDefinition",
+        "type": "TicketTemplateDefinition"
+      },
+      {
+        "description": "Whether the ticket is closed.",
+        "name": "isClosed",
+        "type": "Boolean!"
+      },
+      {
+        "description": "Why the item no longer blocks its step. Null while it does.",
+        "name": "skippedReason",
+        "type": "ProjectStepItemSkippedReason"
+      }
+    ],
+    "name": "ProjectStepItem"
+  },
+  {
+    "description": "A project template (project type). Projects created from a template get a copy of its form.",
+    "fields": [
+      {
+        "description": "Unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The project template's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The project template's default description.",
+        "name": "defaultDescription",
+        "type": "String"
+      },
+      {
+        "description": "The template's form definition. Its field IDs are used when providing field values on a project.",
+        "name": "formDefinition",
+        "type": "JSON"
+      },
+      {
+        "description": "The project template's steps, in order. Null when the project template doesn't create its tickets in steps.",
+        "name": "steps",
+        "type": "[ProjectTemplateStep!]"
+      },
+      {
+        "description": "The project template's created at timestamp.",
+        "name": "createdAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The project template's updated at timestamp.",
+        "name": "updatedAt",
+        "type": "DateTime!"
+      }
+    ],
+    "name": "ProjectTemplate"
+  },
+  {
+    "description": "To paginate through project templates.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[ProjectTemplateEdge!]!"
+      },
+      {
+        "description": "Current page's project types.",
+        "name": "nodes",
+        "type": "[ProjectTemplate!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of project templates.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "ProjectTemplateConnection"
+  },
+  {
+    "description": "Contains a template and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The project template.",
+        "name": "node",
+        "type": "ProjectTemplate!"
+      },
+      {
+        "description": "Current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      }
+    ],
+    "name": "ProjectTemplateEdge"
+  },
+  {
+    "description": "A step of a project template. Projects created from the template get the tickets of a step only once every ticket of the previous step is closed.",
+    "fields": [
+      {
+        "description": "Unique ID. It changes every time the project template's steps are saved.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The step's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The step's position within the project template, starting at 0.",
+        "name": "position",
+        "type": "Int!"
+      },
+      {
+        "description": "The ticket template definitions of the step, in order.",
+        "name": "ticketTemplateDefinitions",
+        "type": "[TicketTemplateDefinition!]!"
+      }
+    ],
+    "name": "ProjectTemplateStep"
   },
   {
     "description": "A promotional code.",
@@ -22421,6 +23788,11 @@
             "description": "Returns the elements that come before the specified cursor.",
             "name": "before",
             "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "AccountTypeFilter"
           }
         ],
         "description": "Query a paginated list of account types.",
@@ -22458,6 +23830,18 @@
         "description": "Query a paginated list of account statuses.",
         "name": "accountStatuses",
         "type": "AccountStatusConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The commercial account's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Query a commercial account by unique ID.",
+        "name": "commercialAccount",
+        "type": "CommercialAccount"
       },
       {
         "args": [
@@ -22608,6 +23992,87 @@
         "description": "Query a paginated list of notes.",
         "name": "notes",
         "type": "NoteConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The project's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Query a project by unique ID.",
+        "name": "project",
+        "type": "Project!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "ProjectCustomStatusFilter"
+          }
+        ],
+        "description": "Query a paginated list of project custom statuses, ordered by name. Archived statuses are excluded.",
+        "name": "projectCustomStatuses",
+        "type": "ProjectCustomStatusConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Orders the results by the given fields.",
+            "name": "orderBy",
+            "type": "[ProjectTemplateOrderBy!]"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "ProjectTemplateFilter"
+          }
+        ],
+        "description": "Query the paginated list of project templates (project types).",
+        "name": "projectTemplates",
+        "type": "ProjectTemplateConnection!"
       },
       {
         "args": [
@@ -23102,6 +24567,18 @@
       {
         "args": [
           {
+            "description": "The CustomObjectRecordFieldValue's own unique identifier (the id already returned, unconditionally masked, by the normal record/field queries).",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Fetch the decrypted plaintext value of a SECRET custom object record field. This is the only way to retrieve the plaintext — the normal record/field queries always return a masked placeholder for SECRET fields.",
+        "name": "customObjectRecordFieldSecretValue",
+        "type": "String"
+      },
+      {
+        "args": [
+          {
             "description": "The record unique identifiers.",
             "name": "ids",
             "type": "[GlobalID!]!"
@@ -23195,6 +24672,18 @@
       {
         "args": [
           {
+            "description": "The geofence's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Get a geofence by ID. Raises ENTITY_NOT_FOUND when no such geofence exists for the current tenant.",
+        "name": "geofence",
+        "type": "Geofence"
+      },
+      {
+        "args": [
+          {
             "description": "Returns up to the first `n` elements from the list.",
             "name": "first",
             "type": "Int"
@@ -23255,6 +24744,18 @@
         "description": "Query a paginated list of archived coverage areas.",
         "name": "archivedCoverageAreas",
         "type": "CoverageAreaConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The job's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Get an asynchronous create-geofence job by ID. Raises ENTITY_NOT_FOUND when no such job exists for the current tenant.",
+        "name": "createGeofenceJob",
+        "type": "CreateGeofenceJob"
       },
       {
         "name": "integrationNone",
@@ -23332,6 +24833,18 @@
       {
         "args": [
           {
+            "description": "The CustomerOwnedItemField's own ID (the id already returned, with its data masked, by the normal customer owned item queries).",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Returns the decrypted value of a customer owned item field of type SECRET, or null when no value is set. This is the only way to retrieve the plaintext value — the normal customer owned item queries always return a masked placeholder for SECRET fields.",
+        "name": "customerOwnedItemFieldSecretValue",
+        "type": "String"
+      },
+      {
+        "args": [
+          {
             "description": "Returns up to the first `n` elements from the list.",
             "name": "first",
             "type": "Int"
@@ -23360,6 +24873,18 @@
         "description": "Query a paginated list of customer owned items.",
         "name": "customerOwnedItems",
         "type": "CustomerOwnedItemConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The InventoryItemField's own ID (the id already returned, unconditionally masked, by the normal inventory item queries).",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Returns the decrypted value of an inventory item field of type SECRET. This is the only way to retrieve the plaintext value — the normal inventory item/field queries always return a masked placeholder for SECRET fields.",
+        "name": "inventoryItemFieldSecretValue",
+        "type": "String"
       },
       {
         "args": [
@@ -23679,6 +25204,55 @@
       {
         "args": [
           {
+            "description": "The conversation ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Get a single conversation by ID.",
+        "name": "conversation",
+        "type": "Conversation"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list. Cannot be combined with `last`.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list. Cannot be combined with `first`.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor. Cannot be combined with `before`.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor. Cannot be combined with `after`.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Optional filters to narrow the returned conversations.",
+            "name": "filter",
+            "type": "ConversationFilter"
+          },
+          {
+            "description": "Orders the results. Defaults to most recent message first, then most recently created.",
+            "name": "orderBy",
+            "type": "[ConversationOrderBy!]"
+          }
+        ],
+        "description": "List conversations for the current tenant, ordered by most recent message first.",
+        "name": "conversations",
+        "type": "ConversationConnection!"
+      },
+      {
+        "args": [
+          {
             "description": "Returns up to the first `n` elements from the list.",
             "name": "first",
             "type": "Int"
@@ -23975,9 +25549,14 @@
             "description": "Filter the results.",
             "name": "filter",
             "type": "ProductFilter"
+          },
+          {
+            "description": "The ordering to apply to the query. Defaults to oldest first.",
+            "name": "orderBy",
+            "type": "[ProductOrderBy!]"
           }
         ],
-        "description": "Query paginated list of products.",
+        "description": "Query a paginated list of products. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
         "name": "products",
         "type": "ProductConnection!"
       },
@@ -24517,6 +26096,33 @@
             "description": "Returns the elements that come before the specified cursor.",
             "name": "before",
             "type": "String"
+          }
+        ],
+        "description": "Query paginated list of the stored user group notification settings. Archived user groups are left out, and a combination without a setting is disabled.",
+        "name": "ticketUserGroupNotificationSettings",
+        "type": "TicketUserGroupNotificationSettingConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
           },
           {
             "description": "Orders the results by the given fields.",
@@ -24862,6 +26468,18 @@
         "description": "Query a paginated list of workflows. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
         "name": "workflows",
         "type": "WorkflowConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "The workflow's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Query a workflow by unique ID.",
+        "name": "workflow",
+        "type": "Workflow"
       },
       {
         "args": [
@@ -26301,6 +27919,38 @@
       }
     ],
     "name": "SpeedLimitation"
+  },
+  {
+    "description": "The startCreateGeofenceJob mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "StartCreateGeofenceJobErrorCode!"
+      }
+    ],
+    "name": "StartCreateGeofenceJobError"
+  },
+  {
+    "description": "The startCreateGeofenceJob mutation's result.",
+    "fields": [
+      {
+        "description": "The started job, null if the mutation failed. Poll it with the createGeofenceJob query.",
+        "name": "createGeofenceJob",
+        "type": "CreateGeofenceJob"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[StartCreateGeofenceJobError!]"
+      }
+    ],
+    "name": "StartCreateGeofenceJobResult"
   },
   {
     "description": "The result of a starting a product availability job.",
@@ -27842,7 +29492,7 @@
     "name": "Tenant"
   },
   {
-    "description": "A ticket managed by the ticketing-service.",
+    "description": "Ticket managed by the ticketing-service.",
     "fields": [
       {
         "description": "Unique ID.",
@@ -28635,6 +30285,11 @@
         "type": "String!"
       },
       {
+        "description": "The ticket template definition.",
+        "name": "ticketTemplateDefinition",
+        "type": "TicketTemplateDefinition!"
+      },
+      {
         "description": "The ticket template's creation date and time.",
         "name": "createdAt",
         "type": "DateTime!"
@@ -28679,6 +30334,72 @@
     "name": "TicketTemplateConnection"
   },
   {
+    "description": "TicketTemplateDefinition managed by the ticketing-service.",
+    "fields": [
+      {
+        "description": "Unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The ticket template definition title.",
+        "name": "title",
+        "type": "String"
+      },
+      {
+        "description": "The ticket template definition description.",
+        "name": "description",
+        "type": "String"
+      },
+      {
+        "description": "The ticket template definition priority.",
+        "name": "priority",
+        "type": "TicketPriority"
+      },
+      {
+        "description": "The ticket template definition type.",
+        "name": "type",
+        "type": "TicketType"
+      },
+      {
+        "description": "The ticket template definition link.",
+        "name": "link",
+        "type": "String"
+      },
+      {
+        "description": "The unit of time for the due date calculation.",
+        "name": "dueDateUnit",
+        "type": "DueDateUnit"
+      },
+      {
+        "description": "The numeric value for the due date calculation.",
+        "name": "dueDateValue",
+        "type": "Int"
+      },
+      {
+        "description": "The ticket template definition categories.",
+        "name": "categories",
+        "type": "[TicketCategory!]!"
+      },
+      {
+        "description": "The users assigned to the ticket template definition.",
+        "name": "assignees",
+        "type": "[User!]!"
+      },
+      {
+        "description": "The ticket template definition creation date.",
+        "name": "createdAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The ticket template definition last update date.",
+        "name": "updatedAt",
+        "type": "DateTime!"
+      }
+    ],
+    "name": "TicketTemplateDefinition"
+  },
+  {
     "description": "Contains a ticket template and the current edge's cursor.",
     "fields": [
       {
@@ -28695,10 +30416,10 @@
     "name": "TicketTemplateEdge"
   },
   {
-    "description": "Define a ticket type.",
+    "description": "The ticket type.",
     "fields": [
       {
-        "description": "Unique ID.",
+        "description": "The ticket type's ID.",
         "name": "id",
         "type": "GlobalID!"
       },
@@ -28751,6 +30472,69 @@
       }
     ],
     "name": "TicketTypeEdge"
+  },
+  {
+    "description": "Define whether a user group's members are notified of a ticket event through a channel. A combination without a setting is disabled.",
+    "fields": [
+      {
+        "description": "The ticket event.",
+        "name": "event",
+        "type": "TicketNotificationEvent!"
+      },
+      {
+        "description": "The delivery channel.",
+        "name": "channel",
+        "type": "TicketNotificationChannel!"
+      },
+      {
+        "description": "Whether the user group's members are notified.",
+        "name": "enabled",
+        "type": "Boolean!"
+      }
+    ],
+    "name": "TicketUserGroupNotificationSetting"
+  },
+  {
+    "description": "To paginate through user group notification settings.",
+    "fields": [
+      {
+        "description": "Current page's edges.",
+        "name": "edges",
+        "type": "[TicketUserGroupNotificationSettingEdge!]!"
+      },
+      {
+        "description": "Current page's user group notification settings.",
+        "name": "nodes",
+        "type": "[TicketUserGroupNotificationSetting!]!"
+      },
+      {
+        "description": "Current page's information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of user group notification settings.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "TicketUserGroupNotificationSettingConnection"
+  },
+  {
+    "description": "Contains a user group notification setting and the current edge's cursor.",
+    "fields": [
+      {
+        "description": "The user group notification setting.",
+        "name": "node",
+        "type": "TicketUserGroupNotificationSetting!"
+      },
+      {
+        "description": "Current edge's cursor.",
+        "name": "cursor",
+        "type": "String!"
+      }
+    ],
+    "name": "TicketUserGroupNotificationSettingEdge"
   },
   {
     "description": "Define the information of an external ticket.",
@@ -28941,22 +30725,6 @@
       }
     ],
     "name": "TicketWorklogEdge"
-  },
-  {
-    "description": "Define a ticketsImportCsvTemplate query's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The error's code.",
-        "name": "code",
-        "type": "TicketsImportCsvTemplateErrorCode!"
-      }
-    ],
-    "name": "TicketsImportCsvTemplateError"
   },
   {
     "description": "Represents a time period during which a technician is not available, overriding their normal availability.",
@@ -29165,7 +30933,7 @@
         "type": "DateTime!"
       },
       {
-        "description": "Confidence score (0.0 to 1.0) indicating the likelihood that a technician can successfully complete the work order at this time slot.\n\nBased on travel time feasibility analysis using straight-line distance calculations:\n• 0.95 (High): Very short travel distance (≤30% of max allowable)\n• 0.85 (Moderate): Reasonable travel distance (≤50% of max allowable)\n• 0.70 (Low): Concerning travel distance (≤99% of max allowable)\n• 0.50 (Very Low): Maximum travel distance reached (100% of max allowable)\n• 0.0 (None): Travel distance exceeds maximum allowable time\n\nThe score considers travel time from the technician's previous location to the work order location,\nand from the work order location to their next scheduled location (if any).",
+        "description": "Confidence score (0.0 to 1.0) indicating the likelihood that a technician can successfully complete the work order at this time slot.\n\nOn a STRAIGHT_LINE slot, based on travel time feasibility analysis using straight-line distance calculations:\n• 0.95 (High): Very short travel distance (≤30% of max allowable)\n• 0.85 (Moderate): Reasonable travel distance (≤50% of max allowable)\n• 0.70 (Low): Concerning travel distance (≤99% of max allowable)\n• 0.50 (Very Low): Maximum travel distance reached (100% of max allowable)\n• 0.0 (None): Travel distance exceeds maximum allowable time\n\nThe score considers travel time from the technician's previous location to the work order location,\nand from the work order location to their next scheduled location (if any).\n\nA ROAD slot has confidence 1 when the road decided it, available or not, and on a TRAVEL_TIME_ESTIMATED slot the lowest straight-line tier of the legs the road did not time.",
         "name": "confidence",
         "type": "Float!"
       },
@@ -29460,6 +31228,70 @@
     "name": "TravelTime"
   },
   {
+    "description": "The unarchiveAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UnarchiveAccountStatusErrorCode!"
+      }
+    ],
+    "name": "UnarchiveAccountStatusError"
+  },
+  {
+    "description": "The unarchiveAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The unarchived account status.",
+        "name": "accountStatus",
+        "type": "AccountStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UnarchiveAccountStatusError!]"
+      }
+    ],
+    "name": "UnarchiveAccountStatusResult"
+  },
+  {
+    "description": "The unarchiveAccountType mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UnarchiveAccountTypeErrorCode!"
+      }
+    ],
+    "name": "UnarchiveAccountTypeError"
+  },
+  {
+    "description": "The unarchiveAccountType mutation's result.",
+    "fields": [
+      {
+        "description": "The unarchived account type.",
+        "name": "accountType",
+        "type": "AccountType"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UnarchiveAccountTypeError!]"
+      }
+    ],
+    "name": "UnarchiveAccountTypeResult"
+  },
+  {
     "description": "The unarchiveAddress mutation's expected error.",
     "fields": [
       {
@@ -29490,6 +31322,102 @@
       }
     ],
     "name": "UnarchiveAddressResult"
+  },
+  {
+    "description": "Define the unarchiveBundle mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UnarchiveBundleErrorCode!"
+      }
+    ],
+    "name": "UnarchiveBundleError"
+  },
+  {
+    "description": "The unarchiveBundle mutation's result.",
+    "fields": [
+      {
+        "description": "The unarchived bundle.",
+        "name": "bundle",
+        "type": "Bundle"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UnarchiveBundleError!]"
+      }
+    ],
+    "name": "UnarchiveBundleResult"
+  },
+  {
+    "description": "The unarchiveCancellationReason mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UnarchiveCancellationReasonErrorCode!"
+      }
+    ],
+    "name": "UnarchiveCancellationReasonError"
+  },
+  {
+    "description": "The unarchiveCancellationReason mutation's result.",
+    "fields": [
+      {
+        "description": "The unarchived cancellation reason.",
+        "name": "cancellationReason",
+        "type": "CancellationReason"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UnarchiveCancellationReasonError!]"
+      }
+    ],
+    "name": "UnarchiveCancellationReasonResult"
+  },
+  {
+    "description": "The unarchiveCommercialAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UnarchiveCommercialAccountStatusErrorCode!"
+      }
+    ],
+    "name": "UnarchiveCommercialAccountStatusError"
+  },
+  {
+    "description": "The unarchiveCommercialAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The unarchived commercial account status.",
+        "name": "commercialAccountStatus",
+        "type": "CommercialAccountCustomStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UnarchiveCommercialAccountStatusError!]"
+      }
+    ],
+    "name": "UnarchiveCommercialAccountStatusResult"
   },
   {
     "description": "The unarchiveCoverageAreas mutation's expected error.",
@@ -30371,6 +32299,70 @@
     "name": "UpdateAccountResult"
   },
   {
+    "description": "The updateAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateAccountStatusErrorCode!"
+      }
+    ],
+    "name": "UpdateAccountStatusError"
+  },
+  {
+    "description": "The updateAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The updated account status.",
+        "name": "accountStatus",
+        "type": "AccountStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateAccountStatusError!]"
+      }
+    ],
+    "name": "UpdateAccountStatusResult"
+  },
+  {
+    "description": "The updateAccountType mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateAccountTypeErrorCode!"
+      }
+    ],
+    "name": "UpdateAccountTypeError"
+  },
+  {
+    "description": "The updateAccountType mutation's result.",
+    "fields": [
+      {
+        "description": "The updated account type.",
+        "name": "accountType",
+        "type": "AccountType"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateAccountTypeError!]"
+      }
+    ],
+    "name": "UpdateAccountTypeResult"
+  },
+  {
     "description": "Error returned by updateAddressCustomFieldDefinition.",
     "fields": [
       {
@@ -30446,9 +32438,25 @@
         "description": "The error's code.",
         "name": "code",
         "type": "UpdateAddressErrorCode!"
+      },
+      {
+        "description": "The error's payload, set when the error names the addresses it applies to.",
+        "name": "payload",
+        "type": "UpdateAddressInputErrorPayload"
       }
     ],
     "name": "UpdateAddressInputError"
+  },
+  {
+    "description": "The addresses an UpdateAddressInputError applies to.",
+    "fields": [
+      {
+        "description": "The unique IDs of the addresses the error applies to.",
+        "name": "addressIds",
+        "type": "[GlobalID!]!"
+      }
+    ],
+    "name": "UpdateAddressInputErrorAddressesPayload"
   },
   {
     "description": "The updateAddress mutation's result.",
@@ -30561,6 +32569,102 @@
       }
     ],
     "name": "UpdateBundleResult"
+  },
+  {
+    "description": "The updateCancellationReason mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateCancellationReasonErrorCode!"
+      }
+    ],
+    "name": "UpdateCancellationReasonError"
+  },
+  {
+    "description": "The updateCancellationReason mutation's result.",
+    "fields": [
+      {
+        "description": "The updated cancellation reason.",
+        "name": "cancellationReason",
+        "type": "CancellationReason"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateCancellationReasonError!]"
+      }
+    ],
+    "name": "UpdateCancellationReasonResult"
+  },
+  {
+    "description": "The updateCommercialAccount mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateCommercialAccountErrorCode!"
+      }
+    ],
+    "name": "UpdateCommercialAccountError"
+  },
+  {
+    "description": "The updateCommercialAccount mutation's result.",
+    "fields": [
+      {
+        "description": "The updated commercial account.",
+        "name": "commercialAccount",
+        "type": "CommercialAccount"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateCommercialAccountError!]"
+      }
+    ],
+    "name": "UpdateCommercialAccountResult"
+  },
+  {
+    "description": "The updateCommercialAccountStatus mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateCommercialAccountStatusErrorCode!"
+      }
+    ],
+    "name": "UpdateCommercialAccountStatusError"
+  },
+  {
+    "description": "The updateCommercialAccountStatus mutation's result.",
+    "fields": [
+      {
+        "description": "The updated commercial account status.",
+        "name": "commercialAccountStatus",
+        "type": "CommercialAccountCustomStatus"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateCommercialAccountStatusError!]"
+      }
+    ],
+    "name": "UpdateCommercialAccountStatusResult"
   },
   {
     "description": "The updateContract mutation's expected error.",
@@ -30881,6 +32985,38 @@
       }
     ],
     "name": "UpdateExternalTicketResult"
+  },
+  {
+    "description": "An expected error when updating an imported conversation.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateImportedConversationErrorCode!"
+      }
+    ],
+    "name": "UpdateImportedConversationError"
+  },
+  {
+    "description": "The result of updating an imported conversation.",
+    "fields": [
+      {
+        "description": "The updated conversation.",
+        "name": "conversation",
+        "type": "Conversation"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateImportedConversationError!]"
+      }
+    ],
+    "name": "UpdateImportedConversationResult"
   },
   {
     "description": "An updateIncident mutation's expected error.",
@@ -31326,6 +33462,38 @@
     "name": "UpdateProductResult"
   },
   {
+    "description": "The updateProject mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateProjectErrorCode!"
+      }
+    ],
+    "name": "UpdateProjectError"
+  },
+  {
+    "description": "The updateProject mutation's result.",
+    "fields": [
+      {
+        "description": "The updated project.",
+        "name": "project",
+        "type": "Project"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateProjectError!]"
+      }
+    ],
+    "name": "UpdateProjectResult"
+  },
+  {
     "description": "The updatePropertyContact mutation's expected error.",
     "fields": [
       {
@@ -31733,6 +33901,38 @@
     "name": "UpdateTicketTemplateResult"
   },
   {
+    "description": "The updateTicketUserGroupNotificationSetting mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateTicketUserGroupNotificationSettingErrorCode!"
+      }
+    ],
+    "name": "UpdateTicketUserGroupNotificationSettingError"
+  },
+  {
+    "description": "The updateTicketUserGroupNotificationSetting mutation's result.",
+    "fields": [
+      {
+        "description": "The updated user group notification setting.",
+        "name": "ticketUserGroupNotificationSetting",
+        "type": "TicketUserGroupNotificationSetting"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateTicketUserGroupNotificationSettingError!]"
+      }
+    ],
+    "name": "UpdateTicketUserGroupNotificationSettingResult"
+  },
+  {
     "description": "Define the updateTicketWorkOrder mutation's expected error.",
     "fields": [
       {
@@ -32138,6 +34338,11 @@
         "description": "The error's code.",
         "name": "code",
         "type": "UpsertMacAddressIpAddressAssignationsErrorCode!"
+      },
+      {
+        "description": "The error's payload.",
+        "name": "payload",
+        "type": "UpsertMacAddressIpAddressAssignationsErrorPayload"
       }
     ],
     "name": "UpsertMacAddressIpAddressAssignationsError"
@@ -32815,7 +35020,7 @@
         "type": "WorkOrderAutoAssignationFailureCode"
       },
       {
-        "description": "The work order's linked entities.",
+        "description": "The work order's linked entities, which hold its service target: the account, commercial account or network site the work is for.",
         "name": "linkedEntities",
         "type": "[WorkOrderLinkedEntity!]!"
       },
@@ -33076,6 +35281,16 @@
         "description": "The appointment settings' toggle for auto-assignment triggered from Workforce.",
         "name": "isAutoAssignWorkforceEnabled",
         "type": "Boolean!"
+      },
+      {
+        "description": "The appointment settings' treatment of the drive from the base location to the first work order of the day in auto-assign.",
+        "name": "autoAssignShiftStartTravelMode",
+        "type": "AutoAssignShiftTravelMode!"
+      },
+      {
+        "description": "The appointment settings' treatment of the drive from the last work order of the day back to the base location in auto-assign; only applies while return to base is enabled for the tenant.",
+        "name": "autoAssignShiftEndTravelMode",
+        "type": "AutoAssignShiftTravelMode!"
       },
       {
         "description": "The appointment settings' arrival windows.",
@@ -33813,12 +36028,251 @@
     "name": "WorkTypeStepEdge"
   },
   {
+    "description": "Workflows can be used to automate tasks and processes.",
+    "fields": [
+      {
+        "description": "The workflow's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The workflow's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The workflow's key.",
+        "name": "key",
+        "type": "String!"
+      },
+      {
+        "description": "The workflow's description.",
+        "name": "description",
+        "type": "String"
+      },
+      {
+        "description": "The workflow's icon name.",
+        "name": "iconName",
+        "type": "String!"
+      },
+      {
+        "description": "If the workflow is enabled.",
+        "name": "isEnabled",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The workflow's readable ID.",
+        "name": "readableId",
+        "type": "Int!"
+      },
+      {
+        "description": "The number of times the workflow has been executed.",
+        "name": "executionCount",
+        "type": "Int!"
+      },
+      {
+        "description": "The workflow's last execution date.",
+        "name": "lastExecutionDate",
+        "type": "DateTime"
+      },
+      {
+        "description": "The workflow's last update date.",
+        "name": "updatedAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The workflow's creation date.",
+        "name": "createdAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "The editor that last updated the workflow.",
+        "name": "updatedBy",
+        "type": "User!"
+      },
+      {
+        "description": "The editor that created the workflow.",
+        "name": "createdBy",
+        "type": "User!"
+      },
+      {
+        "description": "The workflow's latest definition.",
+        "name": "latestDefinition",
+        "type": "WorkflowDefinition"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "WorkflowLabelFilter"
+          },
+          {
+            "description": "Orders the results by the given fields.",
+            "name": "orderBy",
+            "type": "[WorkflowLabelOrderBy!]"
+          }
+        ],
+        "description": "The labels assigned to this workflow.",
+        "name": "labels",
+        "type": "WorkflowLabelConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "WorkflowDefinitionFilter"
+          },
+          {
+            "description": "Orders the results by the given fields.",
+            "name": "orderBy",
+            "type": "[WorkflowDefinitionOrderBy!]"
+          }
+        ],
+        "description": "The workflow's definitions history.",
+        "name": "definitions",
+        "type": "WorkflowDefinitionConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "WorkflowExecutionFilter"
+          },
+          {
+            "description": "Orders the results by the given fields.",
+            "name": "orderBy",
+            "type": "[WorkflowExecutionOrderBy!]"
+          }
+        ],
+        "description": "The workflow's executions.",
+        "name": "executions",
+        "type": "WorkflowExecutionConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first `n` elements from the list.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last `n` elements from the list.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns the elements that come after the specified cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns the elements that come before the specified cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters the results.",
+            "name": "filter",
+            "type": "WebhookTriggerRequestFilter"
+          },
+          {
+            "description": "Orders the results by the given fields.",
+            "name": "orderBy",
+            "type": "[WebhookTriggerRequestOrderBy!]"
+          }
+        ],
+        "description": "The calls received by the workflow's webhook trigger, including the ones that started no execution.",
+        "name": "webhookRequests",
+        "type": "WebhookTriggerRequestConnection!"
+      },
+      {
+        "description": "Whether the viewing user is allowed to execute this workflow. Always `true` when invoked without an authenticated user (e.g. microservice-to-microservice calls), matching the ACL bypass behavior.",
+        "name": "viewerCanExecute",
+        "type": "Boolean!"
+      },
+      {
+        "description": "Whether the viewing user is allowed to edit this workflow. Always `true` when invoked without an authenticated user (e.g. microservice-to-microservice calls), matching the ACL bypass behavior.",
+        "name": "viewerCanEdit",
+        "type": "Boolean!"
+      }
+    ],
+    "name": "Workflow"
+  },
+  {
     "description": "To paginate through workflows.",
     "fields": [
       {
         "description": "Current page's edges.",
         "name": "edges",
         "type": "[WorkflowEdge!]!"
+      },
+      {
+        "description": "Current page's workflows.",
+        "name": "nodes",
+        "type": "[Workflow!]!"
       },
       {
         "description": "Current page's information.",
@@ -33880,6 +36334,11 @@
         "description": "The raw JSON representation of the workflow definition. The JSON structure is unstable and could be prone to change.",
         "name": "representationJson",
         "type": "JSON"
+      },
+      {
+        "description": "The workflow.",
+        "name": "workflow",
+        "type": "Workflow!"
       }
     ],
     "name": "WorkflowDefinition"
@@ -33929,6 +36388,11 @@
   {
     "description": "Contains a workflow and the current edge's cursor.",
     "fields": [
+      {
+        "description": "The workflow.",
+        "name": "node",
+        "type": "Workflow!"
+      },
       {
         "description": "Current edge's cursor.",
         "name": "cursor",
@@ -34051,6 +36515,11 @@
         "description": "The paginated workflow node executions.",
         "name": "nodeExecutions",
         "type": "WorkflowNodeExecutionConnection!"
+      },
+      {
+        "description": "The workflow execution's parent node execution.",
+        "name": "parentNodeExecution",
+        "type": "WorkflowNodeExecution"
       },
       {
         "description": "UUID to help track the workflow execution.",
@@ -34274,6 +36743,11 @@
         "description": "The node execution latest result's error data.",
         "name": "errorData",
         "type": "JSON"
+      },
+      {
+        "description": "The workflow node execution's representation step.",
+        "name": "step",
+        "type": "WorkflowDefinitionRepresentationStep"
       },
       {
         "description": "The node execution's workflow execution.",
@@ -35092,6 +37566,11 @@
         "description": "The location's IANA timezone.",
         "name": "timezone",
         "type": "String"
+      },
+      {
+        "description": "The location's linked geo address, resolved by geo-service. Only set on a work order's location.",
+        "name": "geoAddress",
+        "type": "GeoAddress"
       }
     ],
     "name": "WorkforceLocation"
@@ -35321,22 +37800,6 @@
       }
     ],
     "name": "WriteOffInvoicesResult"
-  },
-  {
-    "description": "A zoneImportCsvDocumentation query's expected error.",
-    "fields": [
-      {
-        "description": "The error's message.",
-        "name": "message",
-        "type": "String!"
-      },
-      {
-        "description": "The error's code.",
-        "name": "code",
-        "type": "ZoneImportCsvDocumentationErrorCode!"
-      }
-    ],
-    "name": "ZoneImportCsvDocumentationError"
   },
   {
     "description": "The quantity of a model in a specific zone.",

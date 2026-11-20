@@ -158,6 +158,30 @@
   {
     "args": [
       {
+        "description": "The account status's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Archive an account status.",
+    "name": "archiveAccountStatus",
+    "type": "ArchiveAccountStatusResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The account type's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Archive an account type.",
+    "name": "archiveAccountType",
+    "type": "ArchiveAccountTypeResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The address's unique ID.",
         "name": "addressId",
         "type": "GlobalID!"
@@ -178,6 +202,30 @@
     "description": "Archive a bundle.",
     "name": "archiveBundle",
     "type": "ArchiveBundleResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The cancellation reason's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Archive a cancellation reason.",
+    "name": "archiveCancellationReason",
+    "type": "ArchiveCancellationReasonResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The commercial account status's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Archive a commercial account status.",
+    "name": "archiveCommercialAccountStatus",
+    "type": "ArchiveCommercialAccountStatusResult!"
   },
   {
     "args": [
@@ -410,6 +458,18 @@
   {
     "args": [
       {
+        "description": "The assignInventoryItems mutation's input.",
+        "name": "input",
+        "type": "AssignInventoryItemsInput!"
+      }
+    ],
+    "description": "Update the assignee and/or the inventory role of many inventory items at once.",
+    "name": "assignInventoryItems",
+    "type": "AssignInventoryItemsResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input required to assign non-serialized items.",
         "name": "input",
         "type": "AssignNonSerializedItemsInput!"
@@ -593,6 +653,30 @@
   {
     "args": [
       {
+        "description": "The input required to create an account status.",
+        "name": "input",
+        "type": "CreateAccountStatusInput!"
+      }
+    ],
+    "description": "Create an account status.",
+    "name": "createAccountStatus",
+    "type": "CreateAccountStatusResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to create an account type.",
+        "name": "input",
+        "type": "CreateAccountTypeInput!"
+      }
+    ],
+    "description": "Create an account type.",
+    "name": "createAccountType",
+    "type": "CreateAccountTypeResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The address's input.",
         "name": "input",
         "type": "CreateGeoAddressInput!"
@@ -637,6 +721,42 @@
     "description": "Create a bundle.",
     "name": "createBundle",
     "type": "CreateBundleResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to create a cancellation reason.",
+        "name": "input",
+        "type": "CreateCancellationReasonInput!"
+      }
+    ],
+    "description": "Create a cancellation reason.",
+    "name": "createCancellationReason",
+    "type": "CreateCancellationReasonResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to create a commercial account.",
+        "name": "input",
+        "type": "CreateCommercialAccountInput!"
+      }
+    ],
+    "description": "Create a commercial account.",
+    "name": "createCommercialAccount",
+    "type": "CreateCommercialAccountResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to create a commercial account status.",
+        "name": "input",
+        "type": "CreateCommercialAccountStatusInput!"
+      }
+    ],
+    "description": "Create a commercial account status.",
+    "name": "createCommercialAccountStatus",
+    "type": "CreateCommercialAccountStatusResult!"
   },
   {
     "args": [
@@ -761,6 +881,18 @@
   {
     "args": [
       {
+        "description": "The input required to create a document from a template.",
+        "name": "input",
+        "type": "CreateDocumentFromTemplateInput!"
+      }
+    ],
+    "description": "Render a custom document template as a PDF and add it to an entity's documents.",
+    "name": "createDocumentFromTemplate",
+    "type": "CreateDocumentFromTemplateResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input to create a document upload URL.",
         "name": "input",
         "type": "CreateDocumentUploadUrlInput!"
@@ -805,6 +937,30 @@
     "description": "Create a geofence.",
     "name": "createGeofence",
     "type": "CreateGeofenceResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to create a geofence upload URL.",
+        "name": "input",
+        "type": "CreateGeofenceUploadUrlInput!"
+      }
+    ],
+    "description": "Create an upload URL for a geofence's GeoJSON file. Upload the file with an HTTP PUT, then pass the file key to startCreateGeofenceJob.",
+    "name": "createGeofenceUploadUrl",
+    "type": "CreateGeofenceUploadUrlResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The conversation to import.",
+        "name": "input",
+        "type": "CreateImportedConversationInput!"
+      }
+    ],
+    "description": "Import a conversation that took place in an external system. A source and external ID that already exist are rejected; use updateImportedConversation to change an imported conversation. Find an existing one with the `conversations` query's `imported` filter.",
+    "name": "createImportedConversation",
+    "type": "CreateImportedConversationResult!"
   },
   {
     "args": [
@@ -1377,6 +1533,18 @@
   {
     "args": [
       {
+        "description": "The deleteInventoryItems mutation's input.",
+        "name": "input",
+        "type": "DeleteInventoryItemsInput!"
+      }
+    ],
+    "description": "Delete inventory items. Inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
+    "name": "deleteInventoryItems",
+    "type": "DeleteInventoryItemsResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The notes's unique ID.",
         "name": "noteId",
         "type": "GlobalID!"
@@ -1732,6 +1900,18 @@
   {
     "args": [
       {
+        "description": "The input required to start a create-geofence job.",
+        "name": "input",
+        "type": "StartCreateGeofenceJobInput!"
+      }
+    ],
+    "description": "Start an asynchronous job that creates a geofence from an uploaded GeoJSON file. Use this when createGeofence fails with TOO_LARGE_FOR_SYNCHRONOUS_CREATE.",
+    "name": "startCreateGeofenceJob",
+    "type": "StartCreateGeofenceJobResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input required to create a product availability job.",
         "name": "input",
         "type": "StartProductAvailabilityJobInput!"
@@ -1792,6 +1972,30 @@
   {
     "args": [
       {
+        "description": "The account status's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Unarchive an account status.",
+    "name": "unarchiveAccountStatus",
+    "type": "UnarchiveAccountStatusResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The account type's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Unarchive an account type.",
+    "name": "unarchiveAccountType",
+    "type": "UnarchiveAccountTypeResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The address's unique ID.",
         "name": "addressId",
         "type": "GlobalID!"
@@ -1800,6 +2004,42 @@
     "description": "Unarchive an address.",
     "name": "unarchiveAddress",
     "type": "UnarchiveAddressResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The bundle's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Bring an archived bundle back.",
+    "name": "unarchiveBundle",
+    "type": "UnarchiveBundleResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The cancellation reason's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Unarchive a cancellation reason.",
+    "name": "unarchiveCancellationReason",
+    "type": "UnarchiveCancellationReasonResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The commercial account status's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Unarchive a commercial account status.",
+    "name": "unarchiveCommercialAccountStatus",
+    "type": "UnarchiveCommercialAccountStatusResult!"
   },
   {
     "args": [
@@ -2086,6 +2326,40 @@
   {
     "args": [
       {
+        "description": "The account status's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to update an account status.",
+        "name": "input",
+        "type": "UpdateAccountStatusInput!"
+      }
+    ],
+    "description": "Update an account status.",
+    "name": "updateAccountStatus",
+    "type": "UpdateAccountStatusResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The account type's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to update an account type.",
+        "name": "input",
+        "type": "UpdateAccountTypeInput!"
+      }
+    ],
+    "description": "Update an account type.",
+    "name": "updateAccountType",
+    "type": "UpdateAccountTypeResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The address's unique ID.",
         "name": "id",
         "type": "GlobalID!"
@@ -2169,6 +2443,52 @@
     "description": "Update a bundle.",
     "name": "updateBundle",
     "type": "UpdateBundleResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The cancellation reason's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to update a cancellation reason.",
+        "name": "input",
+        "type": "UpdateCancellationReasonInput!"
+      }
+    ],
+    "description": "Update a cancellation reason.",
+    "name": "updateCancellationReason",
+    "type": "UpdateCancellationReasonResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to update a commercial account.",
+        "name": "input",
+        "type": "UpdateCommercialAccountInput!"
+      }
+    ],
+    "description": "Update a commercial account.",
+    "name": "updateCommercialAccount",
+    "type": "UpdateCommercialAccountResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The commercial account status's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to update a commercial account status.",
+        "name": "input",
+        "type": "UpdateCommercialAccountStatusInput!"
+      }
+    ],
+    "description": "Update a commercial account status.",
+    "name": "updateCommercialAccountStatus",
+    "type": "UpdateCommercialAccountStatusResult!"
   },
   {
     "args": [
@@ -2345,6 +2665,23 @@
   {
     "args": [
       {
+        "description": "The conversation ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The fields to update.",
+        "name": "input",
+        "type": "UpdateImportedConversationInput!"
+      }
+    ],
+    "description": "Update the mutable fields of an imported conversation, by its ID.",
+    "name": "updateImportedConversation",
+    "type": "UpdateImportedConversationResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The input required to update an incident.",
         "name": "input",
         "type": "UpdateIncidentInput!"
@@ -2483,7 +2820,7 @@
         "type": "UpdatePaymentsInput!"
       }
     ],
-    "description": "Update payments' status.",
+    "description": "Update payments' status. Partial success: each payment is updated on its own, and its result holds either the updated payment or its errors.",
     "name": "updatePayments",
     "type": "UpdatePaymentsResult!"
   },
@@ -2520,6 +2857,23 @@
     "description": "Update a product category.",
     "name": "updateProductCategory",
     "type": "UpdateProductCategoryResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The project's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to update a project.",
+        "name": "input",
+        "type": "UpdateProjectInput!"
+      }
+    ],
+    "description": "Update an existing project.",
+    "name": "updateProject",
+    "type": "UpdateProjectResult!"
   },
   {
     "args": [
@@ -2780,6 +3134,18 @@
     "description": "Update a ticket template.",
     "name": "updateTicketTemplate",
     "type": "UpdateTicketTemplateResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The user group notification setting's input.",
+        "name": "input",
+        "type": "UpdateTicketUserGroupNotificationSettingInput!"
+      }
+    ],
+    "description": "Set whether a user group's members are notified of a ticket event through a channel.",
+    "name": "updateTicketUserGroupNotificationSetting",
+    "type": "UpdateTicketUserGroupNotificationSettingResult!"
   },
   {
     "args": [

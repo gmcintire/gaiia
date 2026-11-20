@@ -140,6 +140,11 @@
         "description": "Returns the elements that come before the specified cursor.",
         "name": "before",
         "type": "String"
+      },
+      {
+        "description": "Filters the results.",
+        "name": "filter",
+        "type": "AccountTypeFilter"
       }
     ],
     "description": "Query a paginated list of account types.",
@@ -603,6 +608,18 @@
   {
     "args": [
       {
+        "description": "The commercial account's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Query a commercial account by unique ID.",
+    "name": "commercialAccount",
+    "type": "CommercialAccount"
+  },
+  {
+    "args": [
+      {
         "description": "Returns up to the first `n` elements from the list.",
         "name": "first",
         "type": "Int"
@@ -714,6 +731,55 @@
   {
     "args": [
       {
+        "description": "The conversation ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Get a single conversation by ID.",
+    "name": "conversation",
+    "type": "Conversation"
+  },
+  {
+    "args": [
+      {
+        "description": "Returns up to the first `n` elements from the list. Cannot be combined with `last`.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list. Cannot be combined with `first`.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor. Cannot be combined with `before`.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor. Cannot be combined with `after`.",
+        "name": "before",
+        "type": "String"
+      },
+      {
+        "description": "Optional filters to narrow the returned conversations.",
+        "name": "filter",
+        "type": "ConversationFilter"
+      },
+      {
+        "description": "Orders the results. Defaults to most recent message first, then most recently created.",
+        "name": "orderBy",
+        "type": "[ConversationOrderBy!]"
+      }
+    ],
+    "description": "List conversations for the current tenant, ordered by most recent message first.",
+    "name": "conversations",
+    "type": "ConversationConnection!"
+  },
+  {
+    "args": [
+      {
         "description": "Returns up to the first `n` elements from the list.",
         "name": "first",
         "type": "Int"
@@ -742,6 +808,18 @@
     "description": "Query a paginated list of coverage areas.",
     "name": "coverageAreas",
     "type": "CoverageAreaConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "The job's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Get an asynchronous create-geofence job by ID. Raises ENTITY_NOT_FOUND when no such job exists for the current tenant.",
+    "name": "createGeofenceJob",
+    "type": "CreateGeofenceJob"
   },
   {
     "args": [
@@ -839,6 +917,18 @@
   {
     "args": [
       {
+        "description": "The CustomObjectRecordFieldValue's own unique identifier (the id already returned, unconditionally masked, by the normal record/field queries).",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Fetch the decrypted plaintext value of a SECRET custom object record field. This is the only way to retrieve the plaintext — the normal record/field queries always return a masked placeholder for SECRET fields.",
+    "name": "customObjectRecordFieldSecretValue",
+    "type": "String"
+  },
+  {
+    "args": [
+      {
         "description": "The object definition's unique identifier.",
         "name": "objectDefinitionId",
         "type": "GlobalID!"
@@ -884,6 +974,18 @@
     "description": "Fetch multiple custom object records by their ids.",
     "name": "customObjectRecordsByIds",
     "type": "[CustomObjectRecord!]!"
+  },
+  {
+    "args": [
+      {
+        "description": "The CustomerOwnedItemField's own ID (the id already returned, with its data masked, by the normal customer owned item queries).",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Returns the decrypted value of a customer owned item field of type SECRET, or null when no value is set. This is the only way to retrieve the plaintext value — the normal customer owned item queries always return a masked placeholder for SECRET fields.",
+    "name": "customerOwnedItemFieldSecretValue",
+    "type": "String"
   },
   {
     "args": [
@@ -970,6 +1072,18 @@
     "description": "Find an address.",
     "name": "findAddress",
     "type": "FindAddressResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The geofence's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Get a geofence by ID. Raises ENTITY_NOT_FOUND when no such geofence exists for the current tenant.",
+    "name": "geofence",
+    "type": "Geofence"
   },
   {
     "args": [
@@ -1069,6 +1183,18 @@
     "description": "Query a single inventory item by its ID.",
     "name": "inventoryItem",
     "type": "InventoryItem"
+  },
+  {
+    "args": [
+      {
+        "description": "The InventoryItemField's own ID (the id already returned, unconditionally masked, by the normal inventory item queries).",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Returns the decrypted value of an inventory item field of type SECRET. This is the only way to retrieve the plaintext value — the normal inventory item/field queries always return a masked placeholder for SECRET fields.",
+    "name": "inventoryItemFieldSecretValue",
+    "type": "String"
   },
   {
     "args": [
@@ -1855,11 +1981,97 @@
         "description": "Filter the results.",
         "name": "filter",
         "type": "ProductFilter"
+      },
+      {
+        "description": "The ordering to apply to the query. Defaults to oldest first.",
+        "name": "orderBy",
+        "type": "[ProductOrderBy!]"
       }
     ],
-    "description": "Query paginated list of products.",
+    "description": "Query a paginated list of products. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
     "name": "products",
     "type": "ProductConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "The project's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Query a project by unique ID.",
+    "name": "project",
+    "type": "Project!"
+  },
+  {
+    "args": [
+      {
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": "String"
+      },
+      {
+        "description": "Filters the results.",
+        "name": "filter",
+        "type": "ProjectCustomStatusFilter"
+      }
+    ],
+    "description": "Query a paginated list of project custom statuses, ordered by name. Archived statuses are excluded.",
+    "name": "projectCustomStatuses",
+    "type": "ProjectCustomStatusConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": "String"
+      },
+      {
+        "description": "Orders the results by the given fields.",
+        "name": "orderBy",
+        "type": "[ProjectTemplateOrderBy!]"
+      },
+      {
+        "description": "Filters the results.",
+        "name": "filter",
+        "type": "ProjectTemplateFilter"
+      }
+    ],
+    "description": "Query the paginated list of project templates (project types).",
+    "name": "projectTemplates",
+    "type": "ProjectTemplateConnection!"
   },
   {
     "args": [
@@ -2488,6 +2700,33 @@
         "description": "Returns the elements that come before the specified cursor.",
         "name": "before",
         "type": "String"
+      }
+    ],
+    "description": "Query paginated list of the stored user group notification settings. Archived user groups are left out, and a combination without a setting is disabled.",
+    "name": "ticketUserGroupNotificationSettings",
+    "type": "TicketUserGroupNotificationSettingConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "Returns up to the first `n` elements from the list.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last `n` elements from the list.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns the elements that come after the specified cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns the elements that come before the specified cursor.",
+        "name": "before",
+        "type": "String"
       },
       {
         "description": "Orders the results by the given fields.",
@@ -2919,6 +3158,18 @@
     "description": "Query a paginated list of work types.",
     "name": "workTypes",
     "type": "WorkTypeConnection!"
+  },
+  {
+    "args": [
+      {
+        "description": "The workflow's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Query a workflow by unique ID.",
+    "name": "workflow",
+    "type": "Workflow"
   },
   {
     "args": [

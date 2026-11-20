@@ -1,5 +1,16 @@
 [
   {
+    "description": "Available filters for an account's client portal user.",
+    "fields": [
+      {
+        "description": "Filter on the client portal user's username.",
+        "name": "username",
+        "type": "StringFilter"
+      }
+    ],
+    "name": "AccountClientPortalUserFilter"
+  },
+  {
     "description": "Available filters for account contacts.",
     "fields": [
       {
@@ -27,6 +38,11 @@
         "description": "Filter on the account's contacts.",
         "name": "contacts",
         "type": "AccountContactsListFilter"
+      },
+      {
+        "description": "Filter on the account's client portal user.",
+        "name": "clientPortalUser",
+        "type": "AccountClientPortalUserFilter"
       },
       {
         "description": "Filter on the account's custom fields.",
@@ -137,6 +153,11 @@
         "description": "Filter by whether the status is default.",
         "name": "default",
         "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter by whether the status is archived. Archived statuses are excluded when omitted.",
+        "name": "archived",
+        "type": "BooleanFilter"
       }
     ],
     "name": "AccountStatusFilter"
@@ -166,6 +187,17 @@
       }
     ],
     "name": "AccountStatusTypeFilter"
+  },
+  {
+    "description": "To filter AccountTypes.",
+    "fields": [
+      {
+        "description": "Filter by whether the type is archived. Archived types are excluded when omitted.",
+        "name": "archived",
+        "type": "BooleanFilter"
+      }
+    ],
+    "name": "AccountTypeFilter"
   },
   {
     "description": "Filters for the accounts in network sites query.",
@@ -520,6 +552,11 @@
         "description": "The custom field data value for a checkbox custom field (nullable if type is not CHECKBOX).",
         "name": "checkbox",
         "type": "Boolean"
+      },
+      {
+        "description": "The custom field data value for a date custom field, as an ISO-8601 date-only string (YYYY-MM-DD) (nullable if type is not DATE).",
+        "name": "date",
+        "type": "String"
       },
       {
         "description": "The custom field data value for a dropdown custom field (nullable if type is not DROPDOWN).",
@@ -979,6 +1016,32 @@
       }
     ],
     "name": "AssignInventoryItemInput"
+  },
+  {
+    "description": "The assignInventoryItems mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory items' unique IDs.",
+        "name": "inventoryItemIds",
+        "type": "[GlobalID!]!"
+      },
+      {
+        "description": "The assignee's type. Required when assigneeId is provided. When both are omitted, each item keeps its current assignee (not nullable).",
+        "name": "assigneeType",
+        "type": "AssigneeType"
+      },
+      {
+        "description": "The assignee's ID. Required when assigneeType is provided. When both are omitted, each item keeps its current assignee (not nullable).",
+        "name": "assigneeId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The inventory role's ID. When omitted, each item keeps its current role. When null, each item's role is cleared (nullable).",
+        "name": "inventoryRoleId",
+        "type": "GlobalID"
+      }
+    ],
+    "name": "AssignInventoryItemsInput"
   },
   {
     "description": "The assignNonSerializedItems mutation's input.",
@@ -1531,7 +1594,7 @@
     "description": "The input required to assign billing threshold.",
     "fields": [
       {
-        "description": "The threshold's value.",
+        "description": "The threshold's value. Defaults to the product's number of recurrences, or to 0 when the product has none. Must be greater than 0 for recurring product versions, so it is required for a recurring product version without a number of recurrences.",
         "name": "valueRemaining",
         "type": "Int"
       },
@@ -1748,6 +1811,17 @@
     "name": "CancellationReasonFilter"
   },
   {
+    "description": "A translation of a cancellation reason.",
+    "fields": [
+      {
+        "description": "The translated label.",
+        "name": "label",
+        "type": "String!"
+      }
+    ],
+    "name": "CancellationReasonTranslationInput"
+  },
+  {
     "description": "The inventory model category's field input.",
     "fields": [
       {
@@ -1900,6 +1974,11 @@
         "description": "Filter by whether the status is default.",
         "name": "default",
         "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter by whether the status is archived. Archived statuses are excluded when omitted.",
+        "name": "archived",
+        "type": "BooleanFilter"
       }
     ],
     "name": "CommercialAccountStatusFilter"
@@ -1984,6 +2063,17 @@
     "name": "CommercialAccountsTypeFilter"
   },
   {
+    "description": "A document to attach to the communication email.",
+    "fields": [
+      {
+        "description": "The GlobalID of the document. The document must be linked to the communication's entity.",
+        "name": "documentId",
+        "type": "GlobalID!"
+      }
+    ],
+    "name": "CommunicationDocumentAttachmentInput"
+  },
+  {
     "description": "Metadata for the communication.",
     "fields": [
       {
@@ -1995,6 +2085,11 @@
         "description": "A description of the communication.",
         "name": "description",
         "type": "String"
+      },
+      {
+        "description": "Documents to attach to the communication email, at most 10 totaling at most 10 MB. Requires the communication to be sent by email.",
+        "name": "documentAttachments",
+        "type": "[CommunicationDocumentAttachmentInput!]"
       }
     ],
     "name": "CommunicationMetadataInput"
@@ -2155,6 +2250,285 @@
       }
     ],
     "name": "ContractOrderBy"
+  },
+  {
+    "description": "Available filters for the conversation's assignee.",
+    "fields": [
+      {
+        "description": "Filter on the assignee's GlobalID. Pass null to equals for unassigned conversations, or to not for assigned ones.",
+        "name": "id",
+        "type": "NullableGlobalIDFilter"
+      }
+    ],
+    "name": "ConversationAssigneeFilter"
+  },
+  {
+    "description": "Available filters for conversation channels.",
+    "fields": [
+      {
+        "description": "Channel must be equal to the filter.",
+        "name": "equals",
+        "type": "ConversationChannel"
+      },
+      {
+        "description": "Channel must be different from the filter.",
+        "name": "not",
+        "type": "ConversationChannel"
+      },
+      {
+        "description": "Channel must be one of the options.",
+        "name": "in",
+        "type": "[ConversationChannel!]"
+      },
+      {
+        "description": "Channel must not be one of the options.",
+        "name": "notIn",
+        "type": "[ConversationChannel!]"
+      }
+    ],
+    "name": "ConversationChannelFilter"
+  },
+  {
+    "description": "Available filters for who initiated the conversation.",
+    "fields": [
+      {
+        "description": "Direction must be equal to the filter.",
+        "name": "equals",
+        "type": "ConversationMessageDirection"
+      },
+      {
+        "description": "Direction must be different from the filter.",
+        "name": "not",
+        "type": "ConversationMessageDirection"
+      },
+      {
+        "description": "Direction must be one of the options.",
+        "name": "in",
+        "type": "[ConversationMessageDirection!]"
+      },
+      {
+        "description": "Direction must not be one of the options.",
+        "name": "notIn",
+        "type": "[ConversationMessageDirection!]"
+      }
+    ],
+    "name": "ConversationDirectionFilter"
+  },
+  {
+    "description": "Available filters for conversations.",
+    "fields": [
+      {
+        "description": "Filter on the conversation's type.",
+        "name": "type",
+        "type": "ConversationTypeFilter"
+      },
+      {
+        "description": "Filter on the conversation's channel.",
+        "name": "channel",
+        "type": "ConversationChannelFilter"
+      },
+      {
+        "description": "Filter on who initiated the conversation.",
+        "name": "direction",
+        "type": "ConversationDirectionFilter"
+      },
+      {
+        "description": "Filter on the tenant's address.",
+        "name": "tenantAddress",
+        "type": "StringFilter"
+      },
+      {
+        "description": "Filter on the customer's address.",
+        "name": "customerAddress",
+        "type": "StringFilter"
+      },
+      {
+        "description": "Filter on the conversation's status.",
+        "name": "status",
+        "type": "ConversationStatusFilter"
+      },
+      {
+        "description": "Filter on the conversation's assignee.",
+        "name": "assignee",
+        "type": "ConversationAssigneeFilter"
+      },
+      {
+        "description": "Filter on the conversation's linked account.",
+        "name": "linkedAccount",
+        "type": "ConversationLinkedAccountFilter"
+      },
+      {
+        "description": "Filter on the conversation's labels.",
+        "name": "labels",
+        "type": "ConversationLabelListFilter"
+      },
+      {
+        "description": "Filter on whether the current user has read the conversation.",
+        "name": "isRead",
+        "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter on the imported conversation's source and external ID, which native conversations never match.",
+        "name": "imported",
+        "type": "ConversationImportedFilter"
+      },
+      {
+        "description": "Filter on how long the conversation has been awaiting reply, measured against the server's current time. Conversations not awaiting reply never match.",
+        "name": "waitTime",
+        "type": "ConversationWaitTimeFilter"
+      }
+    ],
+    "name": "ConversationFilter"
+  },
+  {
+    "description": "Available filters for the imported conversation's external ID.",
+    "fields": [
+      {
+        "description": "External ID must be equal to the filter, matched case-sensitively once trimmed.",
+        "name": "equals",
+        "type": "String"
+      }
+    ],
+    "name": "ConversationImportedExternalIdFilter"
+  },
+  {
+    "description": "Available filters for the imported conversation's details.",
+    "fields": [
+      {
+        "description": "Filter on the external system the conversation was imported from.",
+        "name": "source",
+        "type": "ConversationImportedSourceFilter"
+      },
+      {
+        "description": "Filter on the conversation's ID in the external system.",
+        "name": "externalId",
+        "type": "ConversationImportedExternalIdFilter"
+      }
+    ],
+    "name": "ConversationImportedFilter"
+  },
+  {
+    "description": "Available filters for the imported conversation's source.",
+    "fields": [
+      {
+        "description": "Source must be equal to the filter, e.g. `five9`.",
+        "name": "equals",
+        "type": "String"
+      }
+    ],
+    "name": "ConversationImportedSourceFilter"
+  },
+  {
+    "description": "Available filters for a conversation label.",
+    "fields": [
+      {
+        "description": "Filter on the label's GlobalID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "ConversationLabelFilter"
+  },
+  {
+    "description": "Available filters for the conversation's labels.",
+    "fields": [
+      {
+        "description": "At least one label must be found from the filter.",
+        "name": "some",
+        "type": "ConversationLabelFilter"
+      }
+    ],
+    "name": "ConversationLabelListFilter"
+  },
+  {
+    "description": "Available filters for the conversation's linked account.",
+    "fields": [
+      {
+        "description": "Filter on the linked account's GlobalID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "ConversationLinkedAccountFilter"
+  },
+  {
+    "description": "To order conversations.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "ConversationOrderByField!"
+      }
+    ],
+    "name": "ConversationOrderBy"
+  },
+  {
+    "description": "Available filters for conversation statuses.",
+    "fields": [
+      {
+        "description": "Status must be equal to the filter.",
+        "name": "equals",
+        "type": "ConversationStatus"
+      },
+      {
+        "description": "Status must be different from the filter.",
+        "name": "not",
+        "type": "ConversationStatus"
+      },
+      {
+        "description": "Status must be one of the options.",
+        "name": "in",
+        "type": "[ConversationStatus!]"
+      },
+      {
+        "description": "Status must not be one of the options.",
+        "name": "notIn",
+        "type": "[ConversationStatus!]"
+      }
+    ],
+    "name": "ConversationStatusFilter"
+  },
+  {
+    "description": "Available filters for conversation types.",
+    "fields": [
+      {
+        "description": "Type must be equal to the filter.",
+        "name": "equals",
+        "type": "ConversationType"
+      },
+      {
+        "description": "Type must be different from the filter.",
+        "name": "not",
+        "type": "ConversationType"
+      },
+      {
+        "description": "Type must be one of the options.",
+        "name": "in",
+        "type": "[ConversationType!]"
+      },
+      {
+        "description": "Type must not be one of the options.",
+        "name": "notIn",
+        "type": "[ConversationType!]"
+      }
+    ],
+    "name": "ConversationTypeFilter"
+  },
+  {
+    "description": "Filter on how long a conversation has been awaiting reply.",
+    "fields": [
+      {
+        "description": "Matches conversations that have been awaiting reply for at least this many seconds.",
+        "name": "gteInSeconds",
+        "type": "Int!"
+      }
+    ],
+    "name": "ConversationWaitTimeFilter"
   },
   {
     "description": "The input required to convert an internal ticket to external.",
@@ -2613,6 +2987,33 @@
     "name": "CreateAccountServiceCancellationReasonInput"
   },
   {
+    "description": "The input required to create an account status.",
+    "fields": [
+      {
+        "description": "The account status's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The account status's type.",
+        "name": "type",
+        "type": "AccountStatusType!"
+      }
+    ],
+    "name": "CreateAccountStatusInput"
+  },
+  {
+    "description": "The input required to create an account type.",
+    "fields": [
+      {
+        "description": "The account type's name.",
+        "name": "name",
+        "type": "String!"
+      }
+    ],
+    "name": "CreateAccountTypeInput"
+  },
+  {
     "description": "The input of the address.",
     "fields": [
       {
@@ -2733,6 +3134,298 @@
     "name": "CreateBundleInput"
   },
   {
+    "description": "The input required to create a cancellation reason.",
+    "fields": [
+      {
+        "description": "The cancellation reason's unique code.",
+        "name": "code",
+        "type": "String!"
+      },
+      {
+        "description": "The cancellation reason's category.",
+        "name": "category",
+        "type": "CancellationReasonCategory!"
+      },
+      {
+        "description": "Whether the cancellation reason is internal-only and must not be shown to customers. Defaults to true when omitted or null.",
+        "name": "isInternal",
+        "type": "Boolean"
+      },
+      {
+        "description": "Whether the client portal shows an optional free-text field when a customer picks this cancellation reason. Defaults to false when omitted or null.",
+        "name": "asksForDescription",
+        "type": "Boolean"
+      },
+      {
+        "description": "The cancellation reason's translations.",
+        "name": "translations",
+        "type": "[CancellationReasonTranslationInput!]!"
+      }
+    ],
+    "name": "CreateCancellationReasonInput"
+  },
+  {
+    "description": "The input required to assign a user to a commercial account.",
+    "fields": [
+      {
+        "description": "The user's unique ID.",
+        "name": "userId",
+        "type": "GlobalID!"
+      }
+    ],
+    "name": "CreateCommercialAccountAssigneeInput"
+  },
+  {
+    "description": "The input required to create a commercial account.",
+    "fields": [
+      {
+        "description": "The commercial account's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The commercial account's primary contact.",
+        "name": "primaryContact",
+        "type": "CreateCommercialAccountPrimaryContactInput!"
+      },
+      {
+        "description": "The commercial account's physical address.",
+        "name": "physicalAddress",
+        "type": "CreateCommercialAccountPhysicalAddressInput!"
+      },
+      {
+        "description": "The commercial account's mailing address.",
+        "name": "mailingAddress",
+        "type": "CreateCommercialAccountMailingAddressInput!"
+      },
+      {
+        "description": "The commercial account's custom status ID. Defaults to the tenant's default pending status.",
+        "name": "customStatusId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The commercial account's type ID. Defaults to the tenant's default commercial account type.",
+        "name": "customTypeId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The parent commercial account's ID. When provided, the commercial account is created as a sub-account of the parent, which cannot itself be a sub-account.",
+        "name": "parentCommercialAccountId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The users assigned to the commercial account.",
+        "name": "assignees",
+        "type": "[CreateCommercialAccountAssigneeInput!]"
+      },
+      {
+        "description": "The commercial account's custom fields. The input must conform to the existing commercial account custom field definitions.",
+        "name": "customFields",
+        "type": "[EntityCustomFieldInput!]"
+      },
+      {
+        "description": "The IDs of the tag values to assign to the commercial account. When the tenant has tag definitions, a value is required for each of them.",
+        "name": "tags",
+        "type": "[GlobalID!]"
+      }
+    ],
+    "name": "CreateCommercialAccountInput"
+  },
+  {
+    "description": "The input required to create a commercial account's mailing address.",
+    "fields": [
+      {
+        "description": "The mailing address line 1.",
+        "name": "line1",
+        "type": "String!"
+      },
+      {
+        "description": "The mailing address premise/civic number.",
+        "name": "premise",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address thoroughfare/street name.",
+        "name": "thoroughfare",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address line 2/unit number.",
+        "name": "line2",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address neighborhood.",
+        "name": "neighborhood",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address postal code/ZIP code.",
+        "name": "postalCode",
+        "type": "String!"
+      },
+      {
+        "description": "The mailing address locality/city.",
+        "name": "locality",
+        "type": "String!"
+      },
+      {
+        "description": "The mailing address region/state/province.",
+        "name": "region",
+        "type": "String!"
+      },
+      {
+        "description": "The mailing address county. Ex: 'Autauga County'.",
+        "name": "county",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address three-letter country code. Follows the ISO 3166 alpha-3 standard. Ex: 'USA'.",
+        "name": "country",
+        "type": "String!"
+      },
+      {
+        "description": "The mailing address latitude.",
+        "name": "latitude",
+        "type": "Float"
+      },
+      {
+        "description": "The mailing address longitude.",
+        "name": "longitude",
+        "type": "Float"
+      },
+      {
+        "description": "The national address identifier (e.g., UPRN for UK addresses).",
+        "name": "nationalAddressIdentifier",
+        "type": "String"
+      }
+    ],
+    "name": "CreateCommercialAccountMailingAddressInput"
+  },
+  {
+    "description": "The input required to create a commercial account's physical address.",
+    "fields": [
+      {
+        "description": "The physical address line 1.",
+        "name": "line1",
+        "type": "String!"
+      },
+      {
+        "description": "The physical address premise/civic number.",
+        "name": "premise",
+        "type": "String!"
+      },
+      {
+        "description": "The physical address thoroughfare/street name.",
+        "name": "thoroughfare",
+        "type": "String!"
+      },
+      {
+        "description": "The physical address line 2/unit number.",
+        "name": "line2",
+        "type": "String"
+      },
+      {
+        "description": "The physical address neighborhood.",
+        "name": "neighborhood",
+        "type": "String"
+      },
+      {
+        "description": "The physical address postal code/ZIP code.",
+        "name": "postalCode",
+        "type": "String!"
+      },
+      {
+        "description": "The physical address locality/city.",
+        "name": "locality",
+        "type": "String!"
+      },
+      {
+        "description": "The physical address region/state/province.",
+        "name": "region",
+        "type": "String!"
+      },
+      {
+        "description": "The physical address county. Ex: 'Autauga County'.",
+        "name": "county",
+        "type": "String"
+      },
+      {
+        "description": "The physical address three-letter country code. Follows the ISO 3166 alpha-3 standard. Ex: 'USA'.",
+        "name": "country",
+        "type": "String!"
+      },
+      {
+        "description": "The physical address latitude.",
+        "name": "latitude",
+        "type": "Float"
+      },
+      {
+        "description": "The physical address longitude.",
+        "name": "longitude",
+        "type": "Float"
+      },
+      {
+        "description": "The national address identifier (e.g., UPRN for UK addresses).",
+        "name": "nationalAddressIdentifier",
+        "type": "String"
+      }
+    ],
+    "name": "CreateCommercialAccountPhysicalAddressInput"
+  },
+  {
+    "description": "The input required to create a commercial account's primary contact.",
+    "fields": [
+      {
+        "description": "The contact's first name.",
+        "name": "firstName",
+        "type": "String!"
+      },
+      {
+        "description": "The contact's last name.",
+        "name": "lastName",
+        "type": "String!"
+      },
+      {
+        "description": "The contact's email address.",
+        "name": "email",
+        "type": "String!"
+      },
+      {
+        "description": "The contact's mobile phone number.",
+        "name": "mobilePhone",
+        "type": "String"
+      },
+      {
+        "description": "The contact's work phone number.",
+        "name": "workPhone",
+        "type": "String"
+      },
+      {
+        "description": "The contact's role.",
+        "name": "role",
+        "type": "String"
+      }
+    ],
+    "name": "CreateCommercialAccountPrimaryContactInput"
+  },
+  {
+    "description": "The input required to create a commercial account status.",
+    "fields": [
+      {
+        "description": "The commercial account status's name.",
+        "name": "name",
+        "type": "String!"
+      },
+      {
+        "description": "The commercial account status's type.",
+        "name": "type",
+        "type": "CommercialAccountStatusType!"
+      }
+    ],
+    "name": "CreateCommercialAccountStatusInput"
+  },
+  {
     "description": "The createContract mutation's input.",
     "fields": [
       {
@@ -2808,6 +3501,11 @@
         "type": "String"
       },
       {
+        "description": "How the coverage area was created or edited. Defaults to MANUAL.",
+        "name": "editingMode",
+        "type": "CoverageAreaEditingMode"
+      },
+      {
         "description": "The label for the coverage area.",
         "name": "label",
         "type": "String"
@@ -2834,9 +3532,9 @@
     "description": "Input for creating a custom field definition.",
     "fields": [
       {
-        "description": "The object definition this field belongs to.",
+        "description": "The object definition this field belongs to. Required.",
         "name": "objectDefinitionId",
-        "type": "GlobalID!"
+        "type": "GlobalID"
       },
       {
         "description": "The field name.",
@@ -3058,6 +3756,32 @@
       }
     ],
     "name": "CreateDemoTenantInput"
+  },
+  {
+    "description": "The input required to create a document from a template.",
+    "fields": [
+      {
+        "description": "The entity to render the document for. The document is added to this entity's documents. Must be an Account, a CommercialAccount or a PropertyGroup.",
+        "name": "entity",
+        "type": "EntityReferenceInput!"
+      },
+      {
+        "description": "The GlobalID of the custom document template, as shown on the template's side panel. The template is rendered in the entity's language, or in the tenant's default language when it has no PDF variation in the entity's language.",
+        "name": "templateId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The document's name, up to 255 characters. Defaults to the filename set on the template, cut to 255 characters. A '.pdf' extension is added when missing, and characters not allowed in file names, such as '/' or ':', are replaced with '-'.",
+        "name": "name",
+        "type": "String"
+      },
+      {
+        "description": "Custom merge tags, merged over the common merge tags (entity, billing, admin and branding).",
+        "name": "variables",
+        "type": "JSONObject"
+      }
+    ],
+    "name": "CreateDocumentFromTemplateInput"
   },
   {
     "description": "The createDocument mutation's input.",
@@ -3294,6 +4018,93 @@
       }
     ],
     "name": "CreateGeofenceInput"
+  },
+  {
+    "description": "The createGeofenceUploadUrl mutation's input.",
+    "fields": [
+      {
+        "description": "The GeoJSON file's name, including its extension.",
+        "name": "fileName",
+        "type": "String!"
+      }
+    ],
+    "name": "CreateGeofenceUploadUrlInput"
+  },
+  {
+    "description": "The input required to import a conversation. Source and external ID identify the conversation and must not already exist.",
+    "fields": [
+      {
+        "description": "The external system the conversation comes from, e.g. `five9`. 1 to 64 lowercase letters, digits, hyphens or underscores, starting with a letter or digit.",
+        "name": "source",
+        "type": "String!"
+      },
+      {
+        "description": "The conversation's ID in the external system, 1 to 255 characters, matched case-sensitively.",
+        "name": "externalId",
+        "type": "String!"
+      },
+      {
+        "description": "A link to the conversation in the external system. Absolute http or https URL of at most 2048 characters.",
+        "name": "externalUrl",
+        "type": "String"
+      },
+      {
+        "description": "The channel the conversation took place on.",
+        "name": "channel",
+        "type": "ConversationChannel!"
+      },
+      {
+        "description": "Who initiated the conversation (INBOUND = customer, OUTBOUND = tenant).",
+        "name": "direction",
+        "type": "ConversationMessageDirection!"
+      },
+      {
+        "description": "The Account to link the conversation to. When omitted, the account is matched from the customer address.",
+        "name": "linkedAccountId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The User to assign the conversation to.",
+        "name": "assigneeId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The tenant's phone number, in E.164 format.",
+        "name": "tenantAddress",
+        "type": "String!"
+      },
+      {
+        "description": "The customer's phone number, in E.164 format.",
+        "name": "customerAddress",
+        "type": "String!"
+      },
+      {
+        "description": "The conversation's title, 1 to 256 characters.",
+        "name": "title",
+        "type": "String"
+      },
+      {
+        "description": "The conversation's summary, at most 10,000 characters.",
+        "name": "summary",
+        "type": "String"
+      },
+      {
+        "description": "When the conversation started.",
+        "name": "startedAt",
+        "type": "DateTime!"
+      },
+      {
+        "description": "When the conversation ended. Must not be before `startedAt`.",
+        "name": "endedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "Additional data from the external system: a flat object of at most 100 keys of 1 to 100 characters, with string, number, boolean or null values, at most 16384 bytes serialized.",
+        "name": "fields",
+        "type": "JSONObject"
+      }
+    ],
+    "name": "CreateImportedConversationInput"
   },
   {
     "description": "The input required to create an incident.",
@@ -4196,14 +5007,34 @@
         "type": "DateTime"
       },
       {
+        "description": "The ID of the project template (project type) to create the project from. The template's form is copied onto the project, and its default assignees are used when no assignees are provided.",
+        "name": "templateId",
+        "type": "GlobalID"
+      },
+      {
         "description": "The project's linked entity.",
         "name": "linkedEntity",
         "type": "CreateProjectLinkedEntityInput"
       },
       {
+        "description": "Values for the project's form fields, keyed by the field IDs found in the template's form definition. Only valid together with templateId.",
+        "name": "fieldValues",
+        "type": "[ProjectFormFieldValueInput!]"
+      },
+      {
         "description": "The users assigned to the project.",
         "name": "assignees",
         "type": "[ProjectAssigneeInput!]"
+      },
+      {
+        "description": "The project's custom status ID. Defaults to the default unstarted status.",
+        "name": "customStatusId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "Whether to create the project template's (project type's) ticket definitions as tickets on the project. Only applies together with templateId. Defaults to false.",
+        "name": "createTemplateTickets",
+        "type": "Boolean"
       }
     ],
     "name": "CreateProjectInput"
@@ -4522,7 +5353,7 @@
         "type": "Boolean"
       },
       {
-        "description": "Indicates whether only property products are displayed for an account at this property.",
+        "description": "Indicates whether only property products are displayed for an account at this property. Defaults to false when the billing management type is MANAGED_BY_ACCOUNT and no property products are provided, and to true otherwise.",
         "name": "displayOnlyPropertyProducts",
         "type": "Boolean"
       },
@@ -5117,6 +5948,11 @@
         "type": "[GlobalID!]!"
       },
       {
+        "description": "The resource policy IDs to assign directly to the user.",
+        "name": "resourcePolicyIds",
+        "type": "[GlobalID!]"
+      },
+      {
         "description": "The user's preferred language.",
         "name": "language",
         "type": "String"
@@ -5190,7 +6026,7 @@
         "type": "WorkforceLocationInput"
       },
       {
-        "description": "The work order's linked entities.",
+        "description": "The work order's linked entities, which hold its service target: the account, commercial account or network site the work is for.",
         "name": "linkedEntities",
         "type": "[WorkOrderLinkedEntityInput!]"
       },
@@ -5395,6 +6231,27 @@
     "name": "CustomObjectFieldFilter"
   },
   {
+    "description": "Match records by the values selected in a single field. Entries are combined with AND, so a record must satisfy every field filtered on, while the values chosen within one field are combined with OR.",
+    "fields": [
+      {
+        "description": "The field definition to filter on. Only fields whose values are chosen from a fixed set can be filtered here: a field that does not belong to this object definition, or that has no such values, matches nothing.",
+        "name": "fieldDefinitionId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "When true, also match records that have no value for this field. Can be used on its own to find records missing a value.",
+        "name": "includeEmpty",
+        "type": "Boolean"
+      },
+      {
+        "description": "Match records carrying at least one of these values. Ids that are unknown, or that belong to another field, match nothing; an empty list matches nothing.",
+        "name": "someValueIds",
+        "type": "[GlobalID!]"
+      }
+    ],
+    "name": "CustomObjectFieldValuesFilter"
+  },
+  {
     "description": "Filters for listing custom object field definitions.",
     "fields": [
       {
@@ -5424,7 +6281,7 @@
         "type": "String"
       },
       {
-        "description": "Selected option ids for MULTI_SELECT fields.",
+        "description": "Selected option ids for SINGLE_SELECT and MULTI_SELECT fields. SINGLE_SELECT accepts at most one.",
         "name": "selectedOptionIds",
         "type": "[GlobalID!]"
       },
@@ -5455,9 +6312,9 @@
     "description": "Filters for listing custom object records.",
     "fields": [
       {
-        "description": "Filter on field values.",
-        "name": "field",
-        "type": "CustomObjectFieldFilter"
+        "description": "Match records by the values selected in specific fields. Each entry targets one field; entries are combined with AND, the values within an entry with OR.",
+        "name": "fieldValues",
+        "type": "[CustomObjectFieldValuesFilter!]"
       },
       {
         "description": "Whether to include archived records. Defaults to false.",
@@ -5488,6 +6345,11 @@
         "description": "Whether to return only unlocked records. Defaults to false.",
         "name": "isUnlockedOnly",
         "type": "Boolean"
+      },
+      {
+        "description": "Free-text search across all of a record's text: its display value, the value of every text-bearing field, and the labels of the values it has selected.",
+        "name": "search",
+        "type": "String"
       }
     ],
     "name": "CustomObjectRecordsFilters"
@@ -5668,6 +6530,11 @@
         "description": "The debit's invoice. Pass equals null to filter uninvoiced debits.",
         "name": "invoiceId",
         "type": "NullableGlobalIDFilter"
+      },
+      {
+        "description": "Whether the debit is reversed. Reversed and unreversed debits are returned when this is omitted.",
+        "name": "isReversed",
+        "type": "BooleanFilter"
       }
     ],
     "name": "DebitFilter"
@@ -5723,6 +6590,17 @@
       }
     ],
     "name": "DeleteIncidentProcedureInput"
+  },
+  {
+    "description": "The deleteInventoryItems mutation's input.",
+    "fields": [
+      {
+        "description": "The inventory items' unique IDs.",
+        "name": "inventoryItemIds",
+        "type": "[GlobalID!]!"
+      }
+    ],
+    "name": "DeleteInventoryItemsInput"
   },
   {
     "description": "The input required to delete a payment method.",
@@ -5870,6 +6748,11 @@
         "description": "The checkbox value.",
         "name": "checkbox",
         "type": "Boolean"
+      },
+      {
+        "description": "The date value, as an ISO-8601 date-only string (YYYY-MM-DD).",
+        "name": "date",
+        "type": "String"
       }
     ],
     "name": "EntityCustomFieldDataInput"
@@ -5942,6 +6825,22 @@
       }
     ],
     "name": "EntityFilter"
+  },
+  {
+    "description": "Available filters for an entity's notes.",
+    "fields": [
+      {
+        "description": "Filter on whether the note is a reply to another note.",
+        "name": "isReply",
+        "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter on whether the note is deleted.",
+        "name": "isDeleted",
+        "type": "BooleanFilter"
+      }
+    ],
+    "name": "EntityNoteFilter"
   },
   {
     "description": "Reference to an entity by GlobalID.",
@@ -6250,6 +7149,28 @@
     "name": "IncidentFilter"
   },
   {
+    "description": "Available filters for incident impacted accounts.",
+    "fields": [
+      {
+        "description": "Filter on the addition the accounts were added to the incident in.",
+        "name": "addition",
+        "type": "IncidentImpactedAccountsAdditionFilter"
+      }
+    ],
+    "name": "IncidentImpactedAccountFilter"
+  },
+  {
+    "description": "Available filters for incident impacted accounts additions.",
+    "fields": [
+      {
+        "description": "Filter on the addition's unique ID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "IncidentImpactedAccountsAdditionFilter"
+  },
+  {
     "description": "Available filters for incident severities.",
     "fields": [
       {
@@ -6523,6 +7444,11 @@
         "description": "Filter by exact invoice number.",
         "name": "equals",
         "type": "BigInt"
+      },
+      {
+        "description": "Filter for many invoice numbers.",
+        "name": "in",
+        "type": "[BigInt!]"
       }
     ],
     "name": "InvoiceNumberFilter"
@@ -6737,7 +7663,7 @@
     "description": "Available filters for filtering a json field.",
     "fields": [
       {
-        "description": "Path to the field to filter on. This should be a JSON path expression. Note: We currently only support basic JSON path expressions. Ex: '$.fieldA.fieldB' will yield 'fieldA.fieldB'.",
+        "description": "Path to the field to filter on. This should be a JSON path expression. Note: We currently only support basic JSON path expressions. Ex: '$.fieldA.fieldB' will yield 'fieldA.fieldB'. For a key with spaces, use bracket notation. Ex: $['Contract End Date'].",
         "name": "path",
         "type": "String!"
       },
@@ -6788,6 +7714,11 @@
         "description": "The unique ID of the child ticket to merge into the parent.",
         "name": "childTicketId",
         "type": "GlobalID!"
+      },
+      {
+        "description": "Merge the tickets even though they answer different customers, and keep the parent's public information.\nThe child's customer stops receiving answers on this thread, so only use it when that is intended.",
+        "name": "keepParentPublicInformation",
+        "type": "Boolean"
       }
     ],
     "name": "MergeTicketsInput"
@@ -7177,6 +8108,22 @@
     "name": "NoteLinkedEntityFilter"
   },
   {
+    "description": "To order notes.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "NoteOrderByField!"
+      }
+    ],
+    "name": "NoteOrderBy"
+  },
+  {
     "description": "Available filters for notification delivery statuses.",
     "fields": [
       {
@@ -7229,7 +8176,7 @@
     "name": "NotificationDeliveryTypeFilter"
   },
   {
-    "description": "Options for notifications related to work order scheduling changes. If not provided, the default is to notify both customers and technicians.",
+    "description": "Options for notifications related to work order scheduling changes. If not provided, customers and technicians are notified, except when the work order stays in the same arrival window: the customer is then not notified, and the technician is notified only if newly assigned.",
     "fields": [
       {
         "description": "Whether to notify customers about work order scheduling changes.",
@@ -7282,30 +8229,35 @@
         "description": "Filter on the notification's type.",
         "name": "type",
         "type": "NotificationDeliveryTypeFilter"
+      },
+      {
+        "description": "Filter on the correlation ID the sending service put in the notification's context.",
+        "name": "correlationId",
+        "type": "StringFilter"
       }
     ],
     "name": "NotificationsFilter"
   },
   {
-    "description": "Filter on a nullable GlobalID field. Supports null to filter records where the field is not set.",
+    "description": "Filter nullable GlobalIDs.",
     "fields": [
       {
-        "description": "The GlobalID must be equal to the filter value. Pass null to filter records where the field is not set.",
+        "description": "GlobalID must be equal to the filter. Pass null to match records where the GlobalID is not set.",
         "name": "equals",
         "type": "GlobalID"
       },
       {
-        "description": "The GlobalID must be one of the options.",
+        "description": "GlobalID must be one of the options.",
         "name": "in",
         "type": "[GlobalID!]"
       },
       {
-        "description": "The GlobalID must not be one of the options.",
+        "description": "GlobalID must not be one of the options. Records where the GlobalID is not set are excluded.",
         "name": "notIn",
         "type": "[GlobalID!]"
       },
       {
-        "description": "The GlobalID must be different from the filter value.",
+        "description": "GlobalID must be different from the filter. Records where the GlobalID is not set are excluded. Pass null to match records where the GlobalID is set.",
         "name": "not",
         "type": "GlobalID"
       }
@@ -7841,6 +8793,22 @@
     "name": "ProductFilter"
   },
   {
+    "description": "The ordering to apply to a list of products.",
+    "fields": [
+      {
+        "description": "The direction to order in.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "ProductOrderByField!"
+      }
+    ],
+    "name": "ProductOrderBy"
+  },
+  {
     "description": "Available filters for product types.",
     "fields": [
       {
@@ -7902,6 +8870,149 @@
       }
     ],
     "name": "ProjectAssigneeInput"
+  },
+  {
+    "description": "Filter for project custom status.",
+    "fields": [
+      {
+        "description": "Filter by custom status ID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter by custom status name.",
+        "name": "name",
+        "type": "StringFilter"
+      },
+      {
+        "description": "Filter by custom status type.",
+        "name": "type",
+        "type": "ProjectStatusTypeFilter"
+      }
+    ],
+    "name": "ProjectCustomStatusFilter"
+  },
+  {
+    "description": "The data for a project form field value. Provide exactly one property, matching the field's type.",
+    "fields": [
+      {
+        "description": "Value for a NUMBER field.",
+        "name": "number",
+        "type": "Float"
+      },
+      {
+        "description": "Value for a SHORT_TEXT or LONG_TEXT field.",
+        "name": "text",
+        "type": "String"
+      },
+      {
+        "description": "Value for a DROPDOWN field. Must be one of the field's options.",
+        "name": "dropdownOption",
+        "type": "String"
+      }
+    ],
+    "name": "ProjectFormFieldValueDataInput"
+  },
+  {
+    "description": "A form field value keyed by the field's ID.",
+    "fields": [
+      {
+        "description": "The ID of the form field, as found in the form definition.",
+        "name": "fieldId",
+        "type": "String!"
+      },
+      {
+        "description": "The value for the form field. Provide exactly one property, matching the field's type.",
+        "name": "value",
+        "type": "ProjectFormFieldValueDataInput"
+      }
+    ],
+    "name": "ProjectFormFieldValueInput"
+  },
+  {
+    "description": "Input for updating a form field value.",
+    "fields": [
+      {
+        "description": "The ID of the form field to update, as found in the project's form definition.",
+        "name": "fieldId",
+        "type": "String!"
+      },
+      {
+        "description": "The new value for the field. Set to null to delete the value.",
+        "name": "value",
+        "type": "ProjectFormFieldValueDataInput"
+      }
+    ],
+    "name": "ProjectFormFieldValueUpdateInput"
+  },
+  {
+    "description": "Input for updating form field values.",
+    "fields": [
+      {
+        "description": "The form field values to update. Only include fields that should be updated.",
+        "name": "values",
+        "type": "[ProjectFormFieldValueUpdateInput!]!"
+      }
+    ],
+    "name": "ProjectFormUpdateInput"
+  },
+  {
+    "description": "Filter for project status types.",
+    "fields": [
+      {
+        "description": "Filtering for a type.",
+        "name": "equals",
+        "type": "ProjectStatusType"
+      },
+      {
+        "description": "Filtering out a type.",
+        "name": "not",
+        "type": "ProjectStatusType"
+      },
+      {
+        "description": "Filtering for many types.",
+        "name": "in",
+        "type": "[ProjectStatusType!]"
+      },
+      {
+        "description": "Filtering out many types.",
+        "name": "notIn",
+        "type": "[ProjectStatusType!]"
+      }
+    ],
+    "name": "ProjectStatusTypeFilter"
+  },
+  {
+    "description": "Available filters for project templates.",
+    "fields": [
+      {
+        "description": "Filter on the template's unique ID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter on the template's name.",
+        "name": "name",
+        "type": "StringFilter"
+      }
+    ],
+    "name": "ProjectTemplateFilter"
+  },
+  {
+    "description": "To order project templates.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "ProjectTemplateOrderByField!"
+      }
+    ],
+    "name": "ProjectTemplateOrderBy"
   },
   {
     "description": "Available filters for properties.",
@@ -8121,6 +9232,33 @@
     "name": "RemoveIpBlocksFromNetworkSiteInput"
   },
   {
+    "description": "Available filters for resource policies.",
+    "fields": [
+      {
+        "description": "Filter on the resource policy's name. `contains`, `startsWith` and `endsWith` are case- and accent-insensitive.",
+        "name": "name",
+        "type": "StringFilter"
+      }
+    ],
+    "name": "ResourcePolicyFilter"
+  },
+  {
+    "description": "To order resource policies.",
+    "fields": [
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      },
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "ResourcePolicyOrderByField!"
+      }
+    ],
+    "name": "ResourcePolicyOrderBy"
+  },
+  {
     "description": "The input required to restrict a payment method type.",
     "fields": [
       {
@@ -8274,6 +9412,17 @@
       }
     ],
     "name": "SkipNodeExecutionInput"
+  },
+  {
+    "description": "The startCreateGeofenceJob mutation's input.",
+    "fields": [
+      {
+        "description": "The uploaded GeoJSON file's key, from createGeofenceUploadUrl.",
+        "name": "fileKey",
+        "type": "String!"
+      }
+    ],
+    "name": "StartCreateGeofenceJobInput"
   },
   {
     "description": "Input required to start a product availability job.",
@@ -9044,6 +10193,11 @@
         "type": "TicketProjectFilter"
       },
       {
+        "description": "Filter on the ticket's work order field.",
+        "name": "workOrder",
+        "type": "TicketWorkOrderFilter"
+      },
+      {
         "description": "Filter on the ticket's creation date.",
         "name": "createdAt",
         "type": "DateTimeFilter"
@@ -9278,6 +10432,17 @@
       }
     ],
     "name": "TicketVisibilityFilter"
+  },
+  {
+    "description": "Available filters for the ticket's work order.",
+    "fields": [
+      {
+        "description": "Filter on the work order's unique ID.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "TicketWorkOrderFilter"
   },
   {
     "description": "The input required to create a ticket worklog's creator information.",
@@ -9887,6 +11052,28 @@
     "name": "UpdateAccountPhysicalAddressInput"
   },
   {
+    "description": "The input required to update an account status.",
+    "fields": [
+      {
+        "description": "The account status's name (not nullable).",
+        "name": "name",
+        "type": "String"
+      }
+    ],
+    "name": "UpdateAccountStatusInput"
+  },
+  {
+    "description": "The input required to update an account type.",
+    "fields": [
+      {
+        "description": "The account type's name (not nullable).",
+        "name": "name",
+        "type": "String"
+      }
+    ],
+    "name": "UpdateAccountTypeInput"
+  },
+  {
     "description": "Input for updating an address custom field definition.",
     "fields": [
       {
@@ -10043,6 +11230,252 @@
       }
     ],
     "name": "UpdateBundleInput"
+  },
+  {
+    "description": "The input required to update a cancellation reason. The code and the category cannot be updated.",
+    "fields": [
+      {
+        "description": "Whether the cancellation reason is internal-only and must not be shown to customers (not nullable).",
+        "name": "isInternal",
+        "type": "Boolean"
+      },
+      {
+        "description": "Whether the client portal shows an optional free-text field when a customer picks this cancellation reason (not nullable).",
+        "name": "asksForDescription",
+        "type": "Boolean"
+      },
+      {
+        "description": "Replaces all the existing translations. Must include an English (EN) entry (not nullable).",
+        "name": "translations",
+        "type": "[CancellationReasonTranslationInput!]"
+      }
+    ],
+    "name": "UpdateCancellationReasonInput"
+  },
+  {
+    "description": "The input required to update a commercial account.",
+    "fields": [
+      {
+        "description": "The commercial account's unique ID.",
+        "name": "commercialAccountId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The updated custom status ID of the commercial account (not nullable).",
+        "name": "customStatusId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The updated custom type ID of the commercial account (not nullable).",
+        "name": "customTypeId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The commercial account's name (not nullable).",
+        "name": "name",
+        "type": "String"
+      },
+      {
+        "description": "The commercial account's physical address. Only the provided fields are updated (not nullable).",
+        "name": "physicalAddress",
+        "type": "UpdateCommercialAccountPhysicalAddressInput"
+      },
+      {
+        "description": "The commercial account's mailing address. Only the provided fields are updated (not nullable).",
+        "name": "mailingAddress",
+        "type": "UpdateCommercialAccountMailingAddressInput"
+      },
+      {
+        "description": "The commercial account's primary contact. Only the provided fields are updated (not nullable).",
+        "name": "primaryContact",
+        "type": "UpdateCommercialAccountPrimaryContactInput"
+      },
+      {
+        "description": "The IDs of the tag values to assign to the commercial account. Replaces all of the commercial account's current tags, so every tag value to keep must be included. When the tenant has tag definitions, a value is required for each of them (not nullable).",
+        "name": "tags",
+        "type": "[GlobalID!]"
+      }
+    ],
+    "name": "UpdateCommercialAccountInput"
+  },
+  {
+    "description": "The input required to update a commercial account's mailing address.",
+    "fields": [
+      {
+        "description": "The mailing address line 1 (not nullable).",
+        "name": "line1",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address premise/civic number.",
+        "name": "premise",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address thoroughfare/street name.",
+        "name": "thoroughfare",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address line 2/unit number.",
+        "name": "line2",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address neighborhood.",
+        "name": "neighborhood",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address postal code/ZIP code (not nullable).",
+        "name": "postalCode",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address locality/city (not nullable).",
+        "name": "locality",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address region/state/province (not nullable).",
+        "name": "region",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address county. Ex: 'Autauga County'.",
+        "name": "county",
+        "type": "String"
+      },
+      {
+        "description": "The mailing address three-letter country code. Follows the ISO 3166 alpha-3 standard. Ex: 'USA' (not nullable).",
+        "name": "country",
+        "type": "String"
+      },
+      {
+        "description": "The national address identifier (e.g., UPRN for UK addresses).",
+        "name": "nationalAddressIdentifier",
+        "type": "String"
+      }
+    ],
+    "name": "UpdateCommercialAccountMailingAddressInput"
+  },
+  {
+    "description": "The input required to update a commercial account's physical address.",
+    "fields": [
+      {
+        "description": "The physical address line 1 (not nullable).",
+        "name": "line1",
+        "type": "String"
+      },
+      {
+        "description": "The physical address premise/civic number (not nullable).",
+        "name": "premise",
+        "type": "String"
+      },
+      {
+        "description": "The physical address thoroughfare/street name (not nullable).",
+        "name": "thoroughfare",
+        "type": "String"
+      },
+      {
+        "description": "The physical address line 2/unit number.",
+        "name": "line2",
+        "type": "String"
+      },
+      {
+        "description": "The physical address neighborhood.",
+        "name": "neighborhood",
+        "type": "String"
+      },
+      {
+        "description": "The physical address postal code/ZIP code (not nullable).",
+        "name": "postalCode",
+        "type": "String"
+      },
+      {
+        "description": "The physical address locality/city (not nullable).",
+        "name": "locality",
+        "type": "String"
+      },
+      {
+        "description": "The physical address region/state/province (not nullable).",
+        "name": "region",
+        "type": "String"
+      },
+      {
+        "description": "The physical address county. Ex: 'Autauga County'.",
+        "name": "county",
+        "type": "String"
+      },
+      {
+        "description": "The physical address three-letter country code. Follows the ISO 3166 alpha-3 standard. Ex: 'USA' (not nullable).",
+        "name": "country",
+        "type": "String"
+      },
+      {
+        "description": "The physical address latitude.",
+        "name": "latitude",
+        "type": "Float"
+      },
+      {
+        "description": "The physical address longitude.",
+        "name": "longitude",
+        "type": "Float"
+      },
+      {
+        "description": "The national address identifier (e.g., UPRN for UK addresses).",
+        "name": "nationalAddressIdentifier",
+        "type": "String"
+      }
+    ],
+    "name": "UpdateCommercialAccountPhysicalAddressInput"
+  },
+  {
+    "description": "The input required to update a commercial account's primary contact.",
+    "fields": [
+      {
+        "description": "The contact's first name (not nullable).",
+        "name": "firstName",
+        "type": "String"
+      },
+      {
+        "description": "The contact's last name (not nullable).",
+        "name": "lastName",
+        "type": "String"
+      },
+      {
+        "description": "The contact's email address (not nullable).",
+        "name": "email",
+        "type": "String"
+      },
+      {
+        "description": "The contact's mobile phone number.",
+        "name": "mobilePhone",
+        "type": "String"
+      },
+      {
+        "description": "The contact's work phone number.",
+        "name": "workPhone",
+        "type": "String"
+      },
+      {
+        "description": "The contact's role.",
+        "name": "role",
+        "type": "String"
+      }
+    ],
+    "name": "UpdateCommercialAccountPrimaryContactInput"
+  },
+  {
+    "description": "The input required to update a commercial account status.",
+    "fields": [
+      {
+        "description": "The commercial account status's name (not nullable).",
+        "name": "name",
+        "type": "String"
+      }
+    ],
+    "name": "UpdateCommercialAccountStatusInput"
   },
   {
     "description": "The updateContract mutation's input.",
@@ -10289,6 +11722,16 @@
         "type": "Int"
       },
       {
+        "description": "The appointment configuration's treatment of the drive from the base location to the first work order of the day in auto-assign. Non-nullable.",
+        "name": "autoAssignShiftStartTravelMode",
+        "type": "AutoAssignShiftTravelMode"
+      },
+      {
+        "description": "The appointment configuration's treatment of the drive from the last work order of the day back to the base location in auto-assign; only applies while return to base is enabled for the tenant. Non-nullable.",
+        "name": "autoAssignShiftEndTravelMode",
+        "type": "AutoAssignShiftTravelMode"
+      },
+      {
         "description": "The appointment configuration's arrival windows. Non-nullable.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindowInput!]"
@@ -10415,6 +11858,37 @@
       }
     ],
     "name": "UpdateGeoAddressInput"
+  },
+  {
+    "description": "The mutable fields of an imported conversation. An omitted field is left unchanged; null clears it.",
+    "fields": [
+      {
+        "description": "The conversation's title, 1 to 256 characters.",
+        "name": "title",
+        "type": "String"
+      },
+      {
+        "description": "The conversation's summary, at most 10,000 characters.",
+        "name": "summary",
+        "type": "String"
+      },
+      {
+        "description": "A link to the conversation in the external system. Absolute http or https URL of at most 2048 characters.",
+        "name": "externalUrl",
+        "type": "String"
+      },
+      {
+        "description": "When the conversation ended. Must not be before the conversation's start time.",
+        "name": "endedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "Additional data from the external system, replacing the whole object. Null clears it to an empty object.",
+        "name": "fields",
+        "type": "JSONObject"
+      }
+    ],
+    "name": "UpdateImportedConversationInput"
   },
   {
     "description": "The input required to update an incident.",
@@ -10981,9 +12455,9 @@
         "type": "Date"
       },
       {
-        "description": "The product's tags (nullable).",
-        "name": "tags",
-        "type": "[String!]"
+        "description": "The product's tag value IDs (nullable). Takes precedence over tags.",
+        "name": "tagValueIds",
+        "type": "[GlobalID!]"
       },
       {
         "description": "The discount product's applicability (nullable). Only allowed on DISCOUNT products. Omit the field to leave the applicability unchanged; pass null to clear it, making the discount unrestricted.",
@@ -10992,6 +12466,52 @@
       }
     ],
     "name": "UpdateProductInput"
+  },
+  {
+    "description": "The input required to update a project.",
+    "fields": [
+      {
+        "description": "The project's title.",
+        "name": "title",
+        "type": "String"
+      },
+      {
+        "description": "The project's description.",
+        "name": "description",
+        "type": "String"
+      },
+      {
+        "description": "The project's start date.",
+        "name": "startDate",
+        "type": "DateTime"
+      },
+      {
+        "description": "The project's target date.",
+        "name": "targetDate",
+        "type": "DateTime"
+      },
+      {
+        "description": "The project's custom status ID.",
+        "name": "customStatusId",
+        "type": "GlobalID"
+      },
+      {
+        "description": "The project's form field values to update. The project must have a form.",
+        "name": "form",
+        "type": "ProjectFormUpdateInput"
+      },
+      {
+        "description": "The users assigned to the project.",
+        "name": "assignees",
+        "type": "[ProjectAssigneeInput!]"
+      },
+      {
+        "description": "The project's linked entity. Pass a GlobalID to link, null to unlink, or omit to leave unchanged.",
+        "name": "linkedEntity",
+        "type": "GlobalID"
+      }
+    ],
+    "name": "UpdateProjectInput"
   },
   {
     "description": "The input for updating a contact.",
@@ -11482,6 +13002,32 @@
     "name": "UpdateTicketTemplateInput"
   },
   {
+    "description": "The updateTicketUserGroupNotificationSetting mutation's input.",
+    "fields": [
+      {
+        "description": "The ID of the user group (team) whose members are notified.",
+        "name": "userGroupId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The ticket event.",
+        "name": "event",
+        "type": "TicketNotificationEvent!"
+      },
+      {
+        "description": "The delivery channel.",
+        "name": "channel",
+        "type": "TicketNotificationChannel!"
+      },
+      {
+        "description": "Whether the user group's members are notified. The setting is set to this value, never toggled.",
+        "name": "enabled",
+        "type": "Boolean!"
+      }
+    ],
+    "name": "UpdateTicketUserGroupNotificationSettingInput"
+  },
+  {
     "description": "The input required to update a ticket's work order.",
     "fields": [
       {
@@ -11632,6 +13178,11 @@
         "description": "The role IDs to assign to the user. Omit to keep unchanged; passing null returns USER_FIELD_NON_NULLABLE.",
         "name": "roleIds",
         "type": "[GlobalID!]"
+      },
+      {
+        "description": "The resource policy IDs to assign directly to the user. Omit to keep unchanged; passing null returns USER_FIELD_NON_NULLABLE.",
+        "name": "resourcePolicyIds",
+        "type": "[GlobalID!]"
       }
     ],
     "name": "UpdateUserInput"
@@ -11671,7 +13222,7 @@
         "type": "WorkforceLocationInput"
       },
       {
-        "description": "The work order's linked entities. Set to null to unlink all entities.",
+        "description": "The work order's linked entities, which hold its service target: the account, commercial account or network site the work is for. A list replaces the current service target. Set to null or an empty list to remove the service target. Omit to leave it unchanged.",
         "name": "linkedEntities",
         "type": "[WorkOrderLinkedEntityInput!]"
       },
@@ -11980,6 +13531,21 @@
         "description": "Filter on the user's name, matched against `${firstName} ${lastName}`. `equals`, `not`, `in`, and `notIn` are case-sensitive; `contains`, `startsWith`, and `endsWith` are case- and accent-insensitive. Supplying multiple operators ANDs them together.",
         "name": "name",
         "type": "StringFilter"
+      },
+      {
+        "description": "Filter on the user's email address. Follows the same case rules as `name`.",
+        "name": "email",
+        "type": "StringFilter"
+      },
+      {
+        "description": "Filter on the user's assigned roles. `in` keeps users holding at least one of the given roles; `notIn` drops users holding any of them.",
+        "name": "roleIds",
+        "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Free-text search over the user's first name, last name and email. The term is split on non-alphanumeric characters and every part must match at least one of those three fields. Case- and accent-insensitive.",
+        "name": "search",
+        "type": "String"
       }
     ],
     "name": "UserFilter"
@@ -12331,9 +13897,25 @@
         "description": "Filter on the work order's custom status.",
         "name": "customStatus",
         "type": "WorkOrderCustomStatusFilter"
+      },
+      {
+        "description": "Filter on the work order's location.",
+        "name": "location",
+        "type": "WorkOrderLocationFilter"
       }
     ],
     "name": "WorkOrderFilter"
+  },
+  {
+    "description": "Available filters for the geo address linked to a work order's location.",
+    "fields": [
+      {
+        "description": "Filter on the geo address's unique ID. Work orders with no location, or whose location has no linked geo address, never match, not even for not and notIn.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "WorkOrderGeoAddressFilter"
   },
   {
     "description": "Available filters for work order linked entities.",
@@ -12361,6 +13943,17 @@
       }
     ],
     "name": "WorkOrderLinkedEntityInput"
+  },
+  {
+    "description": "Available filters for a work order's location.",
+    "fields": [
+      {
+        "description": "Filter on the location's linked geo address.",
+        "name": "geoAddress",
+        "type": "WorkOrderGeoAddressFilter"
+      }
+    ],
+    "name": "WorkOrderLocationFilter"
   },
   {
     "description": "To order work orders.",
@@ -12682,6 +14275,17 @@
     "name": "WorkflowDefinitionRepresentationTriggerFilter"
   },
   {
+    "description": "Available filters for the custom object definition targeted by a CUSTOM_OBJECT_RECORD object type.",
+    "fields": [
+      {
+        "description": "Filter on the custom object definition's id.",
+        "name": "id",
+        "type": "GlobalIDFilter"
+      }
+    ],
+    "name": "WorkflowDefinitionRepresentationTriggerObjectTypeCustomObjectDefinitionFilter"
+  },
+  {
     "description": "Available filters for workflow definition representation trigger's linked object type.",
     "fields": [
       {
@@ -12708,6 +14312,11 @@
         "description": "Filter for empty object type.",
         "name": "isNull",
         "type": "BooleanFilter"
+      },
+      {
+        "description": "Filter for the custom object definition targeted by a CUSTOM_OBJECT_RECORD object type. Combined with the other object type conditions with OR.",
+        "name": "customObjectDefinition",
+        "type": "WorkflowDefinitionRepresentationTriggerObjectTypeCustomObjectDefinitionFilter"
       }
     ],
     "name": "WorkflowDefinitionRepresentationTriggerObjectTypeFilter"
@@ -12964,9 +14573,25 @@
         "description": "Filter on workflows that have at least one of the given label IDs.",
         "name": "id",
         "type": "GlobalIDFilter"
+      },
+      {
+        "description": "Filter on workflows that have at least one assigned label whose name matches, case-insensitively.",
+        "name": "name",
+        "type": "WorkflowLabelsNameFilter"
       }
     ],
     "name": "WorkflowLabelsFilter"
+  },
+  {
+    "description": "Available filters for the name of a workflow's labels.",
+    "fields": [
+      {
+        "description": "Matches workflows that have at least one assigned label whose name contains the given text, case-insensitively.",
+        "name": "contains",
+        "type": "String"
+      }
+    ],
+    "name": "WorkflowLabelsNameFilter"
   },
   {
     "description": "Available filters for workflow node executions.",
@@ -13375,6 +15000,11 @@
         "description": "The location's coordinates.",
         "name": "coordinates",
         "type": "CoordinatesInput!"
+      },
+      {
+        "description": "The location's service address, as a Geo Address ID. Only read when setting a work order's location — it is ignored on technician and availability inputs, where a service address is deliberately out of scope. When supplied and the address has its own coordinates, those take precedence over `coordinates`.",
+        "name": "geoAddressId",
+        "type": "GlobalID"
       }
     ],
     "name": "WorkforceLocationInput"

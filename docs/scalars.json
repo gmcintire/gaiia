@@ -44,12 +44,20 @@
     "name": "JSONObject"
   },
   {
+    "description": "Secret custom scalar type",
+    "name": "Secret"
+  },
+  {
     "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
     "name": "String"
   },
   {
     "description": "A UUID custom scalar type.",
     "name": "UUID"
+  },
+  {
+    "description": "A calendar date with no time and no timezone, represented as a \"YYYY-MM-DD\" string. Values carrying a time or a UTC offset are rejected, so a date can never drift across a day boundary.",
+    "name": "WorkforceCalendarDate"
   },
   {
     "name": "join__FieldSet"

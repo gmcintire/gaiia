@@ -72,6 +72,15 @@
     ]
   },
   {
+    "description": "The possible linked account types for a conversation.",
+    "name": "ConversationLinkedAccount",
+    "possibleTypes": [
+      "Account",
+      "CommercialAccount",
+      "PropertyGroup"
+    ]
+  },
+  {
     "description": "The createAddress mutation's expected error.",
     "name": "CreateAddressError",
     "possibleTypes": [
@@ -237,6 +246,13 @@
     ]
   },
   {
+    "description": "The extra data of an UpdateAddressInputError.",
+    "name": "UpdateAddressInputErrorPayload",
+    "possibleTypes": [
+      "UpdateAddressInputErrorAddressesPayload"
+    ]
+  },
+  {
     "description": "The updateAddresses mutation's expected error.",
     "name": "UpdateAddressesError",
     "possibleTypes": [
@@ -251,6 +267,13 @@
     "possibleTypes": [
       "UpdateWorkOrderStatusEntityNotFoundErrorPayload",
       "UpdateWorkOrderStatusWorkOrderErrorPayload"
+    ]
+  },
+  {
+    "description": "The upsertMacAddressIpAddressAssignations error's payload.",
+    "name": "UpsertMacAddressIpAddressAssignationsErrorPayload",
+    "possibleTypes": [
+      "ActiveIpConflictErrorPayload"
     ]
   },
   {
@@ -269,6 +292,8 @@
       "Account",
       "BillingSubscription",
       "CommercialAccount",
+      "CustomObjectRecord",
+      "GeoAddress",
       "InventoryItem",
       "NetworkSite",
       "Product",

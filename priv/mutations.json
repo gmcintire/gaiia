@@ -406,6 +406,68 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The account status's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Archive an account status.",
+    "isDeprecated": false,
+    "name": "archiveAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveAccountStatusResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The account type's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Archive an account type.",
+    "isDeprecated": false,
+    "name": "archiveAccountType",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveAccountTypeResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The address's unique ID.",
         "name": "addressId",
         "type": {
@@ -460,6 +522,68 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "ArchiveBundleResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The cancellation reason's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Archive a cancellation reason.",
+    "isDeprecated": false,
+    "name": "archiveCancellationReason",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveCancellationReasonResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The commercial account status's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Archive a commercial account status.",
+    "isDeprecated": false,
+    "name": "archiveCommercialAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveCommercialAccountStatusResult",
         "ofType": null
       }
     }
@@ -1073,6 +1197,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The assignInventoryItems mutation's input.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "AssignInventoryItemsInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update the assignee and/or the inventory role of many inventory items at once.",
+    "isDeprecated": false,
+    "name": "assignInventoryItems",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "AssignInventoryItemsResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input required to assign non-serialized items.",
         "name": "input",
         "type": {
@@ -1549,6 +1704,68 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The input required to create an account status.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateAccountStatusInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create an account status.",
+    "isDeprecated": false,
+    "name": "createAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateAccountStatusResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to create an account type.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateAccountTypeInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create an account type.",
+    "isDeprecated": false,
+    "name": "createAccountType",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateAccountTypeResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The address's input.",
         "name": "input",
         "type": {
@@ -1665,6 +1882,99 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "CreateBundleResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to create a cancellation reason.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateCancellationReasonInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create a cancellation reason.",
+    "isDeprecated": false,
+    "name": "createCancellationReason",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateCancellationReasonResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to create a commercial account.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateCommercialAccountInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create a commercial account.",
+    "isDeprecated": false,
+    "name": "createCommercialAccount",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateCommercialAccountResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to create a commercial account status.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateCommercialAccountStatusInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create a commercial account status.",
+    "isDeprecated": false,
+    "name": "createCommercialAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateCommercialAccountStatusResult",
         "ofType": null
       }
     }
@@ -1983,6 +2293,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The input required to create a document from a template.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateDocumentFromTemplateInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Render a custom document template as a PDF and add it to an entity's documents.",
+    "isDeprecated": false,
+    "name": "createDocumentFromTemplate",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateDocumentFromTemplateResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input to create a document upload URL.",
         "name": "input",
         "type": {
@@ -2099,6 +2440,68 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "CreateGeofenceResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to create a geofence upload URL.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateGeofenceUploadUrlInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Create an upload URL for a geofence's GeoJSON file. Upload the file with an HTTP PUT, then pass the file key to startCreateGeofenceJob.",
+    "isDeprecated": false,
+    "name": "createGeofenceUploadUrl",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateGeofenceUploadUrlResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The conversation to import.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CreateImportedConversationInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Import a conversation that took place in an external system. A source and external ID that already exist are rejected; use updateImportedConversation to change an imported conversation. Find an existing one with the `conversations` query's `imported` filter.",
+    "isDeprecated": false,
+    "name": "createImportedConversation",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CreateImportedConversationResult",
         "ofType": null
       }
     }
@@ -3575,6 +3978,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The deleteInventoryItems mutation's input.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "DeleteInventoryItemsInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Delete inventory items. Inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
+    "isDeprecated": false,
+    "name": "deleteInventoryItems",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "DeleteInventoryItemsResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The notes's unique ID.",
         "name": "noteId",
         "type": {
@@ -4497,6 +4931,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The input required to start a create-geofence job.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "StartCreateGeofenceJobInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Start an asynchronous job that creates a geofence from an uploaded GeoJSON file. Use this when createGeofence fails with TOO_LARGE_FOR_SYNCHRONOUS_CREATE.",
+    "isDeprecated": false,
+    "name": "startCreateGeofenceJob",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "StartCreateGeofenceJobResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input required to create a product availability job.",
         "name": "input",
         "type": {
@@ -4652,6 +5117,68 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The account status's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Unarchive an account status.",
+    "isDeprecated": false,
+    "name": "unarchiveAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveAccountStatusResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The account type's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Unarchive an account type.",
+    "isDeprecated": false,
+    "name": "unarchiveAccountType",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveAccountTypeResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The address's unique ID.",
         "name": "addressId",
         "type": {
@@ -4675,6 +5202,99 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "UnarchiveAddressResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The bundle's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Bring an archived bundle back.",
+    "isDeprecated": false,
+    "name": "unarchiveBundle",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveBundleResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The cancellation reason's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Unarchive a cancellation reason.",
+    "isDeprecated": false,
+    "name": "unarchiveCancellationReason",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveCancellationReasonResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The commercial account status's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Unarchive a commercial account status.",
+    "isDeprecated": false,
+    "name": "unarchiveCommercialAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveCommercialAccountStatusResult",
         "ofType": null
       }
     }
@@ -5434,6 +6054,96 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The account status's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to update an account status.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAccountStatusInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update an account status.",
+    "isDeprecated": false,
+    "name": "updateAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAccountStatusResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The account type's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to update an account type.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateAccountTypeInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update an account type.",
+    "isDeprecated": false,
+    "name": "updateAccountType",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateAccountTypeResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The address's unique ID.",
         "name": "id",
         "type": {
@@ -5654,6 +6364,127 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "UpdateBundleResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The cancellation reason's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to update a cancellation reason.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateCancellationReasonInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update a cancellation reason.",
+    "isDeprecated": false,
+    "name": "updateCancellationReason",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateCancellationReasonResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to update a commercial account.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateCommercialAccountInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update a commercial account.",
+    "isDeprecated": false,
+    "name": "updateCommercialAccount",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateCommercialAccountResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The commercial account status's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to update a commercial account status.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateCommercialAccountStatusInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update a commercial account status.",
+    "isDeprecated": false,
+    "name": "updateCommercialAccountStatus",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateCommercialAccountStatusResult",
         "ofType": null
       }
     }
@@ -6103,6 +6934,51 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The conversation ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The fields to update.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateImportedConversationInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update the mutable fields of an imported conversation, by its ID.",
+    "isDeprecated": false,
+    "name": "updateImportedConversation",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateImportedConversationResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The input required to update an incident.",
         "name": "input",
         "type": {
@@ -6454,7 +7330,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Update payments' status.",
+    "description": "Update payments' status. Partial success: each payment is updated on its own, and its result holds either the updated payment or its errors.",
     "isDeprecated": false,
     "name": "updatePayments",
     "type": {
@@ -6553,6 +7429,51 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "UpdateProductCategoryResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The project's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to update a project.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateProjectInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update an existing project.",
+    "isDeprecated": false,
+    "name": "updateProject",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateProjectResult",
         "ofType": null
       }
     }
@@ -7242,6 +8163,37 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "UpdateTicketTemplateResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The user group notification setting's input.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTicketUserGroupNotificationSettingInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Set whether a user group's members are notified of a ticket event through a channel.",
+    "isDeprecated": false,
+    "name": "updateTicketUserGroupNotificationSetting",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTicketUserGroupNotificationSettingResult",
         "ofType": null
       }
     }

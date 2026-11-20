@@ -41,6 +41,10 @@
       {
         "description": "List custom field definition type.",
         "name": "LIST"
+      },
+      {
+        "description": "Date custom field definition type. Values are ISO-8601 date-only strings (YYYY-MM-DD), without a time or timezone.",
+        "name": "DATE"
       }
     ]
   },
@@ -139,6 +143,10 @@
       {
         "description": "There are invalid fields in the customer owned item input.",
         "name": "INVALID_FIELDS"
+      },
+      {
+        "description": "Setting a SECRET field value requires the inventory.items.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
       }
     ]
   },
@@ -243,6 +251,14 @@
       {
         "description": "The field's data violates a unique constraint.",
         "name": "UNIQUE_FIELD_VIOLATION"
+      },
+      {
+        "description": "The field's data is the masked secret placeholder and cannot be stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
+      },
+      {
+        "description": "Setting a SECRET field value requires the inventory.items.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
       },
       {
         "description": "The field's data does not fit the type of the field.",
@@ -406,6 +422,10 @@
       {
         "description": "Checkbox field.",
         "name": "CHECKBOX"
+      },
+      {
+        "description": "Date field. Values are ISO-8601 date-only strings (YYYY-MM-DD), without a time or timezone.",
+        "name": "DATE"
       }
     ]
   },
@@ -420,6 +440,10 @@
       {
         "description": "Invalid boolean.",
         "name": "INVALID_BOOLEAN"
+      },
+      {
+        "description": "Invalid date. Expected an ISO-8601 date-only string (YYYY-MM-DD).",
+        "name": "INVALID_DATE"
       },
       {
         "description": "Invalid number.",
@@ -550,6 +574,46 @@
     ]
   },
   {
+    "description": "The archiveAccountStatus mutation's expected error codes.",
+    "name": "ArchiveAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The account status was not found.",
+        "name": "ACCOUNT_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "The account status is the default status of its type.",
+        "name": "ACCOUNT_STATUS_IS_DEFAULT"
+      },
+      {
+        "description": "The account status is used by at least one account.",
+        "name": "ACCOUNT_STATUS_IN_USE"
+      }
+    ]
+  },
+  {
+    "description": "The archiveAccountType mutation's expected error codes.",
+    "name": "ArchiveAccountTypeErrorCode",
+    "values": [
+      {
+        "description": "The account type was not found.",
+        "name": "ACCOUNT_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "The account type is the default type for residential accounts.",
+        "name": "ACCOUNT_TYPE_IS_DEFAULT"
+      },
+      {
+        "description": "The account type is the default type for commercial accounts.",
+        "name": "ACCOUNT_TYPE_IS_DEFAULT_FOR_COMMERCIAL_ACCOUNTS"
+      },
+      {
+        "description": "The account type is used by at least one account or commercial account.",
+        "name": "ACCOUNT_TYPE_IN_USE"
+      }
+    ]
+  },
+  {
     "description": "The archiveAddress mutation's expected error code.",
     "name": "ArchiveAddressErrorCode",
     "values": [
@@ -578,6 +642,34 @@
     ]
   },
   {
+    "description": "The archiveCancellationReason mutation's expected error codes.",
+    "name": "ArchiveCancellationReasonErrorCode",
+    "values": [
+      {
+        "description": "The cancellation reason was not found.",
+        "name": "CANCELLATION_REASON_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The archiveCommercialAccountStatus mutation's expected error codes.",
+    "name": "ArchiveCommercialAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The commercial account status was not found.",
+        "name": "COMMERCIAL_ACCOUNT_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "The commercial account status is used by at least one commercial account.",
+        "name": "COMMERCIAL_ACCOUNT_STATUS_IN_USE"
+      },
+      {
+        "description": "The commercial account status is the default status of its type.",
+        "name": "COMMERCIAL_ACCOUNT_STATUS_IS_DEFAULT"
+      }
+    ]
+  },
+  {
     "description": "The archiveCoverageAreas mutation's expected error code.",
     "name": "ArchiveCoverageAreasErrorCode",
     "values": [
@@ -598,6 +690,10 @@
       {
         "description": "The custom object definition was not found.",
         "name": "NOT_FOUND"
+      },
+      {
+        "description": "Not supported for entity types: the object definition holds an entity type's custom fields.",
+        "name": "ENTITY_NOT_SUPPORTED"
       }
     ]
   },
@@ -630,6 +726,10 @@
       {
         "description": "The record is locked and cannot be archived.",
         "name": "RECORD_LOCKED"
+      },
+      {
+        "description": "Not supported for entities: the id is an entity's, or the record holds an entity's custom field values.",
+        "name": "ENTITY_NOT_SUPPORTED"
       }
     ]
   },
@@ -688,6 +788,10 @@
       {
         "description": "The technician could not be found.",
         "name": "TECHNICIAN_NOT_FOUND"
+      },
+      {
+        "description": "The technician's assigned work orders could not be reopened, so the technician was left active. Retrying is safe.",
+        "name": "TECHNICIAN_UNABLE_TO_REOPEN_WORK_ORDERS"
       }
     ]
   },
@@ -884,8 +988,16 @@
         "name": "NEGATIVE_BILLING_THRESHOLD_VALUE"
       },
       {
+        "description": "Billing threshold value must be greater than 0 for recurring product versions.",
+        "name": "ZERO_BILLING_THRESHOLD_VALUE"
+      },
+      {
         "description": "Share configuration should not contain only the current entity.",
         "name": "SHARE_CONFIGURATION_OWNER_ONLY"
+      },
+      {
+        "description": "Share configuration should not contain the same payer more than once.",
+        "name": "DUPLICATE_SHARE_PAYER"
       },
       {
         "description": "When shareType is ${shareType} share value must be > 0.",
@@ -926,6 +1038,10 @@
       {
         "description": "Cannot set custom price for prepaid product.",
         "name": "CUSTOM_PRICE_PREPAID_PRODUCT"
+      },
+      {
+        "description": "Cannot set custom price for tiered product.",
+        "name": "CUSTOM_PRICE_TIERED_PRODUCT"
       },
       {
         "description": "Custom price cannot be negative.",
@@ -1056,6 +1172,10 @@
         "name": "PRICE_OVERRIDE_WITH_ITEMS"
       },
       {
+        "description": "Custom price is not allowed on a subscription with items.",
+        "name": "CUSTOM_PRICE_WITH_ITEMS"
+      },
+      {
         "description": "Quantity is not allowed when items are provided.",
         "name": "QUANTITY_WITH_ITEMS"
       },
@@ -1170,6 +1290,18 @@
       {
         "description": "The item is already assigned.",
         "name": "ITEM_IS_ALREADY_ASSIGNED"
+      },
+      {
+        "description": "The inventory item does not exist or has been deleted.",
+        "name": "INVENTORY_ITEM_NOT_FOUND"
+      },
+      {
+        "description": "The inventory role is archived.",
+        "name": "INVENTORY_ROLE_ARCHIVED"
+      },
+      {
+        "description": "The inventory role does not exist.",
+        "name": "INVENTORY_ROLE_NOT_FOUND"
       }
     ]
   },
@@ -1328,6 +1460,20 @@
     ]
   },
   {
+    "description": "How auto-assign treats the drive at the edge of a technician's shift.",
+    "name": "AutoAssignShiftTravelMode",
+    "values": [
+      {
+        "description": "The drive counts against the shift: the technician is on the clock while driving to the first job or back to base.",
+        "name": "TRAVEL_WITHIN_SHIFT"
+      },
+      {
+        "description": "The drive happens on the technician's own time: only the job itself has to fit inside the shift.",
+        "name": "TRAVEL_OUTSIDE_SHIFT"
+      }
+    ]
+  },
+  {
     "description": "The autoAssignWorkOrder mutation's expected error codes.",
     "name": "AutoAssignWorkOrderErrorCode",
     "values": [
@@ -1366,6 +1512,34 @@
       {
         "description": "Auto-assign was blocked by the tenant's appointment configuration.",
         "name": "AUTO_ASSIGN_BLOCKED_BY_APPOINTMENT_CONFIG"
+      },
+      {
+        "description": "Rescheduling is not enabled for this tenant.",
+        "name": "RESCHEDULE_NOT_ALLOWED"
+      },
+      {
+        "description": "The work order is closed and can no longer be rescheduled.",
+        "name": "RESCHEDULE_WORK_ORDER_CLOSED"
+      },
+      {
+        "description": "The work order is in progress and can no longer be rescheduled.",
+        "name": "RESCHEDULE_WORK_ORDER_IN_PROGRESS"
+      },
+      {
+        "description": "The work order has more than one assigned technician and cannot be rescheduled.",
+        "name": "RESCHEDULE_MULTIPLE_TECHNICIANS"
+      },
+      {
+        "description": "The work order starts too soon to be rescheduled under the tenant's reschedule timeframe.",
+        "name": "RESCHEDULE_TOO_CLOSE"
+      },
+      {
+        "description": "A requested time slot starts before the work order's current start date.",
+        "name": "RESCHEDULE_SLOT_EARLIER_THAN_CURRENT"
+      },
+      {
+        "description": "A requested time slot falls outside the tenant's reschedule timeframe.",
+        "name": "RESCHEDULE_OUTSIDE_TIMEFRAME"
       }
     ]
   },
@@ -1422,7 +1596,7 @@
         "name": "NO_VIABLE_CANDIDATES"
       },
       {
-        "description": "The most promising technician candidate failed the Mapbox travel time verification.",
+        "description": "Every technician sent to the road check failed at least one leg (ROAD only).",
         "name": "MAPBOX_VERIFICATION_FAILED"
       },
       {
@@ -1454,7 +1628,8 @@
         "name": "BEYOND_MAX_TRAVEL_TIME"
       },
       {
-        "description": "The travel distance is within acceptable limits.",
+        "deprecationReason": "Never returned since the slot-by-slot Mapbox verification was removed.",
+        "description": "No longer returned: the slot-by-slot Mapbox verification was removed.",
         "name": "GOOD_DISTANCE"
       },
       {
@@ -1864,16 +2039,6 @@
     ]
   },
   {
-    "description": "The categoryFieldImportCsvDocumentation query's expected error codes.",
-    "name": "CategoryFieldImportCsvDocumentationErrorCode",
-    "values": [
-      {
-        "description": "One of the provided CSV files was not found.",
-        "name": "FILE_NOT_FOUND"
-      }
-    ]
-  },
-  {
     "description": "The clearSchedulesForTechnician mutation's expected error codes.",
     "name": "ClearSchedulesForTechnicianErrorCode",
     "values": [
@@ -2086,6 +2251,84 @@
     ]
   },
   {
+    "description": "The channel a conversation took place on.",
+    "name": "ConversationChannel",
+    "values": [
+      {
+        "description": "SMS messaging.",
+        "name": "SMS"
+      },
+      {
+        "description": "Voice calls.",
+        "name": "VOICE"
+      }
+    ]
+  },
+  {
+    "description": "Who initiated the conversation.",
+    "name": "ConversationMessageDirection",
+    "values": [
+      {
+        "description": "The message or conversation was initiated by the customer.",
+        "name": "INBOUND"
+      },
+      {
+        "description": "The message or conversation was initiated by the tenant.",
+        "name": "OUTBOUND"
+      }
+    ]
+  },
+  {
+    "description": "Available fields to order conversations.",
+    "name": "ConversationOrderByField",
+    "values": [
+      {
+        "description": "Order conversations by when their last message was sent or received.",
+        "name": "LAST_MESSAGE_AT"
+      },
+      {
+        "description": "Order conversations by their created at date.",
+        "name": "CREATED_AT"
+      },
+      {
+        "description": "Order conversations by their updated at date.",
+        "name": "UPDATED_AT"
+      },
+      {
+        "description": "Order conversations by when they started awaiting a reply. Conversations not awaiting reply sort last.",
+        "name": "AWAITING_REPLY_SINCE"
+      }
+    ]
+  },
+  {
+    "description": "The status of a conversation.",
+    "name": "ConversationStatus",
+    "values": [
+      {
+        "description": "The conversation is active and accepting messages.",
+        "name": "OPEN"
+      },
+      {
+        "description": "The conversation has been closed.",
+        "name": "CLOSED"
+      }
+    ]
+  },
+  {
+    "description": "Where a conversation originates.",
+    "name": "ConversationType",
+    "values": [
+      {
+        "description": "The conversation is held in gaiia.",
+        "name": "NATIVE"
+      },
+      {
+        "description": "The conversation took place in an external system and was imported into gaiia.",
+        "name": "IMPORTED"
+      }
+    ]
+  },
+  {
     "description": "The convertTicketToExternal mutation's expected error codes.",
     "name": "ConvertTicketToExternalErrorCode",
     "values": [
@@ -2230,6 +2473,26 @@
     ]
   },
   {
+    "description": "The createAccountStatus mutation's expected error codes.",
+    "name": "CreateAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The account status could not be created.",
+        "name": "ACCOUNT_STATUS_CREATION_FAILED"
+      }
+    ]
+  },
+  {
+    "description": "The createAccountType mutation's expected error codes.",
+    "name": "CreateAccountTypeErrorCode",
+    "values": [
+      {
+        "description": "The account type could not be created.",
+        "name": "ACCOUNT_TYPE_CREATION_FAILED"
+      }
+    ]
+  },
+  {
     "description": "The createAddress mutation's expected error codes.",
     "name": "CreateAddressErrorCode",
     "values": [
@@ -2276,6 +2539,10 @@
       {
         "description": "An allowed IP entry is not a valid IP address or CIDR range.",
         "name": "API_KEY_INVALID_IP_RANGE"
+      },
+      {
+        "description": "The requested permissions are invalid or exceed the caller's permissions.",
+        "name": "API_KEY_INVALID_PERMISSIONS"
       }
     ]
   },
@@ -2314,6 +2581,100 @@
       {
         "description": "The required product version cannot be a recurring fee.",
         "name": "REQUIRED_PRODUCT_VERSION_CANNOT_BE_RECURRING_FEE"
+      }
+    ]
+  },
+  {
+    "description": "The createCancellationReason mutation's expected error codes.",
+    "name": "CreateCancellationReasonErrorCode",
+    "values": [
+      {
+        "description": "The code is already used by another cancellation reason.",
+        "name": "CANCELLATION_REASON_CODE_ALREADY_IN_USE"
+      },
+      {
+        "description": "The translations do not include an English (EN) entry.",
+        "name": "CANCELLATION_REASON_MISSING_ENGLISH_TRANSLATION"
+      }
+    ]
+  },
+  {
+    "description": "The createCommercialAccount mutation's expected error codes.",
+    "name": "CreateCommercialAccountErrorCode",
+    "values": [
+      {
+        "description": "The name is empty.",
+        "name": "NAME_REQUIRED"
+      },
+      {
+        "description": "The physical address is invalid.",
+        "name": "PHYSICAL_ADDRESS_INVALID"
+      },
+      {
+        "description": "The mailing address is invalid.",
+        "name": "MAILING_ADDRESS_INVALID"
+      },
+      {
+        "description": "Custom status not found.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "Custom status is archived.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_STATUS_ARCHIVED"
+      },
+      {
+        "description": "Custom type not found.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "Custom type is archived.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_TYPE_ARCHIVED"
+      },
+      {
+        "description": "The parent commercial account was not found.",
+        "name": "PARENT_ACCOUNT_DOES_NOT_EXIST"
+      },
+      {
+        "description": "The parent commercial account is itself a sub-account.",
+        "name": "PARENT_ACCOUNT_IS_A_SUB_ACCOUNT"
+      },
+      {
+        "description": "An assignee's user was not found.",
+        "name": "COMMERCIAL_ACCOUNT_ASSIGNEE_USER_ID_NOT_FOUND"
+      },
+      {
+        "description": "The same user was assigned more than once.",
+        "name": "COMMERCIAL_ACCOUNT_ASSIGNEE_USER_ID_DUPLICATE"
+      },
+      {
+        "description": "The custom fields are invalid, or a required custom field has no value.",
+        "name": "CUSTOM_FIELDS_INVALID"
+      },
+      {
+        "description": "One or more tag values were not found.",
+        "name": "TAG_VALUE_NOT_FOUND"
+      },
+      {
+        "description": "The same tag value was provided more than once.",
+        "name": "DUPLICATE_TAG_VALUES_NOT_ALLOWED"
+      },
+      {
+        "description": "More than one value was provided for the same tag.",
+        "name": "DUPLICATE_TAG_KEY_NOT_ALLOWED"
+      },
+      {
+        "description": "No value was provided for one or more of the tenant's tags.",
+        "name": "MISSING_REQUIRED_TAGS"
+      }
+    ]
+  },
+  {
+    "description": "The createCommercialAccountStatus mutation's expected error codes.",
+    "name": "CreateCommercialAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The commercial account status could not be created.",
+        "name": "COMMERCIAL_ACCOUNT_STATUS_CREATION_FAILED"
       }
     ]
   },
@@ -2432,6 +2793,10 @@
       {
         "description": "An option with this value already exists.",
         "name": "OPTION_VALUE_ALREADY_EXISTS"
+      },
+      {
+        "description": "SECRET fields cannot be unique.",
+        "name": "SECRET_CANNOT_BE_UNIQUE"
       }
     ]
   },
@@ -2474,6 +2839,18 @@
       {
         "description": "A SINGLE_SELECT field received more than one option id.",
         "name": "SINGLE_SELECT_MULTIPLE_OPTIONS"
+      },
+      {
+        "description": "Not supported for entity types: the object definition holds an entity type's custom fields.",
+        "name": "ENTITY_NOT_SUPPORTED"
+      },
+      {
+        "description": "A SECRET field's value cannot be set or cleared without the customObjects.records.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
+      },
+      {
+        "description": "A SECRET field received the masked placeholder while it holds no value; the placeholder is never stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
       }
     ]
   },
@@ -2528,6 +2905,18 @@
       {
         "description": "A SINGLE_SELECT field received more than one option id.",
         "name": "SINGLE_SELECT_MULTIPLE_OPTIONS"
+      },
+      {
+        "description": "Not supported for entity types: the object definition holds an entity type's custom fields.",
+        "name": "ENTITY_NOT_SUPPORTED"
+      },
+      {
+        "description": "A SECRET field's value cannot be set or cleared without the customObjects.records.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
+      },
+      {
+        "description": "A SECRET field received the masked placeholder while it holds no value; the placeholder is never stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
       }
     ]
   },
@@ -2600,6 +2989,14 @@
       {
         "description": "The description cannot be longer than 250 characters.",
         "name": "DESCRIPTION_CANNOT_BE_LONGER_THAN_250_CHARACTERS"
+      },
+      {
+        "description": "Product version not found.",
+        "name": "PRODUCT_VERSION_NOT_FOUND"
+      },
+      {
+        "description": "Product version currency must match the entity's currency.",
+        "name": "PRODUCT_VERSION_CURRENCY_MISMATCH"
       }
     ]
   },
@@ -2610,6 +3007,32 @@
       {
         "description": "The input validation failed.",
         "name": "DOCUMENT_INPUT_VALIDATION_FAILED"
+      }
+    ]
+  },
+  {
+    "description": "The createDocumentFromTemplate mutation's expected error codes.",
+    "name": "CreateDocumentFromTemplateErrorCode",
+    "values": [
+      {
+        "description": "The entity was not found.",
+        "name": "ENTITY_NOT_FOUND"
+      },
+      {
+        "description": "The template was not found or is not a document template.",
+        "name": "TEMPLATE_NOT_FOUND"
+      },
+      {
+        "description": "The template has no PDF variation in the entity's language or in the tenant's default language.",
+        "name": "NO_TEMPLATE_VARIATION_FOR_LANGUAGE"
+      },
+      {
+        "description": "The template could not be rendered, usually because of an invalid merge tag.",
+        "name": "TEMPLATE_RENDER_FAILED"
+      },
+      {
+        "description": "The rendered document could not be saved to the entity's documents.",
+        "name": "DOCUMENT_CREATION_FAILED"
       }
     ]
   },
@@ -2756,6 +3179,106 @@
       {
         "description": "Invalid GeoJSON schema.",
         "name": "INVALID_GEOJSON_SCHEMA"
+      },
+      {
+        "description": "The geofence has more features or vertices than synchronous creation allows. Use startCreateGeofenceJob instead.",
+        "name": "TOO_LARGE_FOR_SYNCHRONOUS_CREATE"
+      }
+    ]
+  },
+  {
+    "description": "The reason an asynchronous create-geofence job failed.",
+    "name": "CreateGeofenceJobErrorCode",
+    "values": [
+      {
+        "description": "The uploaded file is not a supported GeoJSON schema.",
+        "name": "INVALID_GEOJSON_SCHEMA"
+      }
+    ]
+  },
+  {
+    "description": "An asynchronous create-geofence job's status.",
+    "name": "CreateGeofenceJobStatus",
+    "values": [
+      {
+        "description": "The job is running.",
+        "name": "ONGOING"
+      },
+      {
+        "description": "The job completed and the geofence was created.",
+        "name": "SUCCESS"
+      },
+      {
+        "description": "The job failed.",
+        "name": "FAILED"
+      }
+    ]
+  },
+  {
+    "description": "The createGeofenceUploadUrl mutation's expected error codes.",
+    "name": "CreateGeofenceUploadUrlErrorCode",
+    "values": [
+      {
+        "description": "The file's name is invalid.",
+        "name": "INVALID_FILE_NAME"
+      },
+      {
+        "description": "The file's extension is invalid. It should be one of the following: '.geojson', '.json'.",
+        "name": "INVALID_FILE_EXTENSION"
+      }
+    ]
+  },
+  {
+    "description": "The expected error codes when importing a conversation.",
+    "name": "CreateImportedConversationErrorCode",
+    "values": [
+      {
+        "description": "The source is not 1 to 64 lowercase letters, digits, hyphens or underscores starting with a letter or digit.",
+        "name": "IMPORTED_CONVERSATION_INVALID_SOURCE"
+      },
+      {
+        "description": "The external ID is not between 1 and 255 characters once trimmed.",
+        "name": "IMPORTED_CONVERSATION_INVALID_EXTERNAL_ID"
+      },
+      {
+        "description": "The external URL is not an absolute http or https URL of at most 2048 characters.",
+        "name": "IMPORTED_CONVERSATION_INVALID_EXTERNAL_URL"
+      },
+      {
+        "description": "The fields are not a flat object of at most 100 keys with string, number, boolean or null values. The message names the offending key.",
+        "name": "IMPORTED_CONVERSATION_INVALID_FIELDS"
+      },
+      {
+        "description": "The serialized fields exceed 16384 bytes.",
+        "name": "IMPORTED_CONVERSATION_FIELDS_TOO_LARGE"
+      },
+      {
+        "description": "The start or end time is not a valid date, or the end time is before the start time.",
+        "name": "IMPORTED_CONVERSATION_INVALID_TIMESTAMPS"
+      },
+      {
+        "description": "The summary exceeds 10,000 characters.",
+        "name": "CONVERSATION_SUMMARY_TOO_LONG"
+      },
+      {
+        "description": "A conversation with this source and external ID already exists. Find it with the `conversations` query's `imported` filter.",
+        "name": "IMPORTED_CONVERSATION_ALREADY_EXISTS"
+      },
+      {
+        "description": "The tenant or customer address is not a valid E.164 phone number.",
+        "name": "CONVERSATION_INVALID_ADDRESS"
+      },
+      {
+        "description": "The title is not between 1 and 256 characters.",
+        "name": "CONVERSATION_INVALID_TITLE"
+      },
+      {
+        "description": "The linked account was not found.",
+        "name": "CONVERSATION_LINKED_ACCOUNT_NOT_FOUND"
+      },
+      {
+        "description": "The assignee was not found.",
+        "name": "CONVERSATION_ASSIGNEE_NOT_FOUND"
       }
     ]
   },
@@ -2886,6 +3409,14 @@
         "name": "UNIQUE_FIELD_VIOLATION"
       },
       {
+        "description": "The field's data is the masked secret placeholder and cannot be stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
+      },
+      {
+        "description": "Setting a SECRET field value requires the inventory.items.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
+      },
+      {
         "description": "The field's data does not fit the type of the field.",
         "name": "INVALID_TYPE"
       },
@@ -2932,6 +3463,10 @@
       {
         "description": "The inventory location could not be created.",
         "name": "LOCATION_CREATION_FAILED"
+      },
+      {
+        "description": "An inventory location with this name already exists.",
+        "name": "LOCATION_ALREADY_EXISTS"
       }
     ]
   },
@@ -2942,6 +3477,22 @@
       {
         "description": "The category already exists.",
         "name": "CATEGORY_ALREADY_EXISTS"
+      },
+      {
+        "description": "The category name cannot be empty.",
+        "name": "CATEGORY_NAME_EMPTY"
+      },
+      {
+        "description": "Field name must be unique.",
+        "name": "DUPLICATE_FIELD_NAME"
+      },
+      {
+        "description": "A SECRET field cannot be the main identifier.",
+        "name": "SECRET_FIELD_CANNOT_BE_MAIN_IDENTIFIER"
+      },
+      {
+        "description": "A SECRET field cannot be unique.",
+        "name": "SECRET_FIELD_CANNOT_BE_UNIQUE"
       }
     ]
   },
@@ -2980,6 +3531,14 @@
       {
         "description": "A dropdown field must have values.",
         "name": "DROPDOWN_FIELD_WITHOUT_VALUES"
+      },
+      {
+        "description": "A SECRET field cannot be the main identifier.",
+        "name": "SECRET_FIELD_CANNOT_BE_MAIN_IDENTIFIER"
+      },
+      {
+        "description": "A SECRET field cannot be unique.",
+        "name": "SECRET_FIELD_CANNOT_BE_UNIQUE"
       }
     ]
   },
@@ -3248,6 +3807,10 @@
         "name": "CURRENCY_NOT_SUPPORTED_BY_TENANT"
       },
       {
+        "description": "A discount product must be discountable.",
+        "name": "DISCOUNT_PRODUCT_MUST_BE_DISCOUNTABLE"
+      },
+      {
         "description": "A gross percentage must be less than 100.",
         "name": "GROSS_PERCENTAGE_MUST_BE_LESS_THAN_100"
       },
@@ -3276,7 +3839,7 @@
         "name": "NEGATIVE_NUMBER_OF_RECURRENCES_NOT_ALLOWED"
       },
       {
-        "description": "The number of recurence delay is not allowed on a product that is not a discount.",
+        "description": "The number of recurrence delay is not allowed on a product that is not a discount.",
         "name": "NUMBER_OF_RECURRENCE_DELAY_NOT_ALLOWED"
       },
       {
@@ -3314,6 +3877,10 @@
       {
         "description": "The product family was not found.",
         "name": "PRODUCT_FAMILY_NOT_FOUND"
+      },
+      {
+        "description": "The product's type differs from its family's. A family with a type only takes members of that type.",
+        "name": "PRODUCT_FAMILY_TYPE_MISMATCH"
       },
       {
         "description": "The product slug already exists.",
@@ -3468,6 +4035,10 @@
     "name": "CreateProjectErrorCode",
     "values": [
       {
+        "description": "The project template (project type) was not found or is archived.",
+        "name": "PROJECT_TEMPLATE_NOT_FOUND"
+      },
+      {
         "description": "The linked entity was not found.",
         "name": "LINKED_ENTITY_NOT_FOUND"
       },
@@ -3476,8 +4047,36 @@
         "name": "INVALID_LINKED_ENTITY_TYPE"
       },
       {
+        "description": "One or more required fields of the project template's form have no value.",
+        "name": "MISSING_REQUIRED_FORM_FIELDS"
+      },
+      {
+        "description": "A form field value does not match its field's type, or references a field that is not part of the form.",
+        "name": "INVALID_FORM_FIELD_VALUE_TYPE"
+      },
+      {
+        "description": "A dropdown field value is not one of the field's options.",
+        "name": "INVALID_DROPDOWN_OPTION"
+      },
+      {
+        "description": "Field values were provided without a template ID.",
+        "name": "TEMPLATE_ID_REQUIRED_WITH_FORM_VALUES"
+      },
+      {
+        "description": "Field values were provided but the project template has no form.",
+        "name": "FORM_DEFINITION_REQUIRED_WITH_FIELD_VALUES"
+      },
+      {
         "description": "One or more project assignees are invalid.",
         "name": "INVALID_PROJECT_ASSIGNEES"
+      },
+      {
+        "description": "Project custom status not found.",
+        "name": "PROJECT_CUSTOM_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "Project custom status is archived.",
+        "name": "PROJECT_CUSTOM_STATUS_ARCHIVED"
       }
     ]
   },
@@ -3500,6 +4099,26 @@
       {
         "description": "Target date offset requires the default start date to be enabled.",
         "name": "TARGET_DATE_OFFSET_REQUIRES_START_DATE"
+      },
+      {
+        "description": "Duplicate ticket template definition.",
+        "name": "TICKET_TEMPLATE_DEFINITION_DUPLICATE"
+      },
+      {
+        "description": "A step was sent together with ticketTemplateDefinitionIds.",
+        "name": "PROJECT_TEMPLATE_STEPS_AND_TICKET_DEFINITIONS_BOTH_PROVIDED"
+      },
+      {
+        "description": "A step has no name.",
+        "name": "PROJECT_TEMPLATE_STEP_NAME_REQUIRED"
+      },
+      {
+        "description": "A step has no ticket template definitions.",
+        "name": "PROJECT_TEMPLATE_STEP_EMPTY"
+      },
+      {
+        "description": "There are more than 50 steps, or more than 100 ticket template definitions in a step.",
+        "name": "PROJECT_TEMPLATE_STEP_LIMIT_EXCEEDED"
       }
     ]
   },
@@ -3848,6 +4467,14 @@
       {
         "description": "The user group (team) is archived.",
         "name": "TICKET_MAILBOX_USER_GROUP_ARCHIVED"
+      },
+      {
+        "description": "The email provider does not accept the reply email address as a sender.",
+        "name": "TICKET_MAILBOX_UNVERIFIED_SENDER_ADDRESS"
+      },
+      {
+        "description": "The email provider could not be reached to verify the reply email address.",
+        "name": "TICKET_MAILBOX_SENDER_ADDRESS_VERIFICATION_UNAVAILABLE"
       }
     ]
   },
@@ -3951,6 +4578,10 @@
       {
         "description": "One or more role IDs were not found.",
         "name": "USER_ROLE_NOT_FOUND"
+      },
+      {
+        "description": "One or more resource policy IDs were not found.",
+        "name": "USER_RESOURCE_POLICY_NOT_FOUND"
       }
     ]
   },
@@ -3972,6 +4603,14 @@
     "description": "The createWorkOrder mutation's expected error codes.",
     "name": "CreateWorkOrderErrorCode",
     "values": [
+      {
+        "description": "The supplied service address could not be found.",
+        "name": "GEO_ADDRESS_NOT_FOUND"
+      },
+      {
+        "description": "The service address could not be resolved because geo-service was unavailable. Retryable.",
+        "name": "GEO_SERVICE_UNAVAILABLE"
+      },
       {
         "description": "The work type could not be found.",
         "name": "ENTITY_NOT_FOUND"
@@ -4257,6 +4896,10 @@
       {
         "description": "A single uploaded file.",
         "name": "FILE"
+      },
+      {
+        "description": "An encrypted secret value. Never returned as plaintext except via the dedicated customObjectRecordFieldSecretValue query.",
+        "name": "SECRET"
       }
     ]
   },
@@ -4403,6 +5046,16 @@
     ]
   },
   {
+    "description": "The deleteInventoryItems mutation's expected error codes.",
+    "name": "DeleteInventoryItemsErrorCode",
+    "values": [
+      {
+        "description": "The inventory item does not exist or has already been deleted.",
+        "name": "INVENTORY_ITEM_NOT_FOUND"
+      }
+    ]
+  },
+  {
     "description": "The deleteNote mutation's expected error codes.",
     "name": "DeleteNoteErrorCode",
     "values": [
@@ -4513,10 +5166,16 @@
     "name": "DeleteWorkflowSecretErrorCode",
     "values": [
       {
+        "description": "The secret is used in the published definition of a workflow.",
+        "name": "WORKFLOW_SECRET_USED_IN_WORKFLOW"
+      },
+      {
+        "deprecationReason": "Never returned. Use WORKFLOW_SECRET_USED_IN_WORKFLOW.",
         "description": "The secret is used in a webhook trigger.",
         "name": "WORKFLOW_SECRET_USED_IN_WEBHOOK_TRIGGER"
       },
       {
+        "deprecationReason": "Never returned. Use WORKFLOW_SECRET_USED_IN_WORKFLOW.",
         "description": "The secret is used in a workflow input.",
         "name": "WORKFLOW_SECRET_USED_IN_WORKFLOW_INPUT"
       },
@@ -4531,6 +5190,11 @@
     "name": "DeleteWorkflowVariableErrorCode",
     "values": [
       {
+        "description": "The variable is used in the published definition of a workflow.",
+        "name": "WORKFLOW_VARIABLE_USED_IN_WORKFLOW"
+      },
+      {
+        "deprecationReason": "Never returned. Use WORKFLOW_VARIABLE_USED_IN_WORKFLOW.",
         "description": "The variable is used in a workflow input.",
         "name": "WORKFLOW_VARIABLE_USED_IN_WORKFLOW_INPUT"
       },
@@ -4834,6 +5498,10 @@
       {
         "description": "Checkbox.",
         "name": "CHECKBOX"
+      },
+      {
+        "description": "Date. Values are ISO-8601 date-only strings (YYYY-MM-DD), without a time or timezone.",
+        "name": "DATE"
       }
     ]
   },
@@ -4902,6 +5570,10 @@
         "name": "REGEX"
       },
       {
+        "description": "Secret type. Value is encrypted at rest and masked in normal queries; only readable via the dedicated inventoryItemFieldSecretValue (inventory items) or customerOwnedItemFieldSecretValue (customer owned items) queries.",
+        "name": "SECRET"
+      },
+      {
         "description": "String type.",
         "name": "STRING"
       },
@@ -4948,6 +5620,14 @@
         "name": "REGEX_VALIDATION_FAILURE"
       },
       {
+        "description": "Setting a SECRET field's value requires the inventory.items.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
+      },
+      {
+        "description": "The field's data is the masked secret placeholder and cannot be stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
+      },
+      {
         "description": "The field's data is not unique.",
         "name": "UNIQUE_FIELD_VIOLATION"
       },
@@ -4980,20 +5660,6 @@
       {
         "description": "Deferred revenue general ledger code.",
         "name": "DEFERRED_REVENUE"
-      }
-    ]
-  },
-  {
-    "description": "The possible import error codes.",
-    "name": "ImportErrorCode",
-    "values": [
-      {
-        "description": "Unexpected error.",
-        "name": "UNEXPECTED_ERROR"
-      },
-      {
-        "description": "No tickets were provided for import.",
-        "name": "NO_TICKETS_TO_IMPORT"
       }
     ]
   },
@@ -5066,42 +5732,6 @@
       {
         "description": "Lost status.",
         "name": "LOST"
-      }
-    ]
-  },
-  {
-    "description": "The inventoryItemsImportCsvDocumentation query's expected error codes.",
-    "name": "InventoryItemsImportCsvDocumentationErrorCode",
-    "values": [
-      {
-        "description": "One of the provided CSV files was not found.",
-        "name": "FILE_NOT_FOUND"
-      },
-      {
-        "description": "Some models were absent from the model CSV but present in the model field CSV.",
-        "name": "INCORRECT_CSV_DEPENDENCIES"
-      },
-      {
-        "description": "A CSV input is missing.",
-        "name": "MISSING_CSV"
-      }
-    ]
-  },
-  {
-    "description": "The inventoryItemsImportCsvTemplate query's expected error codes.",
-    "name": "InventoryItemsImportCsvTemplateErrorCode",
-    "values": [
-      {
-        "description": "One of the provided CSV files was not found.",
-        "name": "FILE_NOT_FOUND"
-      },
-      {
-        "description": "Some models were absent from the model CSV but present in the model field CSV.",
-        "name": "INCORRECT_CSV_DEPENDENCIES"
-      },
-      {
-        "description": "A CSV input is missing.",
-        "name": "MISSING_CSV"
       }
     ]
   },
@@ -5194,6 +5824,10 @@
         "name": "REGEX"
       },
       {
+        "description": "Secret type. Value is encrypted at rest and masked in normal queries; only readable via the dedicated inventoryItemFieldSecretValue (inventory items) or customerOwnedItemFieldSecretValue (customer owned items) queries.",
+        "name": "SECRET"
+      },
+      {
         "description": "String type.",
         "name": "STRING"
       },
@@ -5278,6 +5912,10 @@
       {
         "description": "The invoice void status.",
         "name": "VOID"
+      },
+      {
+        "description": "The invoice held status: generated on an invoice exclusion date, and not sent to the customer until the next day that is not excluded.",
+        "name": "HELD"
       }
     ]
   },
@@ -5320,26 +5958,10 @@
       {
         "description": "The ticket is archived.",
         "name": "TICKET_ARCHIVED"
-      }
-    ]
-  },
-  {
-    "description": "The modelFieldImportCsvDocumentation query's expected error codes.",
-    "name": "ModelFieldImportCsvDocumentationErrorCode",
-    "values": [
+      },
       {
-        "description": "One of the provided CSV files was not found.",
-        "name": "FILE_NOT_FOUND"
-      }
-    ]
-  },
-  {
-    "description": "The modelImportCsvDocumentation query's expected error codes.",
-    "name": "ModelImportCsvDocumentationErrorCode",
-    "values": [
-      {
-        "description": "One of the provided CSV files was not found.",
-        "name": "FILE_NOT_FOUND"
+        "description": "The tickets answer different customers, so merging them would mix up two email threads.",
+        "name": "CONFLICTING_TICKET_PUBLIC_INFORMATION"
       }
     ]
   },
@@ -5513,6 +6135,20 @@
       {
         "description": "Order by the model's name.",
         "name": "NAME"
+      }
+    ]
+  },
+  {
+    "description": "Available fields to order notes.",
+    "name": "NoteOrderByField",
+    "values": [
+      {
+        "description": "Order notes by whether they are pinned.",
+        "name": "IS_PINNED"
+      },
+      {
+        "description": "Order notes by their creation date and time.",
+        "name": "CREATED_AT"
       }
     ]
   },
@@ -5777,6 +6413,10 @@
       {
         "description": "Above maximum payment amount.",
         "name": "ABOVE_MAXIMUM_PAYMENT_AMOUNT"
+      },
+      {
+        "description": "The processor declined the payment because the billing address does not match the card issuer's records (address verification, AVS).",
+        "name": "ADDRESS_VERIFICATION_FAILED"
       },
       {
         "description": "Authentication required.",
@@ -6164,6 +6804,10 @@
       {
         "description": "A failure occurred while starting the custom processing workflow.",
         "name": "START_WORKFLOW_FAILED"
+      },
+      {
+        "description": "Processing the job failed unexpectedly. Requesting availability again may succeed.",
+        "name": "PROCESSING_FAILED"
       }
     ]
   },
@@ -6230,6 +6874,28 @@
     ]
   },
   {
+    "description": "The fields a list of products can be ordered by.",
+    "name": "ProductOrderByField",
+    "values": [
+      {
+        "description": "The product's creation timestamp.",
+        "name": "CREATED_AT"
+      },
+      {
+        "description": "The product's name.",
+        "name": "NAME"
+      },
+      {
+        "description": "The name of the product's category.",
+        "name": "PRODUCT_CATEGORY__NAME"
+      },
+      {
+        "description": "The product's last update timestamp.",
+        "name": "UPDATED_AT"
+      }
+    ]
+  },
+  {
     "description": "Product tax setup.",
     "name": "ProductTaxSetup",
     "values": [
@@ -6266,6 +6932,60 @@
     ]
   },
   {
+    "description": "The project status type.",
+    "name": "ProjectStatusType",
+    "values": [
+      {
+        "description": "Started project status.",
+        "name": "STARTED"
+      },
+      {
+        "description": "Unstarted project status.",
+        "name": "UNSTARTED"
+      },
+      {
+        "description": "Closed project status.",
+        "name": "CLOSED"
+      }
+    ]
+  },
+  {
+    "description": "Why a project step item no longer blocks its step.",
+    "name": "ProjectStepItemSkippedReason",
+    "values": [
+      {
+        "description": "The ticket template definition was deleted before the step opened, so no ticket was created from it.",
+        "name": "DEFINITION_DELETED"
+      },
+      {
+        "description": "The ticket template definition has no title, description or priority, so no ticket was created from it.",
+        "name": "DEFINITION_INVALID"
+      },
+      {
+        "description": "The ticket was moved out of the project or deleted. A ticket added back afterwards is in no step.",
+        "name": "REMOVED"
+      }
+    ]
+  },
+  {
+    "description": "The status of a project step.",
+    "name": "ProjectStepStatus",
+    "values": [
+      {
+        "description": "The step hasn't opened yet. Its tickets don't exist yet.",
+        "name": "PENDING"
+      },
+      {
+        "description": "The current step. Its tickets were requested when it opened.",
+        "name": "OPEN"
+      },
+      {
+        "description": "Every ticket of the step was closed.",
+        "name": "COMPLETED"
+      }
+    ]
+  },
+  {
     "description": "The supported entity types for linking to a project.",
     "name": "ProjectSupportedEntityType",
     "values": [
@@ -6284,6 +7004,24 @@
       {
         "description": "Network site entity type.",
         "name": "NETWORK_SITE"
+      }
+    ]
+  },
+  {
+    "description": "The project template's available fields to order by.",
+    "name": "ProjectTemplateOrderByField",
+    "values": [
+      {
+        "description": "The project template's name.",
+        "name": "NAME"
+      },
+      {
+        "description": "The project template's created at timestamp.",
+        "name": "CREATED_AT"
+      },
+      {
+        "description": "The project template's updated at timestamp.",
+        "name": "UPDATED_AT"
       }
     ]
   },
@@ -6456,6 +7194,18 @@
       {
         "description": "A SINGLE_SELECT field received multiple option ids.",
         "name": "SINGLE_SELECT_MULTIPLE_OPTIONS"
+      },
+      {
+        "description": "Not supported for entities: the id is an entity's, or the record holds an entity's custom field values.",
+        "name": "ENTITY_NOT_SUPPORTED"
+      },
+      {
+        "description": "A SECRET field's value cannot be set or cleared without the customObjects.records.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
+      },
+      {
+        "description": "A SECRET field received the masked placeholder while it holds no value; the placeholder is never stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
       }
     ]
   },
@@ -6542,6 +7292,16 @@
       {
         "description": "The product version was not found.",
         "name": "PRODUCT_VERSION_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "Available fields to order resource policies.",
+    "name": "ResourcePolicyOrderByField",
+    "values": [
+      {
+        "description": "Order resource policies by their name.",
+        "name": "NAME"
       }
     ]
   },
@@ -6688,6 +7448,26 @@
       {
         "description": "No contact information available for the entity.",
         "name": "NO_CONTACT_INFO"
+      },
+      {
+        "description": "The document was not found.",
+        "name": "DOCUMENT_NOT_FOUND"
+      },
+      {
+        "description": "The document is not linked to the communication's entity.",
+        "name": "DOCUMENT_NOT_LINKED_TO_ENTITY"
+      },
+      {
+        "description": "Document attachments were provided but the communication will not be sent by email.",
+        "name": "ATTACHMENTS_REQUIRE_EMAIL"
+      },
+      {
+        "description": "The document attachments exceed the maximum total size.",
+        "name": "ATTACHMENTS_TOO_LARGE"
+      },
+      {
+        "description": "The email exceeds 250 KB, usually because its template embeds images instead of hosting them.",
+        "name": "EMAIL_TOO_LARGE"
       }
     ]
   },
@@ -6786,6 +7566,20 @@
     ]
   },
   {
+    "description": "The startCreateGeofenceJob mutation's expected error codes.",
+    "name": "StartCreateGeofenceJobErrorCode",
+    "values": [
+      {
+        "description": "The file key was not created by createGeofenceUploadUrl for the current tenant.",
+        "name": "INVALID_FILE_KEY"
+      },
+      {
+        "description": "No file exists at the given file key. Upload the file with the URL from createGeofenceUploadUrl first.",
+        "name": "FILE_NOT_FOUND"
+      }
+    ]
+  },
+  {
     "description": "The StartTechnicianShift mutation's expected error codes.",
     "name": "StartTechnicianShiftErrorCode",
     "values": [
@@ -6814,6 +7608,34 @@
       {
         "description": "Auto-assign was blocked by the tenant's appointment configuration.",
         "name": "AUTO_ASSIGN_BLOCKED_BY_APPOINTMENT_CONFIG"
+      },
+      {
+        "description": "Rescheduling is not enabled for this tenant.",
+        "name": "RESCHEDULE_NOT_ALLOWED"
+      },
+      {
+        "description": "The work order is closed and can no longer be rescheduled.",
+        "name": "RESCHEDULE_WORK_ORDER_CLOSED"
+      },
+      {
+        "description": "The work order is in progress and can no longer be rescheduled.",
+        "name": "RESCHEDULE_WORK_ORDER_IN_PROGRESS"
+      },
+      {
+        "description": "The work order has more than one assigned technician and cannot be rescheduled.",
+        "name": "RESCHEDULE_MULTIPLE_TECHNICIANS"
+      },
+      {
+        "description": "The work order starts too soon to be rescheduled under the tenant's reschedule timeframe.",
+        "name": "RESCHEDULE_TOO_CLOSE"
+      },
+      {
+        "description": "A requested time slot starts before the work order's current start date.",
+        "name": "RESCHEDULE_SLOT_EARLIER_THAN_CURRENT"
+      },
+      {
+        "description": "A requested time slot falls outside the tenant's reschedule timeframe.",
+        "name": "RESCHEDULE_OUTSIDE_TIMEFRAME"
       }
     ]
   },
@@ -6821,6 +7643,10 @@
     "description": "The startWorkflowExecution mutation's expected error codes.",
     "name": "StartWorkflowExecutionErrorCode",
     "values": [
+      {
+        "description": "The workflow requires an acting user.",
+        "name": "ACTING_USER_REQUIRED"
+      },
       {
         "description": "The input data size exceeds the maximum allowed size.",
         "name": "INPUT_DATA_SIZE_EXCEEDED"
@@ -6868,6 +7694,14 @@
       {
         "description": "The user is not allowed to execute this workflow.",
         "name": "WORKFLOW_PERMISSION_DENIED"
+      },
+      {
+        "description": "An input is not accepted for the workflow trigger type.",
+        "name": "INPUT_NOT_ACCEPTED"
+      },
+      {
+        "description": "An object id is not accepted for the workflow trigger type.",
+        "name": "OBJECT_ID_NOT_ACCEPTED"
       }
     ]
   },
@@ -7172,6 +8006,34 @@
     ]
   },
   {
+    "description": "Define the channels a ticket notification can be delivered through.",
+    "name": "TicketNotificationChannel",
+    "values": [
+      {
+        "description": "Notify by email.",
+        "name": "EMAIL"
+      }
+    ]
+  },
+  {
+    "description": "Define the ticket events a user group can be notified about.",
+    "name": "TicketNotificationEvent",
+    "values": [
+      {
+        "description": "A ticket is assigned to the user group.",
+        "name": "TICKET_ASSIGNED"
+      },
+      {
+        "description": "The status of a ticket assigned to the user group changes.",
+        "name": "TICKET_STATUS_CHANGED"
+      },
+      {
+        "description": "A ticket assigned to the user group is due, sent in the daily due date email.",
+        "name": "TICKET_DUE_DATE"
+      }
+    ]
+  },
+  {
     "description": "The ticket's available fields to order by.",
     "name": "TicketOrderByField",
     "values": [
@@ -7310,24 +8172,6 @@
       {
         "description": "Internal visibility.",
         "name": "INTERNAL"
-      }
-    ]
-  },
-  {
-    "description": "The ticketsImportCsvTemplate query's expected error codes.",
-    "name": "TicketsImportCsvTemplateErrorCode",
-    "values": [
-      {
-        "description": "One of the provided CSV files was not found.",
-        "name": "FILE_NOT_FOUND"
-      },
-      {
-        "description": "Some models were absent from the model CSV but present in the model field CSV.",
-        "name": "INCORRECT_CSV_DEPENDENCIES"
-      },
-      {
-        "description": "A CSV input is missing.",
-        "name": "MISSING_CSV"
       }
     ]
   },
@@ -7476,6 +8320,26 @@
     ]
   },
   {
+    "description": "The unarchiveAccountStatus mutation's expected error codes.",
+    "name": "UnarchiveAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The account status was not found.",
+        "name": "ACCOUNT_STATUS_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The unarchiveAccountType mutation's expected error codes.",
+    "name": "UnarchiveAccountTypeErrorCode",
+    "values": [
+      {
+        "description": "The account type was not found.",
+        "name": "ACCOUNT_TYPE_NOT_FOUND"
+      }
+    ]
+  },
+  {
     "description": "The unarchiveAddress mutation's expected error codes.",
     "name": "UnarchiveAddressErrorCode",
     "values": [
@@ -7486,6 +8350,40 @@
       {
         "description": "Address duplicate found.",
         "name": "ADDRESS_DUPLICATE_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The unarchiveBundle mutation's expected error codes.",
+    "name": "UnarchiveBundleErrorCode",
+    "values": [
+      {
+        "description": "The bundle is not archived.",
+        "name": "BUNDLE_NOT_ARCHIVED"
+      },
+      {
+        "description": "The bundle was not found.",
+        "name": "BUNDLE_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The unarchiveCancellationReason mutation's expected error codes.",
+    "name": "UnarchiveCancellationReasonErrorCode",
+    "values": [
+      {
+        "description": "The cancellation reason was not found.",
+        "name": "CANCELLATION_REASON_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The unarchiveCommercialAccountStatus mutation's expected error codes.",
+    "name": "UnarchiveCommercialAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The commercial account status was not found.",
+        "name": "COMMERCIAL_ACCOUNT_STATUS_NOT_FOUND"
       }
     ]
   },
@@ -7510,6 +8408,10 @@
       {
         "description": "The custom object definition was not found.",
         "name": "NOT_FOUND"
+      },
+      {
+        "description": "Not supported for entity types: the object definition holds an entity type's custom fields.",
+        "name": "ENTITY_NOT_SUPPORTED"
       }
     ]
   },
@@ -7542,6 +8444,10 @@
       {
         "description": "The record is locked and cannot be unarchived.",
         "name": "RECORD_LOCKED"
+      },
+      {
+        "description": "Not supported for entities: the id is an entity's, or the record holds an entity's custom field values.",
+        "name": "ENTITY_NOT_SUPPORTED"
       }
     ]
   },
@@ -7806,6 +8712,34 @@
     ]
   },
   {
+    "description": "The updateAccountStatus mutation's expected error codes.",
+    "name": "UpdateAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The account status was not found.",
+        "name": "ACCOUNT_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "A field that is not nullable was set to null.",
+        "name": "ACCOUNT_STATUS_FIELD_NON_NULLABLE"
+      }
+    ]
+  },
+  {
+    "description": "The updateAccountType mutation's expected error codes.",
+    "name": "UpdateAccountTypeErrorCode",
+    "values": [
+      {
+        "description": "The account type was not found.",
+        "name": "ACCOUNT_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "A field that is not nullable was set to null.",
+        "name": "ACCOUNT_TYPE_FIELD_NON_NULLABLE"
+      }
+    ]
+  },
+  {
     "description": "Error codes for updateAddressCustomFieldDefinition mutation.",
     "name": "UpdateAddressCustomFieldDefinitionErrorCode",
     "values": [
@@ -7950,6 +8884,10 @@
       {
         "description": "The next invoice date cannot be provided together with a change to invoice day, billing period day, invoice day offset, or minimum months to bill.",
         "name": "NEXT_INVOICE_DATE_CANNOT_BE_COMBINED_WITH_INVOICE_CYCLE_CHANGE"
+      },
+      {
+        "description": "The subscription's debit was invoiced or changed during this update. Try again.",
+        "name": "SUBSCRIPTION_DEBIT_CHANGED_DURING_UPDATE"
       }
     ]
   },
@@ -7960,6 +8898,104 @@
       {
         "description": "The bundle was not found error.",
         "name": "BUNDLE_NOT_FOUND"
+      }
+    ]
+  },
+  {
+    "description": "The updateCancellationReason mutation's expected error codes.",
+    "name": "UpdateCancellationReasonErrorCode",
+    "values": [
+      {
+        "description": "The cancellation reason was not found.",
+        "name": "CANCELLATION_REASON_NOT_FOUND"
+      },
+      {
+        "description": "The translations do not include an English (EN) entry.",
+        "name": "CANCELLATION_REASON_MISSING_ENGLISH_TRANSLATION"
+      },
+      {
+        "description": "A field that is not nullable was set to null.",
+        "name": "CANCELLATION_REASON_FIELD_NON_NULLABLE"
+      }
+    ]
+  },
+  {
+    "description": "The updateCommercialAccount mutation's expected error codes.",
+    "name": "UpdateCommercialAccountErrorCode",
+    "values": [
+      {
+        "description": "Custom status is archived.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_STATUS_ARCHIVED"
+      },
+      {
+        "description": "Custom status not found.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "Custom type is archived.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_TYPE_ARCHIVED"
+      },
+      {
+        "description": "Custom type not found.",
+        "name": "COMMERCIAL_ACCOUNT_CUSTOM_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "Commercial account not found.",
+        "name": "COMMERCIAL_ACCOUNT_NOT_FOUND"
+      },
+      {
+        "description": "A field that is not nullable was set to null.",
+        "name": "COMMERCIAL_ACCOUNT_FIELD_NON_NULLABLE"
+      },
+      {
+        "description": "The name is empty.",
+        "name": "NAME_CANNOT_BE_NULL_OR_EMPTY_STRING"
+      },
+      {
+        "description": "The physical address is invalid.",
+        "name": "INVALID_PHYSICAL_ADDRESS"
+      },
+      {
+        "description": "The mailing address is invalid.",
+        "name": "INVALID_MAILING_ADDRESS"
+      },
+      {
+        "description": "The primary contact's first name, last name or email is empty.",
+        "name": "PRIMARY_CONTACT_FIELD_INVALID"
+      },
+      {
+        "description": "One or more tag values were not found.",
+        "name": "TAG_VALUE_NOT_FOUND"
+      },
+      {
+        "description": "The same tag value was provided more than once.",
+        "name": "DUPLICATE_TAG_VALUES_NOT_ALLOWED"
+      },
+      {
+        "description": "More than one value was provided for the same tag.",
+        "name": "DUPLICATE_TAG_KEY_NOT_ALLOWED"
+      },
+      {
+        "description": "No value was provided for one or more of the tenant's tags.",
+        "name": "MISSING_REQUIRED_TAGS"
+      },
+      {
+        "description": "An unexpected error occurred.",
+        "name": "COMMERCIAL_ACCOUNT_UNEXPECTED_ERROR"
+      }
+    ]
+  },
+  {
+    "description": "The updateCommercialAccountStatus mutation's expected error codes.",
+    "name": "UpdateCommercialAccountStatusErrorCode",
+    "values": [
+      {
+        "description": "The commercial account status was not found.",
+        "name": "COMMERCIAL_ACCOUNT_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "A field that is not nullable was set to null.",
+        "name": "COMMERCIAL_ACCOUNT_STATUS_FIELD_NON_NULLABLE"
       }
     ]
   },
@@ -8038,6 +9074,10 @@
       {
         "description": "The custom object definition was not found.",
         "name": "NOT_FOUND"
+      },
+      {
+        "description": "Not supported for entity types: the object definition holds an entity type's custom fields.",
+        "name": "ENTITY_NOT_SUPPORTED"
       }
     ]
   },
@@ -8084,6 +9124,10 @@
       {
         "description": "One or more options cannot be removed because they are in use by existing records.",
         "name": "OPTION_IN_USE"
+      },
+      {
+        "description": "SECRET fields cannot be unique.",
+        "name": "SECRET_CANNOT_BE_UNIQUE"
       }
     ]
   },
@@ -8130,6 +9174,18 @@
       {
         "description": "A SINGLE_SELECT field received more than one option id.",
         "name": "SINGLE_SELECT_MULTIPLE_OPTIONS"
+      },
+      {
+        "description": "Not supported for entities: the id is an entity's, or the record holds an entity's custom field values.",
+        "name": "ENTITY_NOT_SUPPORTED"
+      },
+      {
+        "description": "A SECRET field's value cannot be set or cleared without the customObjects.records.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
+      },
+      {
+        "description": "A SECRET field received the masked placeholder while it holds no value; the placeholder is never stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
       }
     ]
   },
@@ -8186,12 +9242,24 @@
         "name": "SINGLE_SELECT_MULTIPLE_OPTIONS"
       },
       {
+        "description": "A SECRET field's value cannot be changed without the customObjects.records.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
+      },
+      {
+        "description": "A SECRET field received the masked placeholder while it holds no value; the placeholder is never stored.",
+        "name": "SECRET_FIELD_MASKED_VALUE"
+      },
+      {
         "description": "The record is archived and cannot be updated until it is unarchived.",
         "name": "RECORD_ARCHIVED"
       },
       {
         "description": "The record is locked and cannot be updated.",
         "name": "RECORD_LOCKED"
+      },
+      {
+        "description": "Not supported for entities: the id is an entity's, or the record holds an entity's custom field values.",
+        "name": "ENTITY_NOT_SUPPORTED"
       }
     ]
   },
@@ -8332,6 +9400,44 @@
     ]
   },
   {
+    "description": "The expected error codes when updating an imported conversation.",
+    "name": "UpdateImportedConversationErrorCode",
+    "values": [
+      {
+        "description": "The conversation was not found.",
+        "name": "CONVERSATION_NOT_FOUND"
+      },
+      {
+        "description": "The conversation is not an imported conversation.",
+        "name": "CONVERSATION_NOT_IMPORTED"
+      },
+      {
+        "description": "The external URL is not an absolute http or https URL of at most 2048 characters.",
+        "name": "IMPORTED_CONVERSATION_INVALID_EXTERNAL_URL"
+      },
+      {
+        "description": "The fields are not a flat object of at most 100 keys with string, number, boolean or null values. The message names the offending key.",
+        "name": "IMPORTED_CONVERSATION_INVALID_FIELDS"
+      },
+      {
+        "description": "The serialized fields exceed 16384 bytes.",
+        "name": "IMPORTED_CONVERSATION_FIELDS_TOO_LARGE"
+      },
+      {
+        "description": "The end time is not a valid date or is before the conversation's start time.",
+        "name": "IMPORTED_CONVERSATION_INVALID_TIMESTAMPS"
+      },
+      {
+        "description": "The summary exceeds 10,000 characters.",
+        "name": "CONVERSATION_SUMMARY_TOO_LONG"
+      },
+      {
+        "description": "The title is not between 1 and 256 characters.",
+        "name": "CONVERSATION_INVALID_TITLE"
+      }
+    ]
+  },
+  {
     "description": "The updateInternalTicket mutation's expected error codes.",
     "name": "UpdateInternalTicketErrorCode",
     "values": [
@@ -8426,6 +9532,10 @@
       {
         "description": "Neither the top-level inventoryItemId argument nor the deprecated input field was provided.",
         "name": "MISSING_INVENTORY_ITEM_ID"
+      },
+      {
+        "description": "Setting a SECRET field's value requires the inventory.items.secretFields.edit permission.",
+        "name": "SECRET_FIELD_EDIT_NOT_PERMITTED"
       }
     ]
   },
@@ -8660,6 +9770,10 @@
         "name": "AVAILABILITY_END_DATE_CANNOT_BE_BEFORE_AVAILABILITY_START_DATE"
       },
       {
+        "description": "One or more of the provided coverage area slugs was not found.",
+        "name": "COVERAGE_AREA_NOT_FOUND"
+      },
+      {
         "description": "A discount product must be discountable.",
         "name": "DISCOUNT_PRODUCT_MUST_BE_DISCOUNTABLE"
       },
@@ -8686,6 +9800,14 @@
       {
         "description": "The product name cannot be empty.",
         "name": "NAME_EMPTY"
+      },
+      {
+        "description": "The discount start delay must be a positive integer.",
+        "name": "NEGATIVE_NUMBER_OF_RECURRENCE_DELAY_NOT_ALLOWED"
+      },
+      {
+        "description": "The number of recurrence delay is not allowed on a product that is not a discount.",
+        "name": "NUMBER_OF_RECURRENCE_DELAY_NOT_ALLOWED"
       },
       {
         "description": "The product's category cannot change while it belongs to a family, since every member shares one.",
@@ -8746,6 +9868,56 @@
       {
         "description": "The product category's own specification schema is invalid.",
         "name": "INVALID_PRODUCT_CATEGORY_SPECIFICATION_SCHEMA"
+      }
+    ]
+  },
+  {
+    "description": "The updateProject mutation's expected error codes.",
+    "name": "UpdateProjectErrorCode",
+    "values": [
+      {
+        "description": "Project not found.",
+        "name": "PROJECT_NOT_FOUND"
+      },
+      {
+        "description": "Project custom status not found.",
+        "name": "PROJECT_CUSTOM_STATUS_NOT_FOUND"
+      },
+      {
+        "description": "Project custom status is archived.",
+        "name": "PROJECT_CUSTOM_STATUS_ARCHIVED"
+      },
+      {
+        "description": "Form field not found in the project's form definition.",
+        "name": "FORM_FIELD_NOT_FOUND"
+      },
+      {
+        "description": "A form field value does not match its field's type.",
+        "name": "INVALID_FORM_FIELD_VALUE_TYPE"
+      },
+      {
+        "description": "A dropdown field value is not one of the field's options.",
+        "name": "INVALID_DROPDOWN_OPTION"
+      },
+      {
+        "description": "A required form field cannot be set to null or deleted.",
+        "name": "MISSING_REQUIRED_FORM_FIELDS"
+      },
+      {
+        "description": "The project has no form. Only projects created from a project template with a form have one.",
+        "name": "PROJECT_FORM_DEFINITION_NOT_FOUND"
+      },
+      {
+        "description": "One or more project assignees are invalid.",
+        "name": "INVALID_PROJECT_ASSIGNEES"
+      },
+      {
+        "description": "The linked entity was not found.",
+        "name": "LINKED_ENTITY_NOT_FOUND"
+      },
+      {
+        "description": "The linked entity type is invalid.",
+        "name": "INVALID_LINKED_ENTITY_TYPE"
       }
     ]
   },
@@ -8884,6 +10056,10 @@
       {
         "description": "The technician team could not be found.",
         "name": "TECHNICIAN_TEAM_NOT_FOUND"
+      },
+      {
+        "description": "One of the referenced technicians could not be found.",
+        "name": "TECHNICIAN_NOT_FOUND"
       }
     ]
   },
@@ -8980,6 +10156,14 @@
       {
         "description": "The user group (team) is archived.",
         "name": "TICKET_MAILBOX_USER_GROUP_ARCHIVED"
+      },
+      {
+        "description": "The email provider does not accept the reply email address as a sender.",
+        "name": "TICKET_MAILBOX_UNVERIFIED_SENDER_ADDRESS"
+      },
+      {
+        "description": "The email provider could not be reached to verify the reply email address.",
+        "name": "TICKET_MAILBOX_SENDER_ADDRESS_VERIFICATION_UNAVAILABLE"
       }
     ]
   },
@@ -9084,6 +10268,20 @@
     ]
   },
   {
+    "description": "The updateTicketUserGroupNotificationSetting mutation's expected error codes.",
+    "name": "UpdateTicketUserGroupNotificationSettingErrorCode",
+    "values": [
+      {
+        "description": "The user group (team) was not found.",
+        "name": "TICKET_USER_GROUP_NOTIFICATION_SETTING_USER_GROUP_NOT_FOUND"
+      },
+      {
+        "description": "The user group (team) is archived.",
+        "name": "TICKET_USER_GROUP_NOTIFICATION_SETTING_USER_GROUP_ARCHIVED"
+      }
+    ]
+  },
+  {
     "description": "The updateTicketWorkOrder mutation's expected error codes.",
     "name": "UpdateTicketWorkOrderMutationErrorCode",
     "values": [
@@ -9120,6 +10318,10 @@
       {
         "description": "The unit's address is already in use by another unit of the same property.",
         "name": "UNIT_ADDRESS_IN_USE"
+      },
+      {
+        "description": "The unit's address latitude is outside -90 to 90, or its longitude outside -180 to 180.",
+        "name": "UNIT_ADDRESS_COORDINATES_OUT_OF_RANGE"
       }
     ]
   },
@@ -9134,6 +10336,10 @@
       {
         "description": "One or more role IDs were not found.",
         "name": "USER_ROLE_NOT_FOUND"
+      },
+      {
+        "description": "One or more resource policy IDs were not found.",
+        "name": "USER_RESOURCE_POLICY_NOT_FOUND"
       },
       {
         "description": "A non-nullable field was set to null.",
@@ -9163,6 +10369,14 @@
     "description": "The error codes returned by updateWorkOrder.",
     "name": "UpdateWorkOrderErrorCode",
     "values": [
+      {
+        "description": "The supplied service address could not be found.",
+        "name": "GEO_ADDRESS_NOT_FOUND"
+      },
+      {
+        "description": "The service address could not be resolved because geo-service was unavailable. Retryable.",
+        "name": "GEO_SERVICE_UNAVAILABLE"
+      },
       {
         "description": "Only one of accountId or commercialAccountId or networkSiteId is allowed.",
         "name": "ONLY_ONE_LINKED_ENTITY_ALLOWED"
@@ -9342,40 +10556,14 @@
       {
         "description": "Order users by their creation date.",
         "name": "CREATED_AT"
-      }
-    ]
-  },
-  {
-    "description": "The possible validation error codes.",
-    "name": "ValidationErrorCode",
-    "values": [
-      {
-        "description": "Unexpected error.",
-        "name": "UNEXPECTED_ERROR"
       },
       {
-        "description": "No tickets were provided for validation.",
-        "name": "NO_TICKETS_TO_VALIDATE"
+        "description": "Order users by `${firstName} ${lastName}`.",
+        "name": "NAME"
       },
       {
-        "description": "A general validation failure occurred.",
-        "name": "VALIDATION_FAILURE"
-      },
-      {
-        "description": "An error occurred while fetching the lifecycle page.",
-        "name": "GET_LIFECYCLE_PAGE_FAILED"
-      },
-      {
-        "description": "An error occurred during ticket record validation.",
-        "name": "PERFORM_TICKET_RECORD_VALIDATION_FAILED"
-      },
-      {
-        "description": "An error occurred while preparing tickets for update.",
-        "name": "PREPARE_TICKETS_FOR_UPDATE_FAILED"
-      },
-      {
-        "description": "An error occurred while updating the lifecycle status.",
-        "name": "UPDATE_LIFECYCLE_STATUS_FAILED"
+        "description": "Order users by when they last connected. Users who never connected sort last, whatever the direction.",
+        "name": "LAST_CONNECTED"
       }
     ]
   },
@@ -9928,6 +11116,14 @@
         "name": "COMMERCIAL_ACCOUNT"
       },
       {
+        "description": "The workflow object type is a custom object record.",
+        "name": "CUSTOM_OBJECT_RECORD"
+      },
+      {
+        "description": "The workflow object type is a geo address.",
+        "name": "GEO_ADDRESS"
+      },
+      {
         "description": "The workflow object type is an inventory item.",
         "name": "INVENTORY_ITEM"
       },
@@ -10266,16 +11462,6 @@
     ]
   },
   {
-    "description": "The zoneImportCsvDocumentation query's expected error codes.",
-    "name": "ZoneImportCsvDocumentationErrorCode",
-    "values": [
-      {
-        "description": "One of the provided CSV files was not found.",
-        "name": "FILE_NOT_FOUND"
-      }
-    ]
-  },
-  {
     "name": "join__Graph",
     "values": [
       {
@@ -10304,6 +11490,9 @@
       },
       {
         "name": "LIFECYCLE"
+      },
+      {
+        "name": "LOUISE"
       },
       {
         "name": "NOTIFICATION"
