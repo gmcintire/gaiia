@@ -199,6 +199,45 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The account's unique ID.",
+        "name": "accountId",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "The account's tags that can't be changed right now, and why. A change to one of them is refused by the updateAccount mutation. A tag locked for several reasons is listed once per reason. Fails with the LOCKED_TAGS_CHECK_FAILED code when the locks can't be checked right now; try again in a few minutes.",
+    "isDeprecated": false,
+    "name": "accountLockedTags",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "OBJECT",
+            "name": "LockedTag",
+            "ofType": null
+          }
+        }
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "Returns up to the first `n` elements from the list.",
         "name": "first",
         "type": {
@@ -714,7 +753,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Query paginated list of archived product bundles.",
+    "description": "Query a paginated list of archived product bundles, most recently archived first. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
     "isDeprecated": false,
     "name": "archivedBundles",
     "type": {
@@ -1260,7 +1299,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Query paginated list of product bundles.",
+    "description": "Query a paginated list of product bundles, newest first. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
     "isDeprecated": false,
     "name": "bundles",
     "type": {
@@ -1365,6 +1404,45 @@
       "kind": "OBJECT",
       "name": "CommercialAccount",
       "ofType": null
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The commercial account's unique ID.",
+        "name": "commercialAccountId",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "The commercial account's tags that can't be changed right now, and why. A change to one of them is refused by the updateCommercialAccount mutation. A tag locked for several reasons is listed once per reason. Fails with the LOCKED_TAGS_CHECK_FAILED code when the locks can't be checked right now; try again in a few minutes.",
+    "isDeprecated": false,
+    "name": "commercialAccountLockedTags",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "OBJECT",
+            "name": "LockedTag",
+            "ofType": null
+          }
+        }
+      }
     }
   },
   {
@@ -6565,6 +6643,91 @@
       "kind": "OBJECT",
       "name": "User",
       "ofType": null
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "Returns up to the first n elements.",
+        "name": "first",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns up to the last n elements.",
+        "name": "last",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns elements after the cursor.",
+        "name": "after",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Returns elements before the cursor.",
+        "name": "before",
+        "type": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Filters to apply.",
+        "name": "filter",
+        "type": {
+          "kind": "INPUT_OBJECT",
+          "name": "UserGroupFilter",
+          "ofType": null
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "Ordering to apply.",
+        "name": "orderBy",
+        "type": {
+          "kind": "LIST",
+          "name": null,
+          "ofType": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserGroupOrderBy",
+              "ofType": null
+            }
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Query a paginated, filterable list of user groups. The arguments first and last are mutually exclusive; only one of them can be set at a time. The same applies to after and before.",
+    "isDeprecated": false,
+    "name": "userGroups",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UserGroupConnection",
+        "ofType": null
+      }
     }
   },
   {

@@ -2225,6 +2225,38 @@
     "name": "ApplicableTax"
   },
   {
+    "description": "The applyTicketTemplate mutation's expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ApplyTicketTemplateErrorCode!"
+      }
+    ],
+    "name": "ApplyTicketTemplateError"
+  },
+  {
+    "description": "The applyTicketTemplate mutation's result.",
+    "fields": [
+      {
+        "description": "The updated ticket.",
+        "name": "ticket",
+        "type": "Ticket"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ApplyTicketTemplateError!]"
+      }
+    ],
+    "name": "ApplyTicketTemplateResult"
+  },
+  {
     "description": "Configuration for appointment availability settings.",
     "fields": [
       {
@@ -2263,7 +2295,7 @@
         "type": "AppointmentDisplayMode!"
       },
       {
-        "description": "The appointment configuration's IANA timezone for arrival windows (e.g. 'America/Toronto').",
+        "description": "The appointment configuration's default IANA time zone for arrival windows (e.g. 'America/Toronto').",
         "name": "timezone",
         "type": "String!"
       },
@@ -2331,6 +2363,11 @@
         "description": "The appointment configuration's arrival windows.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindow!]!"
+      },
+      {
+        "description": "The appointment configuration's time zone mode for arrival windows.",
+        "name": "arrivalWindowTimezoneMode",
+        "type": "ArrivalWindowTimezoneMode!"
       }
     ],
     "name": "AppointmentConfig"
@@ -2360,7 +2397,7 @@
         "type": "AppointmentDisplayMode!"
       },
       {
-        "description": "The appointment settings' IANA timezone for arrival windows (e.g. 'America/Toronto').",
+        "description": "The appointment settings' default IANA time zone for arrival windows (e.g. 'America/Toronto').",
         "name": "timezone",
         "type": "String!"
       },
@@ -2443,6 +2480,11 @@
         "description": "The appointment settings' arrival windows, resolved for the requested work type.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindow!]!"
+      },
+      {
+        "description": "The appointment settings' time zone mode for arrival windows.",
+        "name": "arrivalWindowTimezoneMode",
+        "type": "ArrivalWindowTimezoneMode!"
       }
     ],
     "name": "AppointmentSettings"
@@ -2787,6 +2829,43 @@
       }
     ],
     "name": "ArchiveCustomObjectResult"
+  },
+  {
+    "description": "The archiveIncidents mutation's expected error.",
+    "fields": [
+      {
+        "description": "The ID of the incident that failed to archive.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ArchiveIncidentsErrorCode!"
+      }
+    ],
+    "name": "ArchiveIncidentsError"
+  },
+  {
+    "description": "The archiveIncidents mutation's result.",
+    "fields": [
+      {
+        "description": "The archived incidents.",
+        "name": "incidents",
+        "type": "[Incident!]!"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ArchiveIncidentsError!]"
+      }
+    ],
+    "name": "ArchiveIncidentsResult"
   },
   {
     "description": "Define an archiveInventoryRole mutation's expected error.",
@@ -4808,6 +4887,70 @@
     "name": "CancelAndDuplicateWorkOrderWithWorkTypeResult"
   },
   {
+    "description": "The cancel billing subscriptions' expected error.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CancelBillingSubscriptionsErrorCode!"
+      }
+    ],
+    "name": "CancelBillingSubscriptionsError"
+  },
+  {
+    "description": "The cancel billing subscriptions' result.",
+    "fields": [
+      {
+        "description": "The cancelled billing subscriptions, including those already cancelled before the call. Null when errors occur.",
+        "name": "billingSubscriptions",
+        "type": "[BillingSubscription!]"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CancelBillingSubscriptionsError!]"
+      }
+    ],
+    "name": "CancelBillingSubscriptionsResult"
+  },
+  {
+    "description": "An expected error from the cancelPinVerification mutation.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "CancelPinVerificationErrorCode!"
+      }
+    ],
+    "name": "CancelPinVerificationError"
+  },
+  {
+    "description": "The cancelPinVerification mutation's result.",
+    "fields": [
+      {
+        "description": "The cancelled verification.",
+        "name": "verification",
+        "type": "PinVerification"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[CancelPinVerificationError!]"
+      }
+    ],
+    "name": "CancelPinVerificationResult"
+  },
+  {
     "description": "Define the cancelWorkflowExecution mutation's expected error.",
     "fields": [
       {
@@ -5916,7 +6059,8 @@
         "type": "String"
       },
       {
-        "description": "The contact's enabled notification types. At the moment, primary contacts will receive all notification types regardless of this field.",
+        "deprecationReason": "Use communicationTypeSubscriptions instead.",
+        "description": "The contact's enabled notification types, mapped from its Communication Type subscriptions.",
         "name": "enabledNotificationTypes",
         "type": "[ContactNotificationType!]!"
       },
@@ -11631,6 +11775,38 @@
     "name": "EventNameEdge"
   },
   {
+    "description": "An expected error from the extendPinVerification mutation.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "ExtendPinVerificationErrorCode!"
+      }
+    ],
+    "name": "ExtendPinVerificationError"
+  },
+  {
+    "description": "The extendPinVerification mutation's result.",
+    "fields": [
+      {
+        "description": "The extended verification.",
+        "name": "verification",
+        "type": "PinVerification"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[ExtendPinVerificationError!]"
+      }
+    ],
+    "name": "ExtendPinVerificationResult"
+  },
+  {
     "description": "Response containing feature flags configuration from AppConfig",
     "fields": [
       {
@@ -12199,6 +12375,11 @@
       {
         "description": "The incident's estimated resolved timestamp.",
         "name": "estimatedResolvedAt",
+        "type": "DateTime"
+      },
+      {
+        "description": "The incident's archive date and time, if archived.",
+        "name": "archivedAt",
         "type": "DateTime"
       },
       {
@@ -15358,6 +15539,22 @@
     "name": "ItemFieldValidationFailure"
   },
   {
+    "description": "A tag of the entity that can't be changed right now, and why.",
+    "fields": [
+      {
+        "description": "The locked tag's definition.",
+        "name": "tagDefinition",
+        "type": "TagDefinition!"
+      },
+      {
+        "description": "Why the tag can't be changed.",
+        "name": "reason",
+        "type": "TagLockReason!"
+      }
+    ],
+    "name": "LockedTag"
+  },
+  {
     "description": "A MAC address IP address assignation.",
     "fields": [
       {
@@ -16007,6 +16204,30 @@
         "description": "Submit a PIN to complete a verification.",
         "name": "verifyPinVerification",
         "type": "VerifyPinVerificationResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The verification to cancel.",
+            "name": "verificationId",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Cancel an active verification, either pending or verified and not yet expired.",
+        "name": "cancelPinVerification",
+        "type": "CancelPinVerificationResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The verification to extend.",
+            "name": "verificationId",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "Push back the expiry of a verified verification that has not expired yet, to now plus the tenant's verification duration.",
+        "name": "extendPinVerification",
+        "type": "ExtendPinVerificationResult!"
       },
       {
         "args": [
@@ -16721,6 +16942,18 @@
       {
         "args": [
           {
+            "description": "The input required to cancel billing subscriptions.",
+            "name": "input",
+            "type": "CancelBillingSubscriptionsInput!"
+          }
+        ],
+        "description": "Cancel billing subscriptions of a single billable entity. All-or-nothing: if any subscription fails, none is cancelled.",
+        "name": "cancelBillingSubscriptions",
+        "type": "CancelBillingSubscriptionsResult!"
+      },
+      {
+        "args": [
+          {
             "description": "The input required to create debits.",
             "name": "input",
             "type": "CreateDebitsInput!"
@@ -17310,7 +17543,7 @@
             "type": "CreateInventoryItemsInput!"
           }
         ],
-        "description": "Create new inventory items.",
+        "description": "Create new inventory items. All-or-nothing: if any item fails validation or the model is not found, no item is created.",
         "name": "createInventoryItems",
         "type": "CreateInventoryItemsResult!"
       },
@@ -17322,7 +17555,7 @@
             "type": "ArchiveInventoryRolesInput!"
           }
         ],
-        "description": "Archive existing inventory roles.",
+        "description": "Archive existing inventory roles. All-or-nothing: if any inventory role is not found, none is archived.",
         "name": "archiveInventoryRoles",
         "type": "ArchiveInventoryRolesResult!"
       },
@@ -17334,7 +17567,7 @@
             "type": "UnarchiveInventoryRolesInput!"
           }
         ],
-        "description": "Unarchive existing inventory roles.",
+        "description": "Unarchive existing inventory roles. All-or-nothing: if any inventory role is not found, none is unarchived.",
         "name": "unarchiveInventoryRoles",
         "type": "UnarchiveInventoryRolesResult!"
       },
@@ -17358,7 +17591,7 @@
             "type": "AssignInventoryItemsInput!"
           }
         ],
-        "description": "Update the assignee and/or the inventory role of many inventory items at once.",
+        "description": "Update the assignee and/or the inventory role of many inventory items at once. Partial success: inventory items that cannot be resolved are reported in the errors while the remaining ones are updated. If the inventory role is not found or is archived, no item is updated.",
         "name": "assignInventoryItems",
         "type": "AssignInventoryItemsResult!"
       },
@@ -17466,7 +17699,7 @@
             "type": "DeleteInventoryItemsInput!"
           }
         ],
-        "description": "Delete inventory items. Inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
+        "description": "Delete inventory items. Partial success: inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
         "name": "deleteInventoryItems",
         "type": "DeleteInventoryItemsResult!"
       },
@@ -17550,6 +17783,18 @@
       {
         "args": [
           {
+            "description": "The account and internal composition instruction.",
+            "name": "input",
+            "type": "SendNausicaaMessageInput!"
+          }
+        ],
+        "description": "Ask nausicaä to compose and send an SMS to an account's primary contact, using trusted account tools without changing PIN verification.",
+        "name": "sendNausicaaMessage",
+        "type": "SendNausicaaMessageResult!"
+      },
+      {
+        "args": [
+          {
             "description": "The input required to send a communication.",
             "name": "input",
             "type": "SendCommunicationInput!"
@@ -17608,7 +17853,7 @@
             "type": "StartProductAvailabilityJobInput!"
           }
         ],
-        "description": "Start an asynchronous job to check available products at a given location. Requires a gaiia [publishable key](../../../authentication) in the request headers.",
+        "description": "Start an asynchronous job to check the products available at a given location or to an existing account. Starting a job for an address requires a gaiia [publishable key](../../../authentication) in the request headers. Starting a job for an account requires the `accounts.view` permission, unless the account starts it for itself or a workflow starts it.",
         "name": "startProductAvailabilityJob",
         "type": "StartProductAvailabilityJobResult!"
       },
@@ -17767,7 +18012,7 @@
             "type": "AddImpactedAccountsToIncidentInput!"
           }
         ],
-        "description": "Add impacted accounts to an incident.",
+        "description": "Add impacted accounts to an incident. All-or-nothing: if any account does not exist, no account is added to the incident.",
         "name": "addImpactedAccountsToIncident",
         "type": "AddImpactedAccountsToIncidentResult!"
       },
@@ -17827,7 +18072,7 @@
             "type": "AddIpBlocksToNetworkSiteInput!"
           }
         ],
-        "description": "Add IP blocks to a network site.",
+        "description": "Add IP blocks to a network site. All-or-nothing: if any IP block is invalid or already exists, none is added.",
         "name": "addIpBlocksToNetworkSite",
         "type": "AddIpBlocksToNetworkSiteResult!"
       },
@@ -17899,7 +18144,7 @@
             "type": "RemoveImpactedAccountsFromIncidentInput!"
           }
         ],
-        "description": "Remove impacted accounts from an incident.",
+        "description": "Remove impacted accounts from an incident. All-or-nothing: if the removal fails, no account is removed. Accounts that are not impacted by the incident are ignored.",
         "name": "removeImpactedAccountsFromIncident",
         "type": "RemoveImpactedAccountsFromIncidentResult!"
       },
@@ -17935,7 +18180,7 @@
             "type": "AddInventoryItemLinkedDevicesInput!"
           }
         ],
-        "description": "Add new linked devices to an inventory item.",
+        "description": "Add new linked devices to an inventory item. All-or-nothing: if any link is invalid, none of the links is added.",
         "name": "addInventoryItemLinkedDevices",
         "type": "AddInventoryItemLinkedDevicesResult!"
       },
@@ -17947,7 +18192,7 @@
             "type": "RemoveInventoryItemLinkedDevicesInput!"
           }
         ],
-        "description": "Remove linked devices from an inventory item.",
+        "description": "Remove linked devices from an inventory item. All-or-nothing: if the removal fails, none of the links is removed. Links that do not exist are ignored.",
         "name": "removeInventoryItemLinkedDevices",
         "type": "RemoveInventoryItemLinkedDevicesResult!"
       },
@@ -17971,7 +18216,7 @@
             "type": "RemoveIpBlocksFromNetworkSiteInput!"
           }
         ],
-        "description": "Remove IP blocks from a network site.",
+        "description": "Remove IP blocks from a network site. All-or-nothing: if the removal fails, no IP block is removed. IP blocks that do not belong to the network site are ignored.",
         "name": "removeIpBlocksFromNetworkSite",
         "type": "RemoveIpBlocksFromNetworkSiteResult!"
       },
@@ -18002,14 +18247,19 @@
       {
         "args": [
           {
-            "description": "The network sites unique identifiers.",
+            "description": "The incidents unique identifiers. At most 1000 incidents per call.",
             "name": "ids",
             "type": "[GlobalID!]!"
+          },
+          {
+            "description": "When true, the incidents archived by this call that are not already RESOLVED are also set to RESOLVED, and their resolvedAt is set to now if it is empty. Defaults to false: archiving alone does not change status.",
+            "name": "shouldResolve",
+            "type": "Boolean"
           }
         ],
-        "description": "Archive one or more network sites.",
-        "name": "archiveNetworkSites",
-        "type": "ArchiveNetworkSitesResult!"
+        "description": "Archive one or more incidents. Partial success: each incident succeeds or fails on its own, and the incidents that fail are listed in errors. An archived workflow event is published for each archived incident after the changes are saved, plus a status-updated workflow event and an activity event for each incident whose status this call changes to RESOLVED. If publishing a workflow event fails, the mutation returns an error even though the incidents are already archived; retrying then reports them as already archived.",
+        "name": "archiveIncidents",
+        "type": "ArchiveIncidentsResult!"
       },
       {
         "args": [
@@ -18019,7 +18269,31 @@
             "type": "[GlobalID!]!"
           }
         ],
-        "description": "Unarchive one or more network sites.",
+        "description": "Archive one or more network sites. Partial success: network sites that do not exist or are already archived are reported in errors, and the other network sites are still archived.",
+        "name": "archiveNetworkSites",
+        "type": "ArchiveNetworkSitesResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The incidents unique identifiers. At most 1000 incidents per call.",
+            "name": "ids",
+            "type": "[GlobalID!]!"
+          }
+        ],
+        "description": "Unarchive one or more incidents. Partial success: each incident succeeds or fails on its own, and the incidents that fail are listed in errors. An unarchived workflow event is published for each unarchived incident after the changes are saved. If publishing it fails, the mutation returns an error even though the incidents are already unarchived; retrying then reports them as not archived.",
+        "name": "unarchiveIncidents",
+        "type": "UnarchiveIncidentsResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The network sites unique identifiers.",
+            "name": "ids",
+            "type": "[GlobalID!]!"
+          }
+        ],
+        "description": "Unarchive one or more network sites. Partial success: network sites that cannot be unarchived (not found, or an active network site has the same name or reference ID) are reported in errors, and the other network sites are still unarchived.",
         "name": "unarchiveNetworkSites",
         "type": "UnarchiveNetworkSitesResult!"
       },
@@ -18085,6 +18359,57 @@
         "description": "Create a value for a tag.",
         "name": "createTagValue",
         "type": "CreateTagValueResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The tag definition's unique ID.",
+            "name": "tagDefinitionId",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to update a tag definition.",
+            "name": "input",
+            "type": "UpdateTagDefinitionInput!"
+          }
+        ],
+        "description": "Update a tag definition's key.",
+        "name": "updateTagDefinition",
+        "type": "UpdateTagDefinitionResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The tag value's unique ID.",
+            "name": "tagValueId",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to update a tag value.",
+            "name": "input",
+            "type": "UpdateTagValueInput!"
+          }
+        ],
+        "description": "Update a tag value.",
+        "name": "updateTagValue",
+        "type": "UpdateTagValueResult!"
+      },
+      {
+        "args": [
+          {
+            "description": "The ticket's unique ID.",
+            "name": "id",
+            "type": "GlobalID!"
+          },
+          {
+            "description": "The input required to apply a ticket template.",
+            "name": "input",
+            "type": "ApplyTicketTemplateInput!"
+          }
+        ],
+        "description": "Apply a ticket template to an existing ticket: the template's values fill the ticket's empty type, categories, user group (team) and due date, and its form (if any) is attached. Fields that already have a value are kept, and the template's priority and assignees are never applied.",
+        "name": "applyTicketTemplate",
+        "type": "ApplyTicketTemplateResult!"
       },
       {
         "args": [
@@ -20228,7 +20553,8 @@
         "type": "WorkOrderConnection!"
       },
       {
-        "description": "The encrypted code used to resume this order in the checkout application.",
+        "deprecationReason": "Use the createOrderRecoveryCode mutation, whose recovery codes expire.",
+        "description": "The encrypted code used to resume this order in the checkout application. It never expires.",
         "name": "resumeCode",
         "type": "String!"
       },
@@ -23770,6 +24096,18 @@
       {
         "args": [
           {
+            "description": "The account's unique ID.",
+            "name": "accountId",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "The account's tags that can't be changed right now, and why. A change to one of them is refused by the updateAccount mutation. A tag locked for several reasons is listed once per reason. Fails with the LOCKED_TAGS_CHECK_FAILED code when the locks can't be checked right now; try again in a few minutes.",
+        "name": "accountLockedTags",
+        "type": "[LockedTag!]!"
+      },
+      {
+        "args": [
+          {
             "description": "Returns up to the first `n` elements from the list.",
             "name": "first",
             "type": "Int"
@@ -23842,6 +24180,18 @@
         "description": "Query a commercial account by unique ID.",
         "name": "commercialAccount",
         "type": "CommercialAccount"
+      },
+      {
+        "args": [
+          {
+            "description": "The commercial account's unique ID.",
+            "name": "commercialAccountId",
+            "type": "GlobalID!"
+          }
+        ],
+        "description": "The commercial account's tags that can't be changed right now, and why. A change to one of them is refused by the updateCommercialAccount mutation. A tag locked for several reasons is listed once per reason. Fails with the LOCKED_TAGS_CHECK_FAILED code when the locks can't be checked right now; try again in a few minutes.",
+        "name": "commercialAccountLockedTags",
+        "type": "[LockedTag!]!"
       },
       {
         "args": [
@@ -25463,7 +25813,7 @@
             "type": "BundlesQueryFilters"
           }
         ],
-        "description": "Query paginated list of archived product bundles.",
+        "description": "Query a paginated list of archived product bundles, most recently archived first. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
         "name": "archivedBundles",
         "type": "BundleConnection!"
       },
@@ -25507,7 +25857,7 @@
             "type": "BundlesQueryFilters"
           }
         ],
-        "description": "Query paginated list of product bundles.",
+        "description": "Query a paginated list of product bundles, newest first. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
         "name": "bundles",
         "type": "BundleConnection!"
       },
@@ -26273,6 +26623,43 @@
         "description": "Query a paginated list of roles. The arguments first and last are mutually exclusive; only one of them can be set at a time. The same applies to after and before. Only the first orderBy entry is applied.",
         "name": "roles",
         "type": "RoleConnection!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first n elements.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last n elements.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns elements after the cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns elements before the cursor.",
+            "name": "before",
+            "type": "String"
+          },
+          {
+            "description": "Filters to apply.",
+            "name": "filter",
+            "type": "UserGroupFilter"
+          },
+          {
+            "description": "Ordering to apply.",
+            "name": "orderBy",
+            "type": "[UserGroupOrderBy!]"
+          }
+        ],
+        "description": "Query a paginated, filterable list of user groups. The arguments first and last are mutually exclusive; only one of them can be set at a time. The same applies to after and before.",
+        "name": "userGroups",
+        "type": "UserGroupConnection!"
       },
       {
         "args": [
@@ -27706,6 +28093,38 @@
     "name": "SendCommunicationResult"
   },
   {
+    "description": "An expected outbound generation admission error.",
+    "fields": [
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "SendNausicaaMessageErrorCode!"
+      },
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      }
+    ],
+    "name": "SendNausicaaMessageError"
+  },
+  {
+    "description": "Whether nausicaä accepted the request to generate and send an SMS asynchronously.",
+    "fields": [
+      {
+        "description": "Whether background generation was accepted. Acceptance does not guarantee delivery; a decline sends nothing.",
+        "name": "isAccepted",
+        "type": "Boolean!"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[SendNausicaaMessageError!]"
+      }
+    ],
+    "name": "SendNausicaaMessageResult"
+  },
+  {
     "description": "The result of the sendPendingContractSignatureReminder mutation.",
     "fields": [
       {
@@ -27969,6 +28388,11 @@
         "description": "The minimum date and time (UTC) at which fetching a result for the job can be attempted.",
         "name": "fetchAt",
         "type": "DateTime"
+      },
+      {
+        "description": "The started product availability job.",
+        "name": "productAvailabilityJob",
+        "type": "ProductAvailabilityJob"
       }
     ],
     "name": "StartProductAvailabilityJobResult"
@@ -28092,10 +28516,10 @@
     "name": "StartWorkflowExecutionResult"
   },
   {
-    "description": "Defines a global tag definition.",
+    "description": "The TagDefinition type owned by the tag-service.",
     "fields": [
       {
-        "description": "The tag's unique ID.",
+        "description": "The tag definition's ID.",
         "name": "id",
         "type": "GlobalID!"
       },
@@ -31548,6 +31972,43 @@
     "name": "UnarchiveCustomObjectResult"
   },
   {
+    "description": "The unarchiveIncidents mutation's expected error.",
+    "fields": [
+      {
+        "description": "The ID of the incident that failed to unarchive.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UnarchiveIncidentsErrorCode!"
+      }
+    ],
+    "name": "UnarchiveIncidentsError"
+  },
+  {
+    "description": "The unarchiveIncidents mutation's result.",
+    "fields": [
+      {
+        "description": "The unarchived incidents.",
+        "name": "incidents",
+        "type": "[Incident!]!"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UnarchiveIncidentsError!]"
+      }
+    ],
+    "name": "UnarchiveIncidentsResult"
+  },
+  {
     "description": "Define an unarchiveInventoryRole mutation's expected error.",
     "fields": [
       {
@@ -33634,6 +34095,70 @@
     "name": "UpdateScheduleTemplateResult"
   },
   {
+    "description": "The updateTagDefinition mutation's error type.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateTagDefinitionErrorCode!"
+      }
+    ],
+    "name": "UpdateTagDefinitionError"
+  },
+  {
+    "description": "The updateTagDefinition mutation's result.",
+    "fields": [
+      {
+        "description": "The updated tag definition.",
+        "name": "tagDefinition",
+        "type": "TagDefinition"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateTagDefinitionError!]"
+      }
+    ],
+    "name": "UpdateTagDefinitionResult"
+  },
+  {
+    "description": "The updateTagValue mutation's error type.",
+    "fields": [
+      {
+        "description": "The error's message.",
+        "name": "message",
+        "type": "String!"
+      },
+      {
+        "description": "The error's code.",
+        "name": "code",
+        "type": "UpdateTagValueErrorCode!"
+      }
+    ],
+    "name": "UpdateTagValueError"
+  },
+  {
+    "description": "The updateTagValue mutation's result.",
+    "fields": [
+      {
+        "description": "The updated tag value.",
+        "name": "tagValue",
+        "type": "TagValue"
+      },
+      {
+        "description": "The expected errors that occurred.",
+        "name": "errors",
+        "type": "[UpdateTagValueError!]"
+      }
+    ],
+    "name": "UpdateTagValueResult"
+  },
+  {
     "description": "The update tax exemptions' result.",
     "fields": [
       {
@@ -34494,6 +35019,33 @@
         "description": "The user's assigned roles.",
         "name": "roles",
         "type": "[Role!]!"
+      },
+      {
+        "args": [
+          {
+            "description": "Returns up to the first n elements.",
+            "name": "first",
+            "type": "Int"
+          },
+          {
+            "description": "Returns up to the last n elements.",
+            "name": "last",
+            "type": "Int"
+          },
+          {
+            "description": "Returns elements after the cursor.",
+            "name": "after",
+            "type": "String"
+          },
+          {
+            "description": "Returns elements before the cursor.",
+            "name": "before",
+            "type": "String"
+          }
+        ],
+        "description": "The user groups this user belongs to. The arguments first and last are mutually exclusive; only one of them can be set at a time. The same applies to after and before.",
+        "name": "userGroups",
+        "type": "UserGroupConnection!"
       }
     ],
     "name": "User"
@@ -34539,6 +35091,85 @@
       }
     ],
     "name": "UserEdge"
+  },
+  {
+    "description": "A paginated connection of user groups.",
+    "fields": [
+      {
+        "description": "The edges in this page.",
+        "name": "edges",
+        "type": "[UserGroupEdge!]!"
+      },
+      {
+        "description": "Pagination information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of groups.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "UserGroupConnection"
+  },
+  {
+    "description": "An edge in a UserGroup connection.",
+    "fields": [
+      {
+        "description": "The cursor for this edge.",
+        "name": "cursor",
+        "type": "String!"
+      }
+    ],
+    "name": "UserGroupEdge"
+  },
+  {
+    "description": "A paginated connection of users who are members of a group.",
+    "fields": [
+      {
+        "description": "The edges in this page.",
+        "name": "edges",
+        "type": "[UserGroupMemberEdge!]!"
+      },
+      {
+        "description": "The nodes in this page.",
+        "name": "nodes",
+        "type": "[User!]!"
+      },
+      {
+        "description": "Pagination information.",
+        "name": "pageInfo",
+        "type": "PageInfo!"
+      },
+      {
+        "description": "Total count of members.",
+        "name": "totalCount",
+        "type": "Int!"
+      }
+    ],
+    "name": "UserGroupMemberConnection"
+  },
+  {
+    "description": "An edge in a UserGroupMember connection.",
+    "fields": [
+      {
+        "description": "The cursor for this edge.",
+        "name": "cursor",
+        "type": "String!"
+      },
+      {
+        "description": "The user at this edge.",
+        "name": "node",
+        "type": "User!"
+      },
+      {
+        "description": "When the user was added to the group.",
+        "name": "joinedAt",
+        "type": "DateTime!"
+      }
+    ],
+    "name": "UserGroupMemberEdge"
   },
   {
     "description": "An expected error from the verifyPinVerification mutation.",
@@ -35043,6 +35674,11 @@
         "type": "NetworkSite"
       },
       {
+        "description": "The work order's project: the build it belongs to.",
+        "name": "project",
+        "type": "Project"
+      },
+      {
         "args": [
           {
             "description": "The number of technicians to return starting from the beginning or the cursor.",
@@ -35145,6 +35781,11 @@
         "type": "DateTime!"
       },
       {
+        "description": "The work order's creator. Null when no user is recorded: work orders created by an API key, an automation, or a data import, work orders created before January 2026, and a new work order for a few seconds after it is created.",
+        "name": "createdBy",
+        "type": "WorkOrderCreator"
+      },
+      {
         "description": "The work order's last update date and time.",
         "name": "updatedAt",
         "type": "DateTime!"
@@ -35207,6 +35848,11 @@
         "type": "WorkOrderAppointmentSettings!"
       },
       {
+        "description": "The work order's arrival window options: the arrival windows it can be booked into and their time zone.",
+        "name": "arrivalWindowOptions",
+        "type": "WorkOrderArrivalWindowOptions!"
+      },
+      {
         "args": [
           {
             "description": "Returns up to the first n elements from the list.",
@@ -35253,7 +35899,7 @@
         "type": "AppointmentDisplayMode!"
       },
       {
-        "description": "The appointment settings' IANA timezone for arrival windows (e.g. 'America/Toronto').",
+        "description": "The appointment settings' default IANA time zone for arrival windows (e.g. 'America/Toronto').",
         "name": "timezone",
         "type": "String!"
       },
@@ -35293,9 +35939,15 @@
         "type": "AutoAssignShiftTravelMode!"
       },
       {
+        "deprecationReason": "Use WorkOrder.arrivalWindowOptions.arrivalWindows instead.",
         "description": "The appointment settings' arrival windows.",
         "name": "arrivalWindows",
         "type": "[ArrivalWindow!]!"
+      },
+      {
+        "description": "The appointment settings' time zone mode for arrival windows.",
+        "name": "arrivalWindowTimezoneMode",
+        "type": "ArrivalWindowTimezoneMode!"
       }
     ],
     "name": "WorkOrderAppointmentSettings"
@@ -35312,9 +35964,40 @@
         "description": "The end time of the arrival window.",
         "name": "endTime",
         "type": "DateTime!"
+      },
+      {
+        "description": "The arrival window's IANA time zone, recorded when it was booked (e.g. 'America/Toronto').",
+        "name": "timezone",
+        "type": "String"
+      },
+      {
+        "description": "The arrival window's time zone mode, recorded when it was booked.",
+        "name": "timezoneMode",
+        "type": "ArrivalWindowTimezoneMode"
       }
     ],
     "name": "WorkOrderArrivalWindow"
+  },
+  {
+    "description": "A work order's arrival window options.",
+    "fields": [
+      {
+        "description": "The arrival window options' IANA time zone: the service location's time zone in SERVICE_LOCATION mode when it is valid, otherwise the appointment settings'.",
+        "name": "timezone",
+        "type": "String!"
+      },
+      {
+        "description": "The arrival window options' time zone source.",
+        "name": "timezoneSource",
+        "type": "ArrivalWindowTimezoneSource!"
+      },
+      {
+        "description": "The arrival window options' arrival windows: the work type's when it has its own, otherwise the appointment settings'.",
+        "name": "arrivalWindows",
+        "type": "[ArrivalWindow!]!"
+      }
+    ],
+    "name": "WorkOrderArrivalWindowOptions"
   },
   {
     "description": "To paginate through work orders.",

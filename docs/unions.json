@@ -277,6 +277,13 @@
     ]
   },
   {
+    "description": "Whoever created a work order. A union so non-user creators can be added without a breaking change.",
+    "name": "WorkOrderCreator",
+    "possibleTypes": [
+      "User"
+    ]
+  },
+  {
     "description": "An entity linked to a work order.",
     "name": "WorkOrderLinkedEntity",
     "possibleTypes": [

@@ -110,7 +110,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Add impacted accounts to an incident.",
+    "description": "Add impacted accounts to an incident. All-or-nothing: if any account does not exist, no account is added to the incident.",
     "isDeprecated": false,
     "name": "addImpactedAccountsToIncident",
     "type": {
@@ -234,7 +234,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Add new linked devices to an inventory item.",
+    "description": "Add new linked devices to an inventory item. All-or-nothing: if any link is invalid, none of the links is added.",
     "isDeprecated": false,
     "name": "addInventoryItemLinkedDevices",
     "type": {
@@ -296,7 +296,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Add IP blocks to a network site.",
+    "description": "Add IP blocks to a network site. All-or-nothing: if any IP block is invalid or already exists, none is added.",
     "isDeprecated": false,
     "name": "addIpBlocksToNetworkSite",
     "type": {
@@ -398,6 +398,51 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "AddScheduleToTechnicianResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The ticket's unique ID.",
+        "name": "id",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to apply a ticket template.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "ApplyTicketTemplateInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Apply a ticket template to an existing ticket: the template's values fill the ticket's empty type, categories, user group (team) and due date, and its form (if any) is attached. Fields that already have a value are kept, and the template's priority and assignees are never applied.",
+    "isDeprecated": false,
+    "name": "applyTicketTemplate",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ApplyTicketTemplateResult",
         "ofType": null
       }
     }
@@ -724,6 +769,55 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The incidents unique identifiers. At most 1000 incidents per call.",
+        "name": "ids",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "GlobalID",
+                "ofType": null
+              }
+            }
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "When true, the incidents archived by this call that are not already RESOLVED are also set to RESOLVED, and their resolvedAt is set to now if it is empty. Defaults to false: archiving alone does not change status.",
+        "name": "shouldResolve",
+        "type": {
+          "kind": "SCALAR",
+          "name": "Boolean",
+          "ofType": null
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Archive one or more incidents. Partial success: each incident succeeds or fails on its own, and the incidents that fail are listed in errors. An archived workflow event is published for each archived incident after the changes are saved, plus a status-updated workflow event and an activity event for each incident whose status this call changes to RESOLVED. If publishing a workflow event fails, the mutation returns an error even though the incidents are already archived; retrying then reports them as already archived.",
+    "isDeprecated": false,
+    "name": "archiveIncidents",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ArchiveIncidentsResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The archiveInventoryRoles mutation's input.",
         "name": "input",
         "type": {
@@ -738,7 +832,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Archive existing inventory roles.",
+    "description": "Archive existing inventory roles. All-or-nothing: if any inventory role is not found, none is archived.",
     "isDeprecated": false,
     "name": "archiveInventoryRoles",
     "type": {
@@ -777,7 +871,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Archive one or more network sites.",
+    "description": "Archive one or more network sites. Partial success: network sites that do not exist or are already archived are reported in errors, and the other network sites are still archived.",
     "isDeprecated": false,
     "name": "archiveNetworkSites",
     "type": {
@@ -1211,7 +1305,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Update the assignee and/or the inventory role of many inventory items at once.",
+    "description": "Update the assignee and/or the inventory role of many inventory items at once. Partial success: inventory items that cannot be resolved are reported in the errors while the remaining ones are updated. If the inventory role is not found or is archived, no item is updated.",
     "isDeprecated": false,
     "name": "assignInventoryItems",
     "type": {
@@ -1406,6 +1500,68 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "CancelAndDuplicateWorkOrderWithWorkTypeResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The input required to cancel billing subscriptions.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "CancelBillingSubscriptionsInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Cancel billing subscriptions of a single billable entity. All-or-nothing: if any subscription fails, none is cancelled.",
+    "isDeprecated": false,
+    "name": "cancelBillingSubscriptions",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CancelBillingSubscriptionsResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The verification to cancel.",
+        "name": "verificationId",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Cancel an active verification, either pending or verified and not yet expired.",
+    "isDeprecated": false,
+    "name": "cancelPinVerification",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "CancelPinVerificationResult",
         "ofType": null
       }
     }
@@ -2617,7 +2773,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Create new inventory items.",
+    "description": "Create new inventory items. All-or-nothing: if any item fails validation or the model is not found, no item is created.",
     "isDeprecated": false,
     "name": "createInventoryItems",
     "type": {
@@ -3992,7 +4148,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Delete inventory items. Inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
+    "description": "Delete inventory items. Partial success: inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
     "isDeprecated": false,
     "name": "deleteInventoryItems",
     "type": {
@@ -4350,6 +4506,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The verification to extend.",
+        "name": "verificationId",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Push back the expiry of a verified verification that has not expired yet, to now plus the tenant's verification duration.",
+    "isDeprecated": false,
+    "name": "extendPinVerification",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "ExtendPinVerificationResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The entity to verify.",
         "name": "entityId",
         "type": {
@@ -4590,7 +4777,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Remove impacted accounts from an incident.",
+    "description": "Remove impacted accounts from an incident. All-or-nothing: if the removal fails, no account is removed. Accounts that are not impacted by the incident are ignored.",
     "isDeprecated": false,
     "name": "removeImpactedAccountsFromIncident",
     "type": {
@@ -4621,7 +4808,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Remove linked devices from an inventory item.",
+    "description": "Remove linked devices from an inventory item. All-or-nothing: if the removal fails, none of the links is removed. Links that do not exist are ignored.",
     "isDeprecated": false,
     "name": "removeInventoryItemLinkedDevices",
     "type": {
@@ -4683,7 +4870,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Remove IP blocks from a network site.",
+    "description": "Remove IP blocks from a network site. All-or-nothing: if the removal fails, no IP block is removed. IP blocks that do not belong to the network site are ignored.",
     "isDeprecated": false,
     "name": "removeIpBlocksFromNetworkSite",
     "type": {
@@ -4855,6 +5042,37 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The account and internal composition instruction.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "SendNausicaaMessageInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Ask nausicaä to compose and send an SMS to an account's primary contact, using trusted account tools without changing PIN verification.",
+    "isDeprecated": false,
+    "name": "sendNausicaaMessage",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "SendNausicaaMessageResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The product version's ID.",
         "name": "id",
         "type": {
@@ -4976,7 +5194,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Start an asynchronous job to check available products at a given location. Requires a gaiia [publishable key](../../../authentication) in the request headers.",
+    "description": "Start an asynchronous job to check the products available at a given location or to an existing account. Starting a job for an address requires a gaiia [publishable key](../../../authentication) in the request headers. Starting a job for an account requires the `accounts.view` permission, unless the account starts it for itself or a workflow starts it.",
     "isDeprecated": false,
     "name": "startProductAvailabilityJob",
     "type": {
@@ -5435,6 +5653,45 @@
     "args": [
       {
         "defaultValue": null,
+        "description": "The incidents unique identifiers. At most 1000 incidents per call.",
+        "name": "ids",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "GlobalID",
+                "ofType": null
+              }
+            }
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Unarchive one or more incidents. Partial success: each incident succeeds or fails on its own, and the incidents that fail are listed in errors. An unarchived workflow event is published for each unarchived incident after the changes are saved. If publishing it fails, the mutation returns an error even though the incidents are already unarchived; retrying then reports them as not archived.",
+    "isDeprecated": false,
+    "name": "unarchiveIncidents",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UnarchiveIncidentsResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
         "description": "The unarchiveInventoryRoles mutation's input.",
         "name": "input",
         "type": {
@@ -5449,7 +5706,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Unarchive existing inventory roles.",
+    "description": "Unarchive existing inventory roles. All-or-nothing: if any inventory role is not found, none is unarchived.",
     "isDeprecated": false,
     "name": "unarchiveInventoryRoles",
     "type": {
@@ -5488,7 +5745,7 @@
       }
     ],
     "deprecationReason": null,
-    "description": "Unarchive one or more network sites.",
+    "description": "Unarchive one or more network sites. Partial success: network sites that cannot be unarchived (not found, or an active network site has the same name or reference ID) are reported in errors, and the other network sites are still unarchived.",
     "isDeprecated": false,
     "name": "unarchiveNetworkSites",
     "type": {
@@ -7803,6 +8060,96 @@
       "ofType": {
         "kind": "OBJECT",
         "name": "UpdateScheduleTemplateResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The tag definition's unique ID.",
+        "name": "tagDefinitionId",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to update a tag definition.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTagDefinitionInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update a tag definition's key.",
+    "isDeprecated": false,
+    "name": "updateTagDefinition",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTagDefinitionResult",
+        "ofType": null
+      }
+    }
+  },
+  {
+    "args": [
+      {
+        "defaultValue": null,
+        "description": "The tag value's unique ID.",
+        "name": "tagValueId",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "SCALAR",
+            "name": "GlobalID",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "defaultValue": null,
+        "description": "The input required to update a tag value.",
+        "name": "input",
+        "type": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "INPUT_OBJECT",
+            "name": "UpdateTagValueInput",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "deprecationReason": null,
+    "description": "Update a tag value.",
+    "isDeprecated": false,
+    "name": "updateTagValue",
+    "type": {
+      "kind": "NON_NULL",
+      "name": null,
+      "ofType": {
+        "kind": "OBJECT",
+        "name": "UpdateTagValueResult",
         "ofType": null
       }
     }
