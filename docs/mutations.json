@@ -43,7 +43,7 @@
         "type": "AddImpactedAccountsToIncidentInput!"
       }
     ],
-    "description": "Add impacted accounts to an incident.",
+    "description": "Add impacted accounts to an incident. All-or-nothing: if any account does not exist, no account is added to the incident.",
     "name": "addImpactedAccountsToIncident",
     "type": "AddImpactedAccountsToIncidentResult!"
   },
@@ -91,7 +91,7 @@
         "type": "AddInventoryItemLinkedDevicesInput!"
       }
     ],
-    "description": "Add new linked devices to an inventory item.",
+    "description": "Add new linked devices to an inventory item. All-or-nothing: if any link is invalid, none of the links is added.",
     "name": "addInventoryItemLinkedDevices",
     "type": "AddInventoryItemLinkedDevicesResult!"
   },
@@ -115,7 +115,7 @@
         "type": "AddIpBlocksToNetworkSiteInput!"
       }
     ],
-    "description": "Add IP blocks to a network site.",
+    "description": "Add IP blocks to a network site. All-or-nothing: if any IP block is invalid or already exists, none is added.",
     "name": "addIpBlocksToNetworkSite",
     "type": "AddIpBlocksToNetworkSiteResult!"
   },
@@ -154,6 +154,23 @@
     "description": "Add a recurring schedule to a technician from an existing schedule template.",
     "name": "addScheduleToTechnician",
     "type": "AddScheduleToTechnicianResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The ticket's unique ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to apply a ticket template.",
+        "name": "input",
+        "type": "ApplyTicketTemplateInput!"
+      }
+    ],
+    "description": "Apply a ticket template to an existing ticket: the template's values fill the ticket's empty type, categories, user group (team) and due date, and its form (if any) is attached. Fields that already have a value are kept, and the template's priority and assignees are never applied.",
+    "name": "applyTicketTemplate",
+    "type": "ApplyTicketTemplateResult!"
   },
   {
     "args": [
@@ -278,12 +295,29 @@
   {
     "args": [
       {
+        "description": "The incidents unique identifiers. At most 1000 incidents per call.",
+        "name": "ids",
+        "type": "[GlobalID!]!"
+      },
+      {
+        "description": "When true, the incidents archived by this call that are not already RESOLVED are also set to RESOLVED, and their resolvedAt is set to now if it is empty. Defaults to false: archiving alone does not change status.",
+        "name": "shouldResolve",
+        "type": "Boolean"
+      }
+    ],
+    "description": "Archive one or more incidents. Partial success: each incident succeeds or fails on its own, and the incidents that fail are listed in errors. An archived workflow event is published for each archived incident after the changes are saved, plus a status-updated workflow event and an activity event for each incident whose status this call changes to RESOLVED. If publishing a workflow event fails, the mutation returns an error even though the incidents are already archived; retrying then reports them as already archived.",
+    "name": "archiveIncidents",
+    "type": "ArchiveIncidentsResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The archiveInventoryRoles mutation's input.",
         "name": "input",
         "type": "ArchiveInventoryRolesInput!"
       }
     ],
-    "description": "Archive existing inventory roles.",
+    "description": "Archive existing inventory roles. All-or-nothing: if any inventory role is not found, none is archived.",
     "name": "archiveInventoryRoles",
     "type": "ArchiveInventoryRolesResult!"
   },
@@ -295,7 +329,7 @@
         "type": "[GlobalID!]!"
       }
     ],
-    "description": "Archive one or more network sites.",
+    "description": "Archive one or more network sites. Partial success: network sites that do not exist or are already archived are reported in errors, and the other network sites are still archived.",
     "name": "archiveNetworkSites",
     "type": "ArchiveNetworkSitesResult!"
   },
@@ -463,7 +497,7 @@
         "type": "AssignInventoryItemsInput!"
       }
     ],
-    "description": "Update the assignee and/or the inventory role of many inventory items at once.",
+    "description": "Update the assignee and/or the inventory role of many inventory items at once. Partial success: inventory items that cannot be resolved are reported in the errors while the remaining ones are updated. If the inventory role is not found or is archived, no item is updated.",
     "name": "assignInventoryItems",
     "type": "AssignInventoryItemsResult!"
   },
@@ -538,6 +572,30 @@
     "description": "Cancel and duplicate a work order with a new work type.",
     "name": "cancelAndDuplicateWorkOrderWithWorkType",
     "type": "CancelAndDuplicateWorkOrderWithWorkTypeResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The input required to cancel billing subscriptions.",
+        "name": "input",
+        "type": "CancelBillingSubscriptionsInput!"
+      }
+    ],
+    "description": "Cancel billing subscriptions of a single billable entity. All-or-nothing: if any subscription fails, none is cancelled.",
+    "name": "cancelBillingSubscriptions",
+    "type": "CancelBillingSubscriptionsResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The verification to cancel.",
+        "name": "verificationId",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Cancel an active verification, either pending or verified and not yet expired.",
+    "name": "cancelPinVerification",
+    "type": "CancelPinVerificationResult!"
   },
   {
     "args": [
@@ -1006,7 +1064,7 @@
         "type": "CreateInventoryItemsInput!"
       }
     ],
-    "description": "Create new inventory items.",
+    "description": "Create new inventory items. All-or-nothing: if any item fails validation or the model is not found, no item is created.",
     "name": "createInventoryItems",
     "type": "CreateInventoryItemsResult!"
   },
@@ -1538,7 +1596,7 @@
         "type": "DeleteInventoryItemsInput!"
       }
     ],
-    "description": "Delete inventory items. Inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
+    "description": "Delete inventory items. Partial success: inventory items that cannot be resolved are reported in the errors while the remaining ones are deleted.",
     "name": "deleteInventoryItems",
     "type": "DeleteInventoryItemsResult!"
   },
@@ -1677,6 +1735,18 @@
   {
     "args": [
       {
+        "description": "The verification to extend.",
+        "name": "verificationId",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "Push back the expiry of a verified verification that has not expired yet, to now plus the tenant's verification duration.",
+    "name": "extendPinVerification",
+    "type": "ExtendPinVerificationResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The entity to verify.",
         "name": "entityId",
         "type": "GlobalID!"
@@ -1768,7 +1838,7 @@
         "type": "RemoveImpactedAccountsFromIncidentInput!"
       }
     ],
-    "description": "Remove impacted accounts from an incident.",
+    "description": "Remove impacted accounts from an incident. All-or-nothing: if the removal fails, no account is removed. Accounts that are not impacted by the incident are ignored.",
     "name": "removeImpactedAccountsFromIncident",
     "type": "RemoveImpactedAccountsFromIncidentResult!"
   },
@@ -1780,7 +1850,7 @@
         "type": "RemoveInventoryItemLinkedDevicesInput!"
       }
     ],
-    "description": "Remove linked devices from an inventory item.",
+    "description": "Remove linked devices from an inventory item. All-or-nothing: if the removal fails, none of the links is removed. Links that do not exist are ignored.",
     "name": "removeInventoryItemLinkedDevices",
     "type": "RemoveInventoryItemLinkedDevicesResult!"
   },
@@ -1804,7 +1874,7 @@
         "type": "RemoveIpBlocksFromNetworkSiteInput!"
       }
     ],
-    "description": "Remove IP blocks from a network site.",
+    "description": "Remove IP blocks from a network site. All-or-nothing: if the removal fails, no IP block is removed. IP blocks that do not belong to the network site are ignored.",
     "name": "removeIpBlocksFromNetworkSite",
     "type": "RemoveIpBlocksFromNetworkSiteResult!"
   },
@@ -1871,6 +1941,18 @@
   {
     "args": [
       {
+        "description": "The account and internal composition instruction.",
+        "name": "input",
+        "type": "SendNausicaaMessageInput!"
+      }
+    ],
+    "description": "Ask nausicaä to compose and send an SMS to an account's primary contact, using trusted account tools without changing PIN verification.",
+    "name": "sendNausicaaMessage",
+    "type": "SendNausicaaMessageResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The product version's ID.",
         "name": "id",
         "type": "GlobalID!"
@@ -1917,7 +1999,7 @@
         "type": "StartProductAvailabilityJobInput!"
       }
     ],
-    "description": "Start an asynchronous job to check available products at a given location. Requires a gaiia [publishable key](../../../authentication) in the request headers.",
+    "description": "Start an asynchronous job to check the products available at a given location or to an existing account. Starting a job for an address requires a gaiia [publishable key](../../../authentication) in the request headers. Starting a job for an account requires the `accounts.view` permission, unless the account starts it for itself or a workflow starts it.",
     "name": "startProductAvailabilityJob",
     "type": "StartProductAvailabilityJobResult!"
   },
@@ -2092,12 +2174,24 @@
   {
     "args": [
       {
+        "description": "The incidents unique identifiers. At most 1000 incidents per call.",
+        "name": "ids",
+        "type": "[GlobalID!]!"
+      }
+    ],
+    "description": "Unarchive one or more incidents. Partial success: each incident succeeds or fails on its own, and the incidents that fail are listed in errors. An unarchived workflow event is published for each unarchived incident after the changes are saved. If publishing it fails, the mutation returns an error even though the incidents are already unarchived; retrying then reports them as not archived.",
+    "name": "unarchiveIncidents",
+    "type": "UnarchiveIncidentsResult!"
+  },
+  {
+    "args": [
+      {
         "description": "The unarchiveInventoryRoles mutation's input.",
         "name": "input",
         "type": "UnarchiveInventoryRolesInput!"
       }
     ],
-    "description": "Unarchive existing inventory roles.",
+    "description": "Unarchive existing inventory roles. All-or-nothing: if any inventory role is not found, none is unarchived.",
     "name": "unarchiveInventoryRoles",
     "type": "UnarchiveInventoryRolesResult!"
   },
@@ -2109,7 +2203,7 @@
         "type": "[GlobalID!]!"
       }
     ],
-    "description": "Unarchive one or more network sites.",
+    "description": "Unarchive one or more network sites. Partial success: network sites that cannot be unarchived (not found, or an active network site has the same name or reference ID) are reported in errors, and the other network sites are still unarchived.",
     "name": "unarchiveNetworkSites",
     "type": "UnarchiveNetworkSitesResult!"
   },
@@ -2998,6 +3092,40 @@
     "description": "Update an existing schedule template.",
     "name": "updateScheduleTemplate",
     "type": "UpdateScheduleTemplateResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The tag definition's unique ID.",
+        "name": "tagDefinitionId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to update a tag definition.",
+        "name": "input",
+        "type": "UpdateTagDefinitionInput!"
+      }
+    ],
+    "description": "Update a tag definition's key.",
+    "name": "updateTagDefinition",
+    "type": "UpdateTagDefinitionResult!"
+  },
+  {
+    "args": [
+      {
+        "description": "The tag value's unique ID.",
+        "name": "tagValueId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The input required to update a tag value.",
+        "name": "input",
+        "type": "UpdateTagValueInput!"
+      }
+    ],
+    "description": "Update a tag value.",
+    "name": "updateTagValue",
+    "type": "UpdateTagValueResult!"
   },
   {
     "args": [

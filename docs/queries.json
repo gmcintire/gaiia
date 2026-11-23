@@ -90,6 +90,18 @@
   {
     "args": [
       {
+        "description": "The account's unique ID.",
+        "name": "accountId",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "The account's tags that can't be changed right now, and why. A change to one of them is refused by the updateAccount mutation. A tag locked for several reasons is listed once per reason. Fails with the LOCKED_TAGS_CHECK_FAILED code when the locks can't be checked right now; try again in a few minutes.",
+    "name": "accountLockedTags",
+    "type": "[LockedTag!]!"
+  },
+  {
+    "args": [
+      {
         "description": "Returns up to the first `n` elements from the list.",
         "name": "first",
         "type": "Int"
@@ -329,7 +341,7 @@
         "type": "BundlesQueryFilters"
       }
     ],
-    "description": "Query paginated list of archived product bundles.",
+    "description": "Query a paginated list of archived product bundles, most recently archived first. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
     "name": "archivedBundles",
     "type": "BundleConnection!"
   },
@@ -569,7 +581,7 @@
         "type": "BundlesQueryFilters"
       }
     ],
-    "description": "Query paginated list of product bundles.",
+    "description": "Query a paginated list of product bundles, newest first. The arguments `first` and `last` are mutually exclusive; only one of them can be set at a time. The same applies to `after` and `before`.",
     "name": "bundles",
     "type": "BundleConnection!"
   },
@@ -616,6 +628,18 @@
     "description": "Query a commercial account by unique ID.",
     "name": "commercialAccount",
     "type": "CommercialAccount"
+  },
+  {
+    "args": [
+      {
+        "description": "The commercial account's unique ID.",
+        "name": "commercialAccountId",
+        "type": "GlobalID!"
+      }
+    ],
+    "description": "The commercial account's tags that can't be changed right now, and why. A change to one of them is refused by the updateCommercialAccount mutation. A tag locked for several reasons is listed once per reason. Fails with the LOCKED_TAGS_CHECK_FAILED code when the locks can't be checked right now; try again in a few minutes.",
+    "name": "commercialAccountLockedTags",
+    "type": "[LockedTag!]!"
   },
   {
     "args": [
@@ -2908,6 +2932,43 @@
     "description": "Query a user by unique ID.",
     "name": "user",
     "type": "User"
+  },
+  {
+    "args": [
+      {
+        "description": "Returns up to the first n elements.",
+        "name": "first",
+        "type": "Int"
+      },
+      {
+        "description": "Returns up to the last n elements.",
+        "name": "last",
+        "type": "Int"
+      },
+      {
+        "description": "Returns elements after the cursor.",
+        "name": "after",
+        "type": "String"
+      },
+      {
+        "description": "Returns elements before the cursor.",
+        "name": "before",
+        "type": "String"
+      },
+      {
+        "description": "Filters to apply.",
+        "name": "filter",
+        "type": "UserGroupFilter"
+      },
+      {
+        "description": "Ordering to apply.",
+        "name": "orderBy",
+        "type": "[UserGroupOrderBy!]"
+      }
+    ],
+    "description": "Query a paginated, filterable list of user groups. The arguments first and last are mutually exclusive; only one of them can be set at a time. The same applies to after and before.",
+    "name": "userGroups",
+    "type": "UserGroupConnection!"
   },
   {
     "args": [

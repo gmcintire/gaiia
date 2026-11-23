@@ -542,6 +542,56 @@
     ]
   },
   {
+    "description": "The applyTicketTemplate mutation's expected error codes.",
+    "name": "ApplyTicketTemplateErrorCode",
+    "values": [
+      {
+        "description": "The ticket was not found.",
+        "name": "TICKET_NOT_FOUND"
+      },
+      {
+        "description": "The ticket is archived.",
+        "name": "TICKET_ARCHIVED"
+      },
+      {
+        "description": "The ticket is closed.",
+        "name": "TICKET_CLOSED"
+      },
+      {
+        "description": "The ticket already has a form.",
+        "name": "TICKET_FORM_ALREADY_ATTACHED"
+      },
+      {
+        "description": "The ticket template was not found.",
+        "name": "TICKET_TEMPLATE_NOT_FOUND"
+      },
+      {
+        "description": "The ticket template is archived.",
+        "name": "TICKET_TEMPLATE_IS_ARCHIVED"
+      },
+      {
+        "description": "The template's custom object record could not be created.",
+        "name": "CUSTOM_OBJECT_RECORD_CREATION_FAILED"
+      },
+      {
+        "description": "The template's ticket type was not found.",
+        "name": "TICKET_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "A template's ticket category was not found.",
+        "name": "TICKET_CATEGORY_NOT_FOUND"
+      },
+      {
+        "description": "The template's user group was not found.",
+        "name": "TICKET_USER_GROUP_NOT_FOUND"
+      },
+      {
+        "description": "The template's user group is archived.",
+        "name": "TICKET_USER_GROUP_ARCHIVED"
+      }
+    ]
+  },
+  {
     "description": "The appointment configuration's error codes.",
     "name": "AppointmentConfigErrorCode",
     "values": [
@@ -730,6 +780,16 @@
       {
         "description": "Not supported for entities: the id is an entity's, or the record holds an entity's custom field values.",
         "name": "ENTITY_NOT_SUPPORTED"
+      }
+    ]
+  },
+  {
+    "description": "The archiveIncidents mutation's error codes.",
+    "name": "ArchiveIncidentsErrorCode",
+    "values": [
+      {
+        "description": "The incident does not exist or is already archived.",
+        "name": "INCIDENT_NOT_FOUND"
       }
     ]
   },
@@ -936,6 +996,34 @@
     ]
   },
   {
+    "description": "The time zone mode used to book arrival windows.",
+    "name": "ArrivalWindowTimezoneMode",
+    "values": [
+      {
+        "description": "Arrival windows use the work order's service location time zone, or the appointment configuration's time zone when the location has none.",
+        "name": "SERVICE_LOCATION"
+      },
+      {
+        "description": "Arrival windows use the appointment configuration's time zone.",
+        "name": "FIXED"
+      }
+    ]
+  },
+  {
+    "description": "The source of a work order's arrival window time zone.",
+    "name": "ArrivalWindowTimezoneSource",
+    "values": [
+      {
+        "description": "The time zone of the work order's service location.",
+        "name": "SERVICE_LOCATION"
+      },
+      {
+        "description": "The appointment configuration's time zone.",
+        "name": "ISP_DEFAULT"
+      }
+    ]
+  },
+  {
     "description": "The assign subscriptions' expected error codes.",
     "name": "AssignBillingSubscriptionsErrorCode",
     "values": [
@@ -1034,6 +1122,10 @@
       {
         "description": "The discounted price cannot be greater than or equal to the product price.",
         "name": "PRICE_OVERRIDE_GREATER_THAN_PRODUCT_PRICE"
+      },
+      {
+        "description": "The discounted price cannot be negative.",
+        "name": "NEGATIVE_DISCOUNTED_PRICE"
       },
       {
         "description": "Cannot set custom price for prepaid product.",
@@ -1162,6 +1254,10 @@
       {
         "description": "The following DIDs were not found: ${didIdentifiers}.",
         "name": "DID_NOT_FOUND"
+      },
+      {
+        "description": "A single request can assign at most ${max} DIDs.",
+        "name": "TOO_MANY_DIDS_TO_ASSIGN"
       },
       {
         "description": "The DID range ${range} is incomplete. Expected ${expectedCount} DIDs but found ${actualCount}.",
@@ -1506,7 +1602,7 @@
         "name": "NO_AVAILABLE_TECHNICIANS"
       },
       {
-        "description": "The work order auto assignation failed because the time slot is no longer available. This can happen if the time slot is filled while trying to assign.",
+        "description": "The work order auto assignation failed because the time slot is no longer available. This can happen if the time slot is filled while trying to assign, or if it has already passed.",
         "name": "TIME_SLOT_NO_LONGER_AVAILABLE"
       },
       {
@@ -1943,6 +2039,70 @@
       {
         "description": "The technician does not have the required work types to perform the work order.",
         "name": "TECHNICIAN_UNABLE_TO_PERFORM_WORK_ORDER"
+      }
+    ]
+  },
+  {
+    "description": "The cancel billing subscriptions' expected error codes.",
+    "name": "CancelBillingSubscriptionsErrorCode",
+    "values": [
+      {
+        "description": "Cannot send the same ID more than once.",
+        "name": "DUPLICATE_ENTITY_IDS"
+      },
+      {
+        "description": "One or more entities were not found.",
+        "name": "ONE_OR_MORE_ENTITY_NOT_FOUND"
+      },
+      {
+        "description": "Cannot update ${object} from different entityId.",
+        "name": "CANNOT_UPDATE_OBJECT_FROM_DIFFERENT_ENTITY"
+      },
+      {
+        "description": "A cancellationDate is required when prorateStrategy is FROM_CUSTOM_DATE.",
+        "name": "FROM_CUSTOM_DATE_STRATEGY_REQUIRES_CANCELLATION_DATE"
+      },
+      {
+        "description": "Cannot provide a cancellationDate unless prorateStrategy is FROM_CUSTOM_DATE.",
+        "name": "CANCELLATION_DATE_REQUIRES_FROM_CUSTOM_DATE_STRATEGY"
+      },
+      {
+        "description": "Cancellation date must be today or in the past.",
+        "name": "CANCELLATION_DATE_MUST_BE_TODAY_OR_PAST"
+      },
+      {
+        "description": "Cannot provide a cancellationDate for a subscription with a billing cycle anchor.",
+        "name": "CANNOT_BACKDATE_ANCHORED_SUBSCRIPTION"
+      },
+      {
+        "description": "Cancellation date cannot be before the subscription assigned date.",
+        "name": "CANCELLATION_DATE_BEFORE_SUBSCRIPTION_ASSIGNMENT"
+      },
+      {
+        "description": "The subscription's debit was invoiced or changed during this update. Try again.",
+        "name": "SUBSCRIPTION_DEBIT_CHANGED_DURING_UPDATE"
+      },
+      {
+        "description": "A subscription was cancelled, suspended or reactivated by another request during this update. Try again.",
+        "name": "SUBSCRIPTION_CHANGED_DURING_UPDATE"
+      }
+    ]
+  },
+  {
+    "description": "The cancelPinVerification mutation's expected error codes.",
+    "name": "CancelPinVerificationErrorCode",
+    "values": [
+      {
+        "description": "PIN verification is not enabled for this tenant.",
+        "name": "FEATURE_NOT_ENABLED"
+      },
+      {
+        "description": "The verification is neither pending nor verified, or it has expired.",
+        "name": "VERIFICATION_NOT_ACTIVE"
+      },
+      {
+        "description": "The verification was not found.",
+        "name": "VERIFICATION_NOT_FOUND"
       }
     ]
   },
@@ -2409,6 +2569,14 @@
       {
         "description": "Contact not found.",
         "name": "CONTACT_NOT_FOUND"
+      },
+      {
+        "description": "One or more Communication Type slugs were not found.",
+        "name": "COMMUNICATION_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "Both enabledNotificationTypes and communicationTypeSubscriptions were provided.",
+        "name": "CONTACT_CONFLICTING_NOTIFICATION_INPUTS"
       }
     ]
   },
@@ -2455,6 +2623,18 @@
       {
         "description": "The unit's address is missing a premise or a thoroughfare.",
         "name": "UNIT_ADDRESS_INCOMPLETE"
+      },
+      {
+        "description": "One or more tag values were not found.",
+        "name": "TAG_VALUE_NOT_FOUND"
+      },
+      {
+        "description": "The same tag value was provided more than once.",
+        "name": "DUPLICATE_TAG_VALUES_NOT_ALLOWED"
+      },
+      {
+        "description": "More than one value was provided for the same tag.",
+        "name": "DUPLICATE_TAG_KEY_NOT_ALLOWED"
       }
     ]
   },
@@ -2541,7 +2721,7 @@
         "name": "API_KEY_INVALID_IP_RANGE"
       },
       {
-        "description": "The requested permissions are invalid or exceed the caller's permissions.",
+        "description": "The requested permissions are invalid, exceed the caller's permissions, or are set on a publishable key.",
         "name": "API_KEY_INVALID_PERMISSIONS"
       }
     ]
@@ -4640,6 +4820,10 @@
         "name": "INVALID_COMMERCIAL_ACCOUNT_ID"
       },
       {
+        "description": "The project does not exist.",
+        "name": "PROJECT_NOT_FOUND"
+      },
+      {
         "description": "Access policies require tags but no matching tags could be resolved.",
         "name": "RESOURCE_POLICY_TAGS_REQUIRED"
       },
@@ -5530,6 +5714,24 @@
       {
         "description": "Created event.",
         "name": "CREATED"
+      }
+    ]
+  },
+  {
+    "description": "The extendPinVerification mutation's expected error codes.",
+    "name": "ExtendPinVerificationErrorCode",
+    "values": [
+      {
+        "description": "PIN verification is not enabled for this tenant.",
+        "name": "FEATURE_NOT_ENABLED"
+      },
+      {
+        "description": "The verification is not verified, or it has expired.",
+        "name": "VERIFICATION_NOT_ACTIVE"
+      },
+      {
+        "description": "The verification was not found.",
+        "name": "VERIFICATION_NOT_FOUND"
       }
     ]
   },
@@ -7468,6 +7670,42 @@
       {
         "description": "The email exceeds 250 KB, usually because its template embeds images instead of hosting them.",
         "name": "EMAIL_TOO_LARGE"
+      },
+      {
+        "description": "The template could not be rendered, usually because of an invalid merge tag.",
+        "name": "TEMPLATE_RENDER_FAILED"
+      }
+    ]
+  },
+  {
+    "description": "Expected failures before outbound generation is accepted.",
+    "name": "SendNausicaaMessageErrorCode",
+    "values": [
+      {
+        "description": "The nausicaä agent is disabled for the tenant.",
+        "name": "LOUISE_DISABLED"
+      },
+      {
+        "description": "The nausicaä agent could not accept the generation request.",
+        "name": "LOUISE_GENERATION_UNAVAILABLE"
+      }
+    ]
+  },
+  {
+    "description": "The prorate strategy to use when cancelling billing subscriptions.",
+    "name": "ServiceCancellationProrateStrategy",
+    "values": [
+      {
+        "description": "Prorate from the day the subscription is cancelled.",
+        "name": "FROM_CANCELLATION_DATE"
+      },
+      {
+        "description": "Prorate from a custom date provided by the caller. Requires cancellationDate to be set.",
+        "name": "FROM_CUSTOM_DATE"
+      },
+      {
+        "description": "Do not prorate: no credit is created for the unused part of the subscription.",
+        "name": "NO_PRORATION"
       }
     ]
   },
@@ -7746,6 +7984,16 @@
       {
         "description": "The country IRL.",
         "name": "IRL"
+      }
+    ]
+  },
+  {
+    "description": "Why a tag can't be changed.",
+    "name": "TagLockReason",
+    "values": [
+      {
+        "description": "The tag selects the payment processor that charges the entity, and the entity has an active card or bank account that wouldn't work with another processor. Remove the card or bank account first.",
+        "name": "PAYMENT_PROCESSOR_LINKED_WITH_ACTIVE_PAYMENT_METHOD"
       }
     ]
   },
@@ -8452,6 +8700,16 @@
     ]
   },
   {
+    "description": "The unarchiveIncidents mutation's error codes.",
+    "name": "UnarchiveIncidentsErrorCode",
+    "values": [
+      {
+        "description": "The incident does not exist or is not archived.",
+        "name": "INCIDENT_NOT_FOUND"
+      }
+    ]
+  },
+  {
     "description": "The unarchiveInventoryRoles mutation's expected error codes.",
     "name": "UnarchiveInventoryRolesErrorCode",
     "values": [
@@ -8656,6 +8914,14 @@
       {
         "description": "Contact is linked to other entities.",
         "name": "CONTACT_LINKED_TO_OTHER_ENTITIES"
+      },
+      {
+        "description": "One or more Communication Type slugs were not found.",
+        "name": "COMMUNICATION_TYPE_NOT_FOUND"
+      },
+      {
+        "description": "Both enabledNotificationTypes and communicationTypeSubscriptions were provided.",
+        "name": "CONTACT_CONFLICTING_NOTIFICATION_INPUTS"
       }
     ]
   },
@@ -8706,8 +8972,32 @@
         "name": "INPUT_VALIDATION_FAILED"
       },
       {
+        "description": "One or more tag values were not found.",
+        "name": "TAG_VALUE_NOT_FOUND"
+      },
+      {
+        "description": "The same tag value was provided more than once.",
+        "name": "DUPLICATE_TAG_VALUES_NOT_ALLOWED"
+      },
+      {
+        "description": "More than one value was provided for the same tag.",
+        "name": "DUPLICATE_TAG_KEY_NOT_ALLOWED"
+      },
+      {
+        "description": "A tag that routes payments can't change while a credit card or bank account is still linked to the account, because the payment method would no longer work. Remove the linked payment methods first.",
+        "name": "TAG_CHANGE_BLOCKED_BY_ACTIVE_PAYMENT_METHODS"
+      },
+      {
+        "description": "The account's payment methods couldn't be checked before a tag change, so nothing was saved. Try again later.",
+        "name": "TAG_CHANGE_PAYMENT_METHOD_CHECK_FAILED"
+      },
+      {
         "description": "Account not found.",
         "name": "ACCOUNT_NOT_FOUND"
+      },
+      {
+        "description": "A field that is not nullable was set to null.",
+        "name": "ACCOUNT_FIELD_NON_NULLABLE"
       }
     ]
   },
@@ -8834,6 +9124,10 @@
       {
         "description": "An allowed IP entry is not a valid IP address or CIDR range.",
         "name": "API_KEY_INVALID_IP_RANGE"
+      },
+      {
+        "description": "One or more of the requested origins cannot be used on this API key.",
+        "name": "API_KEY_ORIGIN_NOT_ALLOWED"
       }
     ]
   },
@@ -8980,6 +9274,18 @@
         "name": "MISSING_REQUIRED_TAGS"
       },
       {
+        "description": "A tag that routes payments can't change while a credit card or bank account is still linked to the commercial account, because the payment method would no longer work. Remove the linked payment methods first.",
+        "name": "TAG_CHANGE_BLOCKED_BY_ACTIVE_PAYMENT_METHODS"
+      },
+      {
+        "description": "The commercial account's payment methods couldn't be checked before a tag change, so nothing was saved. Try again later.",
+        "name": "TAG_CHANGE_PAYMENT_METHOD_CHECK_FAILED"
+      },
+      {
+        "description": "One or more Communication Type slugs were not found.",
+        "name": "COMMUNICATION_TYPE_NOT_FOUND"
+      },
+      {
         "description": "An unexpected error occurred.",
         "name": "COMMERCIAL_ACCOUNT_UNEXPECTED_ERROR"
       }
@@ -9124,6 +9430,10 @@
       {
         "description": "One or more options cannot be removed because they are in use by existing records.",
         "name": "OPTION_IN_USE"
+      },
+      {
+        "description": "The primary display field must stay unique.",
+        "name": "PRIMARY_DISPLAY_MUST_BE_UNIQUE"
       },
       {
         "description": "SECRET fields cannot be unique.",
@@ -9560,6 +9870,10 @@
       {
         "description": "A non-nullable field was explicitly set to null.",
         "name": "LOCATION_FIELD_NON_NULLABLE"
+      },
+      {
+        "description": "An inventory location with this name already exists.",
+        "name": "LOCATION_ALREADY_EXISTS"
       }
     ]
   },
@@ -9818,6 +10132,10 @@
         "name": "PRODUCT_CATEGORY_NOT_FOUND"
       },
       {
+        "description": "A field that cannot be null was explicitly set to null.",
+        "name": "PRODUCT_FIELD_NON_NULLABLE"
+      },
+      {
         "description": "The product was not found.",
         "name": "PRODUCT_NOT_FOUND"
       },
@@ -9984,6 +10302,46 @@
       {
         "description": "A time slot's start time is the same as its end time.",
         "name": "SCHEDULE_TEMPLATE_TIME_SLOT_START_TIME_SAME_AS_END_TIME"
+      }
+    ]
+  },
+  {
+    "description": "The updateTagDefinition mutation's expected error codes.",
+    "name": "UpdateTagDefinitionErrorCode",
+    "values": [
+      {
+        "description": "The tag definition was not found.",
+        "name": "TAG_DEFINITION_NOT_FOUND"
+      },
+      {
+        "description": "The tag definition key already exists.",
+        "name": "TAG_DEFINITION_KEY_EXISTS"
+      },
+      {
+        "description": "The tag definition was changed or deleted by another request.",
+        "name": "TAG_DEFINITION_CHANGED"
+      }
+    ]
+  },
+  {
+    "description": "The updateTagValue mutation's expected error codes.",
+    "name": "UpdateTagValueErrorCode",
+    "values": [
+      {
+        "description": "The tag definition was not found.",
+        "name": "TAG_DEFINITION_NOT_FOUND"
+      },
+      {
+        "description": "The tag value was not found.",
+        "name": "TAG_VALUE_NOT_FOUND"
+      },
+      {
+        "description": "The tag value already exists.",
+        "name": "TAG_VALUE_EXISTS"
+      },
+      {
+        "description": "The tag value was changed by another request.",
+        "name": "TAG_VALUE_CHANGED"
       }
     ]
   },
@@ -10390,6 +10748,10 @@
         "name": "INVALID_COMMERCIAL_ACCOUNT_ID"
       },
       {
+        "description": "The project does not exist.",
+        "name": "PROJECT_NOT_FOUND"
+      },
+      {
         "description": "The admin.tag.view permission is required to manage entity tags.",
         "name": "TAG_PERMISSION_REQUIRED"
       },
@@ -10542,6 +10904,38 @@
       {
         "description": "The usage is metered.",
         "name": "METERED"
+      }
+    ]
+  },
+  {
+    "description": "Fields available for sorting user groups.",
+    "name": "UserGroupOrderByField",
+    "values": [
+      {
+        "description": "Order by group name.",
+        "name": "NAME"
+      },
+      {
+        "description": "Order by creation date.",
+        "name": "CREATED_AT"
+      },
+      {
+        "description": "Order by last update date.",
+        "name": "UPDATED_AT"
+      }
+    ]
+  },
+  {
+    "description": "The status of a user group.",
+    "name": "UserGroupStatus",
+    "values": [
+      {
+        "description": "The group is active.",
+        "name": "ACTIVE"
+      },
+      {
+        "description": "The group is archived.",
+        "name": "ARCHIVED"
       }
     ]
   },
@@ -10702,7 +11096,7 @@
         "name": "NO_AVAILABLE_TECHNICIANS"
       },
       {
-        "description": "The work order auto assignation failed because the time slot is no longer available. This can happen if the time slot is filled while trying to assign.",
+        "description": "The work order auto assignation failed because the time slot is no longer available. This can happen if the time slot is filled while trying to assign, or if it has already passed.",
         "name": "TIME_SLOT_NO_LONGER_AVAILABLE"
       },
       {

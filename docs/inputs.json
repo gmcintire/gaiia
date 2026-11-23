@@ -766,6 +766,17 @@
     "name": "ApplicableTaxInput"
   },
   {
+    "description": "The applyTicketTemplate mutation's input.",
+    "fields": [
+      {
+        "description": "The ticket template's unique ID.",
+        "name": "templateId",
+        "type": "GlobalID!"
+      }
+    ],
+    "name": "ApplyTicketTemplateInput"
+  },
+  {
     "description": "The archiveBundle mutation's input.",
     "fields": [
       {
@@ -1129,6 +1140,21 @@
         "description": "The start date for the work order.",
         "name": "startDate",
         "type": "DateTime!"
+      },
+      {
+        "description": "The travel times for the work order.",
+        "name": "travelTimes",
+        "type": "[AssignTravelTimeInput!]"
+      },
+      {
+        "description": "Options for notifications related to work order scheduling changes.",
+        "name": "notificationOptions",
+        "type": "NotificationOptionsInput"
+      },
+      {
+        "description": "Override availability checks for technician assignments beyond shift hours. Required permission: workforce.workOrders.assignBeyondShiftHours.",
+        "name": "canAssignBeyondShiftHours",
+        "type": "Boolean"
       }
     ],
     "name": "AssignTechnicianToWorkOrderInput"
@@ -1777,6 +1803,38 @@
       }
     ],
     "name": "CancelAndDuplicateWorkOrderWithWorkTypeInput"
+  },
+  {
+    "description": "The input required to cancel a billing subscription.",
+    "fields": [
+      {
+        "description": "The billing subscription's ID.",
+        "name": "id",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "The prorate strategy applied when the subscription is cancelled. When omitted, an active subscription is prorated from the day it is cancelled, unless prorate is false, and a suspended subscription is not prorated. Some subscriptions, such as pending ones, are never prorated.",
+        "name": "prorateStrategy",
+        "type": "ServiceCancellationProrateStrategy"
+      },
+      {
+        "description": "The retroactive date to prorate from. Required when prorateStrategy is FROM_CUSTOM_DATE, and cannot be set otherwise. Must be today or in the past in the tenant's timezone, and no earlier than the subscription's assigned date.",
+        "name": "cancellationDate",
+        "type": "Date"
+      }
+    ],
+    "name": "CancelBillingSubscriptionInput"
+  },
+  {
+    "description": "The input required to cancel billing subscriptions.",
+    "fields": [
+      {
+        "description": "The billing subscriptions to cancel, from 1 to 20, all belonging to the same billable entity.",
+        "name": "billingSubscriptions",
+        "type": "[CancelBillingSubscriptionInput!]!"
+      }
+    ],
+    "name": "CancelBillingSubscriptionsInput"
   },
   {
     "description": "The input to cancel a workflow execution.",
@@ -2704,9 +2762,14 @@
         "type": "String"
       },
       {
-        "description": "The contact's enabled notification types. Primary account contacts will receive all notifications regardless of this field's value.",
+        "description": "The contact's enabled notification types. Deprecated: use communicationTypeSubscriptions instead. Cannot be combined with communicationTypeSubscriptions.",
         "name": "enabledNotificationTypes",
         "type": "[ContactNotificationType!]"
+      },
+      {
+        "description": "The contact's Communication Type subscriptions, as Communication Type slugs (see the communicationTypeGroups query). When omitted, a primary contact is subscribed to all Communication Types and a secondary contact to none. Cannot be combined with enabledNotificationTypes.",
+        "name": "communicationTypeSubscriptions",
+        "type": "[String!]"
       }
     ],
     "name": "CreateAccountContactInput"
@@ -2768,6 +2831,11 @@
         "description": "The unit to assign the account to. When provided, the account's physical address is derived from the unit's address and kept in sync with it. Exactly one of unitId, physicalAddress or geoAddressId must be provided.",
         "name": "unitId",
         "type": "GlobalID"
+      },
+      {
+        "description": "The IDs of the tag values to assign to the account, at most one per tag.",
+        "name": "tags",
+        "type": "[GlobalID!]"
       }
     ],
     "name": "CreateAccountInput"
@@ -2953,7 +3021,7 @@
         "type": "String"
       },
       {
-        "description": "The contact's enabled notification types. Primary account contacts will receive all notifications regardless of this field's value.",
+        "description": "The contact's enabled notification types. Deprecated: this field is ignored and the primary contact is subscribed to all Communication Types.",
         "name": "enabledNotificationTypes",
         "type": "[ContactNotificationType!]"
       }
@@ -6031,6 +6099,11 @@
         "type": "[WorkOrderLinkedEntityInput!]"
       },
       {
+        "description": "The work order's project ID. Omit or set to null to create the work order without a project.",
+        "name": "projectId",
+        "type": "GlobalID"
+      },
+      {
         "description": "The work order's priority.",
         "name": "priority",
         "type": "WorkOrderPriority"
@@ -6207,7 +6280,7 @@
         "type": "Boolean"
       },
       {
-        "description": "Filter definitions by name.",
+        "description": "Filter definitions by name or plural name. A definition matches when either one satisfies the filter, and `not` and `notIn` exclude it when either one is listed.",
         "name": "name",
         "type": "StringFilter"
       },
@@ -6693,7 +6766,7 @@
     "description": "The input for a discounted price.",
     "fields": [
       {
-        "description": "The discounted price amount, in the smallest currency unit.",
+        "description": "The discounted price amount, in the smallest currency unit. Must be zero or more.",
         "name": "priceInCents",
         "type": "Int!"
       },
@@ -7144,6 +7217,11 @@
         "description": "Filter on the incident's severity field.",
         "name": "severity",
         "type": "IncidentSeverityFilter"
+      },
+      {
+        "description": "Filter by archived status. When not set, only non-archived incidents are returned.",
+        "name": "isArchived",
+        "type": "BooleanFilter"
       }
     ],
     "name": "IncidentFilter"
@@ -7695,7 +7773,7 @@
     "description": "Filters for the manufacturers query.",
     "fields": [
       {
-        "description": "Search term to filter the results per manufacturer's name or associated model's name.",
+        "description": "Search term to filter the results per manufacturer's name or associated model's name. The match ignores case.",
         "name": "name",
         "type": "StringFilter"
       }
@@ -9339,9 +9417,30 @@
         "description": "Communication metadata.",
         "name": "metadata",
         "type": "CommunicationMetadataInput"
+      },
+      {
+        "description": "Custom merge tags, merged over the common merge tags (entity, billing, admin and branding).",
+        "name": "variables",
+        "type": "JSONObject"
       }
     ],
     "name": "SendCommunicationInput"
+  },
+  {
+    "description": "An instruction for nausicaä to compose and send an outbound SMS.",
+    "fields": [
+      {
+        "description": "The account whose primary contact receives the message.",
+        "name": "accountId",
+        "type": "GlobalID!"
+      },
+      {
+        "description": "Internal instructions for composing the message, rather than customer-authored text.",
+        "name": "prompt",
+        "type": "String!"
+      }
+    ],
+    "name": "SendNausicaaMessageInput"
   },
   {
     "description": "The input for the sendPendingContractSignatureReminder mutation.",
@@ -9425,12 +9524,17 @@
     "name": "StartCreateGeofenceJobInput"
   },
   {
-    "description": "Input required to start a product availability job.",
+    "description": "Input required to start a product availability job. Set either `address` or `accountId`.",
     "fields": [
       {
         "description": "The address to check for product availability.",
         "name": "address",
-        "type": "ProductAvailabilityRequestAddress!"
+        "type": "ProductAvailabilityRequestAddress"
+      },
+      {
+        "description": "The ID of an existing account to check for product availability. Requires the `accounts.view` permission, unless the account starts the job for itself or a workflow starts it.",
+        "name": "accountId",
+        "type": "GlobalID"
       }
     ],
     "name": "StartProductAvailabilityJobInput"
@@ -10850,9 +10954,14 @@
         "type": "String"
       },
       {
-        "description": "The contact's enabled notification types. Primary account contacts will receive all notifications regardless of this field's value.",
+        "description": "The contact's enabled notification types. Deprecated: use communicationTypeSubscriptions instead. Cannot be combined with communicationTypeSubscriptions.",
         "name": "enabledNotificationTypes",
         "type": "[ContactNotificationType!]"
+      },
+      {
+        "description": "The contact's Communication Type subscriptions, as Communication Type slugs (see the communicationTypeGroups query). Replaces all of the contact's current subscriptions, so every slug to keep must be included; an empty list removes them all. Cannot be combined with enabledNotificationTypes (not nullable).",
+        "name": "communicationTypeSubscriptions",
+        "type": "[String!]"
       }
     ],
     "name": "UpdateAccountContactInput"
@@ -10910,6 +11019,11 @@
         "description": "The account's deactivation date and time (nullable).",
         "name": "deactivationDate",
         "type": "DateTime"
+      },
+      {
+        "description": "The IDs of the tag values to assign to the account. Replaces all of the account's current tags, so every tag value to keep must be included (not nullable).",
+        "name": "tags",
+        "type": "[GlobalID!]"
       }
     ],
     "name": "UpdateAccountInput"
@@ -11188,7 +11302,7 @@
     "description": "The input required to update an API key.",
     "fields": [
       {
-        "description": "The API key's allowed origins (nullable). Omit to keep unchanged.",
+        "description": "The API key's origins (nullable). Omit to keep unchanged. Origins the API key already has are always kept. On a publishable key, a new wildcard is accepted only as * alone or as a whole first label, such as https://*.example.com. New origins that cannot be used on this API key are refused with API_KEY_ORIGIN_NOT_ALLOWED.",
         "name": "allowedOrigins",
         "type": "[String!]"
       },
@@ -11462,6 +11576,11 @@
         "description": "The contact's role.",
         "name": "role",
         "type": "String"
+      },
+      {
+        "description": "The contact's Communication Type subscriptions, as Communication Type slugs (see the communicationTypeGroups query). Replaces all of the contact's current subscriptions, so every slug to keep must be included; an empty list removes them all (not nullable).",
+        "name": "communicationTypeSubscriptions",
+        "type": "[String!]"
       }
     ],
     "name": "UpdateCommercialAccountPrimaryContactInput"
@@ -11558,7 +11677,7 @@
         "type": "Boolean"
       },
       {
-        "description": "Update unique flag (nullable).",
+        "description": "Update unique flag (nullable). Cannot be false on the primary display field.",
         "name": "isUnique",
         "type": "Boolean"
       },
@@ -12747,6 +12866,28 @@
     "name": "UpdateScheduleTemplateInput"
   },
   {
+    "description": "The input required to update a tag definition.",
+    "fields": [
+      {
+        "description": "The tag's new key.",
+        "name": "key",
+        "type": "String!"
+      }
+    ],
+    "name": "UpdateTagDefinitionInput"
+  },
+  {
+    "description": "The input required to update a tag value.",
+    "fields": [
+      {
+        "description": "The new value.",
+        "name": "value",
+        "type": "String!"
+      }
+    ],
+    "name": "UpdateTagValueInput"
+  },
+  {
     "description": "The input required to update tax exemptions.",
     "fields": [
       {
@@ -13227,6 +13368,11 @@
         "type": "[WorkOrderLinkedEntityInput!]"
       },
       {
+        "description": "The work order's project ID. A value links the project, replacing the current one. Set to null to remove the project. Omit to leave it unchanged.",
+        "name": "projectId",
+        "type": "GlobalID"
+      },
+      {
         "description": "The work order's priority.",
         "name": "priority",
         "type": "WorkOrderPriority"
@@ -13549,6 +13695,80 @@
       }
     ],
     "name": "UserFilter"
+  },
+  {
+    "description": "Filter options for the userGroups query.",
+    "fields": [
+      {
+        "description": "Filter by group name.",
+        "name": "name",
+        "type": "StringFilter"
+      },
+      {
+        "description": "Filter by group status.",
+        "name": "status",
+        "type": "UserGroupStatusFilter"
+      },
+      {
+        "description": "Filter by creation date range.",
+        "name": "createdAt",
+        "type": "DateTimeFilter"
+      },
+      {
+        "description": "Filter by group members.",
+        "name": "members",
+        "type": "UserGroupMemberFilter"
+      }
+    ],
+    "name": "UserGroupFilter"
+  },
+  {
+    "description": "Filter groups by member user IDs.",
+    "fields": [
+      {
+        "description": "Include groups where at least one member matches.",
+        "name": "some",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "Include groups where all specified members are present.",
+        "name": "every",
+        "type": "[GlobalID!]"
+      },
+      {
+        "description": "Exclude groups where any of these members are present.",
+        "name": "none",
+        "type": "[GlobalID!]"
+      }
+    ],
+    "name": "UserGroupMemberFilter"
+  },
+  {
+    "description": "Sorting options for the userGroups query.",
+    "fields": [
+      {
+        "description": "The field to order by.",
+        "name": "field",
+        "type": "UserGroupOrderByField!"
+      },
+      {
+        "description": "The direction to order by.",
+        "name": "direction",
+        "type": "OrderByDirection!"
+      }
+    ],
+    "name": "UserGroupOrderBy"
+  },
+  {
+    "description": "Status filter for user group queries.",
+    "fields": [
+      {
+        "description": "The status to filter by.",
+        "name": "equals",
+        "type": "UserGroupStatus"
+      }
+    ],
+    "name": "UserGroupStatusFilter"
   },
   {
     "description": "To order users.",
